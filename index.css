@@ -30,16 +30,6 @@ p
 	margin: 15px 0;
 	font-size: 16px;
 }
-ul
-{
-	margin: 10px 0 20px 20px;
-	color: #333333;
-}
-li
-{
-	margin: 8px 0;
-	font-size: 16px;
-}
 a
 {
 	color: #0066cc;
@@ -78,13 +68,28 @@ main
 	max-width: 900px;
 	margin: 0 auto;
 }
-.resume-section
+.project-list
 {
-	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 20px;
 }
-.last-updated
+.project-button
 {
-	color: #666666;
-	font-size: 14px;
-	margin-top: 40px;
+	display: inline-block;
+	padding: 15px 25px;
+	background-color: white;
+	border: 2px solid black;
+	color: black;
+	text-decoration: none;
+	font-family: Monaco;
+	font-size: 16px;
+	transition: all 0.2s ease;
+	width: fit-content;
+}
+.project-button:hover
+{
+	background-color: black;
+	color: white;
 }
