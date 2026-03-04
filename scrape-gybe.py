@@ -70,7 +70,7 @@ def parse_show(html, date):
 
     # <li> items (old HTML 4 style, may lack closing tags)
     # Split on <li> and grab text until next tag block
-    for m in re.finditer(r'<li[^>]*>([\s\S]*?)(?=<li|</td|</tr|$)', html, re.I):
+    for m in re.finditer(r'<li[^>]*>([\s\S]*?)(?=<li|</li|<br|</td|</tr|$)', html, re.I):
         raw = m.group(1)
         text = re.sub(r'\s+', ' ', strip_tags(raw)).strip()
         # Strip trailing "back" link artifact
@@ -94,7 +94,20 @@ def parse_show(html, date):
                 if text and 1 < len(text) < 120 and not text.startswith('['):
                     songs.append(text)
 
-    return {'date': date, 'venue': venue, 'songs': songs}
+    note = parse_note(html)
+    result = {'date': date, 'venue': venue, 'songs': songs}
+    if note:
+        result['note'] = note
+    return result
+
+def parse_note(html):
+    """Extract 'thanks to ...' acknowledgment from the page, if present."""
+    m = re.search(r'thanks\s+to\s+([\s\S]*?)(?=</(?:font|i|td|p|li)\b)', html, re.I)
+    if m:
+        text = re.sub(r'<[^>]+>', '', m.group(0))
+        text = re.sub(r'\s+', ' ', text).strip().rstrip('.')
+        return text
+    return ''
 
 def main():
     all_shows = []

@@ -991,9 +991,10 @@ const SETLISTS_DATA = [
       "john hughes",
       "dead metheny",
       "blaise bailey finnegan III",
-      "the sad mafioso thanks to dane mills!"
+      "the sad mafioso"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to dane mills!"
   },
   {
     "date": "1999-09-13",
@@ -2799,9 +2800,10 @@ const SETLISTS_DATA = [
       "gathering storm",
       "dead metheny",
       "motherfucker=redeemer",
-      "the cowboy thanks to christophe"
+      "the cowboy"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to christophe"
   },
   {
     "date": "2002-02-07",
@@ -3406,7 +3408,7 @@ const SETLISTS_DATA = [
       "albanian",
       "death metheny",
       "motherfucker = redeemer",
-      "world police thanks to rian"
+      "world police"
     ],
     "recordings": [
       {
@@ -3414,7 +3416,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2003-03-02.trackedflac16",
         "title": "Godspeed You! Black Emperor Live at Lester Martin Theater on 2003-03-02"
       }
-    ]
+    ],
+    "note": "thanks to rian"
   },
   {
     "date": "2003-03-03",
@@ -3424,9 +3427,10 @@ const SETLISTS_DATA = [
       "world police",
       "monheim",
       "albanian",
-      "motherfucker = redeemer thanks to mark, adam"
+      "motherfucker = redeemer"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to mark, adam"
   },
   {
     "date": "2003-03-04",
@@ -3637,7 +3641,7 @@ const SETLISTS_DATA = [
       "world police",
       "gathering storm",
       "blaise bailey finnegan III",
-      "the sad mafioso thanks to j"
+      "the sad mafioso"
     ],
     "recordings": [
       {
@@ -3645,7 +3649,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2003-03-13",
         "title": "Godspeed You! Black Emperor Live at Texas Union Ballroom on 2003-03-13"
       }
-    ]
+    ],
+    "note": "thanks to j"
   },
   {
     "date": "2003-03-14",
@@ -3656,9 +3661,10 @@ const SETLISTS_DATA = [
       "tazer floyd",
       "monheim",
       "motherfucker=redeemer",
-      "world police thanks to tim and will akers"
+      "world police"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to tim and will akers"
   },
   {
     "date": "2003-03-16",
@@ -3708,9 +3714,10 @@ const SETLISTS_DATA = [
       "monheim",
       "tazer floyd",
       "dead metheny",
-      "blaise bailey finnegan III thanks to adam"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to adam"
   },
   {
     "date": "2003-03-19",
@@ -3789,9 +3796,10 @@ const SETLISTS_DATA = [
       "world police",
       "tazer floyd",
       "motherfucker=redeemer",
-      "moya thanks to matthew"
+      "moya"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to matthew"
   },
   {
     "date": "2003-03-25",
@@ -3804,7 +3812,7 @@ const SETLISTS_DATA = [
       "world police",
       "blaise bailey finnegan III",
       "the sad mafioso",
-      "the dead flag blues (outro) thanks to zack, brett"
+      "the dead flag blues (outro)"
     ],
     "recordings": [
       {
@@ -3812,7 +3820,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2003-03-25",
         "title": "Godspeed You! Black Emperor Live at Beachland Ballroom on 2003-03-25"
       }
-    ]
+    ],
+    "note": "thanks to zack, brett"
   },
   {
     "date": "2003-03-26",
@@ -3882,7 +3891,7 @@ const SETLISTS_DATA = [
       "moya",
       "albanian",
       "motherfucking=redeemer",
-      "blaise bailey finnegan III thanks to ren, pierre"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -3890,7 +3899,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2003-03-28.flac16",
         "title": "Godspeed You! Black Emperor Live at Palais Royale on 2003-03-28"
       }
-    ]
+    ],
+    "note": "thanks to ren, pierre"
   },
   {
     "date": "2003-03-29",
@@ -4200,7 +4210,7 @@ const SETLISTS_DATA = [
       "albanian",
       "world police",
       "monheim",
-      "the dead flag blues (outro) thanks to yannick"
+      "the dead flag blues (outro)"
     ],
     "recordings": [
       {
@@ -4208,7 +4218,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2003-05-08.YP",
         "title": "Godspeed You! Black Emperor Live at Terminal Export on 2003-05-08"
       }
-    ]
+    ],
+    "note": "thanks to yannick"
   },
   {
     "date": "2003-05-09",
@@ -4356,7 +4367,7 @@ const SETLISTS_DATA = [
       "albanian",
       "motherfucker=redeemer",
       "wold police",
-      "the dead flag blues (outro) thanks to yannick"
+      "the dead flag blues (outro)"
     ],
     "recordings": [
       {
@@ -4364,7 +4375,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2003-05-15.TCD-D8",
         "title": "Godspeed You! Black Emperor Live at La Coop\u00e9rative de Mai on 2003-05-15"
       }
-    ]
+    ],
+    "note": "thanks to yannick"
   },
   {
     "date": "2003-05-16",
@@ -4375,7 +4387,7 @@ const SETLISTS_DATA = [
       "dead metheny",
       "wold police",
       "motherfucker=redeemer",
-      "tazer floyd thanks to yannick"
+      "tazer floyd"
     ],
     "recordings": [
       {
@@ -4388,7 +4400,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2003-05-16.flac",
         "title": "Godspeed You! Black Emperor Live at Ninkasi Kao on 2003-05-16"
       }
-    ]
+    ],
+    "note": "thanks to yannick"
   },
   {
     "date": "2003-05-17",
@@ -4414,9 +4427,10 @@ const SETLISTS_DATA = [
       "world police",
       "motherfucker=redeemer",
       "the sad mafioso",
-      "the dead flag blues (outro) thanks to christophe"
+      "the dead flag blues (outro)"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to christophe"
   },
   {
     "date": "2003-05-23",
@@ -4455,9 +4469,10 @@ const SETLISTS_DATA = [
       "12.28.99",
       "albanian",
       "world police",
-      "blaise bailey finnegan III thanks to manuel"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to manuel"
   },
   {
     "date": "2003-05-28",
@@ -4468,9 +4483,10 @@ const SETLISTS_DATA = [
       "albanian",
       "dead metheny",
       "motherfucker=redeemer",
-      "the dead flag blues (outro) thanks to diogo"
+      "the dead flag blues (outro)"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to diogo"
   },
   {
     "date": "2003-05-29",
@@ -4496,9 +4512,10 @@ const SETLISTS_DATA = [
       "moya",
       "dead metheny",
       "motherfucker=redeemer",
-      "blaise bailey finnegan III thanks to luis, javi"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to luis, javi"
   },
   {
     "date": "2003-06-03",
@@ -4509,9 +4526,10 @@ const SETLISTS_DATA = [
       "tazer floyd",
       "albanian",
       "dead metheny",
-      "the sad mafioso thanks to costas"
+      "the sad mafioso"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to costas"
   },
   {
     "date": "2003-06-04",
@@ -4522,9 +4540,10 @@ const SETLISTS_DATA = [
       "moya",
       "motherfucker=redeemer",
       "world police",
-      "blaise bailey finnegan III thanks to costas"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to costas"
   },
   {
     "date": "2010-12-03",
@@ -11602,9 +11621,10 @@ const SETLISTS_DATA = [
       "anthem for no state",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to izeaid"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to izeaid"
   },
   {
     "date": "2022-03-02",
@@ -11615,7 +11635,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "gathering storm",
       "albanian",
-      "cliff thanks to woody, gus, and jessica"
+      "cliff"
     ],
     "recordings": [
       {
@@ -11628,7 +11648,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-02",
         "title": "Godspeed You! Black Emperor Live at Music Box on 2022-03-02"
       }
-    ]
+    ],
+    "note": "thanks to woody, gus, and jessica"
   },
   {
     "date": "2022-03-03",
@@ -11639,7 +11660,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to erik and jessica"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -11652,7 +11673,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-03.flac24",
         "title": "Godspeed You! Black Emperor Live at The Belasco Theatre on 2022-03-03"
       }
-    ]
+    ],
+    "note": "thanks to erik and jessica"
   },
   {
     "date": "2022-03-04",
@@ -11663,7 +11685,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "anthem for no state",
       "cliff",
-      "sad mafioso thanks to sumerian, lucas, tankhaus, bowen, and jessica"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -11676,7 +11698,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-04.matrix",
         "title": "Godspeed You! Black Emperor Live at The UC Theatre on 2022-03-04"
       }
-    ]
+    ],
+    "note": "thanks to sumerian, lucas, tankhaus, bowen, and jessica"
   },
   {
     "date": "2022-03-05",
@@ -11725,7 +11748,7 @@ const SETLISTS_DATA = [
       "glacier",
       "cliff",
       "monheim",
-      "albanian thanks to lieutzip, bowen, and jessica"
+      "albanian"
     ],
     "recordings": [
       {
@@ -11733,7 +11756,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-06",
         "title": "Godspeed You! Black Emperor Live at The Phoenix Theater, Petaluma, CA on 2022-03-06"
       }
-    ]
+    ],
+    "note": "thanks to lieutzip, bowen, and jessica"
   },
   {
     "date": "2022-03-08",
@@ -11744,7 +11768,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "gathering storm",
       "albanian",
-      "cliff thanks to jonathan"
+      "cliff"
     ],
     "recordings": [
       {
@@ -11752,7 +11776,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-08",
         "title": "Godspeed You! Black Emperor Live at The Showbox on 2022-03-08"
       }
-    ]
+    ],
+    "note": "thanks to jonathan"
   },
   {
     "date": "2022-03-09",
@@ -11763,7 +11788,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "anthem for no state",
       "cliff",
-      "blaise bailey finnegan III thanks to sumerian"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -11776,7 +11801,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-09.mastered",
         "title": "Godspeed You! Black Emperor Live at Roseland Theater on 2022-03-09"
       }
-    ]
+    ],
+    "note": "thanks to sumerian"
   },
   {
     "date": "2022-03-10",
@@ -11806,7 +11832,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "gathering storm",
       "albanian",
-      "cliff thanks to jon and leif"
+      "cliff"
     ],
     "recordings": [
       {
@@ -11819,7 +11845,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-11.leifh",
         "title": "Godspeed You Black Emperor! Live at Vogue Theatre on 2022-03-11"
       }
-    ]
+    ],
+    "note": "thanks to jon and leif"
   },
   {
     "date": "2022-03-12",
@@ -11830,7 +11857,7 @@ const SETLISTS_DATA = [
       "monheim",
       "cliff",
       "anthem for no state",
-      "blaise bailey finnegan III thanks to jon"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -11838,7 +11865,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-12.Kelowna",
         "title": "Godspeed You! Black Emperor Live at Kelowna Community Theatre on 2022-03-12"
       }
-    ]
+    ],
+    "note": "thanks to jon"
   },
   {
     "date": "2022-03-14",
@@ -11849,7 +11877,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "gathering storm",
       "anthem for no state",
-      "cliff thanks to jon and sharon"
+      "cliff"
     ],
     "recordings": [
       {
@@ -11862,7 +11890,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-14.sharon",
         "title": "Godspeed You! Black Emperor Live at Palace Theatre on 2022-03-14"
       }
-    ]
+    ],
+    "note": "thanks to jon and sharon"
   },
   {
     "date": "2022-03-15",
@@ -11873,7 +11902,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to jon"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -11881,7 +11910,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-15.Edmonton",
         "title": "Godspeed You! Black Emperor Live at Union Hall on 2022-03-15"
       }
-    ]
+    ],
+    "note": "thanks to jon"
   },
   {
     "date": "2022-03-16",
@@ -11924,7 +11954,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "anthem for no state",
       "cliff",
-      "blaise bailey finnegan III thanks to roffels"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -11932,7 +11962,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-18.AUD",
         "title": "Godspeed You! Black Emperor Live at First Avenue, Minneapolis MN on 2022-03-18"
       }
-    ]
+    ],
+    "note": "thanks to roffels"
   },
   {
     "date": "2022-03-19",
@@ -11943,7 +11974,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "anthem for no state",
       "cliff",
-      "sad mafioso thanks to bob and nei"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -11956,7 +11987,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-03-19.ecm",
         "title": "Godspeed You Black Emperor! Live at Thalia Hall on 2022-03-19"
       }
-    ]
+    ],
+    "note": "thanks to bob and nei"
   },
   {
     "date": "2022-03-20",
@@ -11967,9 +11999,10 @@ const SETLISTS_DATA = [
       "monheim",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to bob and nei"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to bob and nei"
   },
   {
     "date": "2022-04-15",
@@ -12017,7 +12050,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "monheim",
-      "blaise bailey finnegan III thanks to frog"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12030,7 +12063,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-04-17",
         "title": "Godspeed You! Black Emperor Live at Columbus Theatre, Providence, Rhode Island on 2022-04-17"
       }
-    ]
+    ],
+    "note": "thanks to frog"
   },
   {
     "date": "2022-04-18",
@@ -12054,7 +12088,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to nick"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12062,7 +12096,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-04-19.tascam",
         "title": "Godspeed You! Black Emperor Live at Paradise Rock Club on 2022-04-19"
       }
-    ]
+    ],
+    "note": "thanks to nick"
   },
   {
     "date": "2022-04-21",
@@ -12073,7 +12108,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "anthem for no state",
       "cliff",
-      "blaise bailey finnegan III thanks to nick, j.mart, and nihar"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12081,7 +12116,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-04-21.dpa4061.flac24",
         "title": "Godspeed You! Black Emperor Live at Webster Hall on 2022-04-21"
       }
-    ]
+    ],
+    "note": "thanks to nick, j.mart, and nihar"
   },
   {
     "date": "2022-04-22",
@@ -12092,7 +12128,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "sad mafioso thanks to j.mart"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12100,7 +12136,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-04-22.dpa4061.flac24",
         "title": "Godspeed You! Black Emperor Live at White Eagle Hall on 2022-04-22"
       }
-    ]
+    ],
+    "note": "thanks to j.mart"
   },
   {
     "date": "2022-04-23",
@@ -12111,7 +12148,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "anthem for no state",
       "cliff",
-      "blaise bailey finnegan III thanks to \"big muff pi\""
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12124,7 +12161,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-04-23.tascam24",
         "title": "Godspeed You! Black Emperor Live at Union Transfer on 2022-04-23"
       }
-    ]
+    ],
+    "note": "thanks to \"big muff pi\""
   },
   {
     "date": "2022-04-24",
@@ -12135,7 +12173,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to echtoplasm"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12143,7 +12181,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-04-24.samsung",
         "title": "Godspeed You! Black Emperor Live at 9.30 Club on 2022-04-24"
       }
-    ]
+    ],
+    "note": "thanks to echtoplasm"
   },
   {
     "date": "2022-04-25",
@@ -12178,7 +12217,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "monheim",
-      "albanian thanks to hazel and subsume"
+      "albanian"
     ],
     "recordings": [
       {
@@ -12186,7 +12225,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-04-26.h1n",
         "title": "Godspeed You! Black Emperor Live at Cat's Cradle on 2022-04-26"
       }
-    ]
+    ],
+    "note": "thanks to hazel and subsume"
   },
   {
     "date": "2022-04-28",
@@ -12227,7 +12267,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "sad mafioso thanks to subsume"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12235,7 +12275,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-04-30",
         "title": "Godspeed You! Black Emperor Live at Caverns, Pelham Tennessee on 2022-04-30"
       }
-    ]
+    ],
+    "note": "thanks to subsume"
   },
   {
     "date": "2022-05-01",
@@ -12285,7 +12326,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "anthem for no state",
       "cliff",
-      "sad mafioso thanks to ren"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12293,7 +12334,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-05-05.ecm",
         "title": "Godspeed You! Black Emperor Live at Phoenix Concert Theatre on 2022-05-05"
       }
-    ]
+    ],
+    "note": "thanks to ren"
   },
   {
     "date": "2022-05-06",
@@ -12355,7 +12397,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to vomvos"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12363,7 +12405,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-07-15",
         "title": "Godspeed You! Black Emperor Live at Odeon of Herodes Atticus on 2022-07-15"
       }
-    ]
+    ],
+    "note": "thanks to vomvos"
   },
   {
     "date": "2022-08-28",
@@ -12442,7 +12485,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "world police",
-      "blaise bailey finnegan III thanks to emmanuel, emily, markus"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12455,7 +12498,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-09-20",
         "title": "Godspeed You! Black Emperor Live at Electric Ballroom on 2022-09-20"
       }
-    ]
+    ],
+    "note": "thanks to emmanuel, emily, markus"
   },
   {
     "date": "2022-09-21",
@@ -12466,7 +12510,7 @@ const SETLISTS_DATA = [
       "tazer floyd",
       "cliff",
       "anthem for no state",
-      "sad mafioso thanks to emmanuel, emily, markus"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12479,7 +12523,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-09-21",
         "title": "Godspeed You! Black Emperor Live at Electric Ballroom on 2022-09-21"
       }
-    ]
+    ],
+    "note": "thanks to emmanuel, emily, markus"
   },
   {
     "date": "2022-09-22",
@@ -12490,7 +12535,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to emmanuel, emily, markus"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12503,7 +12548,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-09-22.DPA4060",
         "title": "Godspeed You! Black Emperor Live at Electric Ballroom on 2022-09-22"
       }
-    ]
+    ],
+    "note": "thanks to emmanuel, emily, markus"
   },
   {
     "date": "2022-09-23",
@@ -12514,9 +12560,10 @@ const SETLISTS_DATA = [
       "glacier",
       "world police",
       "moya",
-      "blaise bailey finnegan III thanks to emmanuel, emily, oscar"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to emmanuel, emily, oscar"
   },
   {
     "date": "2022-09-25",
@@ -12583,7 +12630,7 @@ const SETLISTS_DATA = [
       "anthem for no state",
       "cliff",
       "world police",
-      "sad mafioso thanks to laura"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12591,7 +12638,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-09-28.okm",
         "title": "Godspeed You! Black Emperor Live at Astra on 2022-09-28"
       }
-    ]
+    ],
+    "note": "thanks to laura"
   },
   {
     "date": "2022-09-29",
@@ -12792,7 +12840,7 @@ const SETLISTS_DATA = [
       "glacier",
       "bosses hang",
       "cliff",
-      "sad mafioso thanks to will akers."
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12800,7 +12848,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-10-28",
         "title": "Godspeed You! Black Emperor Live at Levitation Festival on 2022-10-28"
       }
-    ]
+    ],
+    "note": "thanks to will akers"
   },
   {
     "date": "2022-10-29",
@@ -12811,7 +12860,7 @@ const SETLISTS_DATA = [
       "anthem for no state",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to will akers."
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12819,7 +12868,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-10-29",
         "title": "Godspeed You! Black Emperor Live at White Oak Music Hall on 2022-10-29"
       }
-    ]
+    ],
+    "note": "thanks to will akers"
   },
   {
     "date": "2022-10-30",
@@ -12843,7 +12893,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "world police",
-      "blaise bailey finnegan III thanks to will akers, tollbooths, eve, and spnii"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -12851,7 +12901,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-10-31",
         "title": "Godspeed You! Black Emperor Live at Texas Theatre on 2022-10-31"
       }
-    ]
+    ],
+    "note": "thanks to will akers, tollbooths, eve, and spnii"
   },
   {
     "date": "2022-11-01",
@@ -12863,7 +12914,7 @@ const SETLISTS_DATA = [
       "cliff",
       "monheim",
       "fire at static valley",
-      "sad mafioso thanks to coleson"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12876,7 +12927,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-11-01.mv88.remaster",
         "title": "Godspeed You! Black Emperor Live at Tower Theater on 2022-11-01"
       }
-    ]
+    ],
+    "note": "thanks to coleson"
   },
   {
     "date": "2022-11-03",
@@ -12888,7 +12940,7 @@ const SETLISTS_DATA = [
       "cliff",
       "fire at static valley",
       "world police",
-      "sad mafioso thanks to nick and dave."
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12906,7 +12958,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-11-03.DPA4061remaster",
         "title": "Godspeed You! Black Emperor Live at Delmar Hall on 2022-11-03"
       }
-    ]
+    ],
+    "note": "thanks to nick and dave"
   },
   {
     "date": "2022-11-04",
@@ -12931,7 +12984,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "sad mafioso thanks to bob and jessica"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12939,7 +12992,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-11-05",
         "title": "Godspeed You! Black Emperor Live at Englert Theater on 2022-11-05"
       }
-    ]
+    ],
+    "note": "thanks to bob and jessica"
   },
   {
     "date": "2022-11-06",
@@ -12951,7 +13005,7 @@ const SETLISTS_DATA = [
       "cliff",
       "anthem for no state",
       "fire at static valley",
-      "world police thanks to neff and dave"
+      "world police"
     ],
     "recordings": [
       {
@@ -12959,7 +13013,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-11-06.mtx",
         "title": "Godspeed You! Black Emperor Live at Blue Note on 2022-11-06"
       }
-    ]
+    ],
+    "note": "thanks to neff and dave"
   },
   {
     "date": "2022-11-07",
@@ -12971,7 +13026,7 @@ const SETLISTS_DATA = [
       "cliff",
       "fire at static valley",
       "world police",
-      "sad mafioso thanks to jessica"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -12979,7 +13034,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-11-07.MV88",
         "title": "Godspeed You Black Emperor! Live at Pabst Theater on 2022-11-07"
       }
-    ]
+    ],
+    "note": "thanks to jessica"
   },
   {
     "date": "2022-11-08",
@@ -13023,9 +13079,10 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "albanian",
-      "blaise bailey finnegan III thanks to hazel, gabe, and subsume"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to hazel, gabe, and subsume"
   },
   {
     "date": "2022-11-12",
@@ -13049,7 +13106,7 @@ const SETLISTS_DATA = [
       "tazer floyd",
       "anthem for no state",
       "cliff",
-      "albanian thanks to reid"
+      "albanian"
     ],
     "recordings": [
       {
@@ -13062,7 +13119,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-11-13",
         "title": "Godspeed You! Black Emperor Live at Roxian Theater on 2022-11-13"
       }
-    ]
+    ],
+    "note": "thanks to reid"
   },
   {
     "date": "2022-11-15",
@@ -13073,9 +13131,10 @@ const SETLISTS_DATA = [
       "bosses hang",
       "tazer floyd",
       "cliff",
-      "albanian thanks to klaypersonne"
+      "albanian"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to klaypersonne"
   },
   {
     "date": "2022-11-16",
@@ -13100,7 +13159,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "tazer floyd",
       "cliff",
-      "albanian thanks to simplicial"
+      "albanian"
     ],
     "recordings": [
       {
@@ -13108,7 +13167,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2022-11-17",
         "title": "Godspeed You! Black Emperor Live at Elsewhere on 2022-11-17"
       }
-    ]
+    ],
+    "note": "thanks to simplicial"
   },
   {
     "date": "2022-11-18",
@@ -13153,9 +13213,10 @@ const SETLISTS_DATA = [
       "cliff",
       "albanian",
       "anthem for no state",
-      "blaise bailey finnegan III thanks to luke"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to luke"
   },
   {
     "date": "2023-03-09",
@@ -13167,9 +13228,10 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "world police",
       "john hughes",
-      "sad mafioso thanks to joel"
+      "sad mafioso"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to joel"
   },
   {
     "date": "2023-03-13",
@@ -13294,7 +13356,7 @@ const SETLISTS_DATA = [
       "cliff",
       "fire at static valley",
       "world police",
-      "blaise bailey finnegan III thanks to jessica, gus, woody"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -13302,7 +13364,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-03-18",
         "title": "Godspeed You! Black Emperor Live at Pappy & Harriet's on 2023-03-18"
       }
-    ]
+    ],
+    "note": "thanks to jessica, gus, woody"
   },
   {
     "date": "2023-03-19",
@@ -13383,9 +13446,10 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "blaise bailey finnegan III thanks to jan-willem"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to jan-willem"
   },
   {
     "date": "2023-04-09",
@@ -13425,7 +13489,7 @@ const SETLISTS_DATA = [
       "cliff",
       "fire at static valley",
       "world police",
-      "albanian thanks to oscar"
+      "albanian"
     ],
     "recordings": [
       {
@@ -13433,7 +13497,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-04-11.H2n",
         "title": "Godspeed You! Black Emperor Live at L'A\u00e9ronef on 2023-04-11"
       }
-    ]
+    ],
+    "note": "thanks to oscar"
   },
   {
     "date": "2023-04-12",
@@ -13444,9 +13509,10 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "gathering storm",
-      "sad mafioso thanks to brocco"
+      "sad mafioso"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to brocco"
   },
   {
     "date": "2023-04-14",
@@ -13483,7 +13549,7 @@ const SETLISTS_DATA = [
       "anthem for no state",
       "cliff",
       "monheim",
-      "sad mafioso thanks to lucas"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -13491,7 +13557,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-04-16.dpa",
         "title": "Godspeed You! Black Emperor Live at PTR on 2023-04-16"
       }
-    ]
+    ],
+    "note": "thanks to lucas"
   },
   {
     "date": "2023-04-17",
@@ -13612,7 +13679,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "dead metheny",
-      "blaise bailey finnegan III thanks to markus"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -13620,7 +13687,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-04-25",
         "title": "Godspeed You! Black Emperor Live at Sentrum Scene on 2023-04-25"
       }
-    ]
+    ],
+    "note": "thanks to markus"
   },
   {
     "date": "2023-04-27",
@@ -13631,7 +13699,7 @@ const SETLISTS_DATA = [
       "anthem for no state",
       "cliff",
       "dead metheny",
-      "sad mafioso thanks to askil"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -13639,7 +13707,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-04-27",
         "title": "Godspeed You! Black Emperor Live at USF Veftet on 2023-04-27"
       }
-    ]
+    ],
+    "note": "thanks to askil"
   },
   {
     "date": "2023-04-28",
@@ -13651,7 +13720,7 @@ const SETLISTS_DATA = [
       "cliff",
       "fire at static valley",
       "world police",
-      "albanian thanks to nora"
+      "albanian"
     ],
     "recordings": [
       {
@@ -13659,7 +13728,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-04-28",
         "title": "Godspeed You Black Emperor! Live at Folken on 2023-04-28"
       }
-    ]
+    ],
+    "note": "thanks to nora"
   },
   {
     "date": "2023-04-29",
@@ -13670,7 +13740,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "moya",
-      "sad mafioso thanks to markus"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -13678,7 +13748,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-04-29",
         "title": "Godspeed You! Black Emperor Live at Aladdin Scene on 2023-04-29"
       }
-    ]
+    ],
+    "note": "thanks to markus"
   },
   {
     "date": "2023-09-09",
@@ -13689,7 +13760,7 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "world police",
-      "blaise bailey finnegan III thanks to joel, nick, will akers"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -13697,7 +13768,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-09-09.dr-40",
         "title": "Godspeed You! Black Emperor Live at Basilica Hudson on 2023-09-09"
       }
-    ]
+    ],
+    "note": "thanks to joel, nick, will akers"
   },
   {
     "date": "2023-09-10",
@@ -13709,7 +13781,7 @@ const SETLISTS_DATA = [
       "cliff",
       "fire at static valley",
       "world police",
-      "sad mafioso thanks to will akers, maya, keenan"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -13717,7 +13789,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-09-10.ZoomH1n",
         "title": "Godspeed You! Black Emperor Live at Palladium on 2023-09-10"
       }
-    ]
+    ],
+    "note": "thanks to will akers, maya, keenan"
   },
   {
     "date": "2023-09-11",
@@ -13729,7 +13802,7 @@ const SETLISTS_DATA = [
       "cliff",
       "fire at static valley",
       "world police",
-      "blaise bailey finnegan III thanks to keenan"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -13737,7 +13810,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-09-11.Spire",
         "title": "Godspeed You Black Emperor! Live at Music Hall on 2023-09-11"
       }
-    ]
+    ],
+    "note": "thanks to keenan"
   },
   {
     "date": "2023-09-13",
@@ -13762,9 +13836,10 @@ const SETLISTS_DATA = [
       "cliff",
       "fire at static valley",
       "world police",
-      "sad mafioso thanks to luke"
+      "sad mafioso"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to luke"
   },
   {
     "date": "2023-09-15",
@@ -13775,9 +13850,10 @@ const SETLISTS_DATA = [
       "bosses hang",
       "cliff",
       "anthem for no state",
-      "blaise bailey finnegan III thanks to luke"
+      "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to luke"
   },
   {
     "date": "2023-09-16",
@@ -13824,7 +13900,7 @@ const SETLISTS_DATA = [
       "glacier",
       "broken spires at dead kapital",
       "pale spectator takes photographs",
-      "raindrops cast in lead thanks to j.mart, will akers, and sam"
+      "raindrops cast in lead"
     ],
     "recordings": [
       {
@@ -13832,7 +13908,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-02-24.dpa4061.flac24",
         "title": "Godspeed You! Black Emperor Live at Knockdown Center on 2024-02-24"
       }
-    ]
+    ],
+    "note": "thanks to j.mart, will akers, and sam"
   },
   {
     "date": "2024-02-25",
@@ -13845,9 +13922,10 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "bosses hang",
-      "raindrops cast in lead thanks to brandon and alex"
+      "raindrops cast in lead"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to brandon and alex"
   },
   {
     "date": "2024-02-26",
@@ -13860,7 +13938,7 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "bosses hang",
-      "raindrops cast in lead thanks to brett"
+      "raindrops cast in lead"
     ],
     "recordings": [
       {
@@ -13868,7 +13946,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-02-26.H1n",
         "title": "Godspeed You! Black Emperor Live at Homer Center for the Arts on 2024-02-26"
       }
-    ]
+    ],
+    "note": "thanks to brett"
   },
   {
     "date": "2024-02-27",
@@ -13881,7 +13960,7 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "bosses hang",
-      "raindrops cast in lead thanks to joel, tankhaus, simplicial, and sunny"
+      "raindrops cast in lead"
     ],
     "recordings": [
       {
@@ -13889,7 +13968,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-02-27.H1n",
         "title": "Godspeed You! Black Emperor Live at Biltmore Theatre on 2024-02-27"
       }
-    ]
+    ],
+    "note": "thanks to joel, tankhaus, simplicial, and sunny"
   },
   {
     "date": "2024-02-28",
@@ -13902,7 +13982,7 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "bosses hang",
-      "raindrops cast in lead thanks to joel and simplicial"
+      "raindrops cast in lead"
     ],
     "recordings": [
       {
@@ -13910,7 +13990,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-02-28.CA14_H4n",
         "title": "Godspeed You! Black Emperor Live at Kingston Grand Theatre on 2024-02-28"
       }
-    ]
+    ],
+    "note": "thanks to joel and simplicial"
   },
   {
     "date": "2024-03-07",
@@ -13923,7 +14004,7 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "bosses hang",
-      "sad mafioso thanks to jos"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -13931,7 +14012,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-03-07.DR-05",
         "title": "Godspeed You! Black Emperor Live at Front\u00f3n Bucareli on 2024-03-07"
       }
-    ]
+    ],
+    "note": "thanks to jos"
   },
   {
     "date": "2024-04-10",
@@ -13944,7 +14026,7 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "bosses hang",
-      "sad mafioso thanks to ciika, ele"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -13952,7 +14034,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-04-10.Spire",
         "title": "Godspeed You! Black Emperor Live at Pakkahuone on 2024-04-10"
       }
-    ]
+    ],
+    "note": "thanks to ciika, ele"
   },
   {
     "date": "2024-04-11",
@@ -13980,7 +14063,7 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "raindrops cast in lead",
-      "sad mafioso thanks to darren webb"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -13988,7 +14071,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-04-12.Xiaomi",
         "title": "Godspeed You! Black Emperor Live at Hanzas Perons on 2024-04-12"
       }
-    ]
+    ],
+    "note": "thanks to darren webb"
   },
   {
     "date": "2024-04-13",
@@ -14002,7 +14086,7 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "raindrops cast in lead",
-      "sad mafioso thanks to gvid"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -14015,7 +14099,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-04-13.vilnius.flac16f.remaster1",
         "title": "Godspeed You! Black Emperor Live at Loftas on 2024-04-13"
       }
-    ]
+    ],
+    "note": "thanks to gvid"
   },
   {
     "date": "2024-04-14",
@@ -14030,7 +14115,7 @@ const SETLISTS_DATA = [
       "raindrops cast in lead",
       "world police",
       "sad mafioso",
-      "moya thanks to xpietrex"
+      "moya"
     ],
     "recordings": [
       {
@@ -14038,7 +14123,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-04-14.H1n",
         "title": "Godspeed You! Black Emperor Live at Progresja on 2024-04-14"
       }
-    ]
+    ],
+    "note": "thanks to xpietrex"
   },
   {
     "date": "2024-04-16",
@@ -14114,7 +14200,7 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "world police",
-      "sad mafioso thanks to fizzletree"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -14132,7 +14218,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-04-20.cos11d",
         "title": "Godspeed You! Black Emperor Live at Arena on 2024-04-20"
       }
-    ]
+    ],
+    "note": "thanks to fizzletree"
   },
   {
     "date": "2024-04-21",
@@ -14146,7 +14233,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "world police",
       "moya",
-      "blaise bailey finnegan III thanks to satordweller"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -14154,7 +14241,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-04-21.Vomvos",
         "title": "Godspeed You! Black Emperor Live at Durer Kert on 2024-04-21"
       }
-    ]
+    ],
+    "note": "thanks to satordweller"
   },
   {
     "date": "2024-04-23",
@@ -14168,9 +14256,10 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "world police",
       "moya",
-      "albanian thanks to mata, tim"
+      "albanian"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to mata, tim"
   },
   {
     "date": "2024-04-24",
@@ -14199,9 +14288,10 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "world police",
       "moya",
-      "albanian thanks to alison"
+      "albanian"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to alison"
   },
   {
     "date": "2024-09-27",
@@ -14276,7 +14366,7 @@ const SETLISTS_DATA = [
       "raindrops cast in lead",
       "piss crowns are trebled",
       "moya",
-      "blaise bailey finnegan III thanks to emily"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -14284,7 +14374,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-10-01.SP-CMC-8",
         "title": "Godspeed You! Black Emperor Live at O2 Ritz on 2024-10-01"
       }
-    ]
+    ],
+    "note": "thanks to emily"
   },
   {
     "date": "2024-10-02",
@@ -14297,7 +14388,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "glacier",
       "piss crowns are trebled",
-      "sad mafioso thanks to emmanuel"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -14305,7 +14396,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-10-02",
         "title": "Godspeed You Black Emperor! Live at The Marble Factory on 2024-10-02"
       }
-    ]
+    ],
+    "note": "thanks to emmanuel"
   },
   {
     "date": "2024-10-03",
@@ -14318,7 +14410,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "glacier",
       "piss crowns are trebled",
-      "blaise bailey finnegan III thanks to emmanuel"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -14326,7 +14418,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-10-04.DPA4060s",
         "title": "Godspeed You! Black Emperor Live at Empire on 2024-10-03"
       }
-    ]
+    ],
+    "note": "thanks to emmanuel"
   },
   {
     "date": "2024-10-04",
@@ -14389,7 +14482,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "cliff",
       "chart #3",
-      "world police thanks to abibeur"
+      "world police"
     ],
     "recordings": [
       {
@@ -14397,7 +14490,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-10-06.Samsung",
         "title": "Godspeed You Black Emperor! Live at Le Trianon on 2024-10-06"
       }
-    ]
+    ],
+    "note": "thanks to abibeur"
   },
   {
     "date": "2024-10-08",
@@ -14410,7 +14504,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "cliff",
-      "piss crowns are trebled thanks to abibeur, zmlopez"
+      "piss crowns are trebled"
     ],
     "recordings": [
       {
@@ -14423,7 +14517,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-10-08.Samsung",
         "title": "Godspeed You! Black Emperor Live at Stereolux on 2024-10-08"
       }
-    ]
+    ],
+    "note": "thanks to abibeur, zmlopez"
   },
   {
     "date": "2024-10-09",
@@ -14437,9 +14532,10 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "glacier",
       "chart #3",
-      "world police thanks to yannick"
+      "world police"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to yannick"
   },
   {
     "date": "2024-10-10",
@@ -14468,7 +14564,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "glacier",
-      "sad mafioso thanks to alison, lucas"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -14476,7 +14572,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-10-11.H4n",
         "title": "Godspeed You! Black Emperor Live at Les Docks on 2024-10-11"
       }
-    ]
+    ],
+    "note": "thanks to alison, lucas"
   },
   {
     "date": "2024-10-12",
@@ -14489,7 +14586,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "glacier",
-      "sad mafioso thanks to bart"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -14497,7 +14594,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-10-12.T",
         "title": "Godspeed You! Black Emperor Live at Zoom on 2024-10-12"
       }
-    ]
+    ],
+    "note": "thanks to bart"
   },
   {
     "date": "2024-10-14",
@@ -14511,7 +14609,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "cliff",
       "chart #3",
-      "world police thanks to xpietrex"
+      "world police"
     ],
     "recordings": [
       {
@@ -14524,7 +14622,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2024-10-14.H1n",
         "title": "Godspeed You! Black Emperor Live at Huxleys Neue Welt on 2024-10-14"
       }
-    ]
+    ],
+    "note": "thanks to xpietrex"
   },
   {
     "date": "2024-10-15",
@@ -14860,7 +14959,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "chart #3",
       "world police",
-      "sad mafioso thanks to bart"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -14873,7 +14972,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-01.dpa4060.remaster",
         "title": "Godspeed You! Black Emperor Live at Music Station on 2025-03-01"
       }
-    ]
+    ],
+    "note": "thanks to bart"
   },
   {
     "date": "2025-03-02",
@@ -14954,7 +15054,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "chart #3",
-      "world police thanks to abibeur"
+      "world police"
     ],
     "recordings": [
       {
@@ -14962,7 +15062,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-07.Samsung",
         "title": "Godspeed You Black Emperor! Live at L'Espace Julien on 2025-03-07"
       }
-    ]
+    ],
+    "note": "thanks to abibeur"
   },
   {
     "date": "2025-03-08",
@@ -14975,7 +15076,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "moya",
-      "blaise bailey finnegan III thanks to alison"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -14983,7 +15084,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-08.dr05x",
         "title": "Godspeed You! Black Emperor Live at OGR on 2025-03-08"
       }
-    ]
+    ],
+    "note": "thanks to alison"
   },
   {
     "date": "2025-03-10",
@@ -14996,7 +15098,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "piss crowns are trebled",
-      "sad mafioso thanks to alison and xpietrex"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15004,7 +15106,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-10.mtx",
         "title": "Godspeed You! Black Emperor Live at Teatro Comunale Citt\u00e0 di Vicenza on 2025-03-10"
       }
-    ]
+    ],
+    "note": "thanks to alison and xpietrex"
   },
   {
     "date": "2025-03-11",
@@ -15018,7 +15121,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "chart #3",
       "world police",
-      "sad mafioso thanks to alison and xpietrex"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15026,7 +15129,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-11.mtx",
         "title": "Godspeed You! Black Emperor Live at Estragon on 2025-03-11"
       }
-    ]
+    ],
+    "note": "thanks to alison and xpietrex"
   },
   {
     "date": "2025-03-12",
@@ -15039,7 +15143,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "cliff",
-      "piss crowns are trebled thanks to bestan"
+      "piss crowns are trebled"
     ],
     "recordings": [
       {
@@ -15047,7 +15151,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-12.phone",
         "title": "Godspeed You! Black Emperor Live at La Rayonne on 2025-03-12"
       }
-    ]
+    ],
+    "note": "thanks to bestan"
   },
   {
     "date": "2025-03-13",
@@ -15060,7 +15165,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "cliff",
-      "sad mafioso thanks to bart, bestan, abibeur"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15073,7 +15178,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-13.samsung",
         "title": "Godspeed You! Black Emperor Live at Le 106 on 2025-03-13"
       }
-    ]
+    ],
+    "note": "thanks to bart, bestan, abibeur"
   },
   {
     "date": "2025-03-14",
@@ -15086,7 +15192,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "moya",
-      "blaise bailey finnegan III thanks to bart"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15094,7 +15200,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-14.mtx",
         "title": "Godspeed You! Black Emperor Live at Tollhaus on 2025-03-14"
       }
-    ]
+    ],
+    "note": "thanks to bart"
   },
   {
     "date": "2025-03-16",
@@ -15107,7 +15214,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "cliff",
-      "sad mafioso thanks to bart"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15115,7 +15222,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-16.mtx",
         "title": "Godspeed You! Black Emperor Live at Vooruit on 2025-03-16"
       }
-    ]
+    ],
+    "note": "thanks to bart"
   },
   {
     "date": "2025-03-17",
@@ -15128,7 +15236,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "glacier",
-      "piss crowns are trebled thanks to bart"
+      "piss crowns are trebled"
     ],
     "recordings": [
       {
@@ -15136,7 +15244,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-17.dpa4061",
         "title": "Godspeed You! Black Emperor Live at 't Paard on 2025-03-17"
       }
-    ]
+    ],
+    "note": "thanks to bart"
   },
   {
     "date": "2025-03-18",
@@ -15150,7 +15259,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "chart #3",
       "world police",
-      "sad mafioso thanks to zand"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15158,7 +15267,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-18.at853.flac24",
         "title": "Godspeed You! Black Emperor Live at Vega on 2025-03-18"
       }
-    ]
+    ],
+    "note": "thanks to zand"
   },
   {
     "date": "2025-03-19",
@@ -15171,9 +15281,10 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "bosses hang",
-      "piss crowns are trebled thanks to rolfe"
+      "piss crowns are trebled"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to rolfe"
   },
   {
     "date": "2025-03-20",
@@ -15186,9 +15297,10 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "moya",
-      "sad mafioso thanks to rolfe"
+      "sad mafioso"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to rolfe"
   },
   {
     "date": "2025-03-21",
@@ -15202,7 +15314,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "chart #3",
       "world police",
-      "sad mafioso thanks to gvid"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15210,7 +15322,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-03-21.diy",
         "title": "Godspeed You! Black Emperor Live at Sentrum Scene on 2025-03-21"
       }
-    ]
+    ],
+    "note": "thanks to gvid"
   },
   {
     "date": "2025-04-25",
@@ -15235,7 +15348,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "moya",
-      "sad mafioso thanks to coleson"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15243,7 +15356,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-04-26.mv88",
         "title": "Godspeed You! Black Emperor Live at Granada Theater on 2025-04-26"
       }
-    ]
+    ],
+    "note": "thanks to coleson"
   },
   {
     "date": "2025-04-28",
@@ -15279,7 +15393,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "chart #3",
       "world police",
-      "sad mafioso thanks to trowftd"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15287,7 +15401,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-04-30.dpa",
         "title": "Godspeed You! Black Emperor Live at Bellwether on 2025-04-30"
       }
-    ]
+    ],
+    "note": "thanks to trowftd"
   },
   {
     "date": "2025-05-01",
@@ -15300,7 +15415,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "moya",
-      "blaise bailey finnegan III thanks to trowftd"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15313,7 +15428,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-01.dpa4081",
         "title": "Godspeed You! Black Emperor Live at Observatory on 2025-05-01"
       }
-    ]
+    ],
+    "note": "thanks to trowftd"
   },
   {
     "date": "2025-05-02",
@@ -15341,7 +15457,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "albanian",
-      "sad mafioso thanks to trowftd"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15354,7 +15470,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-03.H1n",
         "title": "Godspeed You! Black Emperor Live at Ventura Music Hall on 2025-05-03"
       }
-    ]
+    ],
+    "note": "thanks to trowftd"
   },
   {
     "date": "2025-05-04",
@@ -15367,7 +15484,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "piss crowns are trebled",
-      "blaise bailey finnegan III thanks to trowftd, zb"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15380,7 +15497,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-04.4ch-mix",
         "title": "Godspeed You! Black Emperor Live at The Fox Theater on 2025-05-04"
       }
-    ]
+    ],
+    "note": "thanks to trowftd, zb"
   },
   {
     "date": "2025-05-06",
@@ -15393,7 +15511,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "piss crowns are trebled",
-      "blaise bailey finnegan III thanks to trowftd, sage"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15406,7 +15524,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-06",
         "title": "Godspeed You! Black Emperor Live at Wonder Ballroom on 2025-05-06"
       }
-    ]
+    ],
+    "note": "thanks to trowftd, sage"
   },
   {
     "date": "2025-05-07",
@@ -15419,7 +15538,7 @@ const SETLISTS_DATA = [
       "monheim",
       "pale spectator takes photographs",
       "cliff",
-      "sad mafioso thanks to trowftd, sage"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15432,7 +15551,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-07",
         "title": "Godspeed You! Black Emperor Live at Wonder Ballroom on 2025-05-07"
       }
-    ]
+    ],
+    "note": "thanks to trowftd, sage"
   },
   {
     "date": "2025-05-08",
@@ -15446,7 +15566,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "cliff",
       "chart #3",
-      "world police thanks to j.mart"
+      "world police"
     ],
     "recordings": [
       {
@@ -15459,7 +15579,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-08",
         "title": "Godspeed You! Black Emperor Live at Neptune Theater on 2025-05-08"
       }
-    ]
+    ],
+    "note": "thanks to j.mart"
   },
   {
     "date": "2025-05-09",
@@ -15472,7 +15593,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "moya",
-      "blaise bailey finnegan III thanks to j.mart"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15485,7 +15606,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-09.dpa4061.flac24",
         "title": "Godspeed You! Black Emperor Live at Neptune Theatre on 2025-05-09"
       }
-    ]
+    ],
+    "note": "thanks to j.mart"
   },
   {
     "date": "2025-05-10",
@@ -15498,7 +15620,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "cliff",
-      "albanian thanks to joel, ryan"
+      "albanian"
     ],
     "recordings": [
       {
@@ -15506,7 +15628,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-10.mtx",
         "title": "Godspeed You Black Emperor! Live at Vogue Theatre on 2025-05-10"
       }
-    ]
+    ],
+    "note": "thanks to joel, ryan"
   },
   {
     "date": "2025-05-11",
@@ -15520,7 +15643,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "chart #3",
       "world police",
-      "sad mafioso thanks to joel"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15528,7 +15651,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-11.mtx",
         "title": "Godspeed You! Black Emperor Live at Vogue Theatre on 2025-05-11"
       }
-    ]
+    ],
+    "note": "thanks to joel"
   },
   {
     "date": "2025-05-12",
@@ -15541,7 +15665,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "moya",
-      "blaise bailey finnegan III thanks to joel"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15549,7 +15673,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-12.mtx",
         "title": "Godspeed You! Black Emperor Live at Revelry on 2025-05-12"
       }
-    ]
+    ],
+    "note": "thanks to joel"
   },
   {
     "date": "2025-05-13",
@@ -15562,7 +15687,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "piss crowns are trebled",
-      "sad mafioso thanks to pr0leyyc"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15570,7 +15695,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-13",
         "title": "Godspeed You! Black Emperor Live at The Palace Theatre, Calgary, Alberta, Canada on 2025-05-13"
       }
-    ]
+    ],
+    "note": "thanks to pr0leyyc"
   },
   {
     "date": "2025-05-14",
@@ -15583,7 +15709,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "moya",
-      "blaise bailey finnegan III thanks to pr0leyyc"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15591,7 +15717,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-05-14",
         "title": "Godspeed You! Black Emperor Live at Midway Music Hall, Edmonton, Alberta, Canada on 2025-05-14"
       }
-    ]
+    ],
+    "note": "thanks to pr0leyyc"
   },
   {
     "date": "2025-06-21",
@@ -15604,7 +15731,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "moya",
-      "blaise bailey finnegan III thanks to jayden and \"192 kHz\""
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15612,7 +15739,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-06-21.h4n",
         "title": "Godspeed You! Black Emperor Live at Heaven @ Masquerade on 2025-06-21"
       }
-    ]
+    ],
+    "note": "thanks to jayden and \"192 kHz\""
   },
   {
     "date": "2025-06-22",
@@ -15639,7 +15767,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "chart #3",
       "world police",
-      "sad mafioso thanks to DB and TF"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15647,7 +15775,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-06-23.diy",
         "title": "Godspeed You! Black Emperor Live at 9:30 Club on 2025-06-23"
       }
-    ]
+    ],
+    "note": "thanks to DB and TF"
   },
   {
     "date": "2025-06-24",
@@ -15660,7 +15789,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "piss crowns are trebled",
-      "sad mafioso thanks to kalki"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15668,7 +15797,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-06-24.mtx",
         "title": "Godspeed You! Black Emperor Live at Union Transfer on 2025-06-24"
       }
-    ]
+    ],
+    "note": "thanks to kalki"
   },
   {
     "date": "2025-06-25",
@@ -15681,7 +15811,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "bosses hang",
-      "blaise bailey finnegan III thanks to kalki"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15689,7 +15819,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-06-25.mtx",
         "title": "Godspeed You! Black Emperor Live at Pioneer Works on 2025-06-25"
       }
-    ]
+    ],
+    "note": "thanks to kalki"
   },
   {
     "date": "2025-06-26",
@@ -15708,7 +15839,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "chart #3",
       "world police",
-      "sad mafioso thanks to kalki"
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -15716,7 +15847,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-06-26",
         "title": "Godspeed You! Black Emperor Live at Pioneer Works on 2025-06-26"
       }
-    ]
+    ],
+    "note": "thanks to kalki"
   },
   {
     "date": "2025-06-27",
@@ -15729,9 +15861,10 @@ const SETLISTS_DATA = [
       "monheim",
       "pale spectator takes photographs",
       "piss crowns are trebled",
-      "sad mafioso thanks to rnvt33"
+      "sad mafioso"
     ],
-    "recordings": []
+    "recordings": [],
+    "note": "thanks to rnvt33"
   },
   {
     "date": "2025-06-28",
@@ -15764,7 +15897,7 @@ const SETLISTS_DATA = [
       "raindrops cast in lead",
       "pale spectator takes photographs",
       "moya",
-      "blaise bailey finnegan III thanks to bart, emmanuel"
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -15777,7 +15910,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2025-08-14.DPA",
         "title": "Godspeed You! Black Emperor Live at Fernhill Farm on 2025-08-14"
       }
-    ]
+    ],
+    "note": "thanks to bart, emmanuel"
   },
   {
     "date": "2025-09-05",

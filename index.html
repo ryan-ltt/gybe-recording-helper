@@ -681,17 +681,13 @@ function buildIndex() {
 
 // ─── Shared render helpers ─────────────────────────────────────────────────
 function renderShowCard(show, labelHtml, highlightSet) {
-    const thanksLines = [];
     const setlistHtml = show.songs.map(rawSong => {
-        const thanksM = rawSong.match(/^(.*?)\s+(thanks to\b.*)$/i);
-        const songName = thanksM ? thanksM[1] : rawSong;
-        if (thanksM) thanksLines.push(thanksM[2]);
         const canon = normalizeSong(rawSong);
         const highlighted = canon && highlightSet && highlightSet.has(canon);
-        return highlighted ? `<span class="matched">${songName}</span>` : songName;
+        return highlighted ? `<span class="matched">${rawSong}</span>` : rawSong;
     }).join(' &nbsp;·&nbsp; ');
-    const thanksSuffix = thanksLines.length > 0
-        ? `<div style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:11px;color:#999;margin-top:6px;">${thanksLines.join('<br>')}</div>`
+    const thanksSuffix = show.note
+        ? `<div style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:11px;color:#999;margin-top:6px;">${show.note}</div>`
         : '';
 
     const bestId = BEST_RECORDINGS[show.date];
@@ -1247,19 +1243,14 @@ function renderEraShowList(eraShows, filter) {
             if (/\(soundcheck\)/i.test(song)) soundcheckSongs.push(song);
             else mainSongs.push(song);
         }
-        const renderSong = song => {
-            const m = song.match(/^(.*?)\s+thanks to\b(.*)$/i);
-            return m
-                ? `${m[1]}<br><span style="color:#999;padding-left:16px;">thanks to${m[2]}</span>`
-                : song;
-        };
         let setlistText = '';
         if (soundcheckSongs.length > 0) {
             setlistText += `<span style="color:#999;font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
                 soundcheckSongs.map(song => `<span style="color:#aaa;">${song.replace(/\s*\(soundcheck\)/i, '')}</span>`).join('<br>') +
                 `<br><span style="color:#999;font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
         }
-        setlistText += mainSongs.map(renderSong).join('<br>');
+        setlistText += mainSongs.join('<br>');
+        if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
         const id = 'sl-' + s.date.replace(/\W/g, '-');
         return `<div class="era-show-row" onclick="toggleShowSetlist('${id}')" style="cursor:pointer;">
             <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
@@ -1317,16 +1308,10 @@ function renderPicks() {
         const show = showMap[rec.date];
         if (!show) return '';
         const recId = rec.recordingId || BEST_RECORDINGS[show.date];
-        const thanksLines = [];
-        const songNames = show.songs.map(rawSong => {
-            const m = rawSong.match(/^(.*?)\s+(thanks to\b.*)$/i);
-            if (m) { thanksLines.push(m[2]); return m[1]; }
-            return rawSong;
-        });
-        const thanksSuffix = thanksLines.length > 0
-            ? `<div style="font-family:Monaco;font-size:11px;color:#999;margin-top:6px;">${thanksLines.join('<br>')}</div>`
+        const thanksSuffix = show.note
+            ? `<div style="font-family:Monaco;font-size:11px;color:#999;margin-top:6px;">${show.note}</div>`
             : '';
-        const setlistHtml = songNames.join(' &nbsp;·&nbsp; ') + thanksSuffix;
+        const setlistHtml = show.songs.join(' &nbsp;·&nbsp; ') + thanksSuffix;
         const preferredRec = recId && show.recordings
             ? show.recordings.find(r => r.id === recId)
             : null;
