@@ -133,6 +133,7 @@ def main():
                 continue
 
             live_songs = parse_songs(show_html)
+            live_note = parse_note(show_html)
             local_songs = local[date].get('songs', [])
 
             live_norm = [normalise(s) for s in live_songs]
@@ -145,6 +146,7 @@ def main():
                     'date': date,
                     'venue': local[date].get('venue', ''),
                     'live': live_songs,
+                    'live_note': live_note,
                     'local': local_songs,
                     'only_live': only_live,
                     'only_local': only_local,
@@ -178,6 +180,31 @@ def main():
             print(f'    gybecc order: {d["live"]}')
             print(f'    local order:  {d["local"]}')
         print()
+
+    if not fix:
+        print('Run with --fix to apply gybecc songs to all differing shows.')
+        return
+
+    # Apply gybecc songs to differing shows
+    print('Applying gybecc songs to differing shows...')
+    for d in diffs:
+        show = local[d['date']]
+        show['songs'] = d['live']
+        if d['live_note']:
+            show['note'] = d['live_note']
+        elif 'note' in show:
+            del show['note']
+        print(f'  fixed {d["date"]}  ({len(d["live"])} songs)')
+
+    merged = sorted(existing, key=lambda s: s['date'])
+
+    with open(JSON_PATH, 'w') as f:
+        json.dump(merged, f, indent=2)
+    print(f'\nWrote setlists.json')
+
+    with open(DATA_PATH, 'w') as f:
+        f.write('const SETLISTS_DATA = ' + json.dumps(merged, indent=2) + ';\n')
+    print(f'Wrote setlists-data.js')
 
 if __name__ == '__main__':
     main()

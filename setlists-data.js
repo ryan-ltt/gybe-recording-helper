@@ -11709,7 +11709,8 @@ const SETLISTS_DATA = [
       "glacier",
       "bosses hang",
       "gathering storm",
-      "cliff"
+      "cliff",
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -11737,7 +11738,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2002-03-05",
         "title": "Godspeed You! Black Emperor Live at The Regency Ballroom on 2022-03-05"
       }
-    ]
+    ],
+    "note": "thanks to sumerian, lucas, bowen, tankhaus, michael, loughney, and jessica"
   },
   {
     "date": "2022-03-06",
