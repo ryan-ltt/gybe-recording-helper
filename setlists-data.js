@@ -13243,7 +13243,8 @@ const SETLISTS_DATA = [
       "glacier",
       "bosses hang",
       "cliff",
-      "anthem for no state"
+      "anthem for no state",
+      "blaise bailey finnegan III"
     ],
     "recordings": [
       {
@@ -13251,7 +13252,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-02-13",
         "title": "Godspeed You! Black Emperor Live at The Chapel on 2023-03-13"
       }
-    ]
+    ],
+    "note": "thanks to jessica, bowen, paras, andrew, ali, rion, jared, james, gino, cae"
   },
   {
     "date": "2023-03-14",
@@ -13310,7 +13312,8 @@ const SETLISTS_DATA = [
       "glacier",
       "bosses hang",
       "cliff",
-      "fire at static valley"
+      "fire at static valley",
+      "world police"
     ],
     "recordings": [
       {
@@ -13323,7 +13326,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-03-16.H6_UX570",
         "title": "Godspeed You! Black Emperor Live at The Chapel on 2023-03-16"
       }
-    ]
+    ],
+    "note": "thanks to jessica, bowen, paras, andrew, ali, rion, jared, james, sumerian"
   },
   {
     "date": "2023-03-17",
@@ -13333,7 +13337,8 @@ const SETLISTS_DATA = [
       "glacier",
       "anthem for no state",
       "cliff",
-      "tazer floyd"
+      "tazer floyd",
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -13346,7 +13351,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2023-03-17.cm4.flac16",
         "title": "Godspeed You! Black Emperor Live at The Chapel on 2023-03-17"
       }
-    ]
+    ],
+    "note": "thanks to jessica, bowen, paras, andrew, ali, rion, jared, james, vixi, shannon"
   },
   {
     "date": "2023-03-18",
