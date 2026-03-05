@@ -191,6 +191,42 @@
             align-items: center;
         }
         .opts-row label { cursor: pointer; }
+        .help-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 15px;
+            height: 15px;
+            border: 1.5px solid #888;
+            border-radius: 50%;
+            font-size: 10px;
+            color: #888;
+            cursor: default;
+            position: relative;
+            vertical-align: middle;
+            margin-left: 6px;
+            user-select: none;
+        }
+        .help-icon .help-tooltip {
+            display: none;
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #111;
+            color: #eee;
+            font-size: 11px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            white-space: normal;
+            width: 220px;
+            z-index: 100;
+            line-height: 1.5;
+        }
+        .help-icon:hover .help-tooltip,
+        .help-icon:focus .help-tooltip {
+            display: block;
+        }
 
         /* discover tab */
         .show-search-wrap { position: relative; margin-bottom: 8px; }
@@ -448,12 +484,22 @@
             <input type="text" class="search-box" id="songSearch" placeholder="filter songs..." oninput="filterSongs()" style="margin-top:16px;">
             <div class="song-grid" id="songGrid"></div>
             <div class="selected-list" id="selectedList"></div>
-            <div class="opts-row">
-                <span>mode:
-                    <label style="margin-left:8px;"><input type="radio" name="mode" value="any" checked> any</label>
-                    <label style="margin-left:12px;"><input type="radio" name="mode" value="all"> all</label>
-                </span>
-                <label><input type="checkbox" id="recordingsOnly"> recordings only</label>
+            <div class="opts-row" style="flex-direction:column;align-items:flex-start;gap:6px;">
+                <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+                    <span>mode:
+                        <label style="margin-left:8px;"><input type="radio" name="mode" value="any" checked> any</label>
+                        <label style="margin-left:12px;"><input type="radio" name="mode" value="all"> all</label>
+                    </span>
+                    <label><input type="checkbox" id="recordingsOnly"> recordings only</label>
+                </div>
+                <div style="display:flex;align-items:center;">
+                    <span>order:
+                        <label style="margin-left:8px;"><input type="radio" name="order" value="unordered" checked onchange="renderSelectedList()"> unordered</label>
+                        <label style="margin-left:12px;"><input type="radio" name="order" value="ordered" onchange="renderSelectedList()"> ordered</label>
+                        <label style="margin-left:12px;"><input type="radio" name="order" value="back-to-back" onchange="renderSelectedList()"> back-to-back</label>
+                    </span>
+                    <span class="help-icon" tabindex="0">?<span class="help-tooltip"><b>ordered:</b> your songs must appear in the setlist in the order you selected them, but other songs can appear between them.<br><br><b>back-to-back:</b> your songs must appear consecutively in the setlist, with nothing between them.</span></span>
+                </div>
             </div>
             <div>
                 <button class="find-btn" onclick="findShows()">find shows</button>
@@ -569,10 +615,18 @@ function buildAlbumSections() {
 function toggleAlbum(songs, btn) {
     const allSelected = songs.every(s => selected.has(s));
     if (allSelected) {
-        for (const song of songs) selected.delete(song);
+        for (const song of songs) {
+            selected.delete(song);
+            selectedOrder.splice(selectedOrder.indexOf(song), 1);
+        }
         btn.classList.remove('album-btn-active');
     } else {
-        for (const song of songs) selected.add(song);
+        for (const song of songs) {
+            if (!selected.has(song)) {
+                selected.add(song);
+                selectedOrder.push(song);
+            }
+        }
         btn.classList.add('album-btn-active');
     }
     renderSongGrid(document.getElementById('songSearch').value);
@@ -721,6 +775,8 @@ function switchTab(name) {
 
 // ─── SONG FINDER ──────────────────────────────────────────────────────────
 let selected = new Set();
+let selectedOrder = []; // drag-reorderable ordered list
+let dragSrcIdx = null;
 
 // Build reverse map: canonical → [alias, alias, ...]
 const ALIAS_MAP = {};
@@ -755,19 +811,56 @@ function filterSongs() {
 }
 
 function toggleSong(song, el) {
-    if (selected.has(song)) { selected.delete(song); el.classList.remove('selected'); }
-    else { selected.add(song); el.classList.add('selected'); }
+    if (selected.has(song)) {
+        selected.delete(song);
+        selectedOrder.splice(selectedOrder.indexOf(song), 1);
+        el.classList.remove('selected');
+    } else {
+        selected.add(song);
+        selectedOrder.push(song);
+        el.classList.add('selected');
+    }
     renderSelectedList();
 }
 
 function renderSelectedList() {
     const div = document.getElementById('selectedList');
-    if (selected.size === 0) { div.innerHTML = ''; return; }
-    div.innerHTML = 'selected: ' + [...selected].map(s => `<span>${s}</span>`).join('');
+    if (selectedOrder.length === 0) { div.innerHTML = ''; return; }
+    const orderMode = document.querySelector('input[name="order"]:checked')?.value;
+    const numbered = orderMode === 'ordered' || orderMode === 'back-to-back';
+    div.innerHTML = 'selected: ' + selectedOrder.map((s, i) => {
+        const label = numbered ? `${i + 1}. ${s}` : s;
+        return `<span draggable="true" data-idx="${i}" style="cursor:grab;">${label}</span>`;
+    }).join('');
+    div.querySelectorAll('span[draggable]').forEach(el => {
+        el.addEventListener('dragstart', e => {
+            dragSrcIdx = parseInt(el.dataset.idx);
+            e.dataTransfer.effectAllowed = 'move';
+            setTimeout(() => el.style.opacity = '0.4', 0);
+        });
+        el.addEventListener('dragend', () => { el.style.opacity = ''; });
+        el.addEventListener('dragover', e => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            el.style.outline = '2px solid white';
+        });
+        el.addEventListener('dragleave', () => { el.style.outline = ''; });
+        el.addEventListener('drop', e => {
+            e.preventDefault();
+            el.style.outline = '';
+            const targetIdx = parseInt(el.dataset.idx);
+            if (dragSrcIdx === null || dragSrcIdx === targetIdx) return;
+            const moved = selectedOrder.splice(dragSrcIdx, 1)[0];
+            selectedOrder.splice(targetIdx, 0, moved);
+            dragSrcIdx = null;
+            renderSelectedList();
+        });
+    });
 }
 
 function clearAll() {
     selected.clear();
+    selectedOrder = [];
     renderSongGrid(document.getElementById('songSearch').value);
     renderSelectedList();
     document.getElementById('finderResults').innerHTML = '';
@@ -775,13 +868,59 @@ function clearAll() {
 
 function findShows() {
     const resultsDiv = document.getElementById('finderResults');
-    if (selected.size === 0) {
+    if (selectedOrder.length === 0) {
         resultsDiv.innerHTML = '<p class="no-results">select at least one song.</p>';
         return;
     }
-    const query = [...selected];
+    const query = [...selectedOrder];
     const mode = document.querySelector('input[name="mode"]:checked').value;
+    const orderMode = document.querySelector('input[name="order"]:checked').value;
     const recordingsOnly = document.getElementById('recordingsOnly').checked;
+
+    // Build highlight set: include parent songs so they highlight in results too
+    const highlightSet = new Set(selected);
+    for (const song of selected) {
+        if (PART_OF[song]) highlightSet.add(PART_OF[song]);
+    }
+
+    if (orderMode === 'ordered' || orderMode === 'back-to-back') {
+        const results = [];
+        for (let i = 0; i < shows.length; i++) {
+            if (recordingsOnly && !shows[i].recordings.length) continue;
+            const canonSongs = shows[i].songs.map(normalizeSong);
+            let matches = false;
+            if (orderMode === 'ordered') {
+                // subsequence check: query songs appear in order, gaps allowed
+                let qi = 0;
+                for (const canon of canonSongs) {
+                    if (canon === query[qi]) qi++;
+                    if (qi === query.length) { matches = true; break; }
+                }
+            } else {
+                // back-to-back: query songs appear consecutively in order
+                outer: for (let j = 0; j <= canonSongs.length - query.length; j++) {
+                    for (let k = 0; k < query.length; k++) {
+                        if (canonSongs[j + k] !== query[k]) continue outer;
+                    }
+                    matches = true;
+                    break;
+                }
+            }
+            if (matches) results.push(i);
+        }
+
+        if (results.length === 0) {
+            resultsDiv.innerHTML = `<p class="no-results">no shows found with those songs ${orderMode === 'back-to-back' ? 'back-to-back' : 'in that order'}.</p>`;
+            return;
+        }
+        const label = orderMode === 'back-to-back' ? 'songs back-to-back' : 'songs in order';
+        let html = `<h2>shows with ${label} (${results.length} found)</h2>`;
+        for (const idx of results) {
+            html += renderShowCard(shows[idx], label, highlightSet);
+        }
+        resultsDiv.innerHTML = html;
+        return;
+    }
 
     const scores = {};
     for (const song of query) {
@@ -796,12 +935,6 @@ function findShows() {
                 }
             }
         }
-    }
-
-    // Build highlight set: include parent songs so they highlight in results too
-    const highlightSet = new Set(selected);
-    for (const song of selected) {
-        if (PART_OF[song]) highlightSet.add(PART_OF[song]);
     }
 
     const minScore = mode === 'all' ? query.length : 1;
