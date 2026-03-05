@@ -77,6 +77,8 @@ def parse_songs(html):
         text = re.sub(r'\s+', ' ', text).strip()
         text = re.sub(r'\s+note\s*:.*$', '', text, flags=re.I).strip()
         text = re.sub(r'\s*\[incomplete\].*$', '', text, flags=re.I).strip()
+        if re.match(r'^note\s*:', text, re.I):
+            continue
         if text and 1 < len(text) < 80:
             songs.append(text)
     if not songs:
@@ -89,13 +91,21 @@ def parse_songs(html):
     return songs
 
 def parse_note(html):
-    """Extract 'thanks to ...' acknowledgment from the page, if present."""
+    """Extract page-level notes: 'note : ...' annotations and 'thanks to ...' credits."""
+    parts = []
+    m = re.search(r'(?<![a-z])note\s*:\s*([\s\S]*?)(?=</(?:em|i|p|td|li|font)\b)', html, re.I)
+    if m:
+        text = re.sub(r'<[^>]+>', '', m.group(1))
+        text = re.sub(r'\s+', ' ', text).strip().rstrip('.')
+        if text:
+            parts.append('note : ' + text)
     m = re.search(r'thanks\s+to\s+([\s\S]*?)(?=</(?:font|i|td|p|li)\b)', html, re.I)
     if m:
         text = re.sub(r'<[^>]+>', '', m.group(0))
         text = re.sub(r'\s+', ' ', text).strip().rstrip('.')
-        return text
-    return ''
+        if text:
+            parts.append(text)
+    return '  '.join(parts)
 
 def normalise(song):
     """Lowercase + collapse whitespace for fuzzy comparison."""

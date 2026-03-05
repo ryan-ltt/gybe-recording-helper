@@ -45,7 +45,7 @@ const SETLISTS_DATA = [
       "drone",
       "noise",
       "blaise bailey finnegan III",
-      "sad mafioso \"The Music of Sound\" radio session presented by Gordon Krieger."
+      "sad mafioso"
     ],
     "recordings": [
       {
@@ -124,7 +124,7 @@ const SETLISTS_DATA = [
       "moya",
       "blaise bailey finnegan III",
       "dead metheny",
-      "sad mafioso [not confirmed]"
+      "sad mafioso"
     ],
     "recordings": []
   },
@@ -3974,7 +3974,8 @@ const SETLISTS_DATA = [
       "albanian",
       "dead metheny",
       "world police",
-      "tazer floyd"
+      "tazer floyd",
+      "moya"
     ],
     "recordings": [
       {
@@ -3987,7 +3988,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2003-04-03.flac16",
         "title": "Godspeed You! Black Emperor Live at Warsaw on 2003-04-03"
       }
-    ]
+    ],
+    "note": "note : there was a speech by efrim before 'moya'  thanks to keith, christopher"
   },
   {
     "date": "2003-04-04",
@@ -4067,7 +4069,8 @@ const SETLISTS_DATA = [
       "monheim",
       "albanian",
       "world police",
-      "motherfucker=redeemer"
+      "motherfucker=redeemer",
+      "dead metheny"
     ],
     "recordings": [
       {
@@ -4080,7 +4083,8 @@ const SETLISTS_DATA = [
         "url": "https://archive.org/details/gybe2003-04-09.flac",
         "title": "Godspeed You! Black Emperor Live at Marquee Club on 2003-04-09"
       }
-    ]
+    ],
+    "note": "note : there was a speech before the encore  thanks to evan and barry!"
   },
   {
     "date": "2003-04-10",
@@ -4469,10 +4473,10 @@ const SETLISTS_DATA = [
       "12.28.99",
       "albanian",
       "world police",
-      "blaise bailey finnegan III"
+      "blaise bailey finnegan III thanks to manuel"
     ],
     "recordings": [],
-    "note": "thanks to manuel"
+    "note": "thanks to manuel &nbsp;"
   },
   {
     "date": "2003-05-28",
@@ -4483,7 +4487,7 @@ const SETLISTS_DATA = [
       "albanian",
       "dead metheny",
       "motherfucker=redeemer",
-      "the dead flag blues (outro)"
+      "the dead flag blues (outro) thanks to diogo"
     ],
     "recordings": [],
     "note": "thanks to diogo"
@@ -14161,7 +14165,8 @@ const SETLISTS_DATA = [
       "broken spires at dead kapital",
       "pale spectator takes photographs",
       "world police",
-      "moya"
+      "moya",
+      "sad mafioso"
     ],
     "recordings": []
   },
@@ -14193,7 +14198,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "world police",
       "moya",
-      "sad mafioso Order not confirmed."
+      "sad mafioso"
     ],
     "recordings": []
   },
@@ -14557,7 +14562,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "cliff",
       "chart #3",
-      "world police unconfirmed setlist.fm entry"
+      "world police"
     ],
     "recordings": []
   },
@@ -14994,7 +14999,7 @@ const SETLISTS_DATA = [
       "fire at static valley",
       "pale spectator takes photographs",
       "(?)",
-      "blaise bailey finnegan III only the confirmed songs are listed"
+      "blaise bailey finnegan III"
     ],
     "recordings": []
   },
@@ -15031,7 +15036,7 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "piss crowns are trebled",
       "chart #3",
-      "world police unconfirmed setlist sourced from setlist.fm"
+      "world police"
     ],
     "recordings": []
   },
