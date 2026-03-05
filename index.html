@@ -828,7 +828,8 @@ function renderSelectedList() {
     if (selectedOrder.length === 0) { div.innerHTML = ''; return; }
     const orderMode = document.querySelector('input[name="order"]:checked')?.value;
     const numbered = orderMode === 'ordered' || orderMode === 'back-to-back';
-    div.innerHTML = 'selected: ' + selectedOrder.map((s, i) => {
+    const dragHint = (numbered && selectedOrder.length > 1) ? '<div style="font-size:11px;color:#999;font-family:Monaco,\'JetBrains Mono\',monospace;margin-bottom:4px;">drag to reorder</div>' : '';
+    div.innerHTML = dragHint + 'selected: ' + selectedOrder.map((s, i) => {
         const label = numbered ? `${i + 1}. ${s}` : s;
         return `<span draggable="true" data-idx="${i}" style="cursor:grab;">${label}</span>`;
     }).join('');
