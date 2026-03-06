@@ -16450,7 +16450,13 @@ const SETLISTS_DATA = [
       "moya",
       "sad mafioso"
     ],
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-03-02",
+        "url": "https://archive.org/details/gybe2026-03-02",
+        "title": "Godspeed You! Black Emperor Live at Paavli Kultuurivabrik on 2026-03-02"
+      }
+    ]
   },
   {
     "date": "2026-03-03",
@@ -16479,6 +16485,21 @@ const SETLISTS_DATA = [
       "pale spectator takes photographs",
       "moya",
       "blaise bailey finnegan III"
+    ],
+    "recordings": []
+  },
+  {
+    "date": "2026-03-05",
+    "venue": "progresja, warszawa, pol",
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "monheim",
+      "pale spectator takes photographs",
+      "bosses hang",
+      "gathering storm"
     ],
     "recordings": []
   }
