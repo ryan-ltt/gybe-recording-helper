@@ -6,6 +6,8 @@
     <title>gybe recording helper</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="config.js" onerror="void 0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="last-update.js"></script>
     <script src="recommendations.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
@@ -458,12 +460,188 @@
         .album-btn:hover { background: #eee; }
         .album-btn-active { background: #333; color: #fff; border-color: #333; }
         .album-btn-active:hover { background: #444; }
+
+        /* Auth header button */
+        header { position: relative; }
+        .header-auth {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-btn {
+            padding: 4px 10px;
+            background: white;
+            border: 2px solid black;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+        .header-btn:hover { background: #eee; }
+
+        /* Auth modal */
+        .auth-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .auth-overlay.open { display: flex; }
+        .auth-modal {
+            background: white;
+            border: 2px solid black;
+            padding: 24px 28px;
+            width: 100%;
+            max-width: 360px;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .auth-modal h3 { margin: 0 0 16px 0; font-size: 15px; font-family: Monaco, 'JetBrains Mono', monospace; }
+        .auth-field-label { font-size: 11px; color: #555; margin-bottom: 4px; display: block; }
+        .auth-modal input[type=text],
+        .auth-modal input[type=email],
+        .auth-modal input[type=password] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 7px 10px;
+            border: 2px solid black;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+            margin-bottom: 12px;
+            background: white;
+            display: block;
+        }
+        .auth-modal input:focus { outline: none; background: #f5f5ff; }
+        .auth-submit {
+            width: 100%;
+            padding: 9px;
+            background: black;
+            color: white;
+            border: 2px solid black;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+        .auth-submit:hover { background: #333; }
+        .auth-toggle-row { margin-top: 12px; font-size: 11px; color: #555; text-align: center; }
+        .auth-toggle-row a { color: black; cursor: pointer; text-decoration: underline; }
+        .auth-error-msg { color: #c00; font-size: 11px; margin-bottom: 10px; display: none; }
+        .auth-email-warning {
+            color: #7a5800;
+            font-size: 11px;
+            background: #fffbe6;
+            border: 1px solid #e0c000;
+            padding: 6px 8px;
+            margin-bottom: 10px;
+            display: none;
+            line-height: 1.5;
+        }
+        .auth-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #888;
+            line-height: 1;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+        }
+        .auth-close-btn:hover { color: black; }
+
+        /* Versions tab */
+        .version-card {
+            border: 2px solid black;
+            background: white;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .version-card-info { flex: 1; min-width: 0; }
+        .version-card-date { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 14px; font-weight: bold; }
+        .version-card-venue { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 12px; color: #555; margin-left: 8px; }
+        .version-card-rec { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px; margin-top: 4px; color: #555; }
+        .version-card-rec a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; margin-left: 4px; }
+        .version-card-rec a:hover { color: #004499; }
+        .vote-area { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 40px; }
+        .vote-btn {
+            background: white;
+            border: 2px solid black;
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s;
+            padding: 0;
+        }
+        .vote-btn:hover:not(.voted) { background: #eee; }
+        .vote-btn.voted { background: black; color: white; }
+        .vote-count { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px; color: #555; min-height: 14px; }
+        .versions-breadcrumb { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 13px; margin-bottom: 14px; }
+        .versions-breadcrumb a { color: black; cursor: pointer; text-decoration: underline; }
+        .versions-submit-section { margin-top: 24px; padding-top: 20px; border-top: 2px solid #eee; }
+        .versions-submit-title { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 13px; font-weight: bold; margin-bottom: 8px; }
+        .versions-submit-note { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px; color: #888; margin-bottom: 10px; background: #f5f5f5; border: 1px solid #ddd; padding: 6px 10px; }
     </style>
 </head>
 <body>
     <header>
         <h1>gybe recording helper</h1>
+        <div class="header-auth" id="headerAuth">
+            <button class="header-btn" onclick="showAuthModal()">log in</button>
+        </div>
     </header>
+
+    <!-- Auth modal -->
+    <div class="auth-overlay" id="authOverlay" onclick="closeAuthOverlay(event)">
+        <div class="auth-modal">
+            <button class="auth-close-btn" onclick="hideAuthModal()">×</button>
+            <h3 id="authModalTitle">log in</h3>
+            <div class="auth-error-msg" id="authError"></div>
+
+            <!-- Login form -->
+            <div id="authLoginForm">
+                <label class="auth-field-label">username or email</label>
+                <input type="text" id="authLoginId" placeholder="username or email" autocomplete="username">
+                <label class="auth-field-label">password</label>
+                <input type="password" id="authLoginPw" placeholder="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+                <button class="auth-submit" onclick="doLogin()">log in</button>
+                <div class="auth-toggle-row">don't have an account? <a onclick="showSignup()">sign up</a></div>
+            </div>
+
+            <!-- Sign up form -->
+            <div id="authSignupForm" style="display:none;">
+                <label class="auth-field-label">username</label>
+                <input type="text" id="authUsername" placeholder="letters, numbers, _ and - only" autocomplete="username">
+                <label class="auth-field-label">email <span style="color:#999;">(optional)</span></label>
+                <div class="auth-email-warning" id="authEmailWarning">Without an email address you won't be able to reset your password if you forget it.</div>
+                <input type="email" id="authEmail" placeholder="email address" autocomplete="email" oninput="updateEmailWarning()">
+                <label class="auth-field-label">password</label>
+                <input type="password" id="authSignupPw" placeholder="at least 6 characters" autocomplete="new-password" onkeydown="if(event.key==='Enter')doSignup()">
+                <button class="auth-submit" onclick="doSignup()">create account</button>
+                <div class="auth-toggle-row">already have an account? <a onclick="showLogin()">log in</a></div>
+            </div>
+        </div>
+    </div>
 
     <main>
         <p>data from <a href="https://gybecc.neocities.org" target="_blank">gybecc.neocities.org</a> · <a href="https://archive.org/details/GodspeedYouBlackEmperor" target="_blank">archive.org</a>.
@@ -475,6 +653,7 @@
             <button class="tab-btn" onclick="switchTab('discover')">discover</button>
             <button class="tab-btn" onclick="switchTab('eras')">shows</button>
             <button class="tab-btn" onclick="switchTab('picks')">picks</button>
+            <button class="tab-btn" onclick="switchTab('versions')">vote</button>
         </div>
 
         <!-- SONG FINDER TAB -->
@@ -562,6 +741,15 @@
         <div class="tab-panel" id="tab-picks">
             <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 16px 0;">hand-picked shows worth hearing.</p>
             <div id="picksContainer"></div>
+        </div>
+
+        <!-- VERSIONS TAB -->
+        <div class="tab-panel" id="tab-versions">
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 12px 0;">community-voted best performances of each song. click a song to see all versions ranked by votes.</p>
+            <div id="versionsSongSearch" style="margin-bottom:10px;">
+                <input type="text" class="search-box" id="versionsSearchInput" placeholder="filter songs..." oninput="renderVersionsTab()" style="margin-bottom:0;">
+            </div>
+            <div id="versionsContent"></div>
         </div>
 
         <!-- ERAS TAB -->
@@ -713,13 +901,16 @@ function normalizeSong(raw) {
 // ─── Index & show song sets ────────────────────────────────────────────────
 let shows = [];
 let showIndex = {};
-let showSongSets = []; // per show: Set of canonical songs
+let showSongSets = [];
+let showByDate = {}; // date → show object
 
 function buildIndex() {
     shows = SETLISTS_DATA;
     showIndex = {};
     showSongSets = [];
+    showByDate = {};
     for (let i = 0; i < shows.length; i++) {
+        showByDate[shows[i].date] = shows[i];
         const seen = new Set();
         for (const rawSong of shows[i].songs) {
             const canon = normalizeSong(rawSong);
@@ -761,7 +952,7 @@ function renderShowCard(show, labelHtml, highlightSet) {
 }
 
 // ─── Tab switching ─────────────────────────────────────────────────────────
-const TABS = ['finder','discover','eras','picks'];
+const TABS = ['finder','discover','eras','picks','versions'];
 function switchTab(name) {
     if (!TABS.includes(name)) name = 'finder';
     document.querySelectorAll('.tab-btn').forEach((b, i) => {
@@ -771,6 +962,7 @@ function switchTab(name) {
         p.classList.toggle('active', p.id === 'tab-' + name);
     });
     history.replaceState(null, '', '#' + name);
+    if (name === 'versions' && !currentVersionSong) renderVersionsTab();
 }
 
 // ─── SONG FINDER ──────────────────────────────────────────────────────────
@@ -1477,6 +1669,304 @@ buildAlbumSections();
 renderSongGrid();
 buildEras();
 renderPicks();
+
+// ─── Supabase init ─────────────────────────────────────────────────────────
+const _SB_URL = typeof SUPABASE_URL !== 'undefined' ? SUPABASE_URL : 'https://jouivrvbgyqtyvrrcwcs.supabase.co';
+const _SB_KEY = typeof SUPABASE_ANON_KEY !== 'undefined' ? SUPABASE_ANON_KEY : 'sb_publishable_6y2HvnhrMSBXFxbn2m2qkw_0cCi1j83';
+const sbClient = window.supabase ? window.supabase.createClient(_SB_URL, _SB_KEY) : null;
+
+let currentUser = null;
+let currentUsername = null;
+
+if (sbClient) {
+    sbClient.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+            currentUser = session.user;
+            fetchUsername(currentUser.id).then(u => { currentUsername = u; updateHeaderAuth(); });
+        }
+    });
+    sbClient.auth.onAuthStateChange((_event, session) => {
+        currentUser = session?.user ?? null;
+        if (currentUser) {
+            fetchUsername(currentUser.id).then(u => {
+                currentUsername = u;
+                updateHeaderAuth();
+                if (currentVersionSong) loadVersionsForSong(currentVersionSong);
+            });
+        } else {
+            currentUsername = null;
+            updateHeaderAuth();
+            if (currentVersionSong) loadVersionsForSong(currentVersionSong);
+        }
+    });
+}
+
+async function fetchUsername(userId) {
+    const { data } = await sbClient.from('profiles').select('username').eq('user_id', userId).single();
+    return data?.username || null;
+}
+
+function updateHeaderAuth() {
+    const div = document.getElementById('headerAuth');
+    if (currentUser && currentUsername) {
+        div.innerHTML = `<span style="color:#555;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">${currentUsername}</span> <button class="header-btn" onclick="doLogout()">log out</button>`;
+    } else {
+        div.innerHTML = `<button class="header-btn" onclick="showAuthModal()">log in</button>`;
+    }
+}
+
+// ─── Auth modal ─────────────────────────────────────────────────────────────
+function showAuthModal(mode) {
+    document.getElementById('authOverlay').classList.add('open');
+    document.getElementById('authError').style.display = 'none';
+    if (mode === 'signup') showSignup(); else showLogin();
+}
+function hideAuthModal() { document.getElementById('authOverlay').classList.remove('open'); }
+function closeAuthOverlay(e) { if (e.target === document.getElementById('authOverlay')) hideAuthModal(); }
+
+function showLogin() {
+    document.getElementById('authModalTitle').textContent = 'log in';
+    document.getElementById('authLoginForm').style.display = '';
+    document.getElementById('authSignupForm').style.display = 'none';
+    document.getElementById('authError').style.display = 'none';
+    document.getElementById('authError').textContent = '';
+}
+function showSignup() {
+    document.getElementById('authModalTitle').textContent = 'create account';
+    document.getElementById('authLoginForm').style.display = 'none';
+    document.getElementById('authSignupForm').style.display = '';
+    document.getElementById('authError').style.display = 'none';
+    document.getElementById('authError').textContent = '';
+    updateEmailWarning();
+}
+function updateEmailWarning() {
+    const email = document.getElementById('authEmail').value.trim();
+    document.getElementById('authEmailWarning').style.display = email ? 'none' : '';
+}
+function showAuthError(msg) {
+    const el = document.getElementById('authError');
+    el.textContent = msg;
+    el.style.display = '';
+}
+
+async function doLogin() {
+    if (!sbClient) return;
+    const id = document.getElementById('authLoginId').value.trim();
+    const pw = document.getElementById('authLoginPw').value;
+    if (!id || !pw) { showAuthError('please fill in all fields.'); return; }
+
+    let email = id;
+    if (!id.includes('@')) {
+        const { data } = await sbClient.from('profiles').select('email').eq('username', id).single();
+        if (!data) { showAuthError('username not found.'); return; }
+        email = data.email || `${id}@no-email.local`;
+    }
+    const { error } = await sbClient.auth.signInWithPassword({ email, password: pw });
+    if (error) { showAuthError(error.message); return; }
+    hideAuthModal();
+}
+
+async function doSignup() {
+    if (!sbClient) return;
+    const username = document.getElementById('authUsername').value.trim();
+    const email = document.getElementById('authEmail').value.trim();
+    const pw = document.getElementById('authSignupPw').value;
+
+    if (!username || !pw) { showAuthError('username and password are required.'); return; }
+    if (pw.length < 6) { showAuthError('password must be at least 6 characters.'); return; }
+    if (!/^[a-zA-Z0-9_-]+$/.test(username)) { showAuthError('username may only contain letters, numbers, _ and -.'); return; }
+
+    const { data: existing } = await sbClient.from('profiles').select('user_id').eq('username', username).single();
+    if (existing) { showAuthError('username already taken.'); return; }
+
+    const authEmail = email || `${username}@no-email.local`;
+    const { data, error } = await sbClient.auth.signUp({ email: authEmail, password: pw });
+    if (error) { showAuthError(error.message); return; }
+
+    const { error: profileError } = await sbClient.from('profiles').insert({ user_id: data.user.id, username, email: email || null });
+    if (profileError) { showAuthError('account created but profile setup failed: ' + profileError.message); return; }
+    hideAuthModal();
+}
+
+async function doLogout() {
+    if (!sbClient) return;
+    await sbClient.auth.signOut();
+}
+
+// ─── VERSIONS TAB ──────────────────────────────────────────────────────────
+let currentVersionSong = null;
+let versionSubmitSelectedDate = null;
+
+function renderVersionsTab() {
+    if (currentVersionSong) return;
+    const content = document.getElementById('versionsContent');
+    const f = (document.getElementById('versionsSearchInput')?.value || '').toLowerCase().trim();
+    const tags = CANONICAL_SONGS.filter(song => {
+        if ((showIndex[song] || []).length === 0) return false;
+        return !f || song.toLowerCase().includes(f);
+    }).map(song => {
+        return `<div class="song-tag" onclick="openVersionSong(${JSON.stringify(song)})">${song}</div>`;
+    }).join('');
+    content.innerHTML = tags ? `<div class="song-grid">${tags}</div>` : '<p class="no-results">no songs match.</p>';
+}
+
+async function openVersionSong(song) {
+    currentVersionSong = song;
+    versionSubmitSelectedDate = null;
+    document.getElementById('versionsSongSearch').style.display = 'none';
+    const content = document.getElementById('versionsContent');
+    content.innerHTML = `<div class="versions-breadcrumb"><a onclick="closeVersionSong()">← all songs</a></div><p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;">loading...</p>`;
+    await loadVersionsForSong(song);
+}
+
+function closeVersionSong() {
+    currentVersionSong = null;
+    versionSubmitSelectedDate = null;
+    document.getElementById('versionsSongSearch').style.display = '';
+    renderVersionsTab();
+}
+
+async function loadVersionsForSong(song) {
+    if (!sbClient) {
+        const content = document.getElementById('versionsContent');
+        content.innerHTML = `<div class="versions-breadcrumb"><a onclick="closeVersionSong()">← all songs</a></div><p class="no-results">voting is unavailable.</p>`;
+        return;
+    }
+    const content = document.getElementById('versionsContent');
+
+    // Always fetch fresh scores (organic — only community-submitted versions)
+    const scores = {};
+    const { data: scoreData } = await sbClient.from('performance_scores').select('show_date, votes').eq('song', song);
+    if (scoreData) for (const row of scoreData) scores[row.show_date] = Number(row.votes);
+
+    let userVoteDate = null;
+    if (currentUser) {
+        const { data } = await sbClient.from('votes').select('show_date').eq('user_id', currentUser.id).eq('song', song).single();
+        if (data) userVoteDate = data.show_date;
+    }
+
+    // Only show versions with at least 1 vote, sorted by vote count desc then date desc
+    const submittedDates = Object.keys(scores).sort((a, b) => scores[b] - scores[a] || b.localeCompare(a));
+
+    let html = `<div class="versions-breadcrumb"><a onclick="closeVersionSong()">← all songs</a></div>`;
+    html += `<h2 style="margin-top:0;">${song}</h2>`;
+
+    if (submittedDates.length === 0) {
+        html += `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0 0 16px 0;">no versions submitted yet — be the first!</p>`;
+    } else {
+        html += `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0 0 16px 0;">${submittedDates.length} version${submittedDates.length !== 1 ? 's' : ''} submitted</p>`;
+        for (const date of submittedDates) {
+            const show = showByDate[date];
+            const venue = show?.venue || '';
+            const voteCount = scores[date];
+            const isVoted = userVoteDate === date;
+            const recHtml = show?.recordings?.length > 0
+                ? `<div class="version-card-rec">recording: ${show.recordings.map((r, i) => `<a href="${r.url}" target="_blank">[${i + 1}] archive.org</a>`).join(' ')}</div>`
+                : '';
+            const voteTitle = isVoted ? 'remove vote' : (currentUser ? 'vote for this version' : 'log in to vote');
+            html += `<div class="version-card">
+                <div class="version-card-info">
+                    <span class="version-card-date">${date}</span><span class="version-card-venue">${venue}</span>
+                    ${recHtml}
+                </div>
+                <div class="vote-area">
+                    <button class="vote-btn${isVoted ? ' voted' : ''}" onclick="castVote(${JSON.stringify(song)}, ${JSON.stringify(date)}, ${isVoted})" title="${voteTitle}">▲</button>
+                    <span class="vote-count">${voteCount}</span>
+                </div>
+            </div>`;
+        }
+    }
+
+    // Submit section
+    html += `<div class="versions-submit-section">
+        <div class="versions-submit-title">know a great performance not listed here?</div>`;
+    if (!currentUser) {
+        html += `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:4px 0 0 0;"><a onclick="showAuthModal()" style="cursor:pointer;color:black;text-decoration:underline;">log in</a> to submit a version.</p>`;
+    } else {
+        if (userVoteDate) {
+            html += `<div class="versions-submit-note">you currently voted for ${userVoteDate}. submitting a new version will move your vote.</div>`;
+        }
+        html += `<div class="show-search-wrap" style="max-width:460px;margin-bottom:8px;">
+            <input type="text" class="show-search-box" id="versionSubmitSearch" placeholder="search by date or venue..." oninput="onVersionSubmitSearch(${JSON.stringify(song)})" onblur="closeVersionSubmitDropdown()" autocomplete="off">
+            <div class="show-dropdown" id="versionSubmitDropdown"></div>
+        </div>
+        <div id="versionSubmitSelected"></div>
+        <button class="find-btn" style="margin-top:8px;font-size:13px;padding:8px 18px;" onclick="submitVersion(${JSON.stringify(song)})" id="versionSubmitBtn" disabled>submit</button>`;
+    }
+    html += `</div>`;
+
+    content.innerHTML = html;
+
+    // Restore submit selection if user had one before the refresh
+    if (versionSubmitSelectedDate) setVersionSubmitShow(song, versionSubmitSelectedDate, true);
+}
+
+function onVersionSubmitSearch(song) {
+    const input = document.getElementById('versionSubmitSearch');
+    const dropdown = document.getElementById('versionSubmitDropdown');
+    if (!input || !dropdown) return;
+    const q = input.value.toLowerCase().trim();
+    if (!q) { dropdown.style.display = 'none'; return; }
+    const matches = [];
+    for (let i = 0; i < shows.length && matches.length < 30; i++) {
+        const s = shows[i];
+        if (s.date.includes(q) || s.venue.toLowerCase().includes(q)) matches.push(i);
+    }
+    if (matches.length === 0) { dropdown.style.display = 'none'; return; }
+    dropdown.innerHTML = matches.map(i =>
+        `<div class="show-dropdown-item" onmousedown="setVersionSubmitShow(${JSON.stringify(song)}, ${JSON.stringify(shows[i].date)})">${shows[i].date}${shows[i].venue ? ' — ' + shows[i].venue : ''}</div>`
+    ).join('');
+    dropdown.style.display = 'block';
+}
+
+function closeVersionSubmitDropdown() {
+    setTimeout(() => { const d = document.getElementById('versionSubmitDropdown'); if (d) d.style.display = 'none'; }, 150);
+}
+
+function setVersionSubmitShow(song, date, silent) {
+    versionSubmitSelectedDate = date;
+    const show = showByDate[date];
+    const input = document.getElementById('versionSubmitSearch');
+    if (input && !silent) input.value = '';
+    const selectedDiv = document.getElementById('versionSubmitSelected');
+    if (selectedDiv) {
+        selectedDiv.innerHTML = `<div class="seed-tag" style="margin-bottom:0;">${date}${show?.venue ? ' — ' + show.venue : ''}<span class="remove" onclick="clearVersionSubmitShow()">×</span></div>`;
+    }
+    const btn = document.getElementById('versionSubmitBtn');
+    if (btn) btn.disabled = false;
+    const dropdown = document.getElementById('versionSubmitDropdown');
+    if (dropdown && !silent) dropdown.style.display = 'none';
+}
+
+function clearVersionSubmitShow() {
+    versionSubmitSelectedDate = null;
+    const sel = document.getElementById('versionSubmitSelected');
+    if (sel) sel.innerHTML = '';
+    const btn = document.getElementById('versionSubmitBtn');
+    if (btn) btn.disabled = true;
+}
+
+async function submitVersion(song) {
+    if (!versionSubmitSelectedDate || !currentUser || !sbClient) return;
+    const btn = document.getElementById('versionSubmitBtn');
+    if (btn) { btn.disabled = true; btn.textContent = 'submitting...'; }
+    await castVote(song, versionSubmitSelectedDate, false);
+}
+
+async function castVote(song, showDate, isCurrentlyVoted) {
+    if (!sbClient) return;
+    if (!currentUser) { showAuthModal(); return; }
+
+    if (isCurrentlyVoted) {
+        await sbClient.from('votes').delete().eq('user_id', currentUser.id).eq('song', song);
+    } else {
+        await sbClient.from('votes').delete().eq('user_id', currentUser.id).eq('song', song);
+        const { error } = await sbClient.from('votes').insert({ user_id: currentUser.id, song, show_date: showDate });
+        if (error) { console.error('vote error:', error); return; }
+    }
+    await loadVersionsForSong(song);
+}
+
 switchTab(window.location.hash.slice(1) || 'finder');
 
 // When graph view is selected, force "recordings only" + "most similar" and disable both
