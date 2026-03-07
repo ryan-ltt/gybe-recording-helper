@@ -93,3 +93,14 @@ main
 	background-color: black;
 	color: white;
 }
+
+@media (max-width: 640px) {
+	header {
+		padding: 14px 16px;
+		flex-wrap: wrap;
+		gap: 6px;
+		align-items: flex-start;
+	}
+	h1 { font-size: 22px; }
+	main { padding: 0 16px 40px; }
+}

@@ -104,6 +104,15 @@
             color: #555;
             margin-top: 40px;
         }
+
+        @media (max-width: 640px) {
+            header { padding: 14px 16px; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+            h1 { font-size: 22px; }
+            .header-auth { position: static; transform: none; }
+            .page-content { padding: 0 16px 40px; }
+            .profile-field input { max-width: 100%; }
+            .header-btn { padding: 6px 12px; }
+        }
     </style>
 </head>
 <body>

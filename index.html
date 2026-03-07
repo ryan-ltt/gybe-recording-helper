@@ -621,6 +621,23 @@
         .add-favourite-form { margin-top: 12px; padding: 16px; border: 2px solid #eee; display: none; }
         .add-favourite-form.open { display: block; }
 
+        @media (max-width: 640px) {
+            header { flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+            h1 { font-size: 22px; }
+            .header-auth { position: static; transform: none; }
+            .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+            .tab-btn { padding: 8px 12px; font-size: 12px; white-space: nowrap; flex-shrink: 0; }
+            .show-dropdown { width: 100%; }
+            #discoverGraph { height: 360px; }
+            .version-card { flex-direction: column; align-items: flex-start; }
+            .vote-area { flex-direction: row; gap: 8px; }
+            .auth-modal { padding: 20px 16px; }
+            .comment-input-row { flex-direction: column; }
+            .comment-input-row button { width: 100%; }
+            .add-favourite-form { padding: 12px; }
+            .header-btn { padding: 6px 12px; }
+        }
+
     </style>
 </head>
 <body>
