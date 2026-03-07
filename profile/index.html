@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile — gybe recording helper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="/config.js" onerror="void 0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <link rel="stylesheet" href="/index.css">
+    <style>
+        /* Header */
+        header { position: relative; }
+        .header-auth {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-btn {
+            padding: 4px 10px;
+            background: white;
+            border: 2px solid black;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+        .header-btn:hover { background: #eee; }
+
+        /* Page layout */
+        .page-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px 60px;
+        }
+        .back-link {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: black;
+            text-decoration: underline;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+        .back-link:hover { color: #333; }
+        h2 {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 20px;
+            margin: 0 0 24px 0;
+        }
+
+        /* Profile sections */
+        .profile-section { margin-bottom: 32px; }
+        .profile-section h3 {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 0 0 12px 0;
+            border-bottom: 2px solid black;
+            padding-bottom: 6px;
+        }
+        .profile-field { margin-bottom: 10px; }
+        .profile-field label {
+            display: block;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #555;
+            margin-bottom: 4px;
+        }
+        .profile-field input {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+            border: 2px solid #ccc;
+            padding: 7px 10px;
+            width: 100%;
+            max-width: 360px;
+            box-sizing: border-box;
+        }
+        .profile-field input:focus { outline: none; border-color: black; }
+        .profile-save-btn {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+            border: 2px solid black;
+            background: white;
+            padding: 7px 20px;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+        .profile-save-btn:hover { background: #eee; }
+        .profile-msg { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 12px; margin-top: 8px; }
+        .profile-msg.ok { color: #080; }
+        .profile-msg.err { color: #c00; }
+
+        .not-logged-in {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #555;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>gybe recording helper</h1>
+        <div class="header-auth" id="headerAuth"></div>
+    </header>
+
+    <div class="page-content">
+        <a class="back-link" href="../index.html">← back</a>
+        <div id="profileContent"></div>
+    </div>
+
+    <script>
+        const _SB_URL = typeof SUPABASE_URL !== 'undefined' ? SUPABASE_URL : 'https://jouivrvbgyqtyvrrcwcs.supabase.co';
+        const _SB_KEY = typeof SUPABASE_ANON_KEY !== 'undefined' ? SUPABASE_ANON_KEY : 'sb_publishable_6y2HvnhrMSBXFxbn2m2qkw_0cCi1j83';
+        const sbClient = window.supabase ? window.supabase.createClient(_SB_URL, _SB_KEY) : null;
+
+        let currentUser = null;
+        let currentUsername = null;
+
+        function updateHeaderAuth() {
+            const div = document.getElementById('headerAuth');
+            if (currentUser && currentUsername) {
+                div.innerHTML = `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;">${currentUsername}</span> <button class="header-btn" onclick="doLogout()">log out</button>`;
+            } else {
+                div.innerHTML = `<a class="header-btn" href="../index.html">back to site</a>`;
+            }
+        }
+
+        async function doLogout() {
+            if (!sbClient) return;
+            await sbClient.auth.signOut();
+            window.location.href = 'index.html';
+        }
+
+        function renderProfile() {
+            const el = document.getElementById('profileContent');
+            if (!currentUser) {
+                el.innerHTML = `<p class="not-logged-in">you need to be logged in to view your profile. <a href="../index.html">go back</a></p>`;
+                return;
+            }
+            const displayEmail = (currentUser.email && !currentUser.email.endsWith('@no-email.local'))
+                ? currentUser.email : '';
+            el.innerHTML = `
+                <h2>profile</h2>
+                <div class="profile-section">
+                    <h3>account</h3>
+                    <div class="profile-field">
+                        <label>username</label>
+                        <input type="text" id="profileUsername" value="${currentUsername || ''}" placeholder="username">
+                    </div>
+                    <button class="profile-save-btn" onclick="updateUsername()">save username</button>
+                    <div class="profile-msg" id="profileUsernameMsg"></div>
+                </div>
+                <div class="profile-section">
+                    <h3>email</h3>
+                    <p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#555;margin:0 0 10px 0;">your email is used for password reset. leave blank to remove it.</p>
+                    <div class="profile-field">
+                        <label>email address</label>
+                        <input type="email" id="profileEmail" value="${displayEmail}" placeholder="email address">
+                    </div>
+                    <button class="profile-save-btn" onclick="updateEmail()">save email</button>
+                    <div class="profile-msg" id="profileEmailMsg"></div>
+                </div>
+                <div class="profile-section">
+                    <h3>change password</h3>
+                    <div class="profile-field">
+                        <label>new password</label>
+                        <input type="password" id="profilePw1" placeholder="new password (min 6 characters)">
+                    </div>
+                    <div class="profile-field">
+                        <label>confirm new password</label>
+                        <input type="password" id="profilePw2" placeholder="confirm new password">
+                    </div>
+                    <button class="profile-save-btn" onclick="updatePassword()">change password</button>
+                    <div class="profile-msg" id="profilePwMsg"></div>
+                </div>`;
+        }
+
+        async function updateUsername() {
+            if (!sbClient || !currentUser) return;
+            const newUsername = document.getElementById('profileUsername').value.trim();
+            const msg = document.getElementById('profileUsernameMsg');
+            if (!newUsername) { msg.className = 'profile-msg err'; msg.textContent = 'username cannot be empty.'; return; }
+            if (!/^[a-zA-Z0-9_-]+$/.test(newUsername)) { msg.className = 'profile-msg err'; msg.textContent = 'username may only contain letters, numbers, _ and -.'; return; }
+            if (newUsername === currentUsername) { msg.className = 'profile-msg ok'; msg.textContent = 'no change.'; return; }
+            const { data: existing } = await sbClient.from('profiles').select('user_id').eq('username', newUsername).neq('user_id', currentUser.id).single();
+            if (existing) { msg.className = 'profile-msg err'; msg.textContent = 'username already taken.'; return; }
+            const { error } = await sbClient.from('profiles').update({ username: newUsername }).eq('user_id', currentUser.id);
+            if (error) { msg.className = 'profile-msg err'; msg.textContent = error.message; return; }
+            currentUsername = newUsername;
+            updateHeaderAuth();
+            msg.className = 'profile-msg ok';
+            msg.textContent = 'username updated.';
+        }
+
+        async function updateEmail() {
+            if (!sbClient || !currentUser) return;
+            const newEmail = document.getElementById('profileEmail').value.trim();
+            const msg = document.getElementById('profileEmailMsg');
+            const authEmail = newEmail || `${currentUsername}@no-email.local`;
+            const { error: authErr } = await sbClient.auth.updateUser({ email: authEmail });
+            if (authErr) { msg.className = 'profile-msg err'; msg.textContent = authErr.message; return; }
+            const { error: profileErr } = await sbClient.from('profiles').update({ email: newEmail || null }).eq('user_id', currentUser.id);
+            if (profileErr) { msg.className = 'profile-msg err'; msg.textContent = profileErr.message; return; }
+            msg.className = 'profile-msg ok';
+            msg.textContent = newEmail ? 'email updated.' : 'email removed.';
+        }
+
+        async function updatePassword() {
+            if (!sbClient || !currentUser) return;
+            const pw1 = document.getElementById('profilePw1').value;
+            const pw2 = document.getElementById('profilePw2').value;
+            const msg = document.getElementById('profilePwMsg');
+            if (pw1.length < 6) { msg.className = 'profile-msg err'; msg.textContent = 'password must be at least 6 characters.'; return; }
+            if (pw1 !== pw2) { msg.className = 'profile-msg err'; msg.textContent = 'passwords do not match.'; return; }
+            const { error } = await sbClient.auth.updateUser({ password: pw1 });
+            if (error) { msg.className = 'profile-msg err'; msg.textContent = error.message; return; }
+            document.getElementById('profilePw1').value = '';
+            document.getElementById('profilePw2').value = '';
+            msg.className = 'profile-msg ok';
+            msg.textContent = 'password changed.';
+        }
+
+        // Init
+        if (sbClient) {
+            sbClient.auth.onAuthStateChange((_event, session) => {
+                if (_event === 'PASSWORD_RECOVERY') {
+                    currentUser = session.user;
+                    sbClient.from('profiles').select('username').eq('user_id', currentUser.id).single()
+                        .then(({ data }) => {
+                            currentUsername = data?.username || null;
+                            updateHeaderAuth();
+                            renderProfile();
+                            // Highlight the change password section
+                            const msg = document.getElementById('profilePwMsg');
+                            if (msg) {
+                                msg.className = 'profile-msg ok';
+                                msg.textContent = 'enter a new password below to complete your reset.';
+                                document.getElementById('profilePw1')?.focus();
+                            }
+                        });
+                    return;
+                }
+            });
+
+            sbClient.auth.getSession().then(({ data: { session } }) => {
+                currentUser = session?.user ?? null;
+                if (currentUser) {
+                    sbClient.from('profiles').select('username').eq('user_id', currentUser.id).single()
+                        .then(({ data }) => {
+                            currentUsername = data?.username || null;
+                            updateHeaderAuth();
+                            renderProfile();
+                        });
+                } else {
+                    updateHeaderAuth();
+                    renderProfile();
+                }
+            });
+        } else {
+            renderProfile();
+        }
+    </script>
+</body>
+</html>
