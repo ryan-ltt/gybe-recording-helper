@@ -981,7 +981,7 @@ function switchTab(name) {
         p.classList.toggle('active', p.id === 'tab-' + name);
     });
     history.replaceState(null, '', '#' + name);
-    if (name === 'versions' && !currentVersionSong) renderVersionsTab();
+    if (name === 'versions' && !currentVersionSong) loadSongVoteCounts().then(renderVersionsTab);
 }
 
 // ─── SONG FINDER ──────────────────────────────────────────────────────────
@@ -1815,6 +1815,14 @@ async function doLogout() {
 // ─── VERSIONS TAB ──────────────────────────────────────────────────────────
 let currentVersionSong = null;
 let versionSubmitSelectedDate = null;
+let songVoteCounts = {};  // song → total votes across all versions (cached)
+
+async function loadSongVoteCounts() {
+    if (!sbClient) return;
+    const { data } = await sbClient.from('performance_scores').select('song, votes');
+    songVoteCounts = {};
+    if (data) for (const row of data) songVoteCounts[row.song] = (songVoteCounts[row.song] || 0) + Number(row.votes);
+}
 
 function renderVersionsTab() {
     if (currentVersionSong) return;
@@ -1824,7 +1832,9 @@ function renderVersionsTab() {
         if ((showIndex[song] || []).length === 0) return false;
         return !f || song.toLowerCase().includes(f);
     }).map(song => {
-        return `<div class="song-tag" onclick='openVersionSong(${JSON.stringify(song)})'>${song}</div>`;
+        const count = songVoteCounts[song];
+        const badge = count ? ` <span style="font-size:10px;color:#888;">(${count})</span>` : '';
+        return `<div class="song-tag" onclick='openVersionSong(${JSON.stringify(song)})'>${song}${badge}</div>`;
     }).join('');
     content.innerHTML = tags ? `<div class="song-grid">${tags}</div>` : '<p class="no-results">no songs match.</p>';
 }
@@ -1842,7 +1852,7 @@ function closeVersionSong() {
     currentVersionSong = null;
     versionSubmitSelectedDate = null;
     document.getElementById('versionsSongSearch').style.display = '';
-    renderVersionsTab();
+    loadSongVoteCounts().then(renderVersionsTab);
 }
 
 async function loadVersionsForSong(song) {
