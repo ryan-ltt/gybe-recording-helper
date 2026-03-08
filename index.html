@@ -2033,7 +2033,7 @@ function onVersionSubmitSearch(song) {
     const matches = [];
     for (let i = 0; i < shows.length && matches.length < 30; i++) {
         const s = shows[i];
-        if (!s.songs?.includes(song)) continue;
+        if (!s.songs?.some(raw => normalizeSong(raw) === song)) continue;
         if (s.date.includes(q) || s.venue.toLowerCase().includes(q)) matches.push(i);
     }
     if (matches.length === 0) { dropdown.style.display = 'none'; return; }
