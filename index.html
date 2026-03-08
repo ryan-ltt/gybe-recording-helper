@@ -585,6 +585,7 @@
         .version-card-rec { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px; margin-top: 4px; color: #555; }
         .version-card-rec a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; margin-left: 4px; }
         .version-card-rec a:hover { color: #004499; }
+        .version-card-submitter { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px; margin-top: 4px; color: #999; }
         .vote-area { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 40px; }
         .vote-btn {
             background: white;
@@ -1931,18 +1932,28 @@ async function loadVersionsForSong(song) {
     }
     const content = document.getElementById('versionsContent');
 
-    // Fetch scores and comments in parallel
-    const [scoreRes, commentRes] = await Promise.all([
+    // Fetch scores, comments, and votes in parallel
+    const [scoreRes, commentRes, votesRes] = await Promise.all([
         sbClient.from('performance_scores').select('show_date, votes').eq('song', song),
-        sbClient.from('comments').select('id, show_date, body, user_id, created_at').eq('song', song).order('created_at', { ascending: true })
+        sbClient.from('comments').select('id, show_date, body, user_id, created_at').eq('song', song).order('created_at', { ascending: true }),
+        sbClient.from('votes').select('show_date, user_id, created_at').eq('song', song).order('created_at', { ascending: true })
     ]);
 
     const scores = {};
     if (scoreRes.data) for (const row of scoreRes.data) scores[row.show_date] = Number(row.votes);
 
-    // Fetch usernames for comment authors
+    // First vote per show_date = submitter
+    const submitterIdByDate = {};
+    if (votesRes.data) for (const row of votesRes.data) {
+        if (!submitterIdByDate[row.show_date]) submitterIdByDate[row.show_date] = row.user_id;
+    }
+
+    // Fetch usernames for comment authors + submitters
     const commentData = commentRes.data || [];
-    const authorIds = [...new Set(commentData.map(c => c.user_id))];
+    const authorIds = [...new Set([
+        ...commentData.map(c => c.user_id),
+        ...Object.values(submitterIdByDate)
+    ])];
     const usernameMap = {};
     if (authorIds.length > 0) {
         const { data: profileData } = await sbClient.from('profiles').select('user_id, username').in('user_id', authorIds);
@@ -1975,6 +1986,9 @@ async function loadVersionsForSong(song) {
         const recHtml = show?.recordings?.length > 0
             ? `<div class="version-card-rec">recording: ${show.recordings.map((r, i) => `<a href="${r.url}" target="_blank">[${i + 1}] archive.org</a>`).join(' ')}</div>`
             : '';
+        const submitterId = submitterIdByDate[date];
+        const submitterName = submitterId ? (usernameMap[submitterId] || 'user') : null;
+        const submittedByHtml = submitterName ? `<div class="version-card-submitter">submitted by ${submitterName}</div>` : '';
         const voteTitle = isVoted ? 'remove vote' : (currentUser ? 'vote for this version' : 'log in to vote');
 
         const dateComments = commentsByDate[date] || [];
@@ -1996,6 +2010,7 @@ async function loadVersionsForSong(song) {
                 <div class="version-card-info">
                     <span class="version-card-date">${date}</span><span class="version-card-venue">${venue}</span>
                     ${recHtml}
+                    ${submittedByHtml}
                 </div>
                 <div class="vote-area">
                     <button class="vote-btn${isVoted ? ' voted' : ''}" onclick='castVote(${JSON.stringify(song)}, ${JSON.stringify(date)}, ${isVoted})' title="${voteTitle}">▲</button>
