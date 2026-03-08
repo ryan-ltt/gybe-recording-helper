@@ -404,6 +404,12 @@
             margin: 2px 3px 2px 0;
         }
         .era-shows { margin-top: 8px; }
+        .toggle-switch { position: relative; display: inline-block; width: 36px; height: 20px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border: 2px solid #999; transition: 0.2s; }
+        .toggle-slider:before { position: absolute; content: ""; height: 12px; width: 12px; left: 2px; bottom: 2px; background: white; transition: 0.2s; }
+        .toggle-switch input:checked + .toggle-slider { background: black; border-color: black; }
+        .toggle-switch input:checked + .toggle-slider:before { transform: translateX(16px); }
         .era-show-row {
             display: flex;
             justify-content: space-between;
@@ -797,8 +803,16 @@
 
         <!-- ERAS TAB -->
         <div class="tab-panel" id="tab-eras">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 16px 0;">all shows with recordings, grouped by year.</p>
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 16px 0;">recordings that are bolded are highest quality</p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 8px 0;">shows grouped by year. recordings that are bolded are highest quality.</p>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+                <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;display:flex;align-items:center;gap:8px;cursor:pointer;">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="erasRecordingsOnly" checked onchange="buildEras()">
+                        <span class="toggle-slider"></span>
+                    </div>
+                    recordings only
+                </label>
+            </div>
             <div id="erasContainer"></div>
         </div>
     </main>
@@ -1567,10 +1581,11 @@ function buildEras() {
     const container = document.getElementById('erasContainer');
     container.innerHTML = '';
 
-    // Group shows with recordings by year
+    // Group shows by year
+    const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
     const byYear = {};
     for (const show of shows) {
-        if (show.recordings.length === 0) continue;
+        if (recordingsOnly && show.recordings.length === 0) continue;
         const y = show.date.slice(0, 4);
         if (!byYear[y]) byYear[y] = [];
         byYear[y].push(show);
@@ -1584,7 +1599,7 @@ function buildEras() {
             <div class="era-header" onclick="toggleEra('y${year}')">
                 <div><div class="era-title">${year}</div></div>
                 <div style="display:flex;align-items:center;gap:16px;">
-                    <div class="era-meta">${yearShows.length} recordings</div>
+                    <div class="era-meta">${yearShows.length} show${yearShows.length !== 1 ? 's' : ''}</div>
                     <div class="era-toggle" id="toggle-y${year}">+</div>
                 </div>
             </div>
@@ -1648,7 +1663,8 @@ function toggleEra(id) {
 function filterEraShows(id, value) {
     const showsDiv = document.getElementById('shows-' + id);
     const year = id.slice(1); // strip leading 'y'
-    const yearShows = shows.filter(s => s.date.startsWith(year) && s.recordings.length > 0);
+    const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
+    const yearShows = shows.filter(s => s.date.startsWith(year) && (!recordingsOnly || s.recordings.length > 0));
     showsDiv.innerHTML = renderEraShowList(yearShows, value);
 }
 
