@@ -772,19 +772,20 @@
             </div>
             <div style="margin:8px 0 0 0;" id="seedDisplay"></div>
 
-            <div class="listened-section">
-                <h2>listened list</h2>
-                <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:#555;margin:0 0 10px 0;">shows to exclude from recommendations. paste dates, or upload a file.</p>
-                <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;">
-                    <textarea id="listenedPaste" rows="3" placeholder="paste dates here (one per line, YYYY-MM-DD)..." style="width:100%;max-width:560px;font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;border:2px solid black;padding:7px 12px;box-sizing:border-box;resize:vertical;"></textarea>
-                    <button class="upload-btn" style="white-space:nowrap;margin-top:0;" onclick="addListenedDates()">add dates</button>
+            <details class="track-import" style="margin-top:16px;">
+                <summary style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;cursor:pointer;user-select:none;">listened list <span class="listened-count" id="listenedCount"></span></summary>
+                <div style="margin-top:10px;">
+                    <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:#555;margin:0 0 8px 0;">shows to exclude from recommendations. paste one date per line (YYYY-MM-DD)</p>
+                    <textarea id="listenedPaste" rows="6" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;"></textarea>
+                    <div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#c00;margin:4px 0;" id="listenedPasteError"></div>
+                    <div style="margin-top:6px;display:flex;align-items:center;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+                        <button class="find-btn" onclick="addListenedDates()">add dates</button>
+                        <button class="upload-btn" style="font-size:12px;padding:4px 14px;" onclick="document.getElementById('listenedFile').click()">upload file</button>
+                        <input type="file" id="listenedFile" accept=".txt,.json" style="display:none" onchange="loadListened(this)">
+                        <button class="download-btn" onclick="downloadListened()" id="downloadBtn" style="display:none;font-size:12px;padding:4px 14px;">download list</button>
+                    </div>
                 </div>
-                <div style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:#c00;margin:0 0 8px 0;" id="listenedPasteError"></div>
-                <button class="upload-btn" onclick="document.getElementById('listenedFile').click()">upload file</button>
-                <input type="file" id="listenedFile" accept=".txt,.json" style="display:none" onchange="loadListened(this)">
-                <span class="listened-count" id="listenedCount"></span>
-                <button class="download-btn" onclick="downloadListened()" id="downloadBtn" style="display:none">download list</button>
-            </div>
+            </details>
 
             <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px;font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;">
                 <label><input type="checkbox" id="discoverRecordingsOnly"> recordings only</label>
@@ -853,6 +854,8 @@
                                 <option value="listened">listened</option>
                             </select>
                             <button class="find-btn" onclick="bulkImportTracking()">import</button>
+                            <button class="upload-btn" style="font-size:12px;padding:4px 14px;" onclick="document.getElementById('trackImportFile').click()">upload file</button>
+                            <input type="file" id="trackImportFile" accept=".txt,.json" style="display:none" onchange="loadTrackFile(this)">
                         </div>
                         <div id="trackImportResult" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:#555;"></div>
                     </div>
@@ -1984,6 +1987,25 @@ async function toggleTracking(date, field) {
         attended: trackingData[date].attended,
         listened: trackingData[date].listened,
     }, { onConflict: 'user_id,show_date' });
+}
+
+function loadTrackFile(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        const text = e.target.result.trim();
+        let dates = [];
+        try {
+            const parsed = JSON.parse(text);
+            dates = Array.isArray(parsed) ? parsed : Object.keys(parsed);
+        } catch {
+            dates = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        }
+        document.getElementById('trackImportInput').value = dates.join('\n');
+    };
+    reader.readAsText(file);
+    input.value = '';
 }
 
 async function bulkImportTracking() {

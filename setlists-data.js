@@ -9476,6 +9476,44 @@ const SETLISTS_DATA = [
     "recordings": []
   },
   {
+    "date": "2017-06-10",
+    "venue": "kraterfront festival, kemmelseweg, heuvelland, be",
+    "songs": [
+      "intro",
+      "bosses hang",
+      "anthem for no state",
+      "2 nouveau tower",
+      "moya",
+      "blaise bailey finnegan III"
+    ],
+    "recordings": [
+      {
+        "id": "gybe2017-06-10",
+        "url": "https://archive.org/details/gybe2017-06-10",
+        "title": "Godspeed You! Black Emperor live, June 10, 2017"
+      }
+    ]
+  },
+  {
+    "date": "2017-09-03",
+    "venue": "mile end festival, montréal, qc",
+    "songs": [
+      "intro",
+      "bosses hang",
+      "anthem for no state",
+      "2 nouveau tower",
+      "moya",
+      "blaise bailey finnegan III"
+    ],
+    "recordings": [
+      {
+        "id": "gybe2017-09-03.dpa",
+        "url": "https://archive.org/details/gybe2017-09-03.dpa",
+        "title": "Godspeed You! Black Emperor live at Mile End Festival, 2017-09-03"
+      }
+    ]
+  },
+  {
     "date": "2017-10-14",
     "venue": "auditorium conciliazione, rome, it",
     "songs": [

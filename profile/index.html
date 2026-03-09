@@ -78,8 +78,24 @@
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 12px;
             color: #555;
-            margin-bottom: 28px;
+            margin-bottom: 12px;
         }
+
+        /* Bulk import */
+        .track-import { margin-bottom: 20px; }
+        .track-import summary { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 12px; cursor: pointer; user-select: none; }
+        .find-btn {
+            display: inline-block;
+            padding: 4px 14px;
+            background: black;
+            color: white;
+            border: 2px solid black;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .find-btn:hover { background: white; color: black; }
 
         /* Tab nav */
         .tab-nav {
@@ -266,6 +282,24 @@
                     <a class="settings-link" href="settings.html">settings</a>
                 </div>
                 <div class="profile-stats">${attendedCount} show${attendedCount !== 1 ? 's' : ''} attended · ${listenedCount} recording${listenedCount !== 1 ? 's' : ''} listened</div>
+                <details class="track-import">
+                    <summary>bulk import</summary>
+                    <div style="margin-top:10px;">
+                        <p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0 0 8px 0;">paste one show date per line (YYYY-MM-DD)</p>
+                        <textarea id="trackImportInput" rows="6" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14"></textarea>
+                        <div style="margin-top:6px;display:flex;align-items:center;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+                            mark as:
+                            <select id="trackImportField" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;border:1px solid #ccc;padding:2px 4px;">
+                                <option value="attended">attended</option>
+                                <option value="listened">listened</option>
+                            </select>
+                            <button class="find-btn" onclick="bulkImportTracking()">import</button>
+                            <button class="find-btn" style="background:white;color:black;" onclick="document.getElementById('trackImportFile').click()">upload file</button>
+                            <input type="file" id="trackImportFile" accept=".txt,.json" style="display:none" onchange="loadTrackFile(this)">
+                        </div>
+                        <div id="trackImportResult" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:#555;"></div>
+                    </div>
+                </details>
                 <div class="tab-nav">
                     <button class="tab-btn${activeTab === 'attended' ? ' active' : ''}" onclick="switchTab('attended')">attended (${attendedCount})</button>
                     <button class="tab-btn${activeTab === 'listened' ? ' active' : ''}" onclick="switchTab('listened')">listened (${listenedCount})</button>
@@ -363,6 +397,52 @@
             const tgl = document.getElementById('tgl-' + id);
             const isOpen = el.classList.toggle('open');
             tgl.textContent = isOpen ? '−' : '+';
+        }
+
+        function loadTrackFile(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const text = e.target.result.trim();
+                let dates = [];
+                try {
+                    const parsed = JSON.parse(text);
+                    dates = Array.isArray(parsed) ? parsed : Object.keys(parsed);
+                } catch {
+                    dates = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+                }
+                document.getElementById('trackImportInput').value = dates.join('\n');
+            };
+            reader.readAsText(file);
+            input.value = '';
+        }
+
+        async function bulkImportTracking() {
+            if (!currentUser) return;
+            const field = document.getElementById('trackImportField').value;
+            const raw = document.getElementById('trackImportInput').value;
+            const resultEl = document.getElementById('trackImportResult');
+            const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
+            const matched = [], unmatched = [];
+            for (const line of lines) {
+                if (showByDate[line]) matched.push(line);
+                else unmatched.push(line);
+            }
+            if (matched.length === 0) { resultEl.textContent = 'no matching dates found.'; return; }
+            const rows = matched.map(date => {
+                const existing = trackingData[date] || { attended: false, listened: false };
+                return { user_id: currentUser.id, show_date: date, attended: existing.attended, listened: existing.listened, [field]: true };
+            });
+            for (const row of rows) {
+                if (!trackingData[row.show_date]) trackingData[row.show_date] = { attended: false, listened: false };
+                trackingData[row.show_date][field] = true;
+            }
+            await sbClient.from('show_tracking').upsert(rows, { onConflict: 'user_id,show_date' });
+            let msg = `imported ${matched.length} show${matched.length !== 1 ? 's' : ''}.`;
+            if (unmatched.length > 0) msg += ` unrecognized: ${unmatched.join(', ')}`;
+            resultEl.textContent = msg;
+            renderProfile();
         }
 
         // Init
