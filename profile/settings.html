@@ -133,6 +133,7 @@
 
         let currentUser = null;
         let currentUsername = null;
+        let currentIsPublic = false;
 
         function updateHeaderAuth() {
             const div = document.getElementById('headerAuth');
@@ -190,6 +191,18 @@
                     </div>
                     <button class="profile-save-btn" onclick="updatePassword()">change password</button>
                     <div class="profile-msg" id="profilePwMsg"></div>
+                </div>
+                <div class="profile-section">
+                    <h3>privacy</h3>
+                    <div class="profile-field">
+                        <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:black;">
+                            <input type="checkbox" id="profilePublic"${currentIsPublic ? ' checked' : ''} style="width:auto;border:none;padding:0;">
+                            make my profile public
+                        </label>
+                        <p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#555;margin:6px 0 0 0;">when public, other users can see your attended and listened shows on the users tab.</p>
+                    </div>
+                    <button class="profile-save-btn" onclick="updatePrivacy()">save</button>
+                    <div class="profile-msg" id="profilePrivacyMsg"></div>
                 </div>`;
         }
 
@@ -223,6 +236,17 @@
             msg.textContent = newEmail ? 'email updated.' : 'email removed.';
         }
 
+        async function updatePrivacy() {
+            if (!sbClient || !currentUser) return;
+            const isPublic = document.getElementById('profilePublic').checked;
+            const msg = document.getElementById('profilePrivacyMsg');
+            const { error } = await sbClient.from('profiles').update({ is_public: isPublic }).eq('user_id', currentUser.id);
+            if (error) { msg.className = 'profile-msg err'; msg.textContent = error.message; return; }
+            currentIsPublic = isPublic;
+            msg.className = 'profile-msg ok';
+            msg.textContent = isPublic ? 'profile is now public.' : 'profile is now private.';
+        }
+
         async function updatePassword() {
             if (!sbClient || !currentUser) return;
             const pw1 = document.getElementById('profilePw1').value;
@@ -243,9 +267,10 @@
             sbClient.auth.onAuthStateChange((_event, session) => {
                 if (_event === 'PASSWORD_RECOVERY') {
                     currentUser = session.user;
-                    sbClient.from('profiles').select('username').eq('user_id', currentUser.id).single()
+                    sbClient.from('profiles').select('username, is_public').eq('user_id', currentUser.id).single()
                         .then(({ data }) => {
                             currentUsername = data?.username || null;
+                            currentIsPublic = data?.is_public || false;
                             updateHeaderAuth();
                             renderSettings();
                             // Highlight the change password section
@@ -263,9 +288,10 @@
             sbClient.auth.getSession().then(({ data: { session } }) => {
                 currentUser = session?.user ?? null;
                 if (currentUser) {
-                    sbClient.from('profiles').select('username').eq('user_id', currentUser.id).single()
+                    sbClient.from('profiles').select('username, is_public').eq('user_id', currentUser.id).single()
                         .then(({ data }) => {
                             currentUsername = data?.username || null;
+                            currentIsPublic = data?.is_public || false;
                             updateHeaderAuth();
                             renderSettings();
                         });

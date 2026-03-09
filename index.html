@@ -727,6 +727,7 @@
             <button class="tab-btn" onclick="switchTab('eras')">shows</button>
             <button class="tab-btn" onclick="switchTab('picks')">picks</button>
             <button class="tab-btn" onclick="switchTab('versions')">vote</button>
+            <button class="tab-btn" onclick="switchTab('users')">users</button>
         </div>
 
         <!-- SONG FINDER TAB -->
@@ -824,6 +825,13 @@
                 <input type="text" class="search-box" id="versionsSearchInput" placeholder="filter songs..." oninput="renderVersionsTab()" style="margin-bottom:0;">
             </div>
             <div id="versionsContent"></div>
+        </div>
+
+        <!-- USERS TAB -->
+        <div class="tab-panel" id="tab-users">
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 12px 0;">users who have made their profile public. <span id="usersLoginNote" style="display:none">log in and go to <a href="profile/settings.html">settings</a> to make yours public.</span></p>
+            <input type="text" class="search-box" id="usersFilter" placeholder="filter by username..." oninput="filterUsers(this.value)" style="margin-bottom:12px;display:none;">
+            <div id="usersContainer"><p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#555;">loading...</p></div>
         </div>
 
         <!-- TRACK TAB -->
@@ -1057,7 +1065,7 @@ function renderShowCard(show, labelHtml, highlightSet) {
 }
 
 // ─── Tab switching ─────────────────────────────────────────────────────────
-const TABS = ['finder','discover','eras','picks','versions'];
+const TABS = ['finder','discover','eras','picks','versions','users'];
 function switchTab(name) {
     if (!TABS.includes(name)) name = 'finder';
     document.querySelectorAll('.tab-btn').forEach((b, i) => {
@@ -1069,6 +1077,7 @@ function switchTab(name) {
     history.replaceState(null, '', '#' + name);
     if (name === 'versions' && !currentVersionSong) loadSongVoteCounts().then(renderVersionsTab);
     if (name === 'eras' && currentUser && !trackingLoaded) loadTrackingThenBuild();
+    if (name === 'users' && !usersLoaded) loadUsers();
 }
 
 // ─── SONG FINDER ──────────────────────────────────────────────────────────
@@ -2287,6 +2296,162 @@ async function castVote(song, showDate, isCurrentlyVoted) {
         if (error) { console.error('vote error:', error); return; }
     }
     await loadVersionsForSong(song);
+}
+
+// ─── USERS TAB ───────────────────────────────────────────────────────────────
+let usersLoaded = false;
+let usersData = []; // [{ user_id, username, tracking: {date: {attended,listened}} }]
+let userTabState = {}; // userId -> 'attended'|'listened'
+
+async function loadUsers() {
+    usersLoaded = true;
+    const container = document.getElementById('usersContainer');
+
+    const { data: profiles, error } = sbClient
+        ? await sbClient.from('profiles').select('user_id, username').eq('is_public', true)
+        : { data: null, error: 'no client' };
+
+    if (error) {
+        container.innerHTML = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#c00;">error loading users: ${error.message || JSON.stringify(error)}</p>`;
+        return;
+    }
+    if (!profiles || profiles.length === 0) {
+        container.innerHTML = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#555;">no public profiles yet.</p>`;
+        return;
+    }
+
+    const ids = profiles.map(p => p.user_id);
+    const { data: tracking } = await sbClient.from('show_tracking')
+        .select('user_id, show_date, attended, listened')
+        .in('user_id', ids);
+
+    const trackingByUser = {};
+    if (tracking) for (const row of tracking) {
+        if (!trackingByUser[row.user_id]) trackingByUser[row.user_id] = {};
+        trackingByUser[row.user_id][row.show_date] = { attended: row.attended, listened: row.listened };
+    }
+
+    usersData = profiles.map(p => ({ ...p, tracking: trackingByUser[p.user_id] || {} }));
+
+    document.getElementById('usersFilter').style.display = '';
+    if (!currentUser) document.getElementById('usersLoginNote').style.display = '';
+
+    renderUsers(usersData);
+}
+
+function renderUsers(profiles) {
+    const container = document.getElementById('usersContainer');
+    if (profiles.length === 0) {
+        container.innerHTML = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#555;">no matching users.</p>`;
+        return;
+    }
+    container.innerHTML = profiles.map(p => {
+        const attendedDates = Object.entries(p.tracking).filter(([, td]) => td.attended).map(([d]) => d);
+        const listenedDates = Object.entries(p.tracking).filter(([, td]) => td.listened).map(([d]) => d);
+        const attendedCount = attendedDates.length;
+        const listenedCount = listenedDates.length;
+        const uid = p.user_id.replace(/-/g, '');
+        return `<div class="era-block" id="ucard-${uid}">
+            <div class="era-header" onclick="toggleUser('${uid}')">
+                <div><div class="era-title">${p.username}</div></div>
+                <div style="display:flex;align-items:center;gap:16px;">
+                    <div class="era-meta">${attendedCount} attended · ${listenedCount} listened</div>
+                    <div class="era-toggle" id="utoggle-${uid}">+</div>
+                </div>
+            </div>
+            <div class="era-body" id="ubody-${uid}"></div>
+        </div>`;
+    }).join('');
+}
+
+function toggleUser(uid) {
+    const body = document.getElementById('ubody-' + uid);
+    const tgl = document.getElementById('utoggle-' + uid);
+    const isOpen = body.classList.toggle('open');
+    tgl.textContent = isOpen ? '−' : '+';
+    if (isOpen && !body.dataset.rendered) {
+        body.dataset.rendered = '1';
+        userTabState[uid] = userTabState[uid] || 'attended';
+        renderUserBody(uid);
+    }
+}
+
+function renderUserBody(uid) {
+    const body = document.getElementById('ubody-' + uid);
+    const profile = usersData.find(p => p.user_id.replace(/-/g, '') === uid);
+    if (!profile) return;
+    const activeTab = userTabState[uid] || 'attended';
+
+    const shows = Object.entries(profile.tracking)
+        .filter(([, td]) => td[activeTab])
+        .map(([date]) => showByDate[date])
+        .filter(Boolean)
+        .sort((a, b) => a.date.localeCompare(b.date));
+
+    const attendedCount = Object.values(profile.tracking).filter(td => td.attended).length;
+    const listenedCount = Object.values(profile.tracking).filter(td => td.listened).length;
+
+    let listHtml;
+    if (shows.length === 0) {
+        listHtml = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0;">no shows marked as ${activeTab}.</p>`;
+    } else {
+        const byYear = {};
+        for (const s of shows) {
+            const y = s.date.slice(0, 4);
+            if (!byYear[y]) byYear[y] = [];
+            byYear[y].push(s);
+        }
+        listHtml = Object.keys(byYear).sort().map(year => {
+            const rows = byYear[year].map(s => {
+                const bestId = BEST_RECORDINGS[s.date];
+                const recsHtml = s.recordings.map((r, i) =>
+                    `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${i + 1}]</a>`
+                ).join('');
+                const mainSongs = s.songs.filter(song => !/\(soundcheck\)/i.test(song));
+                const soundcheckSongs = s.songs.filter(song => /\(soundcheck\)/i.test(song));
+                let setlistText = '';
+                if (soundcheckSongs.length > 0) {
+                    setlistText += `<span style="color:#999;font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
+                        soundcheckSongs.map(song => `<span style="color:#aaa;">${song.replace(/\s*\(soundcheck\)/i, '')}</span>`).join('<br>') +
+                        `<br><span style="color:#999;font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
+                }
+                setlistText += mainSongs.join('<br>');
+                if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
+                const id = `u${uid}-sl-` + s.date.replace(/\W/g, '-');
+                return `<div class="era-show-row" onclick="toggleShowSetlist('${id}')" style="cursor:pointer;">
+                    <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
+                    <span class="era-show-venue">${s.venue}</span>
+                    <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
+                    <span class="era-show-toggle" id="tgl-${id}">+</span>
+                </div>
+                <div class="era-show-setlist" id="${id}">${setlistText}</div>`;
+            }).join('');
+            return `<div style="margin-bottom:16px;">
+                <div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;font-weight:bold;color:#999;border-bottom:2px solid #eee;padding-bottom:4px;margin-bottom:0;">${year} — ${byYear[year].length} show${byYear[year].length !== 1 ? 's' : ''}</div>
+                ${rows}
+            </div>`;
+        }).join('');
+    }
+
+    body.innerHTML = `
+        <div style="display:flex;gap:0;border-bottom:2px solid black;margin-bottom:12px;">
+            <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='attended'?'black':'transparent'};margin-bottom:-2px;${activeTab==='attended'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','attended')">attended (${attendedCount})</button>
+            <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='listened'?'black':'transparent'};margin-bottom:-2px;${activeTab==='listened'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','listened')">listened (${listenedCount})</button>
+        </div>
+        ${listHtml}`;
+}
+
+function switchUserTab(uid, tab) {
+    userTabState[uid] = tab;
+    renderUserBody(uid);
+}
+
+function filterUsers(query) {
+    const q = query.toLowerCase().trim();
+    document.querySelectorAll('#usersContainer .era-block').forEach(card => {
+        const username = card.querySelector('.era-title').textContent.toLowerCase();
+        card.style.display = (!q || username.includes(q)) ? '' : 'none';
+    });
 }
 
 switchTab(window.location.hash.slice(1) || 'finder');
