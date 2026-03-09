@@ -1,0 +1,7 @@
+# Tooling scripts - not part of the site
+*.py
+scrape-gybe.js
+scrape-log.txt
+broken-venues.txt
+.github/
+.claude/
