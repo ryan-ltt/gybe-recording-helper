@@ -829,7 +829,7 @@
 
         <!-- USERS TAB -->
         <div class="tab-panel" id="tab-users">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 12px 0;">users who have made their profile public. <span id="usersLoginNote" style="display:none">log in and go to <a href="profile/settings.html">settings</a> to make yours public.</span></p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 12px 0;">users who have made their profile public. <span id="usersLoginNote" style="display:none">log in and go to <a href="profile/settings.html">settings</a> to make yours public.</span><span id="usersMakePublicNote" style="display:none">go to <a href="profile/settings.html">settings</a> to make yours public.</span></p>
             <input type="text" class="search-box" id="usersFilter" placeholder="filter by username..." oninput="filterUsers(this.value)" style="margin-bottom:12px;display:none;">
             <div id="usersContainer"><p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#555;">loading...</p></div>
         </div>
@@ -2334,7 +2334,11 @@ async function loadUsers() {
     usersData = profiles.map(p => ({ ...p, tracking: trackingByUser[p.user_id] || {} }));
 
     document.getElementById('usersFilter').style.display = '';
-    if (!currentUser) document.getElementById('usersLoginNote').style.display = '';
+    if (!currentUser) {
+        document.getElementById('usersLoginNote').style.display = '';
+    } else if (currentUser && !profiles.some(p => p.user_id === currentUser.id)) {
+        document.getElementById('usersMakePublicNote').style.display = '';
+    }
 
     renderUsers(usersData);
 }
