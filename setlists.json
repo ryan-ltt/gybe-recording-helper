@@ -191,6 +191,20 @@
     ]
   },
   {
+    "date": "1998-05-02",
+    "venue": "hotel2tango, montreal, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ shalabi effect, fly pan am, david kristian"
+  },
+  {
+    "date": "1998-05-04",
+    "venue": "the cooler, new york, ny",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ roy montgomery, the tower recordings, sandy bull"
+  },
+  {
     "date": "1998-05-10",
     "venue": "metropolis, montreal, qc",
     "songs": [
@@ -210,12 +224,25 @@
     ]
   },
   {
+    "date": "1998-08-14",
+    "venue": "club shanghai, toronto, on",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ shalabi effect, picastro"
+  },
+  {
     "date": "1998-09-10",
     "venue": "hoel2tango, montreal, qc",
     "songs": [
       "moya",
       "blaise bailey finnegan III"
     ],
+    "recordings": []
+  },
+  {
+    "date": "1998-09-12",
+    "venue": "rhinecliff hotel, rhine cliff, ny",
+    "songs": [],
     "recordings": []
   },
   {
@@ -228,6 +255,12 @@
       "dead metheny",
       "sad mafioso"
     ],
+    "recordings": []
+  },
+  {
+    "date": "1998-09-14",
+    "venue": "(?), greensboro, nc",
+    "songs": [],
     "recordings": []
   },
   {
@@ -248,6 +281,69 @@
         "title": "Godspeed You! Black Emperor Live at Cat's Cradle on 1998-09-15"
       }
     ]
+  },
+  {
+    "date": "1998-09-16",
+    "venue": "wherehouse, winston-salem, nc",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ spatula, spool quartet"
+  },
+  {
+    "date": "1998-09-18",
+    "venue": "side door, st-louis, mo",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ spatula"
+  },
+  {
+    "date": "1998-09-19",
+    "venue": "empty bottle, chicago, il",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ silkworm, dianogah"
+  },
+  {
+    "date": "1998-09-20",
+    "venue": "gold dollar, detroit, mi",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ mike lane"
+  },
+  {
+    "date": "1998-09-25",
+    "venue": "aberdeen cultural centre, moncton, nb",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ electrolounge, feint"
+  },
+  {
+    "date": "1998-09-26",
+    "venue": "the bike shop, halifax, ns",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ do make say think, exhaust, soaking up jagged"
+  },
+  {
+    "date": "1998-09-27",
+    "venue": "ducky, sackville, nb",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ do make say think, peter parkers, mean red spiders"
+  },
+  {
+    "date": "1998-09-30",
+    "venue": "knitting factory, new york, ny",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ tungsten"
+  },
+  {
+    "date": "1998-10-01",
+    "venue": "otto bar, baltimore, md",
+    "songs": [],
+    "recordings": [],
+    "note": "opening for low w/ jessica bailiff"
   },
   {
     "date": "1998-10-02",
@@ -284,6 +380,41 @@
     ]
   },
   {
+    "date": "1998-10-05",
+    "venue": "moto lounge, jacksonville, fl",
+    "songs": [],
+    "recordings": [],
+    "note": "opening for low"
+  },
+  {
+    "date": "1998-10-06",
+    "venue": "club downunder, tallahassee, fl",
+    "songs": [],
+    "recordings": [],
+    "note": "opening for low"
+  },
+  {
+    "date": "1998-10-07",
+    "venue": "proud larry's, oxford, ms",
+    "songs": [],
+    "recordings": [],
+    "note": "opening for low"
+  },
+  {
+    "date": "1998-10-08",
+    "venue": "the end, nashville, tn",
+    "songs": [],
+    "recordings": [],
+    "note": "opening for low"
+  },
+  {
+    "date": "1998-10-09",
+    "venue": "the side door, st-louis, mo",
+    "songs": [],
+    "recordings": [],
+    "note": "opening for low w/ loren mazzacane connors"
+  },
+  {
     "date": "1998-10-10",
     "venue": "scuba's, chicago, il",
     "songs": [
@@ -313,6 +444,25 @@
         "title": "Godspeed You! Black Emperor Live at Schubas Tavern on 1998-10-10"
       }
     ]
+  },
+  {
+    "date": "1998-10-11",
+    "venue": "(?), madison, wi",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-10-13",
+    "venue": "(?), kitchener, on",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-10-15",
+    "venue": "lee's palace, toronto, on",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ do make say think, fly pan am, dj anousheh"
   },
   {
     "date": "1998-10-16",
@@ -348,6 +498,20 @@
     "recordings": []
   },
   {
+    "date": "1998-11-14",
+    "venue": "hotel2tango, montreal, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ do make say think, molasses"
+  },
+  {
+    "date": "1998-11-18",
+    "venue": "amigo's caf&eacute;, manchester, uk",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ the montgolfier brothers"
+  },
+  {
     "date": "1998-11-19",
     "venue": "stills gallery, edinburgh, uk",
     "songs": [
@@ -362,6 +526,18 @@
         "title": "Godspeed You! Black Emperor Live at Stills Gallery on 1998-11-19"
       }
     ]
+  },
+  {
+    "date": "1998-11-20",
+    "venue": "-, glasgow, uk",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-11-21",
+    "venue": "sussex arts club, brighton, uk",
+    "songs": [],
+    "recordings": []
   },
   {
     "date": "1998-11-22",
@@ -400,6 +576,20 @@
         "title": "Godspeed You! Black Emperor Live at Highbury Garage on 1998-11-23"
       }
     ]
+  },
+  {
+    "date": "1998-11-24",
+    "venue": "po na na's, islington, london, uk",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fonn"
+  },
+  {
+    "date": "1998-11-25",
+    "venue": "paradiso upstairs, amsterdam, hol",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ quickspace"
   },
   {
     "date": "1998-11-26",
@@ -449,6 +639,104 @@
     ]
   },
   {
+    "date": "1998-11-28",
+    "venue": "maria am ostbahnhof, berlin, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-11-29",
+    "venue": "starclub, dresden, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-01",
+    "venue": "incognito, munich, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-02",
+    "venue": "geb&auml;ude 9, koln, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-03",
+    "venue": "'t stuc, leuven, bel",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-05",
+    "venue": "la cit&eacute;, rennes, fr",
+    "songs": [],
+    "recordings": [],
+    "note": "transmusicales festival"
+  },
+  {
+    "date": "1998-12-06",
+    "venue": "tap tab, schaffhausen, swi",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-07",
+    "venue": "gaswerk, winterthur, swi",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-08",
+    "venue": "-, brussels, bel",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-09",
+    "venue": "-, venice, it",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-10",
+    "venue": "la fuente, fano, it",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-11",
+    "venue": "link, bologna, it",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-12",
+    "venue": "gabrio, turin, it",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-13",
+    "venue": "dachstock reitschule, berne, swi",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-14",
+    "venue": "rote fabrik, zurich, swi",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-16",
+    "venue": "gleis 22, munster, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ half film"
+  },
+  {
     "date": "1998-12-17",
     "venue": "sojus 7, monheim, ger",
     "songs": [
@@ -487,6 +775,18 @@
     ]
   },
   {
+    "date": "1998-12-19",
+    "venue": "glocksee, hannover, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1998-12-20",
+    "venue": "schlachthof, hamburg, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
     "date": "1999-04-16",
     "venue": "velinx festival, tongeren, bel",
     "songs": [
@@ -511,6 +811,13 @@
         "title": "Godspeed You! Black Emperor Live at Velinx Festival on 1999-04-16"
       }
     ]
+  },
+  {
+    "date": "1999-04-17",
+    "venue": "aeronef, lille, fr",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ dominique a."
   },
   {
     "date": "1999-04-19",
@@ -539,6 +846,30 @@
         "title": "Godspeed You! Black Emperor Live at Les Instants Chavir\u00e9s on 1999-04-19"
       }
     ]
+  },
+  {
+    "date": "1999-04-20",
+    "venue": "kulturfabrik, krefeld, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-04-21",
+    "venue": "paradiso, amsterdam, hol",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-04-22",
+    "venue": "effenaar, eindhoven, hol",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-04-23",
+    "venue": "vera, groningen, hol",
+    "songs": [],
+    "recordings": []
   },
   {
     "date": "1999-04-24",
@@ -570,6 +901,13 @@
         "title": "Godspeed You! Black Emperor Live at Bowlie Festival on 1999-04-25"
       }
     ]
+  },
+  {
+    "date": "1999-04-26",
+    "venue": "pavillion, brighton, uk",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ sand"
   },
   {
     "date": "1999-04-27",
@@ -638,6 +976,24 @@
         "title": "Godspeed You! Black Emperor Live at 16th Festival de Musique Actuelle de Victoriaville on 1999-05-24"
       }
     ]
+  },
+  {
+    "date": "1999-07-08",
+    "venue": "quart festival, kristiansand, nor",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-07-09",
+    "venue": "kulturfabriken, stockholm, swe",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-07-10",
+    "venue": "festival, lund, swe",
+    "songs": [],
+    "recordings": []
   },
   {
     "date": "1999-07-12",
@@ -725,6 +1081,12 @@
     "recordings": []
   },
   {
+    "date": "1999-07-17",
+    "venue": "valkhof festival, nijmegen, hol",
+    "songs": [],
+    "recordings": []
+  },
+  {
     "date": "1999-07-18",
     "venue": "dachstock reitschule, bern, swi",
     "songs": [
@@ -776,6 +1138,36 @@
         "title": "Godspeed You! Black Emperor Live at Gaswerk on 1999-07-19"
       }
     ]
+  },
+  {
+    "date": "1999-07-22",
+    "venue": "boa goa festival, genoa, it",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-07-23",
+    "venue": "parco delle coste festival, trento, it",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-07-24",
+    "venue": "sight &amp; sound festival, perugia, it",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-07-25",
+    "venue": "campo basso, campo basso, it",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-07-27",
+    "venue": "backstage, munich, ger",
+    "songs": [],
+    "recordings": []
   },
   {
     "date": "1999-07-28",
@@ -880,6 +1272,18 @@
     ]
   },
   {
+    "date": "1999-08-03",
+    "venue": "bogefabrik, bielefeld, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-08-04",
+    "venue": "starclub, dresden, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
     "date": "1999-08-06",
     "venue": "emmaboda \nfestival, v\u00e4xj\u00f6, swe",
     "songs": [
@@ -898,6 +1302,12 @@
         "title": "Godspeed You! Black Emperor Live at Emmaboda Festival on 1999-08-06"
       }
     ]
+  },
+  {
+    "date": "1999-08-07",
+    "venue": "(?), goteborg, swe",
+    "songs": [],
+    "recordings": []
   },
   {
     "date": "1999-08-08",
@@ -946,6 +1356,25 @@
         "title": "Godspeed You! Black Emperor Live at Vega on 1999-08-10"
       }
     ]
+  },
+  {
+    "date": "1999-08-11",
+    "venue": "psefferberg, berlin, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-08-12",
+    "venue": "schlachthof, hamburg, ger",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1999-08-13",
+    "venue": "wehrschloss, bremen, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ c.e. kuper"
   },
   {
     "date": "1999-08-14",
@@ -1024,6 +1453,20 @@
         "title": "Godspeed You! Black Emperor Live at Mercury Lounge on 1999-09-05"
       }
     ]
+  },
+  {
+    "date": "1999-09-06",
+    "venue": "mercury lounge, new york, ny",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ labradford"
+  },
+  {
+    "date": "1999-09-07",
+    "venue": "maxwell's, hoboken, nj",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ labradford"
   },
   {
     "date": "1999-09-08",
@@ -1500,6 +1943,41 @@
     ]
   },
   {
+    "date": "2000-03-27",
+    "venue": "the lemon tree, aberdeen, uk",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ sigur ros, fly pan am"
+  },
+  {
+    "date": "2000-03-28",
+    "venue": "the garage, glasgow, uk",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ sigur ros, fly pan am"
+  },
+  {
+    "date": "2000-03-30",
+    "venue": "empire theatre, belfast, ir",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ sigur ros, fly pan am"
+  },
+  {
+    "date": "2000-03-31",
+    "venue": "roisin dubh, galway, ir",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fly pan am"
+  },
+  {
+    "date": "2000-04-01",
+    "venue": "the forum, cork, ir",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fly pan am"
+  },
+  {
     "date": "2000-04-02",
     "venue": "temple bar, dublin, ir",
     "songs": [
@@ -1625,6 +2103,20 @@
     ]
   },
   {
+    "date": "2000-04-12",
+    "venue": "the tunnel, milan, it",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fly pan am"
+  },
+  {
+    "date": "2000-04-13",
+    "venue": "the flog, florence, it",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fly pan am"
+  },
+  {
     "date": "2000-04-14",
     "venue": "classic village, roma, it",
     "songs": [
@@ -1634,6 +2126,20 @@
       "blaise bailey finnegan III"
     ],
     "recordings": []
+  },
+  {
+    "date": "2000-04-15",
+    "venue": "link, bologna, it",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fly pan am"
+  },
+  {
+    "date": "2000-04-16",
+    "venue": "intersona, verona, it",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fly pan am"
   },
   {
     "date": "2000-04-18",
@@ -1646,6 +2152,20 @@
       "blaise bailey finnegan III"
     ],
     "recordings": []
+  },
+  {
+    "date": "2000-04-19",
+    "venue": "alterschlachthof, wels, aut",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fly pan am"
+  },
+  {
+    "date": "2000-04-20",
+    "venue": "komm, n&uuml;rnberg, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fly pan am"
   },
   {
     "date": "2000-04-21",
@@ -1772,6 +2292,13 @@
         "title": "Godspeed You! Black Emperor Live at Bloor Cinema on 2000-10-05"
       }
     ]
+  },
+  {
+    "date": "2000-10-06",
+    "venue": "mill street entry, pontiac, mi",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ bardo pond"
   },
   {
     "date": "2000-10-07",
@@ -2149,6 +2676,18 @@
         "title": "Godspeed You! Black Emperor Live at Scala on 2000-11-22"
       }
     ]
+  },
+  {
+    "date": "2000-11-23",
+    "venue": "planet k, manchester, uk",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "2000-11-24",
+    "venue": "planet k, manchester, uk",
+    "songs": [],
+    "recordings": []
   },
   {
     "date": "2000-12-01",
@@ -2804,6 +3343,19 @@
     ]
   },
   {
+    "date": "2002-01-26",
+    "venue": "gazteszena, st sebastian, sp",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ aerosol"
+  },
+  {
+    "date": "2002-01-27",
+    "venue": "codigo de barras, vigo, sp",
+    "songs": [],
+    "recordings": []
+  },
+  {
     "date": "2002-01-29",
     "venue": "garage,\nlisboa, por",
     "songs": [
@@ -2827,6 +3379,12 @@
       "world police",
       "motherfucking=redeemer"
     ],
+    "recordings": []
+  },
+  {
+    "date": "2002-02-01",
+    "venue": "la nau, valencia, sp",
+    "songs": [],
     "recordings": []
   },
   {
@@ -2948,6 +3506,13 @@
     "recordings": []
   },
   {
+    "date": "2002-02-12",
+    "venue": "link, bologna, it",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ giardini di mir&ograve;"
+  },
+  {
     "date": "2002-02-13",
     "venue": "tunnel, milano, it",
     "songs": [
@@ -2958,6 +3523,19 @@
       "motherfucking=redeemer",
       "(?)"
     ],
+    "recordings": []
+  },
+  {
+    "date": "2002-02-14",
+    "venue": "kud france pesern, ljubljana, sl",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ the dying sun ensemble"
+  },
+  {
+    "date": "2002-02-15",
+    "venue": "skuk pauk, zagreb, cr",
+    "songs": [],
     "recordings": []
   },
   {
@@ -2993,6 +3571,12 @@
         "title": "Godspeed You! Black Emperor Live at Icelandic Opera House on 2002-03-13"
       }
     ]
+  },
+  {
+    "date": "2002-03-14",
+    "venue": "&iacute;slenska &oacute;peran, reykjav&iacute;k, ic",
+    "songs": [],
+    "recordings": []
   },
   {
     "date": "2002-03-16",
@@ -3239,6 +3823,12 @@
     "recordings": []
   },
   {
+    "date": "2002-04-05",
+    "venue": "vox hall, &aring;rhus, den",
+    "songs": [],
+    "recordings": []
+  },
+  {
     "date": "2002-04-06",
     "venue": "markthalle, hamburg, ger",
     "songs": [
@@ -3312,6 +3902,13 @@
         "title": "Godspeed You! Black Emperor Live at Starclub on 2002-04-09"
       }
     ]
+  },
+  {
+    "date": "2002-04-10",
+    "venue": "feierwerk, munchen, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ hannah marcus"
   },
   {
     "date": "2002-04-11",
@@ -3482,6 +4079,13 @@
         "title": "Godspeed You! Black Emperor Live at Paradiso, Amsterdam NL on 2002-04-18"
       }
     ]
+  },
+  {
+    "date": "2002-04-19",
+    "venue": "colchester arts center, colchester, uk",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ do make say think"
   },
   {
     "date": "2002-04-20",
@@ -4164,6 +4768,13 @@
     ]
   },
   {
+    "date": "2003-04-07",
+    "venue": "the space, portland, me",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ jackie-o-motherfucker"
+  },
+  {
     "date": "2003-04-09",
     "venue": "the marquee, halifax, ns",
     "songs": [
@@ -4524,6 +5135,13 @@
     "recordings": []
   },
   {
+    "date": "2003-05-18",
+    "venue": "le havana cafe, toulouse, fr",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ hanged up"
+  },
+  {
     "date": "2003-05-20",
     "venue": "th\u00e9\u00e2tre barbie, bordeaux, fr",
     "songs": [
@@ -4537,6 +5155,20 @@
     ],
     "recordings": [],
     "note": "thanks to christophe"
+  },
+  {
+    "date": "2003-05-21",
+    "venue": "theatro, huesca, sp",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ hanged up"
+  },
+  {
+    "date": "2003-05-22",
+    "venue": "poble espa&ntilde;ol, barcelona, sp",
+    "songs": [],
+    "recordings": [],
+    "note": "primavera sound festival"
   },
   {
     "date": "2003-05-23",
@@ -4624,6 +5256,20 @@
     "note": "thanks to luis, javi"
   },
   {
+    "date": "2003-05-31",
+    "venue": "feira des muestras, gijon, sp",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ hanged up"
+  },
+  {
+    "date": "2003-06-01",
+    "venue": "cafe antzokia, bilbao, sp",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ hanged up"
+  },
+  {
     "date": "2003-06-03",
     "venue": "gagarin, athens, gr",
     "songs": [
@@ -4650,6 +5296,13 @@
     ],
     "recordings": [],
     "note": "thanks to costas"
+  },
+  {
+    "date": "2003-06-06",
+    "venue": "mylos, thessaloniki, gr",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ hanged up"
   },
   {
     "date": "2010-12-03",
@@ -6327,6 +6980,13 @@
     ]
   },
   {
+    "date": "2012-09-01",
+    "venue": "l'agora des arts, rouyn-noranda, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "festival de musique &eacute;mergente"
+  },
+  {
     "date": "2012-09-20",
     "venue": "basilica hudson, hudson, ny",
     "songs": [
@@ -7387,6 +8047,13 @@
       "sad mafioso"
     ],
     "recordings": []
+  },
+  {
+    "date": "2013-09-07",
+    "venue": "roseland theater, portland, or",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ earth"
   },
   {
     "date": "2013-09-09",
@@ -8879,6 +9546,13 @@
     ]
   },
   {
+    "date": "2016-01-28",
+    "venue": "queen elizabeth theatre, vancouver, bc",
+    "songs": [],
+    "recordings": [],
+    "note": "monumental"
+  },
+  {
     "date": "2016-01-29",
     "venue": "neumos, seattle, wa",
     "songs": [
@@ -8919,6 +9593,13 @@
         "title": "Godspeed You! Black Emperor Live at Wonder Ballroom on 2016-01-31"
       }
     ]
+  },
+  {
+    "date": "2016-02-01",
+    "venue": "wonder ballroom, portland, or",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ vast plains"
   },
   {
     "date": "2016-02-03",
@@ -9503,6 +10184,13 @@
         "title": "Godspeed You! Black Emperor Live at Vicar Street on 2016-08-21"
       }
     ]
+  },
+  {
+    "date": "2016-09-17",
+    "venue": "brooklyn academy of music, brooklyn, ny",
+    "songs": [],
+    "recordings": [],
+    "note": "monumental"
   },
   {
     "date": "2016-09-19",
@@ -10416,6 +11104,12 @@
       "2 nouveau tower",
       "blaise bailey finnegan III"
     ],
+    "recordings": []
+  },
+  {
+    "date": "2018-04-16",
+    "venue": "knust, hamburg, ger",
+    "songs": [],
     "recordings": []
   },
   {

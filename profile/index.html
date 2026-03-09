@@ -365,13 +365,14 @@
                     setlistText += mainSongs.join('<br>');
                     if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
                     const id = 'sl-' + s.date.replace(/\W/g, '-');
-                    return `<div class="era-show-row" onclick="toggleSetlist('${id}')" style="cursor:pointer;">
+                    const hasSetlist = s.songs.length > 0;
+                    return `<div class="era-show-row"${hasSetlist ? ` onclick="toggleSetlist('${id}')" style="cursor:pointer;"` : ''}>
                         <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
                         <span class="era-show-venue">${s.venue}</span>
                         <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
-                        <span class="era-show-toggle" id="tgl-${id}">+</span>
+                        <span class="era-show-toggle"${hasSetlist ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
                     </div>
-                    <div class="era-show-setlist" id="${id}">${setlistText}</div>`;
+                    ${hasSetlist ? `<div class="era-show-setlist" id="${id}">${setlistText}</div>` : ''}`;
                 }).join('');
                 const count = byYear[year].length;
                 return `<div class="year-group">
