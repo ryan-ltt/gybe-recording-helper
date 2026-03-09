@@ -12606,7 +12606,9 @@ const SETLISTS_DATA = [
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
+    "recordings": [
+      { "id": "kdQ06DmIkw0", "url": "https://youtu.be/kdQ06DmIkw0" }
+    ],
     "note": "thanks to emmanuel, emily, oscar"
   },
   {
