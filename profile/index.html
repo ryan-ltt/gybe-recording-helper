@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="/config.js" onerror="void 0"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="/setlists-data.js"></script>
+    <script src="/best-recordings.js"></script>
     <link rel="stylesheet" href="/index.css">
     <style>
         /* Header */
@@ -53,51 +55,130 @@
         h2 {
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 20px;
-            margin: 0 0 24px 0;
+            margin: 0 0 8px 0;
+        }
+        .profile-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .settings-link {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #555;
+            text-decoration: underline;
+        }
+        .settings-link:hover { color: black; }
+
+        /* Stats bar */
+        .profile-stats {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 28px;
         }
 
-        /* Profile sections */
-        .profile-section { margin-bottom: 32px; }
-        .profile-section h3 {
+        /* Tab nav */
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid black;
+            margin-bottom: 24px;
+        }
+        .tab-btn {
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 13px;
-            font-weight: bold;
-            margin: 0 0 12px 0;
-            border-bottom: 2px solid black;
-            padding-bottom: 6px;
+            padding: 6px 18px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
         }
-        .profile-field { margin-bottom: 10px; }
-        .profile-field label {
-            display: block;
+        .tab-btn.active {
+            font-weight: bold;
+            border-bottom-color: black;
+        }
+        .tab-btn:hover:not(.active) { background: #f5f5f5; }
+
+        /* Show cards — same as eras tab */
+        .era-show-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+            gap: 12px;
+        }
+        .era-show-row:last-child { border-bottom: none; }
+        .era-show-date { font-weight: bold; white-space: nowrap; }
+        .era-show-venue { color: #555; flex: 1; }
+        .era-show-recs { white-space: nowrap; }
+        .era-show-recs a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; margin-left: 6px; }
+        .era-show-recs a:hover { color: #004499; }
+        .era-show-recs a.best { font-weight: bold; }
+        .era-show-toggle { cursor: pointer; color: #999; font-size: 14px; padding: 0 4px; user-select: none; }
+        .era-show-toggle:hover { color: black; }
+        .era-show-setlist {
+            display: none;
+            padding: 6px 0 4px 0;
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 11px;
-            color: #555;
-            margin-bottom: 4px;
+            color: #444;
+            line-height: 1.9;
+            border-bottom: 1px solid #eee;
         }
-        .profile-field input {
-            font-family: Monaco, 'JetBrains Mono', monospace;
-            font-size: 13px;
-            border: 2px solid #ccc;
-            padding: 7px 10px;
-            width: 100%;
-            max-width: 360px;
-            box-sizing: border-box;
-        }
-        .profile-field input:focus { outline: none; border-color: black; }
-        .profile-save-btn {
-            font-family: Monaco, 'JetBrains Mono', monospace;
-            font-size: 13px;
+        .era-show-setlist.open { display: block; }
+
+        .year-group {
             border: 2px solid black;
             background: white;
-            padding: 7px 20px;
-            cursor: pointer;
-            margin-top: 4px;
+            margin-bottom: 12px;
         }
-        .profile-save-btn:hover { background: #eee; }
-        .profile-msg { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 12px; margin-top: 8px; }
-        .profile-msg.ok { color: #080; }
-        .profile-msg.err { color: #c00; }
+        .year-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 14px 18px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .year-header:hover { background: #f5f5f5; }
+        .year-label {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .year-meta {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #555;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .year-toggle {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 16px;
+        }
+        .year-body {
+            display: none;
+            border-top: 2px solid black;
+            padding: 14px 18px;
+        }
+        .year-body.open { display: block; }
 
+        .empty-state {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #555;
+            margin-top: 24px;
+        }
         .not-logged-in {
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 13px;
@@ -110,8 +191,8 @@
             h1 { font-size: 22px; }
             .header-auth { position: static; transform: none; }
             .page-content { padding: 0 16px 40px; }
-            .profile-field input { max-width: 100%; }
             .header-btn { padding: 6px 12px; }
+            .show-date { min-width: 80px; }
         }
     </style>
 </head>
@@ -133,6 +214,14 @@
 
         let currentUser = null;
         let currentUsername = null;
+        let trackingData = {};
+        let activeTab = 'attended';
+
+        // Build a date→show lookup from setlists data
+        const showByDate = {};
+        if (typeof SETLISTS_DATA !== 'undefined') {
+            for (const s of SETLISTS_DATA) showByDate[s.date] = s;
+        }
 
         function updateHeaderAuth() {
             const div = document.getElementById('headerAuth');
@@ -146,7 +235,7 @@
         async function doLogout() {
             if (!sbClient) return;
             await sbClient.auth.signOut();
-            window.location.href = 'index.html';
+            window.location.href = '../index.html';
         }
 
         function renderProfile() {
@@ -155,124 +244,146 @@
                 el.innerHTML = `<p class="not-logged-in">you need to be logged in to view your profile. <a href="../index.html">go back</a></p>`;
                 return;
             }
-            const displayEmail = (currentUser.email && !currentUser.email.endsWith('@no-email.local'))
-                ? currentUser.email : '';
+
+            const attendedShows = Object.entries(trackingData)
+                .filter(([, td]) => td.attended)
+                .map(([date]) => showByDate[date])
+                .filter(Boolean)
+                .sort((a, b) => a.date.localeCompare(b.date));
+
+            const listenedShows = Object.entries(trackingData)
+                .filter(([, td]) => td.listened)
+                .map(([date]) => showByDate[date])
+                .filter(Boolean)
+                .sort((a, b) => a.date.localeCompare(b.date));
+
+            const attendedCount = attendedShows.length;
+            const listenedCount = listenedShows.length;
+
             el.innerHTML = `
-                <h2>profile</h2>
-                <div class="profile-section">
-                    <h3>account</h3>
-                    <div class="profile-field">
-                        <label>username</label>
-                        <input type="text" id="profileUsername" value="${currentUsername || ''}" placeholder="username">
-                    </div>
-                    <button class="profile-save-btn" onclick="updateUsername()">save username</button>
-                    <div class="profile-msg" id="profileUsernameMsg"></div>
+                <div class="profile-header">
+                    <h2>${currentUsername}</h2>
+                    <a class="settings-link" href="settings.html">settings</a>
                 </div>
-                <div class="profile-section">
-                    <h3>email</h3>
-                    <p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#555;margin:0 0 10px 0;">your email is used for password reset. leave blank to remove it.</p>
-                    <div class="profile-field">
-                        <label>email address</label>
-                        <input type="email" id="profileEmail" value="${displayEmail}" placeholder="email address">
-                    </div>
-                    <button class="profile-save-btn" onclick="updateEmail()">save email</button>
-                    <div class="profile-msg" id="profileEmailMsg"></div>
+                <div class="profile-stats">${attendedCount} show${attendedCount !== 1 ? 's' : ''} attended · ${listenedCount} recording${listenedCount !== 1 ? 's' : ''} listened</div>
+                <div class="tab-nav">
+                    <button class="tab-btn${activeTab === 'attended' ? ' active' : ''}" onclick="switchTab('attended')">attended (${attendedCount})</button>
+                    <button class="tab-btn${activeTab === 'listened' ? ' active' : ''}" onclick="switchTab('listened')">listened (${listenedCount})</button>
                 </div>
-                <div class="profile-section">
-                    <h3>change password</h3>
-                    <div class="profile-field">
-                        <label>new password</label>
-                        <input type="password" id="profilePw1" placeholder="new password (min 6 characters)">
+                <div id="showList"></div>`;
+
+            renderShowList();
+        }
+
+        function switchTab(tab) {
+            activeTab = tab;
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.startsWith(tab));
+            });
+            renderShowList();
+        }
+
+        function renderShowList() {
+            const listEl = document.getElementById('showList');
+            if (!listEl) return;
+
+            const shows = Object.entries(trackingData)
+                .filter(([, td]) => td[activeTab])
+                .map(([date]) => showByDate[date])
+                .filter(Boolean)
+                .sort((a, b) => a.date.localeCompare(b.date));
+
+            if (shows.length === 0) {
+                listEl.innerHTML = `<p class="empty-state">no shows marked as ${activeTab} yet. <a href="../index.html#eras">head to the shows tab</a> to track shows.</p>`;
+                return;
+            }
+
+            // Group by year
+            const byYear = {};
+            for (const s of shows) {
+                const y = s.date.slice(0, 4);
+                if (!byYear[y]) byYear[y] = [];
+                byYear[y].push(s);
+            }
+
+            listEl.innerHTML = Object.keys(byYear).sort().map(year => {
+                const rows = byYear[year].map(s => {
+                    const bestId = typeof BEST_RECORDINGS !== 'undefined' ? BEST_RECORDINGS[s.date] : null;
+                    const recsHtml = s.recordings.map((r, i) =>
+                        `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${i + 1}]</a>`
+                    ).join('');
+                    const mainSongs = [], soundcheckSongs = [];
+                    for (const song of s.songs) {
+                        if (/\(soundcheck\)/i.test(song)) soundcheckSongs.push(song);
+                        else mainSongs.push(song);
+                    }
+                    let setlistText = '';
+                    if (soundcheckSongs.length > 0) {
+                        setlistText += `<span style="color:#999;font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
+                            soundcheckSongs.map(song => `<span style="color:#aaa;">${song.replace(/\s*\(soundcheck\)/i, '')}</span>`).join('<br>') +
+                            `<br><span style="color:#999;font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
+                    }
+                    setlistText += mainSongs.join('<br>');
+                    if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
+                    const id = 'sl-' + s.date.replace(/\W/g, '-');
+                    return `<div class="era-show-row" onclick="toggleSetlist('${id}')" style="cursor:pointer;">
+                        <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
+                        <span class="era-show-venue">${s.venue}</span>
+                        <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
+                        <span class="era-show-toggle" id="tgl-${id}">+</span>
                     </div>
-                    <div class="profile-field">
-                        <label>confirm new password</label>
-                        <input type="password" id="profilePw2" placeholder="confirm new password">
+                    <div class="era-show-setlist" id="${id}">${setlistText}</div>`;
+                }).join('');
+                const count = byYear[year].length;
+                return `<div class="year-group">
+                    <div class="year-header" onclick="toggleYear('y${year}')">
+                        <div class="year-label">${year}</div>
+                        <div class="year-meta">
+                            <span>${count} show${count !== 1 ? 's' : ''}</span>
+                            <span class="year-toggle" id="ytgl-y${year}">+</span>
+                        </div>
                     </div>
-                    <button class="profile-save-btn" onclick="updatePassword()">change password</button>
-                    <div class="profile-msg" id="profilePwMsg"></div>
+                    <div class="year-body" id="ybody-y${year}">
+                        ${rows}
+                    </div>
                 </div>`;
+            }).join('');
         }
 
-        async function updateUsername() {
-            if (!sbClient || !currentUser) return;
-            const newUsername = document.getElementById('profileUsername').value.trim();
-            const msg = document.getElementById('profileUsernameMsg');
-            if (!newUsername) { msg.className = 'profile-msg err'; msg.textContent = 'username cannot be empty.'; return; }
-            if (!/^[a-zA-Z0-9_-]+$/.test(newUsername)) { msg.className = 'profile-msg err'; msg.textContent = 'username may only contain letters, numbers, _ and -.'; return; }
-            if (newUsername === currentUsername) { msg.className = 'profile-msg ok'; msg.textContent = 'no change.'; return; }
-            const { data: existing } = await sbClient.from('profiles').select('user_id').eq('username', newUsername).neq('user_id', currentUser.id).single();
-            if (existing) { msg.className = 'profile-msg err'; msg.textContent = 'username already taken.'; return; }
-            const { error } = await sbClient.from('profiles').update({ username: newUsername }).eq('user_id', currentUser.id);
-            if (error) { msg.className = 'profile-msg err'; msg.textContent = error.message; return; }
-            currentUsername = newUsername;
-            updateHeaderAuth();
-            msg.className = 'profile-msg ok';
-            msg.textContent = 'username updated.';
+        function toggleYear(id) {
+            const body = document.getElementById('ybody-' + id);
+            const tgl = document.getElementById('ytgl-' + id);
+            const isOpen = body.classList.toggle('open');
+            tgl.textContent = isOpen ? '−' : '+';
         }
 
-        async function updateEmail() {
-            if (!sbClient || !currentUser) return;
-            const newEmail = document.getElementById('profileEmail').value.trim();
-            const msg = document.getElementById('profileEmailMsg');
-            const authEmail = newEmail || `${currentUsername}@no-email.local`;
-            const { error: authErr } = await sbClient.auth.updateUser({ email: authEmail });
-            if (authErr) { msg.className = 'profile-msg err'; msg.textContent = authErr.message; return; }
-            const { error: profileErr } = await sbClient.from('profiles').update({ email: newEmail || null }).eq('user_id', currentUser.id);
-            if (profileErr) { msg.className = 'profile-msg err'; msg.textContent = profileErr.message; return; }
-            msg.className = 'profile-msg ok';
-            msg.textContent = newEmail ? 'email updated.' : 'email removed.';
-        }
-
-        async function updatePassword() {
-            if (!sbClient || !currentUser) return;
-            const pw1 = document.getElementById('profilePw1').value;
-            const pw2 = document.getElementById('profilePw2').value;
-            const msg = document.getElementById('profilePwMsg');
-            if (pw1.length < 6) { msg.className = 'profile-msg err'; msg.textContent = 'password must be at least 6 characters.'; return; }
-            if (pw1 !== pw2) { msg.className = 'profile-msg err'; msg.textContent = 'passwords do not match.'; return; }
-            const { error } = await sbClient.auth.updateUser({ password: pw1 });
-            if (error) { msg.className = 'profile-msg err'; msg.textContent = error.message; return; }
-            document.getElementById('profilePw1').value = '';
-            document.getElementById('profilePw2').value = '';
-            msg.className = 'profile-msg ok';
-            msg.textContent = 'password changed.';
+        function toggleSetlist(id) {
+            const el = document.getElementById(id);
+            const tgl = document.getElementById('tgl-' + id);
+            const isOpen = el.classList.toggle('open');
+            tgl.textContent = isOpen ? '−' : '+';
         }
 
         // Init
         if (sbClient) {
-            sbClient.auth.onAuthStateChange((_event, session) => {
-                if (_event === 'PASSWORD_RECOVERY') {
-                    currentUser = session.user;
-                    sbClient.from('profiles').select('username').eq('user_id', currentUser.id).single()
-                        .then(({ data }) => {
-                            currentUsername = data?.username || null;
-                            updateHeaderAuth();
-                            renderProfile();
-                            // Highlight the change password section
-                            const msg = document.getElementById('profilePwMsg');
-                            if (msg) {
-                                msg.className = 'profile-msg ok';
-                                msg.textContent = 'enter a new password below to complete your reset.';
-                                document.getElementById('profilePw1')?.focus();
-                            }
-                        });
-                    return;
-                }
-            });
-
-            sbClient.auth.getSession().then(({ data: { session } }) => {
+            sbClient.auth.getSession().then(async ({ data: { session } }) => {
                 currentUser = session?.user ?? null;
                 if (currentUser) {
-                    sbClient.from('profiles').select('username').eq('user_id', currentUser.id).single()
-                        .then(({ data }) => {
-                            currentUsername = data?.username || null;
-                            updateHeaderAuth();
-                            renderProfile();
-                        });
-                } else {
-                    updateHeaderAuth();
-                    renderProfile();
+                    const [profileRes, trackingRes] = await Promise.all([
+                        sbClient.from('profiles').select('username').eq('user_id', currentUser.id).single(),
+                        sbClient.from('show_tracking').select('show_date,attended,listened').eq('user_id', currentUser.id)
+                    ]);
+                    currentUsername = profileRes.data?.username || null;
+                    trackingData = {};
+                    if (trackingRes.data) {
+                        for (const row of trackingRes.data) {
+                            trackingData[row.show_date] = { attended: row.attended, listened: row.listened };
+                        }
+                    }
                 }
+                updateHeaderAuth();
+                renderProfile();
             });
         } else {
             renderProfile();

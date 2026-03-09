@@ -644,6 +644,29 @@
             .add-favourite-form { padding: 12px; }
             .header-btn { padding: 6px 12px; }
         }
+        .track-btn {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 11px;
+            padding: 2px 8px;
+            border: 1px solid #000;
+            background: #fff;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .track-btn.active {
+            background: #000;
+            color: #fff;
+        }
+        .track-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+            flex-wrap: wrap;
+        }
+        .track-row:last-child { border-bottom: none; }
+        .track-btns { display: flex; gap: 6px; margin-left: auto; }
 
     </style>
 </head>
@@ -802,10 +825,11 @@
             <div id="versionsContent"></div>
         </div>
 
+        <!-- TRACK TAB -->
         <!-- ERAS TAB -->
         <div class="tab-panel" id="tab-eras">
             <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 8px 0;">shows grouped by year. recordings that are bolded are highest quality.</p>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
                 <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;display:flex;align-items:center;gap:8px;cursor:pointer;">
                     <div class="toggle-switch">
                         <input type="checkbox" id="erasRecordingsOnly" checked onchange="buildEras()">
@@ -813,6 +837,26 @@
                     </div>
                     recordings only
                 </label>
+            </div>
+            <p id="erasTrackLoggedOut" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#999;margin:0 0 12px 0;">log in to track shows you've attended or listened to.</p>
+            <div id="erasTrackSection" style="display:none;margin-bottom:12px;">
+                <div id="trackStats" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin-bottom:8px;"></div>
+                <details class="track-import">
+                    <summary style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;cursor:pointer;user-select:none;">bulk import</summary>
+                    <div style="margin-top:10px;">
+                        <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:#555;margin:0 0 8px 0;">paste one show date per line (YYYY-MM-DD)</p>
+                        <textarea id="trackImportInput" rows="6" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14"></textarea>
+                        <div style="margin-top:6px;display:flex;align-items:center;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+                            mark as:
+                            <select id="trackImportField" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;border:1px solid #ccc;padding:2px 4px;">
+                                <option value="attended">attended</option>
+                                <option value="listened">listened</option>
+                            </select>
+                            <button class="find-btn" onclick="bulkImportTracking()">import</button>
+                        </div>
+                        <div id="trackImportResult" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:#555;"></div>
+                    </div>
+                </details>
             </div>
             <div id="erasContainer"></div>
         </div>
@@ -1021,6 +1065,7 @@ function switchTab(name) {
     });
     history.replaceState(null, '', '#' + name);
     if (name === 'versions' && !currentVersionSong) loadSongVoteCounts().then(renderVersionsTab);
+    if (name === 'eras' && currentUser && !trackingLoaded) loadTrackingThenBuild();
 }
 
 // ─── SONG FINDER ──────────────────────────────────────────────────────────
@@ -1637,10 +1682,18 @@ function renderEraShowList(eraShows, filter) {
         setlistText += mainSongs.join('<br>');
         if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
         const id = 'sl-' + s.date.replace(/\W/g, '-');
+        const td = trackingData[s.date] || { attended: false, listened: false };
+        const listenedBtn = s.recordings.length > 0 ? `<button class="track-btn${td.listened ? ' active' : ''}" id="tbtn-${s.date}-listened" onclick="toggleTracking('${s.date}','listened')">listened</button>` : '';
+        const trackBtns = currentUser ? `
+            <span class="track-btns" onclick="event.stopPropagation()">
+                <button class="track-btn${td.attended ? ' active' : ''}" id="tbtn-${s.date}-attended" onclick="toggleTracking('${s.date}','attended')">attended</button>
+                ${listenedBtn}
+            </span>` : '';
         return `<div class="era-show-row" onclick="toggleShowSetlist('${id}')" style="cursor:pointer;">
             <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
             <span class="era-show-venue">${s.venue}</span>
             <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
+            ${trackBtns}
             <span class="era-show-toggle" id="tgl-${id}">+</span>
         </div>
         <div class="era-show-setlist" id="${id}">${setlistText}</div>`;
@@ -1724,25 +1777,29 @@ function renderPicks() {
     }).join('');
 }
 
+// ─── State declared early (referenced by renderEraShowList on init) ─────────
+let trackingData = {};
+let trackingLoaded = false;
+let currentUser = null;
+let currentUsername = null;
+
 buildIndex();
 buildAlbumSections();
 renderSongGrid();
 buildEras();
 renderPicks();
+updateErasTrackSection();
 
 // ─── Supabase init ─────────────────────────────────────────────────────────
 const _SB_URL = typeof SUPABASE_URL !== 'undefined' ? SUPABASE_URL : 'https://jouivrvbgyqtyvrrcwcs.supabase.co';
 const _SB_KEY = typeof SUPABASE_ANON_KEY !== 'undefined' ? SUPABASE_ANON_KEY : 'sb_publishable_6y2HvnhrMSBXFxbn2m2qkw_0cCi1j83';
 const sbClient = window.supabase ? window.supabase.createClient(_SB_URL, _SB_KEY) : null;
 
-let currentUser = null;
-let currentUsername = null;
-
 if (sbClient) {
     sbClient.auth.getSession().then(({ data: { session } }) => {
         if (session) {
             currentUser = session.user;
-            fetchUsername(currentUser.id).then(u => { currentUsername = u; updateHeaderAuth(); });
+            fetchUsername(currentUser.id).then(u => { currentUsername = u; updateHeaderAuth(); loadTrackingThenBuild(); });
         }
     });
     sbClient.auth.onAuthStateChange((_event, session) => {
@@ -1752,10 +1809,15 @@ if (sbClient) {
                 currentUsername = u;
                 updateHeaderAuth();
                 if (currentVersionSong) loadVersionsForSong(currentVersionSong);
+                loadTrackingThenBuild();
             });
         } else {
             currentUsername = null;
+            trackingData = {};
+            trackingLoaded = false;
             updateHeaderAuth();
+            updateErasTrackSection();
+            buildEras();
             if (currentVersionSong) loadVersionsForSong(currentVersionSong);
         }
     });
@@ -1879,6 +1941,81 @@ async function doSignup() {
 async function doLogout() {
     if (!sbClient) return;
     await sbClient.auth.signOut();
+}
+
+// ─── TRACKING (shows tab) ───────────────────────────────────────────────────
+async function loadTrackingThenBuild() {
+    const { data } = await sbClient.from('show_tracking').select('show_date,attended,listened').eq('user_id', currentUser.id);
+    trackingData = {};
+    if (data) for (const row of data) trackingData[row.show_date] = { attended: row.attended, listened: row.listened };
+    trackingLoaded = true;
+    buildEras();
+    updateErasTrackSection();
+}
+
+function updateErasTrackSection() {
+    const section = document.getElementById('erasTrackSection');
+    if (!section) return;
+    section.style.display = currentUser ? 'block' : 'none';
+    const loggedOut = document.getElementById('erasTrackLoggedOut');
+    if (loggedOut) loggedOut.style.display = currentUser ? 'none' : 'block';
+    if (currentUser) renderTrackStats();
+}
+
+function renderTrackStats() {
+    const statsEl = document.getElementById('trackStats');
+    if (!statsEl) return;
+    const showsWithRecs = shows.filter(s => s.recordings.length > 0);
+    const attended = shows.filter(s => trackingData[s.date]?.attended).length;
+    const listened = showsWithRecs.filter(s => trackingData[s.date]?.listened).length;
+    statsEl.textContent = `${attended} / ${shows.length} attended · ${listened} / ${showsWithRecs.length} listened`;
+}
+
+async function toggleTracking(date, field) {
+    if (!currentUser) return;
+    if (!trackingData[date]) trackingData[date] = { attended: false, listened: false };
+    trackingData[date][field] = !trackingData[date][field];
+    const btn = document.getElementById(`tbtn-${date}-${field}`);
+    if (btn) btn.classList.toggle('active', trackingData[date][field]);
+    renderTrackStats();
+    await sbClient.from('show_tracking').upsert({
+        user_id: currentUser.id,
+        show_date: date,
+        attended: trackingData[date].attended,
+        listened: trackingData[date].listened,
+    }, { onConflict: 'user_id,show_date' });
+}
+
+async function bulkImportTracking() {
+    if (!currentUser) { alert('log in first'); return; }
+    const field = document.getElementById('trackImportField').value;
+    const raw = document.getElementById('trackImportInput').value;
+    const resultEl = document.getElementById('trackImportResult');
+    const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
+    const matched = [], unmatched = [];
+    for (const line of lines) {
+        if (showByDate[line]) matched.push(line);
+        else unmatched.push(line);
+    }
+    if (matched.length === 0) {
+        resultEl.textContent = 'no matching dates found.';
+        return;
+    }
+    const rows = matched.map(date => {
+        const existing = trackingData[date] || { attended: false, listened: false };
+        return { user_id: currentUser.id, show_date: date, attended: existing.attended, listened: existing.listened, [field]: true };
+    });
+    for (const row of rows) {
+        if (!trackingData[row.show_date]) trackingData[row.show_date] = { attended: false, listened: false };
+        trackingData[row.show_date][field] = true;
+        const btn = document.getElementById(`tbtn-${row.show_date}-${field}`);
+        if (btn) btn.classList.add('active');
+    }
+    renderTrackStats();
+    await sbClient.from('show_tracking').upsert(rows, { onConflict: 'user_id,show_date' });
+    let msg = `imported ${matched.length} show${matched.length !== 1 ? 's' : ''}.`;
+    if (unmatched.length > 0) msg += ` unrecognized: ${unmatched.join(', ')}`;
+    resultEl.textContent = msg;
 }
 
 // ─── VERSIONS TAB ──────────────────────────────────────────────────────────
