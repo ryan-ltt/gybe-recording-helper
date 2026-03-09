@@ -13,6 +13,7 @@
 import urllib.request
 import urllib.parse
 import re
+import html as html_mod
 import json
 import time
 import sys
@@ -53,7 +54,7 @@ def fetch(url):
 
 # ─── Parsing helpers (shared with scrape-gybe.py) ────────────────────────────
 def strip_tags(s):
-    return re.sub(r'<[^>]+>', '', s).strip()
+    return html_mod.unescape(re.sub(r'<[^>]+>', '', s)).strip()
 
 def normalize_date(d):
     parts = d.split('-')
@@ -118,8 +119,7 @@ def extract_show_links(html):
 def parse_show(html, date):
     venue = ''
     for vm in re.finditer(r'BGCOLOR="#000000"[^>]*>([\s\S]*?)(?=</td)', html, re.I):
-        text = re.sub(r'&[a-z#0-9]+;', ' ', vm.group(1))
-        text = re.sub(r'\s+', ' ', strip_tags(text)).strip()
+        text = re.sub(r'\s+', ' ', strip_tags(vm.group(1))).strip()
         tl = text.lower()
         if not text: continue
         if 'concert chronology' in tl or 'godspeed' in tl: continue
@@ -138,7 +138,6 @@ def parse_show(html, date):
         raw = m.group(1)
         text = re.sub(r'\s+', ' ', strip_tags(raw)).strip()
         text = re.sub(r'\s*back\s*$', '', text, flags=re.I).strip()
-        text = re.sub(r'&[a-z]+;', ' ', text).strip()
         text = re.sub(r'\s+', ' ', text).strip()
         text = re.sub(r'\s+note\s*:.*$', '', text, flags=re.I).strip()
         text = re.sub(r'\s*\[incomplete\].*$', '', text, flags=re.I).strip()

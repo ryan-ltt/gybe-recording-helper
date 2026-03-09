@@ -8,6 +8,7 @@ import re
 import json
 import time
 import sys
+import html as html_mod
 
 BASE = 'https://gybecc.neocities.org/gybecc/'
 
@@ -30,7 +31,7 @@ def fetch(url):
         return r.read().decode('utf-8', errors='replace')
 
 def strip_tags(s):
-    return re.sub(r'<[^>]+>', '', s).strip()
+    return html_mod.unescape(re.sub(r'<[^>]+>', '', s)).strip()
 
 def normalize_date(d):
     parts = d.split('-')
@@ -118,8 +119,7 @@ def parse_show(html, date):
     # Skip cells that are: the page title, a date (YYYY-MM-DD), a duration (HH:MM), or "setlist".
     venue = ''
     for vm in re.finditer(r'BGCOLOR="#000000"[^>]*>([\s\S]*?)(?=</td)', html, re.I):
-        text = re.sub(r'&[a-z#0-9]+;', ' ', vm.group(1))  # decode entities first
-        text = re.sub(r'\s+', ' ', strip_tags(text)).strip()
+        text = re.sub(r'\s+', ' ', strip_tags(vm.group(1))).strip()
         tl = text.lower()
         if not text: continue
         if 'concert chronology' in tl: continue
@@ -143,8 +143,6 @@ def parse_show(html, date):
         text = re.sub(r'\s+', ' ', strip_tags(raw)).strip()
         # Strip trailing "back" link artifact
         text = re.sub(r'\s*back\s*$', '', text, flags=re.I).strip()
-        # Strip HTML entities like &nbsp;
-        text = re.sub(r'&[a-z]+;', ' ', text).strip()
         text = re.sub(r'\s+', ' ', text).strip()
         # Remove trailing "note : ..." annotations - keep just the song name
         text = re.sub(r'\s+note\s*:.*$', '', text, flags=re.I).strip()

@@ -17375,7 +17375,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2026-03-08",
-    "venue": "a2, wroc aw, pol",
+    "venue": "a2, wrocław, pol",
     "songs": [
       "intro",
       "sun is a hole sun is vapors",
