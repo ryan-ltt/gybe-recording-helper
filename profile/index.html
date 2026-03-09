@@ -287,15 +287,19 @@
                     <div style="margin-top:10px;">
                         <p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0 0 8px 0;">paste one show date per line (YYYY-MM-DD)</p>
                         <textarea id="trackImportInput" rows="6" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14"></textarea>
-                        <div style="margin-top:6px;display:flex;align-items:center;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
-                            mark as:
-                            <select id="trackImportField" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;border:1px solid #ccc;padding:2px 4px;">
-                                <option value="attended">attended</option>
-                                <option value="listened">listened</option>
-                            </select>
-                            <button class="find-btn" onclick="bulkImportTracking()">import</button>
-                            <button class="find-btn" style="background:white;color:black;" onclick="document.getElementById('trackImportFile').click()">upload file</button>
-                            <input type="file" id="trackImportFile" accept=".txt,.json" style="display:none" onchange="loadTrackFile(this)">
+                        <div style="margin-top:6px;display:flex;flex-direction:column;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                mark as:
+                                <select id="trackImportField" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;border:1px solid #ccc;padding:2px 4px;">
+                                    <option value="attended">attended</option>
+                                    <option value="listened">listened</option>
+                                </select>
+                            </div>
+                            <div style="display:flex;gap:8px;">
+                                <button class="find-btn" onclick="bulkImportTracking()">import</button>
+                                <button class="find-btn" style="background:white;color:black;" onclick="document.getElementById('trackImportFile').click()">upload file</button>
+                                <input type="file" id="trackImportFile" accept=".txt,.json" style="display:none" onchange="loadTrackFile(this)">
+                            </div>
                         </div>
                         <div id="trackImportResult" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:#555;"></div>
                     </div>
