@@ -20,6 +20,11 @@ import os
 from datetime import datetime
 
 BASE = 'https://gybecc.neocities.org/gybecc/'
+MONTHS = {
+    'january': '01', 'february': '02', 'march': '03', 'april': '04',
+    'may': '05', 'june': '06', 'july': '07', 'august': '08',
+    'september': '09', 'october': '10', 'november': '11', 'december': '12',
+}
 ARCHIVE_SEARCH = 'https://archive.org/advancedsearch.php'
 ARCHIVE_META = 'https://archive.org/metadata/'
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -56,6 +61,50 @@ def normalize_date(d):
         y = int(parts[0])
         parts[0] = ('19' if y >= 90 else '20') + parts[0]
     return '-'.join(parts)
+
+def parse_year_page_table(html, year_suffix):
+    """Parse shows from the year page table that don't have individual .html pages."""
+    shows = []
+    full_year = ('19' if int(year_suffix) >= 90 else '20') + year_suffix
+    rows = re.split(r'<tr(?:\s[^>]*)?>',  html, flags=re.I)
+    current_month = None
+    for row in rows:
+        cells = re.findall(r'<td[^>]*>([\s\S]*?)(?=<td|</tr>)', row, re.I)
+        if re.search(r'COLSPAN\s*=\s*["\s]?2', row, re.I) and len(cells) >= 1:
+            text = strip_tags(cells[0]).strip().lower()
+            for name, num in MONTHS.items():
+                if name in text:
+                    ym = re.search(r'\b(19\d{2}|20\d{2})\b', text)
+                    if ym:
+                        full_year = ym.group(1)
+                    current_month = num
+                    break
+            continue
+        if not current_month or len(cells) < 4:
+            continue
+        day_text = strip_tags(cells[0]).strip()
+        location  = re.sub(r'\s+', ' ', strip_tags(cells[1])).strip()
+        venue_raw = cells[2]
+        extra     = re.sub(r'\s+', ' ', strip_tags(cells[3])).strip()
+        if '?' in day_text:
+            continue
+        day_digits = re.sub(r'[^\d]', '', day_text)
+        if not day_digits:
+            continue
+        day = int(day_digits)
+        if day < 1 or day > 31:
+            continue
+        date = f'{full_year}-{current_month}-{day:02d}'
+        if re.search(r'href\s*=\s*["\s]*\d{2,4}-\d{2}-\d{2}\.html', venue_raw, re.I):
+            continue
+        venue = re.sub(r'\s+', ' ', strip_tags(venue_raw)).strip()
+        note  = extra if extra and extra != '-' else ''
+        show = {'date': date, 'venue': f'{venue}, {location}' if venue else location, 'songs': [], 'recordings': []}
+        if note:
+            show['note'] = note
+        shows.append(show)
+    return shows
+
 
 def extract_show_links(html):
     links, seen = [], set()
@@ -229,7 +278,12 @@ def main():
 
         links = extract_show_links(html)
         new_links = [l for l in links if l['date'] not in known_dates]
-        print(f'{len(links)} shows, {len(new_links)} new')
+
+        # Also check table rows for shows without individual pages
+        table_shows = parse_year_page_table(html, yr)
+        new_table = [s for s in table_shows if s['date'] not in known_dates]
+
+        print(f'{len(links)} linked shows, {len(new_links)} new; {len(new_table)} new no-setlist shows')
 
         for link in new_links:
             date = link['date']
@@ -244,6 +298,11 @@ def main():
             new_shows.append(show)
             known_dates.add(date)
             time.sleep(0.15)
+
+        for show in new_table:
+            print(f'  + {show["date"]} — {show["venue"]} (no setlist)')
+            new_shows.append(show)
+            known_dates.add(show['date'])
 
     print()
 

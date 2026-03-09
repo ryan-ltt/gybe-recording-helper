@@ -11,6 +11,12 @@ import sys
 
 BASE = 'https://gybecc.neocities.org/gybecc/'
 
+MONTHS = {
+    'january': '01', 'february': '02', 'march': '03', 'april': '04',
+    'may': '05', 'june': '06', 'july': '07', 'august': '08',
+    'september': '09', 'october': '10', 'november': '11', 'december': '12',
+}
+
 YEAR_PAGES = [
     '95','96','97','98','99',
     '00','01','02','03',
@@ -44,6 +50,68 @@ def extract_show_links(html):
             seen.add(date)
             links.append({'url': BASE + href, 'date': date})
     return links
+
+def parse_year_page_table(html, year_suffix):
+    """Parse shows from the year page table that don't have individual .html pages."""
+    shows = []
+    full_year = ('19' if int(year_suffix) >= 90 else '20') + year_suffix
+
+    # Split into <tr> blocks
+    rows = re.split(r'<tr(?:\s[^>]*)?>',  html, flags=re.I)
+    current_month = None
+
+    for row in rows:
+        cells = re.findall(r'<td[^>]*>([\s\S]*?)(?=<td|</tr>)', row, re.I)
+
+        # Month header: COLSPAN=2 row with a month name
+        if re.search(r'COLSPAN\s*=\s*["\s]?2', row, re.I) and len(cells) >= 1:
+            text = strip_tags(cells[0]).strip().lower()
+            for name, num in MONTHS.items():
+                if name in text:
+                    # Year may be stated in the header (e.g. "march 1997")
+                    ym = re.search(r'\b(19\d{2}|20\d{2})\b', text)
+                    if ym:
+                        full_year = ym.group(1)
+                    current_month = num
+                    break
+            continue
+
+        if not current_month or len(cells) < 4:
+            continue
+
+        day_text = strip_tags(cells[0]).strip()
+        location  = re.sub(r'\s+', ' ', strip_tags(cells[1])).strip()
+        venue_raw = cells[2]
+        extra     = re.sub(r'\s+', ' ', strip_tags(cells[3])).strip()
+
+        # Skip uncertain dates
+        if '?' in day_text:
+            continue
+
+        day_digits = re.sub(r'[^\d]', '', day_text)
+        if not day_digits:
+            continue
+        day = int(day_digits)
+        if day < 1 or day > 31:
+            continue
+
+        date = f'{full_year}-{current_month}-{day:02d}'
+
+        # If this row links to an individual .html show page, skip it —
+        # the main loop will fetch that page and get the proper setlist.
+        if re.search(r'href\s*=\s*["\s]*\d{2,4}-\d{2}-\d{2}\.html', venue_raw, re.I):
+            continue
+
+        venue = re.sub(r'\s+', ' ', strip_tags(venue_raw)).strip()
+        note  = extra if extra and extra != '-' else ''
+
+        show = {'date': date, 'venue': f'{venue}, {location}' if venue else location, 'songs': [], 'recordings': []}
+        if note:
+            show['note'] = note
+        shows.append(show)
+
+    return shows
+
 
 def parse_show(html, date):
     # Venue: find the first BGCOLOR="#000000" cell whose stripped text looks like a venue.
@@ -132,8 +200,9 @@ def main():
             print(f'  ERROR: {e}', file=sys.stderr)
             continue
 
+        # Shows with individual pages (have setlists)
         links = extract_show_links(html)
-        print(f'  {len(links)} shows found', file=sys.stderr)
+        print(f'  {len(links)} linked shows found', file=sys.stderr)
 
         for link in links:
             date = link['date']
@@ -151,6 +220,16 @@ def main():
             show = parse_show(show_html, date)
             all_shows.append(show)
             time.sleep(0.15)  # be polite
+
+        # Shows without individual pages (no setlist)
+        table_shows = parse_year_page_table(html, yr)
+        added = 0
+        for show in table_shows:
+            if show['date'] not in seen_dates:
+                seen_dates.add(show['date'])
+                all_shows.append(show)
+                added += 1
+        print(f'  {added} no-setlist shows from table', file=sys.stderr)
 
     all_shows.sort(key=lambda s: s['date'])
     print(json.dumps(all_shows, indent=2))

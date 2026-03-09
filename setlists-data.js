@@ -1,11 +1,92 @@
 const SETLISTS_DATA = [
   {
+    "date": "1997-02-15",
+    "venue": "hotel2tango, montreal, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ flux lux, steak 72, lonesome hanks, scat rag boosters"
+  },
+  {
+    "date": "1997-02-22",
+    "venue": "miami, montreal, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ jordi + grayson and guests"
+  },
+  {
+    "date": "1997-03-14",
+    "venue": "miami, montreal, qc",
+    "songs": [],
+    "recordings": []
+  },
+  {
     "date": "1997-03-15",
     "venue": "symptom hall, toronto, on",
     "songs": [
       "the piece"
     ],
     "recordings": []
+  },
+  {
+    "date": "1997-08-14",
+    "venue": "hotel2tango, montreal, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ jordi, grayson + bruce, the throw ups, princess deborah, the royal pains"
+  },
+  {
+    "date": "1997-09-03",
+    "venue": "as220, providence, ri",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1997-09-05",
+    "venue": "brighton bar, longbranch, nj",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ fuzz the world, voodoo stew, abducted"
+  },
+  {
+    "date": "1997-09-11",
+    "venue": "lizard and snake cafe, chapel hill, nc",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ audio explorations, mail order bride"
+  },
+  {
+    "date": "1997-09-12",
+    "venue": "lounge ax, chicago, il",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ jim o'rourke, william hooker, dj olive, storm and stress"
+  },
+  {
+    "date": "1997-09-13",
+    "venue": "unknown venue, madison, wi",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1997-09-14",
+    "venue": "zoot's coffee, detroit, mi",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ young pioneers, harriet the spy, thumbnail, this robot kills"
+  },
+  {
+    "date": "1997-09-15",
+    "venue": "club soda, kalamazoo, mi",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ harriet the spy, thumbnail"
+  },
+  {
+    "date": "1997-09-17",
+    "venue": "blind pig, ann arbor, mi",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ motorhome, monophonic 100"
   },
   {
     "date": "1997-10-05",
@@ -39,6 +120,13 @@ const SETLISTS_DATA = [
     ]
   },
   {
+    "date": "1997-10-31",
+    "venue": "hotel2tango, montreal, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "part of the libraire alternative bookshop benefit"
+  },
+  {
     "date": "1997-11-12",
     "venue": "the music of sound, ckut session, montr\u00e9al, qc",
     "songs": [
@@ -54,6 +142,20 @@ const SETLISTS_DATA = [
         "title": "Godspeed You! Black Emperor Live at CKUT FM on 1997-11-12"
       }
     ]
+  },
+  {
+    "date": "1997-12-13",
+    "venue": "hotel2tango, montreal, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "opening for silver apples (w/ shalabi effect and the weird library of art)"
+  },
+  {
+    "date": "1997-12-31",
+    "venue": "isart, montreal, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ shalabi effect, exhaust, orphan sound system"
   },
   {
     "date": "1998-04-25",
