@@ -14327,7 +14327,9 @@
       "glacier",
       "sad mafioso"
     ],
-    "recordings": []
+    "recordings": [
+      { "id": "F81K4eeAXGk", "url": "https://youtu.be/F81K4eeAXGk" }
+    ]
   },
   {
     "date": "2024-04-25",
@@ -14343,7 +14345,9 @@
       "moya",
       "albanian"
     ],
-    "recordings": [],
+    "recordings": [
+      { "id": "el21VrooyW4", "url": "https://www.youtube.com/watch?v=el21VrooyW4" }
+    ],
     "note": "thanks to alison"
   },
   {
