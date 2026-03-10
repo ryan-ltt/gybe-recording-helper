@@ -232,6 +232,7 @@
         let currentUsername = null;
         let currentUserCreatedAt = null;
         let trackingData = {};
+        let votesData = []; // [{ song, show_date }]
         let activeTab = 'attended';
 
         // Build a date→show lookup from setlists data
@@ -310,6 +311,7 @@
                 <div class="tab-nav">
                     <button class="tab-btn${activeTab === 'attended' ? ' active' : ''}" onclick="switchTab('attended')">attended (${attendedCount})</button>
                     <button class="tab-btn${activeTab === 'listened' ? ' active' : ''}" onclick="switchTab('listened')">listened (${listenedCount})</button>
+                    <button class="tab-btn${activeTab === 'votes' ? ' active' : ''}" onclick="switchTab('votes')">votes (${votesData.length})</button>
                 </div>
                 <div id="showList"></div>`;
 
@@ -318,11 +320,11 @@
 
         function switchTab(tab) {
             activeTab = tab;
-            // Update tab buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.textContent.startsWith(tab));
             });
-            renderShowList();
+            if (tab === 'votes') renderVotesList();
+            else renderShowList();
         }
 
         function renderShowList() {
@@ -410,6 +412,49 @@
                 ta.style.height = 'auto';
                 ta.style.height = ta.scrollHeight + 'px';
             });
+        }
+
+        function renderVotesList() {
+            const listEl = document.getElementById('showList');
+            if (!listEl) return;
+            if (votesData.length === 0) {
+                listEl.innerHTML = `<p class="empty-state">no votes yet. <a href="../index.html#versions">head to the versions tab</a> to vote on performances.</p>`;
+                return;
+            }
+
+            // Group by year of voted show
+            const byYear = {};
+            for (const v of votesData) {
+                const y = v.show_date.slice(0, 4);
+                if (!byYear[y]) byYear[y] = [];
+                byYear[y].push(v);
+            }
+
+            listEl.innerHTML = Object.keys(byYear).sort().map(year => {
+                const votes = byYear[year].sort((a, b) => a.song.localeCompare(b.song));
+                const rows = votes.map(v => {
+                    const show = showByDate[v.show_date];
+                    const venue = show ? show.venue : '';
+                    const date = v.show_date.replace(/[a-z]$/, '');
+                    return `<div class="era-show-row" style="cursor:default;border-bottom:1px solid #eee;">
+                        <span class="era-show-date">${date}</span>
+                        <span class="era-show-venue">${v.song}${venue ? ` <span style="color:#aaa;font-size:10px;">— ${venue}</span>` : ''}</span>
+                    </div>`;
+                }).join('');
+                const count = votes.length;
+                return `<div class="year-group">
+                    <div class="year-header" onclick="toggleYear('v${year}')">
+                        <div class="year-label">${year}</div>
+                        <div class="year-meta">
+                            <span>${count} vote${count !== 1 ? 's' : ''}</span>
+                            <span class="year-toggle" id="ytgl-v${year}">+</span>
+                        </div>
+                    </div>
+                    <div class="year-body" id="ybody-v${year}">
+                        ${rows}
+                    </div>
+                </div>`;
+            }).join('');
         }
 
         function toggleYear(id) {
@@ -505,9 +550,10 @@
             sbClient.auth.getSession().then(async ({ data: { session } }) => {
                 currentUser = session?.user ?? null;
                 if (currentUser) {
-                    const [profileRes, trackingRes] = await Promise.all([
+                    const [profileRes, trackingRes, votesRes] = await Promise.all([
                         sbClient.from('profiles').select('username, created_at').eq('user_id', currentUser.id).single(),
-                        sbClient.from('show_tracking').select('show_date,attended,listened,listened_notes,attended_notes').eq('user_id', currentUser.id)
+                        sbClient.from('show_tracking').select('show_date,attended,listened,listened_notes,attended_notes').eq('user_id', currentUser.id),
+                        sbClient.from('votes').select('song, show_date').eq('user_id', currentUser.id)
                     ]);
                     currentUsername = profileRes.data?.username || null;
                     currentUserCreatedAt = profileRes.data?.created_at || null;
@@ -517,6 +563,7 @@
                             trackingData[row.show_date] = { attended: row.attended, listened: row.listened, listened_notes: row.listened_notes || '', attended_notes: row.attended_notes || '' };
                         }
                     }
+                    votesData = votesRes.data || [];
                 }
                 updateHeaderAuth();
                 renderProfile();

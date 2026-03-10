@@ -2395,7 +2395,14 @@ async function loadUsers() {
         trackingByUser[row.user_id][row.show_date] = { attended: row.attended, listened: row.listened, listened_notes: row.listened_notes || '', attended_notes: row.attended_notes || '' };
     }
 
-    usersData = profiles.map(p => ({ ...p, tracking: trackingByUser[p.user_id] || {} }));
+    const { data: allVotes } = await sbClient.from('votes').select('user_id, song, show_date').in('user_id', ids);
+    const votesByUser = {};
+    if (allVotes) for (const row of allVotes) {
+        if (!votesByUser[row.user_id]) votesByUser[row.user_id] = [];
+        votesByUser[row.user_id].push({ song: row.song, show_date: row.show_date });
+    }
+
+    usersData = profiles.map(p => ({ ...p, tracking: trackingByUser[p.user_id] || {}, votes: votesByUser[p.user_id] || [] }));
 
     document.getElementById('usersControls').style.display = 'flex';
     if (!currentUser) {
@@ -2458,9 +2465,38 @@ function renderUserBody(uid) {
 
     const attendedCount = Object.values(profile.tracking).filter(td => td.attended).length;
     const listenedCount = Object.values(profile.tracking).filter(td => td.listened).length;
+    const votesCount = profile.votes.length;
 
     let listHtml;
-    if (shows.length === 0) {
+    if (activeTab === 'votes') {
+        if (votesCount === 0) {
+            listHtml = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0;">no votes yet.</p>`;
+        } else {
+            const byYear = {};
+            for (const v of profile.votes) {
+                const y = v.show_date.slice(0, 4);
+                if (!byYear[y]) byYear[y] = [];
+                byYear[y].push(v);
+            }
+            listHtml = Object.keys(byYear).sort().map(year => {
+                const votes = byYear[year].sort((a, b) => a.song.localeCompare(b.song));
+                const rows = votes.map(v => {
+                    const show = showByDate[v.show_date];
+                    const venue = show ? show.venue : '';
+                    const date = v.show_date.replace(/[a-z]$/, '');
+                    return `<div class="era-show-row" style="cursor:default;border-bottom:1px solid #eee;">
+                        <span class="era-show-date">${date}</span>
+                        <span class="era-show-venue">${v.song}${venue ? ` <span style="color:#aaa;font-size:10px;">— ${venue}</span>` : ''}</span>
+                    </div>`;
+                }).join('');
+                const count = votes.length;
+                return `<div style="margin-bottom:16px;">
+                    <div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;font-weight:bold;color:#999;border-bottom:2px solid #eee;padding-bottom:4px;margin-bottom:0;">${year} — ${count} vote${count !== 1 ? 's' : ''}</div>
+                    ${rows}
+                </div>`;
+            }).join('');
+        }
+    } else if (shows.length === 0) {
         listHtml = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0;">no shows marked as ${activeTab}.</p>`;
     } else {
         const byYear = {};
@@ -2510,6 +2546,7 @@ function renderUserBody(uid) {
         <div style="display:flex;gap:0;border-bottom:2px solid black;margin-bottom:12px;">
             <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='attended'?'black':'transparent'};margin-bottom:-2px;${activeTab==='attended'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','attended')">attended (${attendedCount})</button>
             <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='listened'?'black':'transparent'};margin-bottom:-2px;${activeTab==='listened'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','listened')">listened (${listenedCount})</button>
+            <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='votes'?'black':'transparent'};margin-bottom:-2px;${activeTab==='votes'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','votes')">votes (${votesCount})</button>
         </div>
         ${listHtml}
         ${profile.created_at ? `<div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#aaa;margin-top:16px;">member since ${profile.created_at.slice(0,10)}</div>` : ''}`;
