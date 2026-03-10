@@ -17375,7 +17375,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2026-03-08",
-    "venue": "a2, wrocław, pol",
+    "venue": "a2, wroc\u0142aw, pol",
     "songs": [
       "intro",
       "sun is a hole sun is vapors",
@@ -17386,6 +17386,144 @@ const SETLISTS_DATA = [
       "moya",
       "blaise bailey finnegan III"
     ],
+    "recordings": []
+  },
+  {
+    "date": "2026-03-09",
+    "venue": "fl\u00e9da, brno, cz",
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "fire at static valley",
+      "pale spectator takes photographs",
+      "piss crowns are trebled",
+      "gathering storm"
+    ],
+    "recordings": []
+  },
+  {
+    "date": "2026-03-10",
+    "venue": "d\u00fcrer kert, budapest, hu",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-03-11",
+    "venue": "posthof, linz, au",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-03-12",
+    "venue": "archa+, praha, cz",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-03-13",
+    "venue": "arena, wien, au",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-03-15",
+    "venue": "schlachthof, wiesbaden, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-03-16",
+    "venue": "festsaal kreuzberg, berlin, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-03-17",
+    "venue": "markthalle, hamburg, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-03-18",
+    "venue": "reithalle, dresden, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-03-19",
+    "venue": "technikum, m\u00fcnchen, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-03-20",
+    "venue": "kantine, k\u00f6ln, ger",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ kristof hahn"
+  },
+  {
+    "date": "2026-04-09",
+    "venue": "o2 academy, leeds, uk",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "2026-04-10",
+    "venue": "troxy, london, uk",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ one leg one eye"
+  },
+  {
+    "date": "2026-04-11",
+    "venue": "trix, antwerpen, bel",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ one leg one eye"
+  },
+  {
+    "date": "2026-04-12",
+    "venue": "effenaar, eindhoven, hol",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ one leg one eye"
+  },
+  {
+    "date": "2026-04-13",
+    "venue": "trix, antwerpen, bel",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ one leg one eye"
+  },
+  {
+    "date": "2026-04-14",
+    "venue": "la cartonnerie, reims, fr",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ one leg one eye"
+  },
+  {
+    "date": "2026-04-16",
+    "venue": "floyd, athens, gr",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "2026-04-18",
+    "venue": "paribu art, istanbul, tur",
+    "songs": [],
     "recordings": []
   }
 ];
