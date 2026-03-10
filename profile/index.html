@@ -346,6 +346,7 @@
                 byYear[y].push(s);
             }
 
+            const noteField = activeTab === 'listened' ? 'listened_notes' : 'attended_notes';
             listEl.innerHTML = Object.keys(byYear).sort().map(year => {
                 const rows = byYear[year].map(s => {
                     const bestId = typeof BEST_RECORDINGS !== 'undefined' ? BEST_RECORDINGS[s.date] : null;
@@ -367,13 +368,27 @@
                     if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
                     const id = 'sl-' + s.date.replace(/\W/g, '-');
                     const hasSetlist = s.songs.length > 0;
-                    return `<div class="era-show-row"${hasSetlist ? ` onclick="toggleSetlist('${id}')" style="cursor:pointer;"` : ''}>
+                    const existingNote = (trackingData[s.date]?.[noteField] || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                    const noteDiv = `<div style="margin-bottom:${hasSetlist ? '8px' : '0'};padding-bottom:${hasSetlist ? '6px' : '0'};border-bottom:${hasSetlist ? '1px solid #eee' : 'none'};" onclick="event.stopPropagation()">
+                        <div style="display:flex;align-items:flex-start;gap:6px;">
+                            <textarea id="note-${s.date}" placeholder="add a note..."
+                                oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"
+                                style="flex:1;border:none;padding:2px 0;font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#555;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;">${existingNote}</textarea>
+                            <button onclick="saveNote('${s.date}', '${noteField}', document.getElementById('note-${s.date}').value)"
+                                style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border:1px solid #ccc;background:white;cursor:pointer;color:#555;flex-shrink:0;">save</button>
+                        </div>
+                    </div>`;
+                    const hasNote = !!(trackingData[s.date]?.[noteField]);
+                    return `<div class="era-show-row" onclick="toggleSetlist('${id}')" style="cursor:pointer;">
                         <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
-                        <span class="era-show-venue">${s.venue}</span>
+                        <span class="era-show-venue">${s.venue}${hasNote ? ' <span style="color:#aaa;font-size:10px;" title="you have left a note for this show">[n]</span>' : ''}</span>
                         <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
-                        <span class="era-show-toggle"${hasSetlist ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
+                        <span class="era-show-toggle" id="tgl-${id}">+</span>
                     </div>
-                    ${hasSetlist ? `<div class="era-show-setlist" id="${id}">${setlistText}</div>` : ''}`;
+                    <div class="era-show-setlist" id="${id}">
+                        ${noteDiv}
+                        ${hasSetlist ? setlistText : ''}
+                    </div>`;
                 }).join('');
                 const count = byYear[year].length;
                 return `<div class="year-group">
@@ -389,6 +404,10 @@
                     </div>
                 </div>`;
             }).join('');
+            listEl.querySelectorAll('textarea[id^="note-"]').forEach(ta => {
+                ta.style.height = 'auto';
+                ta.style.height = ta.scrollHeight + 'px';
+            });
         }
 
         function toggleYear(id) {
@@ -396,6 +415,12 @@
             const tgl = document.getElementById('ytgl-' + id);
             const isOpen = body.classList.toggle('open');
             tgl.textContent = isOpen ? '−' : '+';
+            if (isOpen) {
+                body.querySelectorAll('textarea[id^="note-"]').forEach(ta => {
+                    ta.style.height = 'auto';
+                    ta.style.height = ta.scrollHeight + 'px';
+                });
+            }
         }
 
         function toggleSetlist(id) {
@@ -403,6 +428,12 @@
             const tgl = document.getElementById('tgl-' + id);
             const isOpen = el.classList.toggle('open');
             tgl.textContent = isOpen ? '−' : '+';
+            if (isOpen) {
+                el.querySelectorAll('textarea[id^="note-"]').forEach(ta => {
+                    ta.style.height = 'auto';
+                    ta.style.height = ta.scrollHeight + 'px';
+                });
+            }
         }
 
         function loadTrackFile(input) {
@@ -424,6 +455,22 @@
             input.value = '';
         }
 
+        async function saveNote(date, field, value) {
+            if (!currentUser || !sbClient) return;
+            const note = value.trim() || null;
+            if (!trackingData[date]) trackingData[date] = { attended: false, listened: false, listened_notes: '', attended_notes: '' };
+            trackingData[date][field] = note || '';
+            const td = trackingData[date];
+            await sbClient.from('show_tracking').upsert(
+                { user_id: currentUser.id, show_date: date, attended: td.attended, listened: td.listened, listened_notes: td.listened_notes || null, attended_notes: td.attended_notes || null },
+                { onConflict: 'user_id,show_date' }
+            );
+            const btn = event.target;
+            const orig = btn.textContent;
+            btn.textContent = 'saved';
+            setTimeout(() => { btn.textContent = orig; }, 1500);
+        }
+
         async function bulkImportTracking() {
             if (!currentUser) return;
             const field = document.getElementById('trackImportField').value;
@@ -437,8 +484,8 @@
             }
             if (matched.length === 0) { resultEl.textContent = 'no matching dates found.'; return; }
             const rows = matched.map(date => {
-                const existing = trackingData[date] || { attended: false, listened: false };
-                return { user_id: currentUser.id, show_date: date, attended: existing.attended, listened: existing.listened, [field]: true };
+                const existing = trackingData[date] || { attended: false, listened: false, listened_notes: null, attended_notes: null };
+                return { user_id: currentUser.id, show_date: date, attended: existing.attended, listened: existing.listened, listened_notes: existing.listened_notes || null, attended_notes: existing.attended_notes || null, [field]: true };
             });
             for (const row of rows) {
                 if (!trackingData[row.show_date]) trackingData[row.show_date] = { attended: false, listened: false };
@@ -458,13 +505,13 @@
                 if (currentUser) {
                     const [profileRes, trackingRes] = await Promise.all([
                         sbClient.from('profiles').select('username').eq('user_id', currentUser.id).single(),
-                        sbClient.from('show_tracking').select('show_date,attended,listened').eq('user_id', currentUser.id)
+                        sbClient.from('show_tracking').select('show_date,attended,listened,listened_notes,attended_notes').eq('user_id', currentUser.id)
                     ]);
                     currentUsername = profileRes.data?.username || null;
                     trackingData = {};
                     if (trackingRes.data) {
                         for (const row of trackingRes.data) {
-                            trackingData[row.show_date] = { attended: row.attended, listened: row.listened };
+                            trackingData[row.show_date] = { attended: row.attended, listened: row.listened, listened_notes: row.listened_notes || '', attended_notes: row.attended_notes || '' };
                         }
                     }
                 }

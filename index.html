@@ -1709,14 +1709,25 @@ function renderEraShowList(eraShows, filter) {
                 ${attendedBtn}
             </span>` : '';
         const hasSetlist = s.songs.length > 0;
-        return `<div class="era-show-row"${hasSetlist ? ` onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
+        let noteSection = '';
+        if (currentUser) {
+            const esc = t => (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            const noteStyle = 'flex:1;border:none;padding:2px 0;font-family:Monaco,\'JetBrains Mono\',monospace;font-size:11px;color:#555;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;';
+            const btnStyle = 'font-family:Monaco,\'JetBrains Mono\',monospace;font-size:10px;padding:2px 8px;border:1px solid #ccc;background:white;cursor:pointer;color:#555;flex-shrink:0;';
+            const parts = [];
+            if (td.attended) parts.push(`<div style="margin-top:${hasSetlist?'8px':'0'};padding-top:${hasSetlist?'6px':'0'};border-top:${hasSetlist?'1px solid #eee':'none'};" onclick="event.stopPropagation()"><div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;color:#999;margin-bottom:3px;">attended note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="anote-${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.attended_notes)}</textarea><button onclick="saveEraNote('${s.date}','attended_notes',document.getElementById('anote-${s.date}').value)" style="${btnStyle}">save</button></div></div>`);
+            if (td.listened) parts.push(`<div style="margin-top:8px;padding-top:6px;border-top:1px solid #eee;" onclick="event.stopPropagation()"><div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;color:#999;margin-bottom:3px;">listened note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="lnote-${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.listened_notes)}</textarea><button onclick="saveEraNote('${s.date}','listened_notes',document.getElementById('lnote-${s.date}').value)" style="${btnStyle}">save</button></div></div>`);
+            noteSection = parts.join('');
+        }
+        const hasExpandable = hasSetlist || !!noteSection;
+        return `<div class="era-show-row"${hasExpandable ? ` onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
             <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
             <span class="era-show-venue">${s.venue}</span>
             <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
             ${trackBtns}
-            <span class="era-show-toggle"${hasSetlist ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
+            <span class="era-show-toggle"${hasExpandable ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
         </div>
-        ${hasSetlist ? `<div class="era-show-setlist" id="${id}">${setlistText}</div>` : ''}`;
+        ${hasExpandable ? `<div class="era-show-setlist" id="${id}">${hasSetlist ? setlistText : ''}${noteSection}</div>` : ''}`;
     }).join('');
 }
 
@@ -1725,6 +1736,28 @@ function toggleShowSetlist(id) {
     const tgl = document.getElementById('tgl-' + id);
     const isOpen = el.classList.toggle('open');
     tgl.textContent = isOpen ? '−' : '+';
+    if (isOpen) {
+        el.querySelectorAll('textarea').forEach(ta => {
+            ta.style.height = 'auto';
+            ta.style.height = ta.scrollHeight + 'px';
+        });
+    }
+}
+
+async function saveEraNote(date, field, value) {
+    if (!currentUser || !sbClient) return;
+    const note = value.trim() || null;
+    if (!trackingData[date]) trackingData[date] = { attended: false, listened: false, listened_notes: '', attended_notes: '' };
+    trackingData[date][field] = note || '';
+    const td = trackingData[date];
+    await sbClient.from('show_tracking').upsert(
+        { user_id: currentUser.id, show_date: date, attended: td.attended, listened: td.listened, listened_notes: td.listened_notes || null, attended_notes: td.attended_notes || null },
+        { onConflict: 'user_id,show_date' }
+    );
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = 'saved';
+    setTimeout(() => { btn.textContent = orig; }, 1500);
 }
 
 function toggleEra(id) {
@@ -1965,9 +1998,9 @@ async function doLogout() {
 
 // ─── TRACKING (shows tab) ───────────────────────────────────────────────────
 async function loadTrackingThenBuild() {
-    const { data } = await sbClient.from('show_tracking').select('show_date,attended,listened').eq('user_id', currentUser.id);
+    const { data } = await sbClient.from('show_tracking').select('show_date,attended,listened,listened_notes,attended_notes').eq('user_id', currentUser.id);
     trackingData = {};
-    if (data) for (const row of data) trackingData[row.show_date] = { attended: row.attended, listened: row.listened };
+    if (data) for (const row of data) trackingData[row.show_date] = { attended: row.attended, listened: row.listened, listened_notes: row.listened_notes || '', attended_notes: row.attended_notes || '' };
     trackingLoaded = true;
     buildEras();
     updateErasTrackSection();
@@ -1998,11 +2031,14 @@ async function toggleTracking(date, field) {
     const btn = document.getElementById(`tbtn-${date}-${field}`);
     if (btn) btn.classList.toggle('active', trackingData[date][field]);
     renderTrackStats();
+    const td2 = trackingData[date];
     await sbClient.from('show_tracking').upsert({
         user_id: currentUser.id,
         show_date: date,
-        attended: trackingData[date].attended,
-        listened: trackingData[date].listened,
+        attended: td2.attended,
+        listened: td2.listened,
+        attended_notes: td2.attended_notes || null,
+        listened_notes: td2.listened_notes || null,
     }, { onConflict: 'user_id,show_date' });
 }
 
@@ -2330,13 +2366,13 @@ async function loadUsers() {
 
     const ids = profiles.map(p => p.user_id);
     const { data: tracking } = await sbClient.from('show_tracking')
-        .select('user_id, show_date, attended, listened')
+        .select('user_id, show_date, attended, listened, listened_notes, attended_notes')
         .in('user_id', ids);
 
     const trackingByUser = {};
     if (tracking) for (const row of tracking) {
         if (!trackingByUser[row.user_id]) trackingByUser[row.user_id] = {};
-        trackingByUser[row.user_id][row.show_date] = { attended: row.attended, listened: row.listened };
+        trackingByUser[row.user_id][row.show_date] = { attended: row.attended, listened: row.listened, listened_notes: row.listened_notes || '', attended_notes: row.attended_notes || '' };
     }
 
     usersData = profiles.map(p => ({ ...p, tracking: trackingByUser[p.user_id] || {} }));
@@ -2413,6 +2449,7 @@ function renderUserBody(uid) {
             if (!byYear[y]) byYear[y] = [];
             byYear[y].push(s);
         }
+        const noteField = activeTab === 'listened' ? 'listened_notes' : 'attended_notes';
         listHtml = Object.keys(byYear).sort().map(year => {
             const rows = byYear[year].map(s => {
                 const bestId = BEST_RECORDINGS[s.date];
@@ -2429,15 +2466,18 @@ function renderUserBody(uid) {
                 }
                 setlistText += mainSongs.join('<br>');
                 if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
+                const userNote = profile.tracking[s.date]?.[noteField] || '';
                 const id = `u${uid}-sl-` + s.date.replace(/\W/g, '-');
                 const hasSetlist = s.songs.length > 0;
-                return `<div class="era-show-row"${hasSetlist ? ` onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
+                const hasUserNote = !!userNote;
+                const noteHtml = hasUserNote ? `<div style="margin-bottom:${hasSetlist ? '8px' : '0'};padding-bottom:${hasSetlist ? '6px' : '0'};border-bottom:${hasSetlist ? '1px solid #eee' : 'none'};font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#555;line-height:1.6;white-space:pre-wrap;">${userNote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>` : '';
+                return `<div class="era-show-row"${(hasSetlist || hasUserNote) ? ` onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
                     <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
-                    <span class="era-show-venue">${s.venue}</span>
+                    <span class="era-show-venue">${s.venue}${hasUserNote ? ' <span style="color:#aaa;font-size:10px;" title="user has left a note for this show">[n]</span>' : ''}</span>
                     <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
-                    <span class="era-show-toggle"${hasSetlist ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
+                    <span class="era-show-toggle"${(hasSetlist || hasUserNote) ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
                 </div>
-                ${hasSetlist ? `<div class="era-show-setlist" id="${id}">${setlistText}</div>` : ''}`;
+                ${(hasSetlist || hasUserNote) ? `<div class="era-show-setlist" id="${id}">${noteHtml}${hasSetlist ? setlistText : ''}</div>` : ''}`;
             }).join('');
             return `<div style="margin-bottom:16px;">
                 <div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;font-weight:bold;color:#999;border-bottom:2px solid #eee;padding-bottom:4px;margin-bottom:0;">${year} — ${byYear[year].length} show${byYear[year].length !== 1 ? 's' : ''}</div>
