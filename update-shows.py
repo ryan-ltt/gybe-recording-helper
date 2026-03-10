@@ -306,12 +306,19 @@ def main():
     print()
 
     # ── Step 1b: Retry gybecc for shows with pending setlists ────────────────
-    # These are stubs created earlier from archive.org recordings before gybecc had the page.
-    pending = [s for s in existing if s.get('setlist_pending')]
+    # Includes archive.org stubs (setlist_pending) and any existing shows with no songs
+    # whose year is in the years being checked.
+    checked_years = {('19' if int(y) >= 90 else '20') + y for y in years_to_check}
+    pending = [
+        s for s in existing
+        if s.get('setlist_pending') or (
+            not s.get('songs') and s['date'][:4] in checked_years and s['date'] not in {n['date'] for n in new_shows}
+        )
+    ]
     resolved = {}  # date → {songs, venue}
 
     if pending:
-        print(f'Retrying gybecc setlist for {len(pending)} pending show(s)...')
+        print(f'Retrying gybecc for {len(pending)} show(s) with no setlist...')
         for show in pending:
             date = show['date']
             # Construct gybecc URL: 2026-02-15 → BASE + 26-02-15.html
