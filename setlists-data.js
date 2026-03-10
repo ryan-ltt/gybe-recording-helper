@@ -17329,7 +17329,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2026-03-04",
-    "venue": "men fabrikas loftas, vilnius, lt",
+    "venue": "loftas",
     "songs": [
       "intro",
       "sun is a hole sun is vapors",
@@ -17359,7 +17359,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2026-03-06",
-    "venue": "ck zamek, pozna , pol",
+    "venue": "ck zamek, poznań, pol",
     "songs": [
       "intro",
       "sun is a hole sun is vapors",
