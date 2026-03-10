@@ -830,7 +830,17 @@
         <!-- USERS TAB -->
         <div class="tab-panel" id="tab-users">
             <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 12px 0;">users who have made their profile public. <span id="usersLoginNote" style="display:none">log in and go to <a href="profile/settings.html">settings</a> to make yours public.</span><span id="usersMakePublicNote" style="display:none">go to <a href="profile/settings.html">settings</a> to make yours public.</span></p>
-            <input type="text" class="search-box" id="usersFilter" placeholder="filter by username..." oninput="filterUsers(this.value)" style="margin-bottom:12px;display:none;">
+            <div id="usersControls" style="display:none;margin-bottom:12px;display:none;gap:12px;align-items:center;flex-wrap:wrap;">
+                <input type="text" class="search-box" id="usersFilter" placeholder="filter by username..." oninput="filterUsers(this.value)" style="margin:0;flex:1;min-width:160px;">
+                <div style="display:flex;align-items:center;gap:6px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;">
+                    sort by:
+                    <select id="usersSort" onchange="sortUsers(this.value)" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;border:1px solid #ccc;padding:2px 4px;">
+                        <option value="signup">sign up date</option>
+                        <option value="attended">shows attended</option>
+                        <option value="listened">shows listened</option>
+                    </select>
+                </div>
+            </div>
             <div id="usersContainer"><p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#555;">loading...</p></div>
         </div>
 
@@ -2365,19 +2375,29 @@ async function loadUsers() {
     }
 
     const ids = profiles.map(p => p.user_id);
-    const { data: tracking } = await sbClient.from('show_tracking')
-        .select('user_id, show_date, attended, listened, listened_notes, attended_notes')
-        .in('user_id', ids);
+    const allTracking = [];
+    const PAGE_SIZE = 1000;
+    let from = 0;
+    while (true) {
+        const { data: page } = await sbClient.from('show_tracking')
+            .select('user_id, show_date, attended, listened, listened_notes, attended_notes')
+            .in('user_id', ids)
+            .range(from, from + PAGE_SIZE - 1);
+        if (!page || page.length === 0) break;
+        allTracking.push(...page);
+        if (page.length < PAGE_SIZE) break;
+        from += PAGE_SIZE;
+    }
 
     const trackingByUser = {};
-    if (tracking) for (const row of tracking) {
+    for (const row of allTracking) {
         if (!trackingByUser[row.user_id]) trackingByUser[row.user_id] = {};
         trackingByUser[row.user_id][row.show_date] = { attended: row.attended, listened: row.listened, listened_notes: row.listened_notes || '', attended_notes: row.attended_notes || '' };
     }
 
     usersData = profiles.map(p => ({ ...p, tracking: trackingByUser[p.user_id] || {} }));
 
-    document.getElementById('usersFilter').style.display = '';
+    document.getElementById('usersControls').style.display = 'flex';
     if (!currentUser) {
         document.getElementById('usersLoginNote').style.display = '';
     } else if (currentUser && !profiles.some(p => p.user_id === currentUser.id)) {
@@ -2497,6 +2517,26 @@ function renderUserBody(uid) {
 function switchUserTab(uid, tab) {
     userTabState[uid] = tab;
     renderUserBody(uid);
+}
+
+function sortUsers(by) {
+    const sorted = [...usersData].sort((a, b) => {
+        if (by === 'attended') {
+            const aCount = Object.values(a.tracking).filter(t => t.attended).length;
+            const bCount = Object.values(b.tracking).filter(t => t.attended).length;
+            return bCount - aCount;
+        }
+        if (by === 'listened') {
+            const aCount = Object.values(a.tracking).filter(t => t.listened).length;
+            const bCount = Object.values(b.tracking).filter(t => t.listened).length;
+            return bCount - aCount;
+        }
+        // signup: use original insertion order from DB
+        return usersData.indexOf(a) - usersData.indexOf(b);
+    });
+    renderUsers(sorted);
+    const q = document.getElementById('usersFilter').value;
+    if (q) filterUsers(q);
 }
 
 function filterUsers(query) {
