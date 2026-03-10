@@ -2362,7 +2362,7 @@ async function loadUsers() {
     const container = document.getElementById('usersContainer');
 
     const { data: profiles, error } = sbClient
-        ? await sbClient.from('profiles').select('user_id, username').eq('is_public', true)
+        ? await sbClient.from('profiles').select('user_id, username, created_at').eq('is_public', true).order('created_at', { ascending: true })
         : { data: null, error: 'no client' };
 
     if (error) {
@@ -2511,7 +2511,8 @@ function renderUserBody(uid) {
             <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='attended'?'black':'transparent'};margin-bottom:-2px;${activeTab==='attended'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','attended')">attended (${attendedCount})</button>
             <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='listened'?'black':'transparent'};margin-bottom:-2px;${activeTab==='listened'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','listened')">listened (${listenedCount})</button>
         </div>
-        ${listHtml}`;
+        ${listHtml}
+        ${profile.created_at ? `<div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#aaa;margin-top:16px;">member since ${profile.created_at.slice(0,10)}</div>` : ''}`;
 }
 
 function switchUserTab(uid, tab) {
@@ -2531,8 +2532,8 @@ function sortUsers(by) {
             const bCount = Object.values(b.tracking).filter(t => t.listened).length;
             return bCount - aCount;
         }
-        // signup: use original insertion order from DB
-        return usersData.indexOf(a) - usersData.indexOf(b);
+        // signup: oldest first
+        return new Date(a.created_at || 0) - new Date(b.created_at || 0);
     });
     renderUsers(sorted);
     const q = document.getElementById('usersFilter').value;

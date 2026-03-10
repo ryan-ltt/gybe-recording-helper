@@ -230,6 +230,7 @@
 
         let currentUser = null;
         let currentUsername = null;
+        let currentUserCreatedAt = null;
         let trackingData = {};
         let activeTab = 'attended';
 
@@ -282,6 +283,7 @@
                     <a class="settings-link" href="settings.html">settings</a>
                 </div>
                 <div class="profile-stats">${attendedCount} show${attendedCount !== 1 ? 's' : ''} attended · ${listenedCount} recording${listenedCount !== 1 ? 's' : ''} listened</div>
+                ${currentUserCreatedAt ? `<div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#aaa;margin-top:4px;">member since ${currentUserCreatedAt.slice(0,10)}</div>` : ''}
                 <details class="track-import">
                     <summary>bulk import</summary>
                     <div style="margin-top:10px;">
@@ -504,10 +506,11 @@
                 currentUser = session?.user ?? null;
                 if (currentUser) {
                     const [profileRes, trackingRes] = await Promise.all([
-                        sbClient.from('profiles').select('username').eq('user_id', currentUser.id).single(),
+                        sbClient.from('profiles').select('username, created_at').eq('user_id', currentUser.id).single(),
                         sbClient.from('show_tracking').select('show_date,attended,listened,listened_notes,attended_notes').eq('user_id', currentUser.id)
                     ]);
                     currentUsername = profileRes.data?.username || null;
+                    currentUserCreatedAt = profileRes.data?.created_at || null;
                     trackingData = {};
                     if (trackingRes.data) {
                         for (const row of trackingRes.data) {
