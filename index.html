@@ -1700,11 +1700,13 @@ function renderEraShowList(eraShows, filter) {
         if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
         const id = 'sl-' + s.date.replace(/\W/g, '-');
         const td = trackingData[s.date] || { attended: false, listened: false };
+        const isPast = s.date.replace(/[a-z]$/, '') <= new Date().toISOString().slice(0, 10);
         const listenedBtn = s.recordings.length > 0 ? `<button class="track-btn${td.listened ? ' active' : ''}" id="tbtn-${s.date}-listened" onclick="toggleTracking('${s.date}','listened')">listened</button>` : '';
+        const attendedBtn = isPast ? `<button class="track-btn${td.attended ? ' active' : ''}" id="tbtn-${s.date}-attended" onclick="toggleTracking('${s.date}','attended')">attended</button>` : '';
         const trackBtns = currentUser ? `
             <span class="track-btns" onclick="event.stopPropagation()">
                 ${listenedBtn}
-                <button class="track-btn${td.attended ? ' active' : ''}" id="tbtn-${s.date}-attended" onclick="toggleTracking('${s.date}','attended')">attended</button>
+                ${attendedBtn}
             </span>` : '';
         const hasSetlist = s.songs.length > 0;
         return `<div class="era-show-row"${hasSetlist ? ` onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
