@@ -17090,6 +17090,11 @@ const SETLISTS_DATA = [
         "id": "gybe2025-12-12.original",
         "url": "https://archive.org/details/gybe2025-12-12.original",
         "title": "Godspeed You! Black Emperor, 12 December 2025, Live At Full Of, Beijing"
+      },
+      {
+        "id": "gybe2025-12-12.flac",
+        "url": "https://archive.org/details/gybe2025-12-12.flac",
+        "title": "Godspeed You! Black Emperor Live at Fullof Livehouse on 2025-12-12"
       }
     ]
   },
@@ -17359,7 +17364,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2026-03-06",
-    "venue": "ck zamek, poznań, pol",
+    "venue": "ck zamek, pozna\u0144, pol",
     "songs": [
       "intro",
       "sun is a hole sun is vapors",
