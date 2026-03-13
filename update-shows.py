@@ -321,11 +321,21 @@ def main():
         print(f'Retrying gybecc for {len(pending)} show(s) with no setlist...')
         for show in pending:
             date = show['date']
-            # Construct gybecc URL: 2026-02-15 → BASE + 26-02-15.html
-            gybecc_url = BASE + date[2:4] + date[4:] + '.html'
+            # Try full-year URL first (e.g. 2026-03-10.html), then 2-digit fallback (e.g. 26-03-10.html)
+            urls_to_try = [BASE + date + '.html', BASE + date[2:4] + date[4:] + '.html']
             print(f'  {date} ... ', end='', flush=True)
+            show_html = None
+            for gybecc_url in urls_to_try:
+                try:
+                    show_html = fetch(gybecc_url)
+                    break
+                except Exception:
+                    pass
+            if show_html is None:
+                print('ERROR: page not found')
+                time.sleep(0.15)
+                continue
             try:
-                show_html = fetch(gybecc_url)
                 parsed = parse_show(show_html, date)
                 if parsed['songs']:
                     resolved[date] = {'songs': parsed['songs'], 'venue': parsed['venue']}
