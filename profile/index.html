@@ -156,6 +156,8 @@
             background: white;
             margin-bottom: 12px;
         }
+        .year-group.complete { border-color: #efbf04; }
+        .year-group.complete .year-header:hover { background: #f5f5f5; }
         .year-header {
             display: flex;
             justify-content: space-between;
@@ -237,8 +239,17 @@
 
         // Build a date→show lookup from setlists data
         const showByDate = {};
+        const showsWithRecordingsByYear = {};
+        let totalShowsWithRecordings = 0;
         if (typeof SETLISTS_DATA !== 'undefined') {
-            for (const s of SETLISTS_DATA) showByDate[s.date] = s;
+            for (const s of SETLISTS_DATA) {
+                showByDate[s.date] = s;
+                if (s.recordings && s.recordings.length > 0) {
+                    const y = s.date.slice(0, 4);
+                    showsWithRecordingsByYear[y] = (showsWithRecordingsByYear[y] || 0) + 1;
+                    totalShowsWithRecordings++;
+                }
+            }
         }
 
         function updateHeaderAuth() {
@@ -351,6 +362,7 @@
             }
 
             const noteField = activeTab === 'listened' ? 'listened_notes' : 'attended_notes';
+            const autoOpen = shows.length < 10;
             listEl.innerHTML = Object.keys(byYear).sort().map(year => {
                 const rows = byYear[year].map(s => {
                     const bestId = typeof BEST_RECORDINGS !== 'undefined' ? BEST_RECORDINGS[s.date] : null;
@@ -395,15 +407,18 @@
                     </div>`;
                 }).join('');
                 const count = byYear[year].length;
-                return `<div class="year-group">
+                const totalInYear = activeTab === 'listened' ? (showsWithRecordingsByYear[year] || 0) : null;
+                const countLabel = totalInYear !== null ? `${count} / ${totalInYear} show${totalInYear !== 1 ? 's' : ''}` : `${count} show${count !== 1 ? 's' : ''}`;
+                const complete = totalInYear !== null && totalInYear > 0 && count === totalInYear;
+                return `<div class="year-group${complete ? ' complete' : ''}">
                     <div class="year-header" onclick="toggleYear('y${year}')">
                         <div class="year-label">${year}</div>
                         <div class="year-meta">
-                            <span>${count} show${count !== 1 ? 's' : ''}</span>
-                            <span class="year-toggle" id="ytgl-y${year}">+</span>
+                            <span>${countLabel}</span>
+                            <span class="year-toggle" id="ytgl-y${year}">${autoOpen ? '−' : '+'}</span>
                         </div>
                     </div>
-                    <div class="year-body" id="ybody-y${year}">
+                    <div class="year-body${autoOpen ? ' open' : ''}" id="ybody-y${year}">
                         ${rows}
                     </div>
                 </div>`;
@@ -430,6 +445,7 @@
                 byYear[y].push(v);
             }
 
+            const autoOpen = votesData.length < 10;
             listEl.innerHTML = Object.keys(byYear).sort().map(year => {
                 const votes = byYear[year].sort((a, b) => a.song.localeCompare(b.song));
                 const rows = votes.map(v => {
@@ -447,10 +463,10 @@
                         <div class="year-label">${year}</div>
                         <div class="year-meta">
                             <span>${count} vote${count !== 1 ? 's' : ''}</span>
-                            <span class="year-toggle" id="ytgl-v${year}">+</span>
+                            <span class="year-toggle" id="ytgl-v${year}">${autoOpen ? '−' : '+'}</span>
                         </div>
                     </div>
-                    <div class="year-body" id="ybody-v${year}">
+                    <div class="year-body${autoOpen ? ' open' : ''}" id="ybody-v${year}">
                         ${rows}
                     </div>
                 </div>`;
