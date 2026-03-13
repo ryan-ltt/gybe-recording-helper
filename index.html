@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gybe recording helper</title>
+    <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="config.js" onerror="void 0"></script>
@@ -676,6 +677,108 @@
         .track-row:last-child { border-bottom: none; }
         .track-btns { display: flex; gap: 6px; margin-left: auto; }
 
+        /* Dark mode */
+        html.dark .tabs { border-bottom-color: #2c3e50; }
+        html.dark .tab-btn { background: #1e2a38; border-color: #2c3e50; color: #888; }
+        html.dark .tab-btn.active { background: #e0e0e0; color: #0e1824; }
+        html.dark .tab-btn:hover:not(.active) { background: #253545; color: #e0e0e0; }
+        html.dark .song-tag { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .song-tag:hover { background: #253545; }
+        html.dark .song-tag.selected { background: #e0e0e0; color: #0e1824; }
+        html.dark .find-btn { background: #e0e0e0; color: #0e1824; border-color: #e0e0e0; }
+        html.dark .find-btn:hover { background: #0e1824; color: #e0e0e0; border-color: #e0e0e0; }
+        html.dark .clear-btn { background: #1e2a38; color: #e0e0e0; border-color: #2c3e50; }
+        html.dark .clear-btn:hover { background: #253545; }
+        html.dark .result-show { border-color: #2c3e50; background: #1e2a38; }
+        html.dark .result-show .show-venue { color: #888; }
+        html.dark .result-show .match-count { color: #aaa; }
+        html.dark .result-show .setlist { color: #aaa; }
+        html.dark .result-show .setlist .matched { color: #0e1824; background: #c8a000; }
+        html.dark .recordings a { color: #6aadff; border-bottom-color: #6aadff; }
+        html.dark .recordings a:hover { color: #8fc4ff; border-bottom-color: #8fc4ff; }
+        html.dark .rec-label { color: #888; }
+        html.dark .no-results { color: #888; }
+        html.dark .search-box { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .search-box:focus { background: #0e1824; }
+        html.dark .show-search-box { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .show-search-box:focus { background: #0e1824; }
+        html.dark .show-dropdown { border-color: #2c3e50; background: #1e2a38; }
+        html.dark .show-dropdown-item { color: #e0e0e0; }
+        html.dark .show-dropdown-item:hover { background: #253545; }
+        html.dark .show-dropdown-item.selected-show { background: #e0e0e0; color: #0e1824; }
+        html.dark .listened-section { border-top-color: #2c3e50; }
+        html.dark .upload-btn, html.dark .download-btn { background: #1e2a38; color: #e0e0e0; border-color: #2c3e50; }
+        html.dark .upload-btn:hover, html.dark .download-btn:hover { background: #253545; }
+        html.dark .listened-count { color: #888; }
+        html.dark #discoverGraph { border-color: #2c3e50; background: #0e1824; }
+        html.dark .graph-tooltip { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
+        html.dark .era-block { border-color: #2c3e50; background: #1e2a38; }
+        html.dark .era-header:hover { background: #253545; }
+        html.dark .era-subtitle { color: #888; }
+        html.dark .era-meta { color: #888; }
+        html.dark .era-body { border-top-color: #2c3e50; }
+        html.dark .user-year-group { border-color: #2c3e50; background: #1e2a38; }
+        html.dark .user-year-group.complete { border-color: #efbf04; }
+        html.dark .user-year-header:hover { background: #253545; }
+        html.dark .user-year-meta { color: #888; }
+        html.dark .user-year-body { border-top-color: #2c3e50; }
+        html.dark .era-songs { color: #aaa; }
+        html.dark .era-songs .sig-song { background: #5a4a00; color: #e0e0e0; }
+        html.dark .era-show-row { border-bottom-color: #1e2a38; }
+        html.dark .era-show-venue { color: #888; }
+        html.dark .era-show-recs a { color: #6aadff; border-bottom-color: #6aadff; }
+        html.dark .era-show-recs a:hover { color: #8fc4ff; }
+        html.dark .era-show-toggle { color: #666; }
+        html.dark .era-show-toggle:hover { color: #e0e0e0; }
+        html.dark .era-show-setlist { color: #888; border-bottom-color: #1e2a38; }
+        html.dark .era-filter input { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .era-filter input:focus { background: #0e1824; }
+        html.dark .album-btn { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
+        html.dark .album-btn:hover { background: #253545; }
+        html.dark .album-btn-active { background: #aaa; color: #0e1824; border-color: #aaa; }
+        html.dark .header-btn { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
+        html.dark .header-btn:hover { background: #253545; }
+        html.dark .auth-modal { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
+        html.dark .auth-modal h3 { color: #e0e0e0; }
+        html.dark .auth-field-label { color: #888; }
+        html.dark .auth-modal input[type=text],
+        html.dark .auth-modal input[type=email],
+        html.dark .auth-modal input[type=password] { border-color: #2c3e50; background: #0e1824; color: #e0e0e0; }
+        html.dark .auth-modal input:focus { background: #0e1824; }
+        html.dark .auth-submit { background: #e0e0e0; color: #0e1824; border-color: #e0e0e0; }
+        html.dark .auth-submit:hover { background: #ccc; }
+        html.dark .auth-toggle-row { color: #888; }
+        html.dark .auth-toggle-row a { color: #e0e0e0; }
+        html.dark .auth-close-btn { color: #666; }
+        html.dark .auth-close-btn:hover { color: #e0e0e0; }
+        html.dark .version-card { border-color: #2c3e50; background: #1e2a38; }
+        html.dark .version-card-venue { color: #888; }
+        html.dark .version-card-rec { color: #888; }
+        html.dark .version-card-rec a { color: #6aadff; border-bottom-color: #6aadff; }
+        html.dark .version-card-submitter { color: #666; }
+        html.dark .vote-btn { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
+        html.dark .vote-btn:hover:not(.voted) { background: #253545; }
+        html.dark .vote-btn.voted { background: #e0e0e0; color: #0e1824; }
+        html.dark .vote-count { color: #888; }
+        html.dark .versions-submit-note { color: #888; background: #1e2a38; border-color: #2c3e50; }
+        html.dark .comments-section { background: #0e1824; border-top-color: #2c3e50; }
+        html.dark .comment-author { color: #e0e0e0; }
+        html.dark .comment-body { color: #aaa; }
+        html.dark .comment-time { color: #666; }
+        html.dark .comment-input-row textarea { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .comment-input-row button { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .comment-input-row button:hover { background: #253545; }
+        html.dark .comment-login-prompt { color: #666; }
+        html.dark .add-favourite-btn { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .add-favourite-btn:hover { background: #253545; }
+        html.dark .add-favourite-form { border-color: #2c3e50; }
+        html.dark .track-btn { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .track-btn.active { background: #e0e0e0; color: #0e1824; border-color: #e0e0e0; }
+        html.dark .track-row { border-bottom-color: #1e2a38; }
+        html.dark .toggle-slider { background: #2c3e50; border-color: #2c3e50; }
+        html.dark .toggle-slider:before { background: #aaa; }
+        html.dark .toggle-switch input:checked + .toggle-slider { background: #aaa; border-color: #aaa; }
+
     </style>
 </head>
 <body>
@@ -683,6 +786,7 @@
         <h1>gybe recording helper</h1>
         <div class="header-auth" id="headerAuth">
             <button class="header-btn" onclick="showAuthModal()">log in</button>
+            <button class="header-btn" id="themeToggle" onclick="toggleTheme()" title="toggle dark mode">◑</button>
         </div>
     </header>
 
@@ -1910,11 +2014,17 @@ async function fetchUsername(userId) {
 
 function updateHeaderAuth() {
     const div = document.getElementById('headerAuth');
+    const toggleBtn = `<button class="header-btn" id="themeToggle" onclick="toggleTheme()" title="toggle dark mode">◑</button>`;
     if (currentUser && currentUsername) {
-        div.innerHTML = `<a href="profile/index.html" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button>`;
+        div.innerHTML = `<a href="profile/index.html" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
     } else {
-        div.innerHTML = `<button class="header-btn" onclick="showAuthModal()">log in</button>`;
+        div.innerHTML = `<button class="header-btn" onclick="showAuthModal()">log in</button> ${toggleBtn}`;
     }
+}
+
+function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
 // ─── Auth modal ─────────────────────────────────────────────────────────────

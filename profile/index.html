@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile — gybe recording helper</title>
+    <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="/config.js" onerror="void 0"></script>
@@ -212,6 +213,36 @@
             .header-btn { padding: 6px 12px; }
             .show-date { min-width: 80px; }
         }
+
+        /* Dark mode */
+        html.dark .back-link { color: #e0e0e0; }
+        html.dark .settings-link { color: #888; }
+        html.dark .profile-stats { color: #888; }
+        html.dark .header-btn { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
+        html.dark .header-btn:hover { background: #253545; }
+        html.dark .find-btn { background: #e0e0e0; color: #0e1824; border-color: #e0e0e0; }
+        html.dark .find-btn:hover { background: #0e1824; color: #e0e0e0; border-color: #e0e0e0; }
+        html.dark .tab-btn { color: #888; }
+        html.dark .tab-btn.active { font-weight: bold; border-bottom-color: #e0e0e0; color: #e0e0e0; }
+        html.dark .tab-btn:hover:not(.active) { background: #253545; }
+        html.dark .year-group { border-color: #2c3e50; background: #1e2a38; }
+        html.dark .year-group.complete { border-color: #efbf04; }
+        html.dark .year-header:hover { background: #253545; }
+        html.dark .year-group.complete .year-header:hover { background: #253545; }
+        html.dark .year-label { color: #e0e0e0; }
+        html.dark .year-meta { color: #888; }
+        html.dark .year-body { border-top-color: #2c3e50; }
+        html.dark .era-show-row { border-bottom-color: #1e2a38; color: #e0e0e0; }
+        html.dark .era-show-venue { color: #888; }
+        html.dark .era-show-recs a { color: #6aadff; border-bottom-color: #6aadff; }
+        html.dark .era-show-recs a:hover { color: #8fc4ff; }
+        html.dark .era-show-toggle { color: #666; }
+        html.dark .era-show-toggle:hover { color: #e0e0e0; }
+        html.dark .era-show-setlist { color: #888; border-bottom-color: #1e2a38; }
+        html.dark .empty-state { color: #888; }
+        html.dark .not-logged-in { color: #888; }
+        html.dark details summary { color: #888; }
+        html.dark textarea { background: transparent; color: #aaa; }
     </style>
 </head>
 <body>
@@ -252,12 +283,18 @@
             }
         }
 
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
         function updateHeaderAuth() {
             const div = document.getElementById('headerAuth');
+            const toggleBtn = `<button class="header-btn" onclick="toggleTheme()" title="toggle dark mode">◑</button>`;
             if (currentUser && currentUsername) {
-                div.innerHTML = `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;">${currentUsername}</span> <button class="header-btn" onclick="doLogout()">log out</button>`;
+                div.innerHTML = `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;">${currentUsername}</span> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
             } else {
-                div.innerHTML = `<a class="header-btn" href="../index.html">back to site</a>`;
+                div.innerHTML = `<a class="header-btn" href="../index.html">back to site</a> ${toggleBtn}`;
             }
         }
 

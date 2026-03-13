@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>settings — gybe recording helper</title>
+    <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="/config.js" onerror="void 0"></script>
@@ -113,6 +114,22 @@
             .profile-field input { max-width: 100%; }
             .header-btn { padding: 6px 12px; }
         }
+
+        /* Dark mode */
+        html.dark .back-link { color: #e0e0e0; }
+        html.dark h2 { color: #e0e0e0; }
+        html.dark .profile-section h3 { border-bottom-color: #2c3e50; color: #e0e0e0; }
+        html.dark .profile-field label { color: #888; }
+        html.dark .privacy-label { color: #e0e0e0 !important; }
+        html.dark .profile-field input { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .profile-field input:focus { border-color: #e0e0e0; }
+        html.dark .profile-save-btn { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
+        html.dark .profile-save-btn:hover { background: #253545; }
+        html.dark .profile-msg.ok { color: #6adb6a; }
+        html.dark .not-logged-in { color: #888; }
+        html.dark .header-btn { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
+        html.dark .header-btn:hover { background: #253545; }
+        html.dark p { color: #888; }
     </style>
 </head>
 <body>
@@ -135,12 +152,18 @@
         let currentUsername = null;
         let currentIsPublic = false;
 
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
         function updateHeaderAuth() {
             const div = document.getElementById('headerAuth');
+            const toggleBtn = `<button class="header-btn" onclick="toggleTheme()" title="toggle dark mode">◑</button>`;
             if (currentUser && currentUsername) {
-                div.innerHTML = `<a href="index.html" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button>`;
+                div.innerHTML = `<a href="index.html" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
             } else {
-                div.innerHTML = `<a class="header-btn" href="../index.html">back to site</a>`;
+                div.innerHTML = `<a class="header-btn" href="../index.html">back to site</a> ${toggleBtn}`;
             }
         }
 
@@ -195,7 +218,7 @@
                 <div class="profile-section">
                     <h3>privacy</h3>
                     <div class="profile-field">
-                        <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:black;">
+                        <label class="privacy-label" style="display:flex;align-items:center;gap:8px;font-size:13px;color:black;">
                             <input type="checkbox" id="profilePublic"${currentIsPublic ? ' checked' : ''} style="width:auto;border:none;padding:0;">
                             make my profile public
                         </label>
