@@ -17334,7 +17334,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2026-03-04",
-    "venue": "loftas",
+    "venue": "loftas, vilnius, lt",
     "songs": [
       "intro",
       "sun is a hole sun is vapors",
