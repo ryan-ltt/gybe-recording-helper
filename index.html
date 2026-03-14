@@ -429,7 +429,6 @@
             border-bottom: 1px solid #eee;
             gap: 12px;
         }
-        .era-show-row:last-child { border-bottom: none; }
         .era-show-date { font-weight: bold; white-space: nowrap; }
         .era-show-venue { color: #555; flex: 1; }
         .era-show-recs { white-space: nowrap; }
@@ -679,12 +678,20 @@
 
         .muted { color: #999; }
         .dim { color: #aaa; }
+        .error { color: #c00; }
+        .success { color: #080; }
+        .disabled-label { color: #999; }
+        .secondary-btn { background: white; color: black; }
 
         /* Dark mode */
-        html.dark .muted { color: #667788; }
-        html.dark .dim { color: #778899; }
+        html.dark .muted { color: #8fa8b8; }
+        html.dark .dim { color: #9ab0bc; }
+        html.dark .error { color: #ff6b6b; }
+        html.dark .success { color: #6adb6a; }
+        html.dark .disabled-label { color: #7a90a0; }
+        html.dark .secondary-btn { background: #1e2a38; color: #e0e0e0; }
         html.dark .tabs { border-bottom-color: #2c3e50; }
-        html.dark .tab-btn { background: #1e2a38; border-color: #2c3e50; color: #888; }
+        html.dark .tab-btn { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
         html.dark .tab-btn.active { background: #e0e0e0; color: #0e1824; }
         html.dark .tab-btn:hover:not(.active) { background: #253545; color: #e0e0e0; }
         html.dark .song-tag { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
@@ -695,14 +702,14 @@
         html.dark .clear-btn { background: #1e2a38; color: #e0e0e0; border-color: #2c3e50; }
         html.dark .clear-btn:hover { background: #253545; }
         html.dark .result-show { border-color: #2c3e50; background: #1e2a38; }
-        html.dark .result-show .show-venue { color: #888; }
-        html.dark .result-show .match-count { color: #aaa; }
-        html.dark .result-show .setlist { color: #aaa; }
+        html.dark .result-show .show-venue { color: #eaf2f5; }
+        html.dark .result-show .match-count { color: #9ab0bc; }
+        html.dark .result-show .setlist { color: #9ab0bc; }
         html.dark .result-show .setlist .matched { color: #0e1824; background: #c8a000; }
         html.dark .recordings a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .recordings a:hover { color: #8fc4ff; border-bottom-color: #8fc4ff; }
-        html.dark .rec-label { color: #888; }
-        html.dark .no-results { color: #888; }
+        html.dark .rec-label { color: #eaf2f5; }
+        html.dark .no-results { color: #eaf2f5; }
         html.dark .search-box { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
         html.dark .search-box:focus { background: #0e1824; }
         html.dark .show-search-box { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
@@ -714,28 +721,28 @@
         html.dark .listened-section { border-top-color: #2c3e50; }
         html.dark .upload-btn, html.dark .download-btn { background: #1e2a38; color: #e0e0e0; border-color: #2c3e50; }
         html.dark .upload-btn:hover, html.dark .download-btn:hover { background: #253545; }
-        html.dark .listened-count { color: #888; }
+        html.dark .listened-count { color: #eaf2f5; }
         html.dark #discoverGraph { border-color: #2c3e50; background: #0e1824; }
         html.dark .graph-tooltip { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
         html.dark .era-block { border-color: #2c3e50; background: #1e2a38; }
         html.dark .era-header:hover { background: #253545; }
-        html.dark .era-subtitle { color: #888; }
-        html.dark .era-meta { color: #b0bec5; }
+        html.dark .era-subtitle { color: #eaf2f5; }
+        html.dark .era-meta { color: #eaf2f5; }
         html.dark .era-body { border-top-color: #2c3e50; }
         html.dark .user-year-group { border-color: #2c3e50; background: #1e2a38; }
         html.dark .user-year-group.complete { border-color: #efbf04; }
         html.dark .user-year-header:hover { background: #253545; }
-        html.dark .user-year-meta { color: #888; }
+        html.dark .user-year-meta { color: #eaf2f5; }
         html.dark .user-year-body { border-top-color: #2c3e50; }
-        html.dark .era-songs { color: #aaa; }
+        html.dark .era-songs { color: #9ab0bc; }
         html.dark .era-songs .sig-song { background: #5a4a00; color: #e0e0e0; }
         html.dark .era-show-row { border-bottom-color: #2c3e50; }
-        html.dark .era-show-venue { color: #b0bec5; }
+        html.dark .era-show-venue { color: #eaf2f5; }
         html.dark .era-show-recs a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .era-show-recs a:hover { color: #8fc4ff; }
-        html.dark .era-show-toggle { color: #666; }
+        html.dark .era-show-toggle { color: #8899a6; }
         html.dark .era-show-toggle:hover { color: #e0e0e0; }
-        html.dark .era-show-setlist { color: #b0bec5; border-bottom-color: #2c3e50; }
+        html.dark .era-show-setlist { color: #eaf2f5; border-bottom-color: #2c3e50; }
         html.dark .era-filter input { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
         html.dark .era-filter input:focus { background: #0e1824; }
         html.dark .album-btn { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
@@ -745,35 +752,35 @@
         html.dark .header-btn:hover { background: #253545; }
         html.dark .auth-modal { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
         html.dark .auth-modal h3 { color: #e0e0e0; }
-        html.dark .auth-field-label { color: #888; }
+        html.dark .auth-field-label { color: #eaf2f5; }
         html.dark .auth-modal input[type=text],
         html.dark .auth-modal input[type=email],
         html.dark .auth-modal input[type=password] { border-color: #2c3e50; background: #0e1824; color: #e0e0e0; }
         html.dark .auth-modal input:focus { background: #0e1824; }
         html.dark .auth-submit { background: #e0e0e0; color: #0e1824; border-color: #e0e0e0; }
         html.dark .auth-submit:hover { background: #ccc; }
-        html.dark .auth-toggle-row { color: #888; }
+        html.dark .auth-toggle-row { color: #eaf2f5; }
         html.dark .auth-toggle-row a { color: #e0e0e0; }
-        html.dark .auth-close-btn { color: #666; }
+        html.dark .auth-close-btn { color: #8899a6; }
         html.dark .auth-close-btn:hover { color: #e0e0e0; }
         html.dark .version-card { border-color: #2c3e50; background: #1e2a38; }
-        html.dark .version-card-venue { color: #888; }
-        html.dark .version-card-rec { color: #888; }
+        html.dark .version-card-venue { color: #eaf2f5; }
+        html.dark .version-card-rec { color: #eaf2f5; }
         html.dark .version-card-rec a { color: #6aadff; border-bottom-color: #6aadff; }
-        html.dark .version-card-submitter { color: #666; }
+        html.dark .version-card-submitter { color: #8899a6; }
         html.dark .vote-btn { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
         html.dark .vote-btn:hover:not(.voted) { background: #253545; }
         html.dark .vote-btn.voted { background: #e0e0e0; color: #0e1824; }
-        html.dark .vote-count { color: #888; }
-        html.dark .versions-submit-note { color: #888; background: #1e2a38; border-color: #2c3e50; }
+        html.dark .vote-count { color: #eaf2f5; }
+        html.dark .versions-submit-note { color: #eaf2f5; background: #1e2a38; border-color: #2c3e50; }
         html.dark .comments-section { background: #0e1824; border-top-color: #2c3e50; }
         html.dark .comment-author { color: #e0e0e0; }
-        html.dark .comment-body { color: #aaa; }
-        html.dark .comment-time { color: #666; }
+        html.dark .comment-body { color: #9ab0bc; }
+        html.dark .comment-time { color: #8899a6; }
         html.dark .comment-input-row textarea { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
         html.dark .comment-input-row button { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
         html.dark .comment-input-row button:hover { background: #253545; }
-        html.dark .comment-login-prompt { color: #666; }
+        html.dark .comment-login-prompt { color: #8899a6; }
         html.dark .add-favourite-btn { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
         html.dark .add-favourite-btn:hover { background: #253545; }
         html.dark .add-favourite-form { border-color: #2c3e50; }
@@ -895,7 +902,7 @@
                 <div style="margin-top:10px;">
                     <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:inherit;margin:0 0 8px 0;">shows to exclude from recommendations. paste one date per line (YYYY-MM-DD)</p>
                     <textarea id="listenedPaste" rows="6" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;"></textarea>
-                    <div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#c00;margin:4px 0;" id="listenedPasteError"></div>
+                    <div class="error" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin:4px 0;" id="listenedPasteError"></div>
                     <div style="margin-top:6px;display:flex;align-items:center;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
                         <button class="find-btn" onclick="addListenedDates()">add dates</button>
                         <button class="upload-btn" style="font-size:12px;padding:4px 14px;" onclick="document.getElementById('listenedFile').click()">upload file</button>
@@ -993,7 +1000,7 @@
                             </div>
                             <div style="display:flex;gap:8px;">
                                 <button class="find-btn" onclick="bulkImportTracking()">import</button>
-                                <button class="find-btn" style="background:white;color:black;" onclick="document.getElementById('trackImportFile').click()">upload file</button>
+                                <button class="find-btn secondary-btn" onclick="document.getElementById('trackImportFile').click()">upload file</button>
                                 <input type="file" id="trackImportFile" accept=".txt,.json" style="display:none" onchange="loadTrackFile(this)">
                             </div>
                         </div>
@@ -2077,20 +2084,20 @@ async function sendPasswordReset() {
     if (!sbClient) return;
     const id = document.getElementById('forgotPasswordId').value.trim();
     const msg = document.getElementById('forgotPasswordMsg');
-    if (!id) { msg.style.color = '#c00'; msg.textContent = 'please enter your username or email.'; return; }
+    if (!id) { msg.className = 'error'; msg.textContent = 'please enter your username or email.'; return; }
 
     let email = id;
     if (!id.includes('@')) {
         const { data, error } = await sbClient.from('profiles').select('email').eq('username', id).single();
-        if (error?.code === 'PGRST116' || !data) { msg.style.color = '#c00'; msg.textContent = 'username not found.'; return; }
-        if (!data.email) { msg.style.color = '#c00'; msg.textContent = 'this account has no email address attached. password reset is unavailable.'; return; }
+        if (error?.code === 'PGRST116' || !data) { msg.className = 'error'; msg.textContent = 'username not found.'; return; }
+        if (!data.email) { msg.className = 'error'; msg.textContent = 'this account has no email address attached. password reset is unavailable.'; return; }
         email = data.email;
     }
 
     const redirectTo = window.location.origin + '/profile';
     const { error } = await sbClient.auth.resetPasswordForEmail(email, { redirectTo });
-    if (error) { msg.style.color = '#c00'; msg.textContent = error.message; return; }
-    msg.style.color = '#080';
+    if (error) { msg.className = 'error'; msg.textContent = error.message; return; }
+    msg.className = 'success';
     msg.textContent = 'reset link sent — check your email.';
 }
 
@@ -2498,7 +2505,7 @@ async function loadUsers() {
         : { data: null, error: 'no client' };
 
     if (error) {
-        container.innerHTML = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#c00;">error loading users: ${error.message || JSON.stringify(error)}</p>`;
+        container.innerHTML = `<p class="error" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;">error loading users: ${error.message || JSON.stringify(error)}</p>`;
         return;
     }
     if (!profiles || profiles.length === 0) {
@@ -2616,7 +2623,7 @@ function renderUserBody(uid) {
                     const show = showByDate[v.show_date];
                     const venue = show ? show.venue : '';
                     const date = v.show_date.replace(/[a-z]$/, '');
-                    return `<div class="era-show-row" style="cursor:default;border-bottom:1px solid #eee;">
+                    return `<div class="era-show-row" style="cursor:default;">
                         <span class="era-show-date">${date}</span>
                         <span class="era-show-venue">${v.song}${venue ? ` <span class="dim" style="font-size:10px;">— ${venue}</span>` : ''}</span>
                     </div>`;
@@ -2757,18 +2764,18 @@ document.querySelectorAll('input[name="discoverView"]').forEach(radio => {
         if (radio.value === 'graph' && radio.checked) {
             cb.checked = true;
             cb.disabled = true;
-            cb.parentElement.style.color = '#999';
+            cb.parentElement.classList.add('disabled-label');
             modeRadios.forEach(r => {
                 r.disabled = true;
                 if (r.value === 'similar') r.checked = true;
-                r.parentElement.style.color = '#999';
+                r.parentElement.classList.add('disabled-label');
             });
         } else {
             cb.disabled = false;
-            cb.parentElement.style.color = '';
+            cb.parentElement.classList.remove('disabled-label');
             modeRadios.forEach(r => {
                 r.disabled = false;
-                r.parentElement.style.color = '';
+                r.parentElement.classList.remove('disabled-label');
             });
         }
     });

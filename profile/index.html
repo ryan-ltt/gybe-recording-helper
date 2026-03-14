@@ -216,18 +216,20 @@
 
         .muted { color: #999; }
         .dim { color: #aaa; }
+        .secondary-btn { background: white; color: black; }
 
         /* Dark mode */
-        html.dark .muted { color: #667788; }
-        html.dark .dim { color: #778899; }
+        html.dark .muted { color: #8fa8b8; }
+        html.dark .dim { color: #9ab0bc; }
+        html.dark .secondary-btn { background: #1e2a38; color: #e0e0e0; }
         html.dark .back-link { color: #e0e0e0; }
-        html.dark .settings-link { color: #888; }
-        html.dark .profile-stats { color: #888; }
+        html.dark .settings-link { color: #eaf2f5; }
+        html.dark .profile-stats { color: #eaf2f5; }
         html.dark .header-btn { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
         html.dark .header-btn:hover { background: #253545; }
         html.dark .find-btn { background: #e0e0e0; color: #0e1824; border-color: #e0e0e0; }
         html.dark .find-btn:hover { background: #0e1824; color: #e0e0e0; border-color: #e0e0e0; }
-        html.dark .tab-btn { color: #888; }
+        html.dark .tab-btn { color: #eaf2f5; }
         html.dark .tab-btn.active { font-weight: bold; border-bottom-color: #e0e0e0; color: #e0e0e0; }
         html.dark .tab-btn:hover:not(.active) { background: #253545; }
         html.dark .year-group { border-color: #2c3e50; background: #1e2a38; }
@@ -235,19 +237,19 @@
         html.dark .year-header:hover { background: #253545; }
         html.dark .year-group.complete .year-header:hover { background: #253545; }
         html.dark .year-label { color: #e0e0e0; }
-        html.dark .year-meta { color: #888; }
+        html.dark .year-meta { color: #eaf2f5; }
         html.dark .year-body { border-top-color: #2c3e50; }
-        html.dark .era-show-row { border-bottom-color: #1e2a38; color: #e0e0e0; }
-        html.dark .era-show-venue { color: #b0bec5; }
+        html.dark .era-show-row { border-bottom-color: #2c3e50; color: #e0e0e0; }
+        html.dark .era-show-venue { color: #eaf2f5; }
         html.dark .era-show-recs a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .era-show-recs a:hover { color: #8fc4ff; }
-        html.dark .era-show-toggle { color: #666; }
+        html.dark .era-show-toggle { color: #8899a6; }
         html.dark .era-show-toggle:hover { color: #e0e0e0; }
-        html.dark .era-show-setlist { color: #b0bec5; border-bottom-color: #1e2a38; }
-        html.dark .empty-state { color: #888; }
-        html.dark .not-logged-in { color: #888; }
-        html.dark details summary { color: #888; }
-        html.dark textarea { background: transparent; color: #aaa; }
+        html.dark .era-show-setlist { color: #eaf2f5; border-bottom-color: #1e2a38; }
+        html.dark .empty-state { color: #eaf2f5; }
+        html.dark .not-logged-in { color: #eaf2f5; }
+        html.dark details summary { color: #eaf2f5; }
+        html.dark textarea { background: transparent; color: #9ab0bc; }
     </style>
 </head>
 <body>
@@ -354,7 +356,7 @@
                             </div>
                             <div style="display:flex;gap:8px;">
                                 <button class="find-btn" onclick="bulkImportTracking()">import</button>
-                                <button class="find-btn" style="background:white;color:black;" onclick="document.getElementById('trackImportFile').click()">upload file</button>
+                                <button class="find-btn secondary-btn" onclick="document.getElementById('trackImportFile').click()">upload file</button>
                                 <input type="file" id="trackImportFile" accept=".txt,.json" style="display:none" onchange="loadTrackFile(this)">
                             </div>
                         </div>
@@ -494,7 +496,7 @@
                     const show = showByDate[v.show_date];
                     const venue = show ? show.venue : '';
                     const date = v.show_date.replace(/[a-z]$/, '');
-                    return `<div class="era-show-row" style="cursor:default;border-bottom:1px solid #eee;">
+                    return `<div class="era-show-row" style="cursor:default;">
                         <span class="era-show-date">${date}</span>
                         <span class="era-show-venue">${v.song}${venue ? ` <span class="dim" style="font-size:10px;">— ${venue}</span>` : ''}</span>
                     </div>`;
