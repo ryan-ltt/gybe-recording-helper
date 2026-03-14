@@ -17472,7 +17472,16 @@ const SETLISTS_DATA = [
   {
     "date": "2026-03-13",
     "venue": "arena, wien, au",
-    "songs": [],
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "fire at static valley",
+      "pale spectator takes photographs",
+      "moya",
+      "blaise bailey finnegan III"
+    ],
     "recordings": [],
     "note": "w/ kristof hahn"
   },
