@@ -677,7 +677,12 @@
         .track-row:last-child { border-bottom: none; }
         .track-btns { display: flex; gap: 6px; margin-left: auto; }
 
+        .muted { color: #999; }
+        .dim { color: #aaa; }
+
         /* Dark mode */
+        html.dark .muted { color: #667788; }
+        html.dark .dim { color: #778899; }
         html.dark .tabs { border-bottom-color: #2c3e50; }
         html.dark .tab-btn { background: #1e2a38; border-color: #2c3e50; color: #888; }
         html.dark .tab-btn.active { background: #e0e0e0; color: #0e1824; }
@@ -715,7 +720,7 @@
         html.dark .era-block { border-color: #2c3e50; background: #1e2a38; }
         html.dark .era-header:hover { background: #253545; }
         html.dark .era-subtitle { color: #888; }
-        html.dark .era-meta { color: #888; }
+        html.dark .era-meta { color: #b0bec5; }
         html.dark .era-body { border-top-color: #2c3e50; }
         html.dark .user-year-group { border-color: #2c3e50; background: #1e2a38; }
         html.dark .user-year-group.complete { border-color: #efbf04; }
@@ -724,13 +729,13 @@
         html.dark .user-year-body { border-top-color: #2c3e50; }
         html.dark .era-songs { color: #aaa; }
         html.dark .era-songs .sig-song { background: #5a4a00; color: #e0e0e0; }
-        html.dark .era-show-row { border-bottom-color: #1e2a38; }
-        html.dark .era-show-venue { color: #888; }
+        html.dark .era-show-row { border-bottom-color: #2c3e50; }
+        html.dark .era-show-venue { color: #b0bec5; }
         html.dark .era-show-recs a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .era-show-recs a:hover { color: #8fc4ff; }
         html.dark .era-show-toggle { color: #666; }
         html.dark .era-show-toggle:hover { color: #e0e0e0; }
-        html.dark .era-show-setlist { color: #888; border-bottom-color: #1e2a38; }
+        html.dark .era-show-setlist { color: #b0bec5; border-bottom-color: #2c3e50; }
         html.dark .era-filter input { border-color: #2c3e50; background: #1e2a38; color: #e0e0e0; }
         html.dark .era-filter input:focus { background: #0e1824; }
         html.dark .album-btn { background: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
@@ -817,7 +822,7 @@
             <div id="authSignupForm" style="display:none;">
                 <label class="auth-field-label">username</label>
                 <input type="text" id="authUsername" placeholder="letters, numbers, _ and - only" autocomplete="username">
-                <label class="auth-field-label">email <span style="color:#999;">(optional)</span></label>
+                <label class="auth-field-label">email <span class="muted">(optional)</span></label>
                 <div class="auth-email-warning" id="authEmailWarning">Without an email address you won't be able to reset your password if you forget it.</div>
                 <input type="email" id="authEmail" placeholder="email address" autocomplete="email" oninput="updateEmailWarning()">
                 <label class="auth-field-label">password</label>
@@ -844,7 +849,7 @@
 
         <!-- SONG FINDER TAB -->
         <div class="tab-panel active" id="tab-finder">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 12px 0;">select songs you want to hear, find which shows contain them.</p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 12px 0;">select songs you want to hear, find which shows contain them.</p>
             <div id="albumSections"></div>
             <input type="text" class="search-box" id="songSearch" placeholder="filter songs..." oninput="filterSongs()" style="margin-top:16px;">
             <div class="song-grid" id="songGrid"></div>
@@ -875,10 +880,10 @@
 
         <!-- DISCOVER TAB -->
         <div class="tab-panel" id="tab-discover">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 12px 0;">pick a show you've heard, get recommendations for something as similar, or as different as possible.</p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 12px 0;">pick a show you've heard, get recommendations for something as similar, or as different as possible.</p>
 
             <h2 style="margin-top:0;">seed show</h2>
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:#555;margin:0 0 8px 0;">pick a show to base the search off of.</p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:inherit;margin:0 0 8px 0;">pick a show to base the search off of.</p>
             <div class="show-search-wrap">
                 <input type="text" class="show-search-box" id="showSearch" placeholder="search by date or venue..." oninput="onShowSearch()" onblur="closeDropdown()" autocomplete="off">
                 <div class="show-dropdown" id="showDropdown"></div>
@@ -888,7 +893,7 @@
             <details class="track-import" style="margin-top:16px;">
                 <summary style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;cursor:pointer;user-select:none;">listened list <span class="listened-count" id="listenedCount"></span></summary>
                 <div style="margin-top:10px;">
-                    <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:#555;margin:0 0 8px 0;">shows to exclude from recommendations. paste one date per line (YYYY-MM-DD)</p>
+                    <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:inherit;margin:0 0 8px 0;">shows to exclude from recommendations. paste one date per line (YYYY-MM-DD)</p>
                     <textarea id="listenedPaste" rows="6" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;"></textarea>
                     <div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#c00;margin:4px 0;" id="listenedPasteError"></div>
                     <div style="margin-top:6px;display:flex;align-items:center;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
@@ -926,13 +931,13 @@
 
         <!-- PICKS TAB -->
         <div class="tab-panel" id="tab-picks">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 16px 0;">hand-picked shows worth hearing.</p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 16px 0;">hand-picked shows worth hearing.</p>
             <div id="picksContainer"></div>
         </div>
 
         <!-- VERSIONS TAB -->
         <div class="tab-panel" id="tab-versions">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 12px 0;">community-voted best performances of each song. click a song to see all versions ranked by votes.</p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 12px 0;">community-voted best performances of each song. click a song to see all versions ranked by votes.</p>
             <div id="versionsSongSearch" style="margin-bottom:10px;">
                 <input type="text" class="search-box" id="versionsSearchInput" placeholder="filter songs..." oninput="renderVersionsTab()" style="margin-bottom:0;">
             </div>
@@ -941,10 +946,10 @@
 
         <!-- USERS TAB -->
         <div class="tab-panel" id="tab-users">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 12px 0;">users who have made their profile public. <span id="usersLoginNote" style="display:none">log in and go to <a href="profile/settings.html">settings</a> to make yours public.</span><span id="usersMakePublicNote" style="display:none">go to <a href="profile/settings.html">settings</a> to make yours public.</span></p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 12px 0;">users who have made their profile public. <span id="usersLoginNote" style="display:none">log in and go to <a href="profile/settings.html">settings</a> to make yours public.</span><span id="usersMakePublicNote" style="display:none">go to <a href="profile/settings.html">settings</a> to make yours public.</span></p>
             <div id="usersControls" style="display:none;margin-bottom:12px;display:none;gap:12px;align-items:center;flex-wrap:wrap;">
                 <input type="text" class="search-box" id="usersFilter" placeholder="filter by username..." oninput="filterUsers(this.value)" style="margin:0;flex:1;min-width:160px;">
-                <div style="display:flex;align-items:center;gap:6px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;">
+                <div style="display:flex;align-items:center;gap:6px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;">
                     sort by:
                     <select id="usersSort" onchange="sortUsers(this.value)" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;border:1px solid #ccc;padding:2px 4px;">
                         <option value="signup">sign up date</option>
@@ -953,15 +958,15 @@
                     </select>
                 </div>
             </div>
-            <div id="usersContainer"><p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#555;">loading...</p></div>
+            <div id="usersContainer"><p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:inherit;">loading...</p></div>
         </div>
 
         <!-- TRACK TAB -->
         <!-- ERAS TAB -->
         <div class="tab-panel" id="tab-eras">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;margin:0 0 8px 0;">shows grouped by year. recordings that are bolded are highest quality.</p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 8px 0;">shows grouped by year. recordings that are bolded are highest quality.</p>
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-                <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:#555;display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;">
                     <div class="toggle-switch">
                         <input type="checkbox" id="erasRecordingsOnly" onchange="buildEras()">
                         <span class="toggle-slider"></span>
@@ -969,14 +974,14 @@
                     recordings only
                 </label>
             </div>
-            <p id="erasTrackLoggedOut" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#999;margin:0 0 12px 0;">log in to track shows you've attended or listened to.</p>
+            <p id="erasTrackLoggedOut" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin:0 0 12px 0;" class="muted">log in to track shows you've attended or listened to.</p>
             <div id="erasTrackSection" style="display:none;margin-bottom:12px;">
-                <div id="trackStats" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin-bottom:8px;"></div>
+                <div id="trackStats" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;margin-bottom:8px;"></div>
                 <details class="track-import">
                     <summary style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;cursor:pointer;user-select:none;">bulk import</summary>
                     <div style="margin-top:10px;">
-                        <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:#555;margin:0 0 8px 0;">paste one show date per line (YYYY-MM-DD)</p>
-                        <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:11px;color:#888;margin:0 0 8px 0;">note: the lee's palace late show (apr 24, 2011) is listed as 2011-04-24b</p>
+                        <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:inherit;margin:0 0 8px 0;">paste one show date per line (YYYY-MM-DD)</p>
+                        <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:11px;color:inherit;margin:0 0 8px 0;">note: the lee's palace late show (apr 24, 2011) is listed as 2011-04-24b</p>
                         <textarea id="trackImportInput" rows="6" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14"></textarea>
                         <div style="margin-top:6px;display:flex;flex-direction:column;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
                             <div style="display:flex;align-items:center;gap:8px;">
@@ -992,7 +997,7 @@
                                 <input type="file" id="trackImportFile" accept=".txt,.json" style="display:none" onchange="loadTrackFile(this)">
                             </div>
                         </div>
-                        <div id="trackImportResult" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:#555;"></div>
+                        <div id="trackImportResult" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:inherit;"></div>
                     </div>
                 </details>
             </div>
@@ -1035,7 +1040,7 @@ function buildAlbumSections() {
     const btns = ALBUMS.map(album => {
         const validSongs = album.songs.filter(s => CANONICAL_SONGS.includes(s));
         if (validSongs.length === 0) return '';
-        return `<button class="album-btn" onclick='toggleAlbum(${JSON.stringify(validSongs)}, this)'>${album.name} <span style="color:#999;font-size:11px;">(${album.year})</span></button>`;
+        return `<button class="album-btn" onclick='toggleAlbum(${JSON.stringify(validSongs)}, this)'>${album.name} <span class="muted" style="font-size:11px;">(${album.year})</span></button>`;
     }).join('');
     container.innerHTML = `<div class="song-grid" style="margin-bottom:0;">${btns}</div>`;
 }
@@ -1181,7 +1186,7 @@ function renderShowCard(show, labelHtml, highlightSet) {
         return highlighted ? `<span class="matched">${rawSong}</span>` : rawSong;
     }).join(' &nbsp;·&nbsp; ');
     const thanksSuffix = show.note
-        ? `<div style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:11px;color:#999;margin-top:6px;">${show.note}</div>`
+        ? `<div class="muted" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:11px;margin-top:6px;">${show.note}</div>`
         : '';
 
     const bestId = BEST_RECORDINGS[show.date];
@@ -1271,7 +1276,7 @@ function renderSelectedList() {
     if (selectedOrder.length === 0) { div.innerHTML = ''; return; }
     const orderMode = document.querySelector('input[name="order"]:checked')?.value;
     const numbered = orderMode === 'ordered' || orderMode === 'back-to-back';
-    const dragHint = (numbered && selectedOrder.length > 1) ? '<div style="font-size:11px;color:#999;font-family:Monaco,\'JetBrains Mono\',monospace;margin-bottom:4px;">drag to reorder</div>' : '';
+    const dragHint = (numbered && selectedOrder.length > 1) ? '<div class="muted" style="font-size:11px;font-family:Monaco,\'JetBrains Mono\',monospace;margin-bottom:4px;">drag to reorder</div>' : '';
     div.innerHTML = dragHint + 'selected: ' + selectedOrder.map((s, i) => {
         const label = numbered ? `${i + 1}. ${s}` : s;
         return `<span draggable="true" data-idx="${i}" style="cursor:grab;">${label}</span>`;
@@ -1812,7 +1817,7 @@ function buildEras() {
 function renderEraShowList(eraShows, filter) {
     const f = (filter || '').toLowerCase().trim();
     const filtered = f ? eraShows.filter(s => s.date.includes(f) || s.venue.toLowerCase().includes(f)) : eraShows;
-    if (filtered.length === 0) return '<p style="font-family:Monaco, \'JetBrains Mono\', monospace;font-size:12px;color:#555;">no shows match.</p>';
+    if (filtered.length === 0) return '<p style="font-family:Monaco, \'JetBrains Mono\', monospace;font-size:12px;color:inherit;">no shows match.</p>';
     return filtered.map(s => {
         const bestId = BEST_RECORDINGS[s.date];
         const recsHtml = s.recordings.map((r, i) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${i+1}]</a>`).join('');
@@ -1823,12 +1828,12 @@ function renderEraShowList(eraShows, filter) {
         }
         let setlistText = '';
         if (soundcheckSongs.length > 0) {
-            setlistText += `<span style="color:#999;font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
-                soundcheckSongs.map(song => `<span style="color:#aaa;">${song.replace(/\s*\(soundcheck\)/i, '')}</span>`).join('<br>') +
-                `<br><span style="color:#999;font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
+            setlistText += `<span class="muted" style="font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
+                soundcheckSongs.map(song => `<span class="dim">${song.replace(/\s*\(soundcheck\)/i, '')}</span>`).join('<br>') +
+                `<br><span class="muted" style="font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
         }
         setlistText += mainSongs.join('<br>');
-        if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
+        if (s.note) setlistText += `<br><span class="muted" style="padding-left:16px;font-size:11px;">${s.note}</span>`;
         const id = 'sl-' + s.date.replace(/\W/g, '-');
         const td = trackingData[s.date] || { attended: false, listened: false };
         const isPast = s.date.replace(/[a-z]$/, '') <= new Date().toISOString().slice(0, 10);
@@ -1843,11 +1848,11 @@ function renderEraShowList(eraShows, filter) {
         let noteSection = '';
         if (currentUser) {
             const esc = t => (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-            const noteStyle = 'flex:1;border:none;padding:2px 0;font-family:Monaco,\'JetBrains Mono\',monospace;font-size:11px;color:#555;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;';
-            const btnStyle = 'font-family:Monaco,\'JetBrains Mono\',monospace;font-size:10px;padding:2px 8px;border:1px solid #ccc;background:white;cursor:pointer;color:#555;flex-shrink:0;';
+            const noteStyle = 'flex:1;border:none;padding:2px 0;font-family:Monaco,\'JetBrains Mono\',monospace;font-size:11px;color:inherit;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;';
+            const btnStyle = 'font-family:Monaco,\'JetBrains Mono\',monospace;font-size:10px;padding:2px 8px;border:1px solid #ccc;background:white;cursor:pointer;color:inherit;flex-shrink:0;';
             const parts = [];
-            if (td.attended) parts.push(`<div style="margin-top:${hasSetlist?'8px':'0'};padding-top:${hasSetlist?'6px':'0'};border-top:${hasSetlist?'1px solid #eee':'none'};" onclick="event.stopPropagation()"><div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;color:#999;margin-bottom:3px;">attended note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="anote-${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.attended_notes)}</textarea><button onclick="saveEraNote('${s.date}','attended_notes',document.getElementById('anote-${s.date}').value)" style="${btnStyle}">save</button></div></div>`);
-            if (td.listened) parts.push(`<div style="margin-top:8px;padding-top:6px;border-top:1px solid #eee;" onclick="event.stopPropagation()"><div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;color:#999;margin-bottom:3px;">listened note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="lnote-${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.listened_notes)}</textarea><button onclick="saveEraNote('${s.date}','listened_notes',document.getElementById('lnote-${s.date}').value)" style="${btnStyle}">save</button></div></div>`);
+            if (td.attended) parts.push(`<div style="margin-top:${hasSetlist?'8px':'0'};padding-top:${hasSetlist?'6px':'0'};border-top:${hasSetlist?'1px solid #eee':'none'};" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">attended note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="anote-${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.attended_notes)}</textarea><button onclick="saveEraNote('${s.date}','attended_notes',document.getElementById('anote-${s.date}').value)" style="${btnStyle}">save</button></div></div>`);
+            if (td.listened) parts.push(`<div style="margin-top:8px;padding-top:6px;border-top:1px solid #eee;" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">listened note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="lnote-${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.listened_notes)}</textarea><button onclick="saveEraNote('${s.date}','listened_notes',document.getElementById('lnote-${s.date}').value)" style="${btnStyle}">save</button></div></div>`);
             noteSection = parts.join('');
         }
         const hasExpandable = hasSetlist || !!noteSection;
@@ -1922,7 +1927,7 @@ for (const [sub, parent] of Object.entries(PART_OF)) {
 function renderPicks() {
     const container = document.getElementById('picksContainer');
     if (!RECOMMENDATIONS || RECOMMENDATIONS.length === 0) {
-        container.innerHTML = '<p style="font-family:Monaco, \'JetBrains Mono\', monospace;font-size:12px;color:#555;">no picks yet.</p>';
+        container.innerHTML = '<p style="font-family:Monaco, \'JetBrains Mono\', monospace;font-size:12px;color:inherit;">no picks yet.</p>';
         return;
     }
     const showMap = {};
@@ -1932,7 +1937,7 @@ function renderPicks() {
         if (!show) return '';
         const recId = rec.recordingId || BEST_RECORDINGS[show.date];
         const thanksSuffix = show.note
-            ? `<div style="font-family:Monaco;font-size:11px;color:#999;margin-top:6px;">${show.note}</div>`
+            ? `<div class="muted" style="font-family:Monaco;font-size:11px;margin-top:6px;">${show.note}</div>`
             : '';
         const setlistHtml = show.songs.join(' &nbsp;·&nbsp; ') + thanksSuffix;
         const preferredRec = recId && show.recordings
@@ -1944,7 +1949,7 @@ function renderPicks() {
         const noteId = 'note-' + show.date.replace(/\W/g, '-');
         const noteHtml = rec.note
             ? `<div style="padding:6px 0 2px 0;display:flex;justify-content:space-between;align-items:center;">
-                   <span style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;"><span style="color:#555;">notes</span><span style="color:#bbb;"> (click to expand)</span></span>
+                   <span style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;"><span style="color:inherit;">notes</span><span class="dim"> (click to expand)</span></span>
                    <span class="era-show-toggle" id="tgl-${noteId}">+</span>
                </div>
                <div class="era-show-setlist" id="${noteId}" style="white-space:pre-wrap;">${rec.note}</div>`
@@ -2016,7 +2021,7 @@ function updateHeaderAuth() {
     const div = document.getElementById('headerAuth');
     const toggleBtn = `<button class="header-btn" id="themeToggle" onclick="toggleTheme()" title="toggle dark mode">◑</button>`;
     if (currentUser && currentUsername) {
-        div.innerHTML = `<a href="profile/index.html" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
+        div.innerHTML = `<a href="profile/index.html" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
     } else {
         div.innerHTML = `<button class="header-btn" onclick="showAuthModal()">log in</button> ${toggleBtn}`;
     }
@@ -2251,7 +2256,7 @@ function renderVersionsTab() {
         return !f || song.toLowerCase().includes(f);
     }).map(song => {
         const count = songVoteCounts[song];
-        const badge = count ? ` <span style="font-size:10px;color:#888;">(${count})</span>` : '';
+        const badge = count ? ` <span style="font-size:10px;color:inherit;">(${count})</span>` : '';
         return `<div class="song-tag" onclick='openVersionSong(${JSON.stringify(song)})'>${song}${badge}</div>`;
     }).join('');
     content.innerHTML = tags ? `<div class="song-grid">${tags}</div>` : '<p class="no-results">no songs match.</p>';
@@ -2262,7 +2267,7 @@ async function openVersionSong(song) {
     versionSubmitSelectedDate = null;
     document.getElementById('versionsSongSearch').style.display = 'none';
     const content = document.getElementById('versionsContent');
-    content.innerHTML = `<div class="versions-breadcrumb"><a onclick="closeVersionSong()">← all songs</a></div><p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;">loading...</p>`;
+    content.innerHTML = `<div class="versions-breadcrumb"><a onclick="closeVersionSong()">← all songs</a></div><p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;">loading...</p>`;
     await loadVersionsForSong(song);
 }
 
@@ -2372,7 +2377,7 @@ async function loadVersionsForSong(song) {
 
     // Add new favourite button + collapsible form
     const addFormInner = !currentUser
-        ? `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0;"><a onclick="showAuthModal()" style="cursor:pointer;color:black;text-decoration:underline;">log in</a> to add a favourite.</p>`
+        ? `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;margin:0;"><a onclick="showAuthModal()" style="cursor:pointer;color:black;text-decoration:underline;">log in</a> to add a favourite.</p>`
         : `${userVoteDate ? `<div class="versions-submit-note">you currently voted for ${userVoteDate}. adding a new favourite will move your vote.</div>` : ''}<div class="show-search-wrap" style="max-width:460px;margin-bottom:8px;">
             <input type="text" class="show-search-box" id="versionSubmitSearch" placeholder="search by date or venue..." oninput='onVersionSubmitSearch(${JSON.stringify(song)})' onblur="closeVersionSubmitDropdown()" autocomplete="off">
             <div class="show-dropdown" id="versionSubmitDropdown"></div>
@@ -2497,7 +2502,7 @@ async function loadUsers() {
         return;
     }
     if (!profiles || profiles.length === 0) {
-        container.innerHTML = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#555;">no public profiles yet.</p>`;
+        container.innerHTML = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:inherit;">no public profiles yet.</p>`;
         return;
     }
 
@@ -2544,7 +2549,7 @@ async function loadUsers() {
 function renderUsers(profiles) {
     const container = document.getElementById('usersContainer');
     if (profiles.length === 0) {
-        container.innerHTML = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:#555;">no matching users.</p>`;
+        container.innerHTML = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:inherit;">no matching users.</p>`;
         return;
     }
     container.innerHTML = profiles.map(p => {
@@ -2597,7 +2602,7 @@ function renderUserBody(uid) {
     let listHtml;
     if (activeTab === 'votes') {
         if (votesCount === 0) {
-            listHtml = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0;">no votes yet.</p>`;
+            listHtml = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;margin:0;">no votes yet.</p>`;
         } else {
             const byYear = {};
             for (const v of profile.votes) {
@@ -2613,7 +2618,7 @@ function renderUserBody(uid) {
                     const date = v.show_date.replace(/[a-z]$/, '');
                     return `<div class="era-show-row" style="cursor:default;border-bottom:1px solid #eee;">
                         <span class="era-show-date">${date}</span>
-                        <span class="era-show-venue">${v.song}${venue ? ` <span style="color:#aaa;font-size:10px;">— ${venue}</span>` : ''}</span>
+                        <span class="era-show-venue">${v.song}${venue ? ` <span class="dim" style="font-size:10px;">— ${venue}</span>` : ''}</span>
                     </div>`;
                 }).join('');
                 const count = votes.length;
@@ -2633,7 +2638,7 @@ function renderUserBody(uid) {
             }).join('');
         }
     } else if (shows.length === 0) {
-        listHtml = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0;">no shows marked as ${activeTab}.</p>`;
+        listHtml = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;margin:0;">no shows marked as ${activeTab}.</p>`;
     } else {
         const byYear = {};
         for (const s of shows) {
@@ -2652,20 +2657,20 @@ function renderUserBody(uid) {
                 const soundcheckSongs = s.songs.filter(song => /\(soundcheck\)/i.test(song));
                 let setlistText = '';
                 if (soundcheckSongs.length > 0) {
-                    setlistText += `<span style="color:#999;font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
-                        soundcheckSongs.map(song => `<span style="color:#aaa;">${song.replace(/\s*\(soundcheck\)/i, '')}</span>`).join('<br>') +
-                        `<br><span style="color:#999;font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
+                    setlistText += `<span class="muted" style="font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
+                        soundcheckSongs.map(song => `<span class="dim">${song.replace(/\s*\(soundcheck\)/i, '')}</span>`).join('<br>') +
+                        `<br><span class="muted" style="font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
                 }
                 setlistText += mainSongs.join('<br>');
-                if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
+                if (s.note) setlistText += `<br><span class="muted" style="padding-left:16px;font-size:11px;">${s.note}</span>`;
                 const userNote = profile.tracking[s.date]?.[noteField] || '';
                 const id = `u${uid}-sl-` + s.date.replace(/\W/g, '-');
                 const hasSetlist = s.songs.length > 0;
                 const hasUserNote = !!userNote;
-                const noteHtml = hasUserNote ? `<div style="margin-bottom:${hasSetlist ? '8px' : '0'};padding-bottom:${hasSetlist ? '6px' : '0'};border-bottom:${hasSetlist ? '1px solid #eee' : 'none'};font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#555;line-height:1.6;white-space:pre-wrap;">${userNote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>` : '';
+                const noteHtml = hasUserNote ? `<div style="margin-bottom:${hasSetlist ? '8px' : '0'};padding-bottom:${hasSetlist ? '6px' : '0'};border-bottom:${hasSetlist ? '1px solid #eee' : 'none'};font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:inherit;line-height:1.6;white-space:pre-wrap;">${userNote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>` : '';
                 return `<div class="era-show-row"${(hasSetlist || hasUserNote) ? ` onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
                     <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
-                    <span class="era-show-venue">${s.venue}${hasUserNote ? ' <span style="color:#aaa;font-size:10px;" title="user has left a note for this show">[n]</span>' : ''}</span>
+                    <span class="era-show-venue">${s.venue}${hasUserNote ? ' <span class="dim" style="font-size:10px;" title="user has left a note for this show">[n]</span>' : ''}</span>
                     <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
                     <span class="era-show-toggle"${(hasSetlist || hasUserNote) ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
                 </div>
@@ -2698,7 +2703,7 @@ function renderUserBody(uid) {
             <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='votes'?'black':'transparent'};margin-bottom:-2px;${activeTab==='votes'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','votes')">votes (${votesCount})</button>
         </div>
         ${listHtml}
-        ${profile.created_at ? `<div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#aaa;margin-top:16px;">member since ${profile.created_at.slice(0,10)}</div>` : ''}`;
+        ${profile.created_at ? `<div class="dim" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:16px;">member since ${profile.created_at.slice(0,10)}</div>` : ''}`;
 }
 
 function switchUserTab(uid, tab) {

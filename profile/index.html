@@ -214,7 +214,12 @@
             .show-date { min-width: 80px; }
         }
 
+        .muted { color: #999; }
+        .dim { color: #aaa; }
+
         /* Dark mode */
+        html.dark .muted { color: #667788; }
+        html.dark .dim { color: #778899; }
         html.dark .back-link { color: #e0e0e0; }
         html.dark .settings-link { color: #888; }
         html.dark .profile-stats { color: #888; }
@@ -233,12 +238,12 @@
         html.dark .year-meta { color: #888; }
         html.dark .year-body { border-top-color: #2c3e50; }
         html.dark .era-show-row { border-bottom-color: #1e2a38; color: #e0e0e0; }
-        html.dark .era-show-venue { color: #888; }
+        html.dark .era-show-venue { color: #b0bec5; }
         html.dark .era-show-recs a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .era-show-recs a:hover { color: #8fc4ff; }
         html.dark .era-show-toggle { color: #666; }
         html.dark .era-show-toggle:hover { color: #e0e0e0; }
-        html.dark .era-show-setlist { color: #888; border-bottom-color: #1e2a38; }
+        html.dark .era-show-setlist { color: #b0bec5; border-bottom-color: #1e2a38; }
         html.dark .empty-state { color: #888; }
         html.dark .not-logged-in { color: #888; }
         html.dark details summary { color: #888; }
@@ -292,7 +297,7 @@
             const div = document.getElementById('headerAuth');
             const toggleBtn = `<button class="header-btn" onclick="toggleTheme()" title="toggle dark mode">◑</button>`;
             if (currentUser && currentUsername) {
-                div.innerHTML = `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;">${currentUsername}</span> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
+                div.innerHTML = `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;">${currentUsername}</span> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
             } else {
                 div.innerHTML = `<a class="header-btn" href="../index.html">back to site</a> ${toggleBtn}`;
             }
@@ -332,12 +337,12 @@
                     <a class="settings-link" href="settings.html">settings</a>
                 </div>
                 <div class="profile-stats">${attendedCount} show${attendedCount !== 1 ? 's' : ''} attended · ${listenedCount} recording${listenedCount !== 1 ? 's' : ''} listened</div>
-                ${currentUserCreatedAt ? `<div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#aaa;margin-top:4px;">member since ${currentUserCreatedAt.slice(0,10)}</div>` : ''}
+                ${currentUserCreatedAt ? `<div class="dim" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:4px;">member since ${currentUserCreatedAt.slice(0,10)}</div>` : ''}
                 <details class="track-import">
                     <summary>bulk import</summary>
                     <div style="margin-top:10px;">
-                        <p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#555;margin:0 0 8px 0;">paste one show date per line (YYYY-MM-DD)</p>
-                        <p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#888;margin:0 0 8px 0;">note: the lee's palace late show (apr 24, 2011) is listed as 2011-04-24b</p>
+                        <p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;margin:0 0 8px 0;">paste one show date per line (YYYY-MM-DD)</p>
+                        <p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:inherit;margin:0 0 8px 0;">note: the lee's palace late show (apr 24, 2011) is listed as 2011-04-24b</p>
                         <textarea id="trackImportInput" rows="6" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14"></textarea>
                         <div style="margin-top:6px;display:flex;flex-direction:column;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
                             <div style="display:flex;align-items:center;gap:8px;">
@@ -353,7 +358,7 @@
                                 <input type="file" id="trackImportFile" accept=".txt,.json" style="display:none" onchange="loadTrackFile(this)">
                             </div>
                         </div>
-                        <div id="trackImportResult" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:#555;"></div>
+                        <div id="trackImportResult" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:inherit;"></div>
                     </div>
                 </details>
                 <div class="tab-nav">
@@ -413,12 +418,12 @@
                     }
                     let setlistText = '';
                     if (soundcheckSongs.length > 0) {
-                        setlistText += `<span style="color:#999;font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
-                            soundcheckSongs.map(song => `<span style="color:#aaa;">${song.replace(/\s*\(soundcheck\)/i, '')}</span>`).join('<br>') +
-                            `<br><span style="color:#999;font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
+                        setlistText += `<span class="muted" style="font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
+                            soundcheckSongs.map(song => `<span class="dim">${song.replace(/\s*\(soundcheck\)/i, '')}</span>`).join('<br>') +
+                            `<br><span class="muted" style="font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
                     }
                     setlistText += mainSongs.join('<br>');
-                    if (s.note) setlistText += `<br><span style="color:#999;padding-left:16px;font-size:11px;">${s.note}</span>`;
+                    if (s.note) setlistText += `<br><span class="muted" style="padding-left:16px;font-size:11px;">${s.note}</span>`;
                     const id = 'sl-' + s.date.replace(/\W/g, '-');
                     const hasSetlist = s.songs.length > 0;
                     const existingNote = (trackingData[s.date]?.[noteField] || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -426,15 +431,15 @@
                         <div style="display:flex;align-items:flex-start;gap:6px;">
                             <textarea id="note-${s.date}" placeholder="add a note..."
                                 oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"
-                                style="flex:1;border:none;padding:2px 0;font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#555;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;">${existingNote}</textarea>
+                                style="flex:1;border:none;padding:2px 0;font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:inherit;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;">${existingNote}</textarea>
                             <button onclick="saveNote('${s.date}', '${noteField}', document.getElementById('note-${s.date}').value)"
-                                style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border:1px solid #ccc;background:white;cursor:pointer;color:#555;flex-shrink:0;">save</button>
+                                style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border:1px solid #ccc;background:white;cursor:pointer;color:inherit;flex-shrink:0;">save</button>
                         </div>
                     </div>`;
                     const hasNote = !!(trackingData[s.date]?.[noteField]);
                     return `<div class="era-show-row" onclick="toggleSetlist('${id}')" style="cursor:pointer;">
                         <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
-                        <span class="era-show-venue">${s.venue}${hasNote ? ' <span style="color:#aaa;font-size:10px;" title="you have left a note for this show">[n]</span>' : ''}</span>
+                        <span class="era-show-venue">${s.venue}${hasNote ? ' <span class="dim" style="font-size:10px;" title="you have left a note for this show">[n]</span>' : ''}</span>
                         <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
                         <span class="era-show-toggle" id="tgl-${id}">+</span>
                     </div>
@@ -491,7 +496,7 @@
                     const date = v.show_date.replace(/[a-z]$/, '');
                     return `<div class="era-show-row" style="cursor:default;border-bottom:1px solid #eee;">
                         <span class="era-show-date">${date}</span>
-                        <span class="era-show-venue">${v.song}${venue ? ` <span style="color:#aaa;font-size:10px;">— ${venue}</span>` : ''}</span>
+                        <span class="era-show-venue">${v.song}${venue ? ` <span class="dim" style="font-size:10px;">— ${venue}</span>` : ''}</span>
                     </div>`;
                 }).join('');
                 const count = votes.length;

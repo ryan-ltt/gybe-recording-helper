@@ -110,7 +110,7 @@ html.dark { color-scheme: dark; }
 html.dark body { background-color: #0e1824; color: #e0e0e0; }
 html.dark header { background-color: #0e1824; }
 html.dark h1 { color: #e0e0e0; }
-html.dark p { color: #aaa; }
+html.dark p { color: #b8cdd9; }
 html.dark a { color: #6aadff; }
 html.dark a:hover { color: #8fc4ff; }
 html.dark .button { background-color: #1e2a38; border-color: #2c3e50; color: #e0e0e0; }
