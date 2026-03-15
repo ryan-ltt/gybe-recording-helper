@@ -1153,7 +1153,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "1999-07-24",
-    "venue": "sight &amp; sound festival, perugia, it",
+    "venue": "sight & sound festival, perugia, it",
     "songs": [],
     "recordings": []
   },
@@ -1192,7 +1192,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "1999-07-29",
-    "venue": "gebaede9, \nkoln, ger",
+    "venue": "gebaede9, koln, ger",
     "songs": [
       "dead flag blues",
       "moya",
@@ -1285,7 +1285,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "1999-08-06",
-    "venue": "emmaboda \nfestival, v\u00e4xj\u00f6, swe",
+    "venue": "emmaboda festival, v\u00e4xj\u00f6, swe",
     "songs": [
       "j.l.h. outro",
       "dead metheny",
@@ -1378,7 +1378,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "1999-08-14",
-    "venue": "glocksee, \nhannover, ger",
+    "venue": "glocksee, hannover, ger",
     "songs": [
       "moya",
       "monheim",
@@ -1409,6 +1409,7 @@ const SETLISTS_DATA = [
       "john hughes",
       "blaise bailey finnegan III"
     ],
+    "note": "note : the band was opening for mogwai. the show was delayed for several hours as mogwai were late. some members of godspeed joined mogwai for their last song 'like herod'. here's the band setlist :",
     "recordings": []
   },
   {
@@ -1422,6 +1423,7 @@ const SETLISTS_DATA = [
       "john hughes",
       "blaise bailey finnegan III"
     ],
+    "note": "note : last ever version of the full 'world police'. only the opening section of 'gathering storm' is played on a few shows of this tour",
     "recordings": [
       {
         "id": "gybe1999-09-04.shn",
@@ -1538,8 +1540,8 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the sad mafioso"
     ],
-    "recordings": [],
-    "note": "thanks to dane mills!"
+    "note": "thanks to dane mills!",
+    "recordings": []
   },
   {
     "date": "1999-09-13",
@@ -1646,6 +1648,7 @@ const SETLISTS_DATA = [
       "gathering storm",
       "the sad mafioso"
     ],
+    "note": "note : five minutes intro with drones and some drums and glockenspiel. they close the show with the 'chart #3' tape for a few minutes after 'the sad mafioso'. collaboration with labradford for 'peasy', as for most of the end of the tour",
     "recordings": [
       {
         "id": "gybe1999-09-20",
@@ -1667,6 +1670,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan II",
       "the sad mafioso"
     ],
+    "note": "note : 'nothing's alright in our life' tape from the first album opening the show, segueing into a five minutes drone improvisation similar to the seattle show",
     "recordings": [
       {
         "id": "gybe1999-09-21",
@@ -1697,6 +1701,7 @@ const SETLISTS_DATA = [
       "john hughes",
       "blaise bailey finnegan II"
     ],
+    "note": "note : short, and noisy improvisation with drums to start the show",
     "recordings": [
       {
         "id": "gybe1999-09-22.flacf",
@@ -1723,6 +1728,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan II",
       "the sad mafioso"
     ],
+    "note": "note : longest show, and second largest show of the tour after montreal",
     "recordings": [
       {
         "id": "gybe1999-09-23",
@@ -1811,6 +1817,7 @@ const SETLISTS_DATA = [
       "john hughes",
       "blaise bailey finnegan III"
     ],
+    "note": "note : collaboration with labradford for 'peasy'",
     "recordings": []
   },
   {
@@ -1843,6 +1850,7 @@ const SETLISTS_DATA = [
       "john hughes",
       "blaise bailey finnegan III"
     ],
+    "note": "note : collaboration with labradford on 'peasy'",
     "recordings": [
       {
         "id": "gybe1999-10-01.flacf",
