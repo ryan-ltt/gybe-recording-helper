@@ -2151,6 +2151,7 @@ const SETLISTS_DATA = [
       "gathering storm",
       "blaise bailey finnegan III"
     ],
+    "note": "note : likely incomplete &nbsp; &nbsp; &nbsp;",
     "recordings": []
   },
   {
@@ -2162,7 +2163,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-04-20",
-    "venue": "komm, n&uuml;rnberg, ger",
+    "venue": "komm, n\u00fcrnberg, ger",
     "songs": [],
     "recordings": [],
     "note": "w/ fly pan am"
@@ -2218,7 +2219,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-08-10",
-    "venue": "knitting\nfactory, new york, ny",
+    "venue": "knitting factory, new york, ny",
     "songs": [
       "world police",
       "tazer floyd",
@@ -2227,6 +2228,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : benefit for the 'anthology film archive'. the band played after a couple of movies. there is a break after 'gathering storm' due to a problem with the fire department. first version of 'tazer floyd', a bit faster and&nbsp; without the outro",
     "recordings": [
       {
         "id": "gybe2000-08-10.fixed",
@@ -2237,7 +2239,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-08-11",
-    "venue": "knitting\nfactory, new york, ny",
+    "venue": "knitting factory, new york, ny",
     "songs": [
       "world police",
       "tazer floyd",
@@ -2247,6 +2249,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "monheim"
     ],
+    "note": "note : benefit for the 'anthology film archive'. the band played after a four movies from the canadian film board",
     "recordings": [
       {
         "id": "gybe2000-08-11.fixed",
@@ -2257,7 +2260,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-09-02",
-    "venue": "falconer\nfarm, picton, on",
+    "venue": "falconer farm, picton, on",
     "songs": [
       "world police",
       "tazer floyd",
@@ -2265,11 +2268,12 @@ const SETLISTS_DATA = [
       "gathering storm",
       "blaise bailey finnegan III"
     ],
+    "note": "note : the band played in a barn",
     "recordings": []
   },
   {
     "date": "2000-10-05",
-    "venue": "bloor\ncinema, toronto, on",
+    "venue": "bloor cinema, toronto, on",
     "songs": [
       "chart #3",
       "world police",
@@ -2280,6 +2284,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "gathering storm (part 2)"
     ],
+    "note": "note : the encore starts with noise which could be the intro to 'the sad mafioso but they choose to play the second part of 'gathering storm'. there was no opener, the band played after four movies from the canada film board",
     "recordings": [
       {
         "id": "gybe2000-10-05",
@@ -2302,7 +2307,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-10-07",
-    "venue": "metro,\nchicago, il",
+    "venue": "metro, chicago, il",
     "songs": [
       "moya",
       "world police",
@@ -2313,6 +2318,7 @@ const SETLISTS_DATA = [
       "dead metheny",
       "dead flag blues (outro)"
     ],
+    "note": "note : the encore 'dead metheny' ends with a noise jam which segues into the outro",
     "recordings": [
       {
         "id": "gybe2000-10-07",
@@ -2336,6 +2342,7 @@ const SETLISTS_DATA = [
       "tazer floyd",
       "dead metheny"
     ],
+    "note": "note : the improvisation is about ten minutes of a noisy guitar jam",
     "recordings": [
       {
         "id": "gybe2000-10-08",
@@ -2365,7 +2372,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-10-10",
-    "venue": "4040,\nphiladelphia, pa",
+    "venue": "4040, philadelphia, pa",
     "songs": [
       "moya",
       "world police",
@@ -2383,7 +2390,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-10-25",
-    "venue": "legends,\nvictoria, bc",
+    "venue": "legends, victoria, bc",
     "songs": [
       "moya",
       "world police",
@@ -2397,7 +2404,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-10-26",
-    "venue": "vogue\ntheater, vancouver, bc",
+    "venue": "vogue theater, vancouver, bc",
     "songs": [
       "moya",
       "chart #3",
@@ -2412,7 +2419,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-10-27",
-    "venue": "crocodile\ncafe, seattle, wa (early show)",
+    "venue": "crocodile cafe, seattle, wa (early show)",
     "songs": [
       "improvation",
       "moya",
@@ -2420,6 +2427,7 @@ const SETLISTS_DATA = [
       "12-28-99 (w/ outro)",
       "gathering storm"
     ],
+    "note": "note : early all ages show. the set starts with a noisy drone improvisation with durms",
     "recordings": [
       {
         "id": "gybe2000-10-27.early",
@@ -2430,7 +2438,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-10-28",
-    "venue": "aladdin\ntheater, portland, or",
+    "venue": "aladdin theater, portland, or",
     "songs": [
       "world police",
       "improvisation",
@@ -2441,6 +2449,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan IIII",
       "the dead flag blues outro"
     ],
+    "note": "note : the band tried to re-create the second part of 'world police' but it's far from that. the improvisation is a ten minutes minimal jam which starts with drones and sloppy drum beats",
     "recordings": [
       {
         "id": "gybe2000-10-28",
@@ -2451,7 +2460,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-10-30",
-    "venue": "great\namerican music hall, san fransisco, ca",
+    "venue": "great american music hall, san fransisco, ca",
     "songs": [
       "world police",
       "dead metheny",
@@ -2461,6 +2470,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan IIII",
       "the dead flag blues (outro)"
     ],
+    "note": "note : the band joined mecca normal for the last song of their set. back",
     "recordings": [
       {
         "id": "gybe2000-10-30.flac16",
@@ -2471,7 +2481,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-10-31",
-    "venue": "great\namerican music hall, san fransisco, ca",
+    "venue": "great american music hall, san fransisco, ca",
     "songs": [
       "moya",
       "world police",
@@ -2481,6 +2491,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "12.28.99"
     ],
+    "note": "note : the band joined mecca normal for the last song of their set. for halloween, someone touring with the band starts screaming like a monkey and running in the room creating some confusion in the 'john hughes' intro",
     "recordings": [
       {
         "id": "gybe2000-10-31.gybe2000Matrix",
@@ -2511,7 +2522,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2000-11-01",
-    "venue": "el\nray theater, los angeles, ca",
+    "venue": "el ray theater, los angeles, ca",
     "songs": [
       "improvisation",
       "moya",
@@ -2522,6 +2533,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : the set begins with a ten minutes improvisation with loud drones, drums and some riffs at the end",
     "recordings": [
       {
         "id": "gybe2000-11-01",
@@ -2553,6 +2565,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : first show in japan. setlist was apparently the same as the second night without the '12-28-99' outro",
     "recordings": []
   },
   {
@@ -2568,6 +2581,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : unusual version of '12-28-99 outro' on this tour",
     "recordings": [
       {
         "id": "gybe2000-11-06",
@@ -2591,6 +2605,7 @@ const SETLISTS_DATA = [
       "the dead flag blues (outro)",
       "j.l.h. outro"
     ],
+    "note": "note : intro of '12-28-99' is aborted for a ten minutes improvisation. &nbsp;",
     "recordings": [
       {
         "id": "gybe2000-11-19.SBD",
@@ -2627,6 +2642,7 @@ const SETLISTS_DATA = [
       "3rd part",
       "the dead flag blues (outro)"
     ],
+    "note": "note : rare version of '3rd part' on this tour. &nbsp;",
     "recordings": [
       {
         "id": "gybe2000-11-20.flacf",
@@ -2669,6 +2685,7 @@ const SETLISTS_DATA = [
       "moya",
       "the dead flag blues (outro)"
     ],
+    "note": "note : good show. extended intro to '3rd part' and first version of 'sad mafioso' since october 99",
     "recordings": [
       {
         "id": "gybe2000-11-22.flacf",
@@ -2744,6 +2761,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : aidan did a speech at the beginning of the show. setlist incomplete",
     "recordings": []
   },
   {
@@ -2803,6 +2821,7 @@ const SETLISTS_DATA = [
       "gathering storm",
       "the dead flag blues (outro)"
     ],
+    "note": "note : extended noise jam of 'gathering storm'",
     "recordings": []
   },
   {
@@ -2817,6 +2836,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : 'bbf3' is played without the tape",
     "recordings": []
   },
   {
@@ -2859,6 +2879,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : memorable performance. longest show of 2000. ten minutes opening speech, with efrim reading a manifesto in english about a 'popular republic of montreal run by the people for the people'. the most funny part was roger traducing in french",
     "recordings": [
       {
         "id": "gybe2000-12-10",
