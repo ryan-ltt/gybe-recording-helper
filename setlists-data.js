@@ -6122,6 +6122,7 @@ const SETLISTS_DATA = [
       "gathering storm",
       "the sad mafioso"
     ],
+    "note": "note : first performance of j.l.h. outro since 2002",
     "recordings": [
       {
         "id": "gybe2011-02-20.m300.flac16",
@@ -6145,6 +6146,7 @@ const SETLISTS_DATA = [
       "the cowboy",
       "blaise bailey finnegan III"
     ],
+    "note": "note : last ever performance of 'gamelan', a bit more similar to the album version",
     "recordings": [
       {
         "id": "gybe2011-02-21",
@@ -6210,6 +6212,7 @@ const SETLISTS_DATA = [
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "note : the first performance in japan since november 2001",
     "recordings": []
   },
   {
@@ -6348,6 +6351,7 @@ const SETLISTS_DATA = [
       "the cowboy",
       "blaise bailey finnegan III"
     ],
+    "note": "note : 'albanian' was not played this night due to the risk of structural damage to the venue. the band played with more than 50% of the volume cut off the PA due to complants about the stained glass windows rattling. this show was almost cancelled",
     "recordings": [
       {
         "id": "gybe2011-03-18",
@@ -6467,6 +6471,7 @@ const SETLISTS_DATA = [
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "note : there is a short break after 'albanian' because dave was sick",
     "recordings": [
       {
         "id": "gybe2011-03-26.ca14.flac24",
@@ -6682,6 +6687,7 @@ const SETLISTS_DATA = [
       "moya",
       "the sad mafioso"
     ],
+    "note": "note : ones of the smallest room the band ever played in, 250 capacity",
     "recordings": [
       {
         "id": "gybe2011-04-26.flacf",
