@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 # scrape-gybe.py
-# Run with: python scrape-gybe.py > setlists.json
-# Scrapes gybecc.neocities.org and outputs JSON of all shows with setlists.
+# Scrapes gybecc.neocities.org and outputs / merges setlist data.
+#
+# Usage:
+#   python scrape-gybe.py                        # full scrape, print JSON to stdout
+#   python scrape-gybe.py --year 25              # scrape one year, merge into setlists.json
+#   python scrape-gybe.py --show 2025-03-10      # re-scrape one show, merge into setlists.json
 
 import urllib.request
 import re
 import json
 import time
 import sys
+import os
 import html as html_mod
 
 BASE = 'https://gybecc.neocities.org/gybecc/'
@@ -24,6 +29,10 @@ YEAR_PAGES = [
     '10','11','12','13','14','15','16','17','18','19','20',
     '22','23','24','25','26',
 ]
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+JSON_PATH = os.path.join(SCRIPT_DIR, 'setlists.json')
+DATA_PATH = os.path.join(SCRIPT_DIR, 'setlists-data.js')
 
 def fetch(url):
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -137,9 +146,13 @@ def parse_show(html, date):
     songs = []
 
     # <li> items (old HTML 4 style, may lack closing tags)
-    # Split on <li> and grab text until next tag block
-    for m in re.finditer(r'<li[^>]*>([\s\S]*?)(?=<li|</li|<br|</td|</tr|$)', html, re.I):
+    # Stop at the next <li>, </li>, </td>, or </tr> — but NOT at <br> since some
+    # show pages put notes/credits inside the last <li> after a <br> or <p>.
+    for m in re.finditer(r'<li[^>]*>([\s\S]*?)(?=<li|</li|</td|</tr|$)', html, re.I):
         raw = m.group(1)
+        # Strip everything from the first block-level tag (<p>, <br>) onwards
+        # so inline notes/credits inside the <li> don't bleed into the song name.
+        raw = re.split(r'<(?:p|br)\b', raw, maxsplit=1, flags=re.I)[0]
         text = re.sub(r'\s+', ' ', strip_tags(raw)).strip()
         # Strip trailing "back" link artifact
         text = re.sub(r'\s*back\s*$', '', text, flags=re.I).strip()
@@ -185,50 +198,102 @@ def parse_note(html):
             parts.append(text)
     return '  '.join(parts)
 
+
+def scrape_year(yr, seen_dates):
+    """Scrape one year page, return list of shows."""
+    shows = []
+    url = BASE + yr + '.html'
+    print(f'Year page: {url}', file=sys.stderr)
+    try:
+        html = fetch(url)
+    except Exception as e:
+        print(f'  ERROR: {e}', file=sys.stderr)
+        return shows
+
+    links = extract_show_links(html)
+    print(f'  {len(links)} linked shows found', file=sys.stderr)
+
+    for link in links:
+        date = link['date']
+        if date in seen_dates:
+            continue
+        seen_dates.add(date)
+        print(f'  Fetching {link["url"]}', file=sys.stderr)
+        try:
+            show_html = fetch(link['url'])
+        except Exception as e:
+            print(f'    ERROR: {e}', file=sys.stderr)
+            continue
+        shows.append(parse_show(show_html, date))
+        time.sleep(0.15)
+
+    table_shows = parse_year_page_table(html, yr)
+    added = 0
+    for show in table_shows:
+        if show['date'] not in seen_dates:
+            seen_dates.add(show['date'])
+            shows.append(show)
+            added += 1
+    print(f'  {added} no-setlist shows from table', file=sys.stderr)
+    return shows
+
+
+def merge_and_write(new_shows):
+    """Merge new_shows into setlists.json (overwrite by date), write both output files."""
+    with open(JSON_PATH) as f:
+        existing = json.load(f)
+    by_date = {s['date']: s for s in existing}
+    for show in new_shows:
+        # Preserve existing recordings when overwriting
+        if show['date'] in by_date:
+            show.setdefault('recordings', by_date[show['date']].get('recordings', []))
+        by_date[show['date']] = show
+    merged = sorted(by_date.values(), key=lambda s: s['date'])
+    with open(JSON_PATH, 'w') as f:
+        json.dump(merged, f, indent=2)
+    print(f'Wrote setlists.json ({len(merged)} shows)', file=sys.stderr)
+    with open(DATA_PATH, 'w') as f:
+        f.write('const SETLISTS_DATA = ' + json.dumps(merged, indent=2) + ';\n')
+    print(f'Wrote setlists-data.js', file=sys.stderr)
+
+
 def main():
+    args = sys.argv[1:]
+
+    # --show YYYY-MM-DD  →  re-scrape one show, merge into setlists.json
+    if '--show' in args:
+        idx = args.index('--show')
+        date = args[idx + 1]
+        urls_to_try = [BASE + date + '.html', BASE + date[2:4] + date[4:] + '.html']
+        show_html = None
+        for url in urls_to_try:
+            try:
+                print(f'Fetching {url}', file=sys.stderr)
+                show_html = fetch(url)
+                break
+            except Exception as e:
+                print(f'  {e}', file=sys.stderr)
+        if show_html is None:
+            print('ERROR: show page not found', file=sys.stderr)
+            sys.exit(1)
+        show = parse_show(show_html, date)
+        print(f'  {show["venue"]}  ({len(show["songs"])} songs)', file=sys.stderr)
+        merge_and_write([show])
+        return
+
+    # --year YY  →  scrape one year, merge into setlists.json
+    if '--year' in args:
+        idx = args.index('--year')
+        yr = args[idx + 1]
+        shows = scrape_year(yr, set())
+        merge_and_write(shows)
+        return
+
+    # Default: full scrape, print JSON to stdout
     all_shows = []
     seen_dates = set()
-
     for yr in YEAR_PAGES:
-        url = BASE + yr + '.html'
-        print(f'Year page: {url}', file=sys.stderr)
-        try:
-            html = fetch(url)
-        except Exception as e:
-            print(f'  ERROR: {e}', file=sys.stderr)
-            continue
-
-        # Shows with individual pages (have setlists)
-        links = extract_show_links(html)
-        print(f'  {len(links)} linked shows found', file=sys.stderr)
-
-        for link in links:
-            date = link['date']
-            if date in seen_dates:
-                continue
-            seen_dates.add(date)
-
-            print(f'  Fetching {link["url"]}', file=sys.stderr)
-            try:
-                show_html = fetch(link['url'])
-            except Exception as e:
-                print(f'    ERROR: {e}', file=sys.stderr)
-                continue
-
-            show = parse_show(show_html, date)
-            all_shows.append(show)
-            time.sleep(0.15)  # be polite
-
-        # Shows without individual pages (no setlist)
-        table_shows = parse_year_page_table(html, yr)
-        added = 0
-        for show in table_shows:
-            if show['date'] not in seen_dates:
-                seen_dates.add(show['date'])
-                all_shows.append(show)
-                added += 1
-        print(f'  {added} no-setlist shows from table', file=sys.stderr)
-
+        all_shows.extend(scrape_year(yr, seen_dates))
     all_shows.sort(key=lambda s: s['date'])
     print(json.dumps(all_shows, indent=2))
     print(f'\nDone. {len(all_shows)} shows.', file=sys.stderr)
