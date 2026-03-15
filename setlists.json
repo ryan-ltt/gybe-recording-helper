@@ -6631,10 +6631,25 @@
   },
   {
     "date": "2011-04-24",
-    "venue": "lee's palace (early show), toronto, on",
-    "songs": [],
-    "recordings": [],
-    "note": "no opener"
+    "venue": "lee's palace, toronto, on (early show)",
+    "songs": [
+      "intro",
+      "moya",
+      "albanian",
+      "dead metheny",
+      "chart #3",
+      "world police",
+      "the cowboy",
+      "gathering storm",
+      "sad mafioso"
+    ],
+    "recordings": [
+      {
+        "id": "gybe2011-04-24.early",
+        "url": "https://archive.org/details/gybe2011-04-24.early",
+        "title": "Godspeed You! Black Emperor Live at Lee's Palace (early show) on 2011-04-24"
+      }
+    ]
   },
   {
     "date": "2011-04-24b",
