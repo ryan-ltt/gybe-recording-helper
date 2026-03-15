@@ -215,6 +215,7 @@ const SETLISTS_DATA = [
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "note : opening for Sonic Youth. &nbsp;",
     "recordings": [
       {
         "id": "gybe1998-05-10",
@@ -237,6 +238,7 @@ const SETLISTS_DATA = [
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "note : announced only for an hour the day before the show",
     "recordings": []
   },
   {
@@ -255,6 +257,7 @@ const SETLISTS_DATA = [
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "note : less than ten people were there",
     "recordings": []
   },
   {
@@ -506,7 +509,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "1998-11-18",
-    "venue": "amigo's caf&eacute;, manchester, uk",
+    "venue": "amigo's caf\u00e9, manchester, uk",
     "songs": [],
     "recordings": [],
     "note": "w/ the montgolfier brothers"
@@ -546,6 +549,7 @@ const SETLISTS_DATA = [
       "monheim",
       "steve reich"
     ],
+    "note": "note : the whole performance is also known as \"hung over as the queen in maida vale\"",
     "recordings": [
       {
         "id": "gybe1998-11-22.rebroadcast",
@@ -658,7 +662,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "1998-12-02",
-    "venue": "geb&auml;ude 9, koln, ger",
+    "venue": "geb\u00e4ude 9, koln, ger",
     "songs": [],
     "recordings": []
   },
@@ -670,7 +674,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "1998-12-05",
-    "venue": "la cit&eacute;, rennes, fr",
+    "venue": "la cit\u00e9, rennes, fr",
     "songs": [],
     "recordings": [],
     "note": "transmusicales festival"
