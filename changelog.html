@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>changelog — gybe recording helper</title>
+  <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .header-btn {
+      padding: 4px 10px;
+      background: white;
+      border: 2px solid black;
+      font-family: Monaco, 'JetBrains Mono', monospace;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.1s;
+      text-decoration: none;
+      color: black;
+    }
+    .header-btn:hover { background: #eee; color: black; }
+    html.dark .header-btn { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
+    html.dark .header-btn:hover { background: #eaf2f5; color: #0e1824; }
+
+    .changelog-card {
+      border: 2px solid black;
+      background: white;
+      margin-bottom: 12px;
+      padding: 14px 18px;
+    }
+    .changelog-card .card-timestamp {
+      font-family: Monaco, 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .changelog-section { margin-top: 10px; }
+    .changelog-section .section-label {
+      font-family: Monaco, 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #555;
+      margin-bottom: 4px;
+    }
+    .changelog-section ul { margin: 0; padding-left: 1.2rem; }
+    .changelog-section li {
+      font-family: Monaco, 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .item-date { font-weight: bold; }
+    .item-venue { font-size: 11px; color: #555; margin-left: 6px; }
+    .item-id { font-size: 11px; color: #333; }
+    .item-removed { font-size: 11px; color: #999; }
+    #no-data { color: #555; font-family: Monaco, 'JetBrains Mono', monospace; font-size: 14px; }
+
+    html.dark .changelog-card { background: #1e2a38; border-color: #2c3e50; }
+    html.dark .changelog-card .card-timestamp { color: #eaf2f5; }
+    html.dark .changelog-section .section-label { color: #c8dce6; }
+    html.dark .changelog-section li { color: #c8dce6; }
+    html.dark .item-venue { color: #c8dce6; }
+    html.dark .item-id { color: #c8dce6; }
+    html.dark .item-removed { color: #8aa0b0; }
+    html.dark #no-data { color: #eaf2f5; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>changelog</h1>
+    <div class="nav-buttons">
+      <a class="header-btn" href="index.html">← back</a>
+      <button class="header-btn" onclick="toggleTheme()" title="toggle dark mode">◑</button>
+    </div>
+  </header>
+
+  <main>
+    <p>Automatically updated daily — shows added, recordings added, and dead recordings removed.</p>
+    <div id="changelog-list"><p id="no-data">Loading...</p></div>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const dark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    fetch('changelog.json')
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(entries => {
+        const el = document.getElementById('changelog-list');
+        if (!entries.length) { el.innerHTML = '<p id="no-data">No changelog entries yet.</p>'; return; }
+
+        el.innerHTML = [...entries].reverse().map(entry => {
+          const label = entry.timestamp || entry.date || 'unknown';
+          const sections = [];
+
+          const allNewShows = [...(entry.new_shows || []), ...(entry.resolved_shows || [])];
+          if (allNewShows.length) {
+            const items = allNewShows.map(s =>
+              `<li><span class="item-date">${s.date}</span>${s.venue ? `<span class="item-venue">${s.venue}</span>` : ''}</li>`
+            ).join('');
+            sections.push(`<div class="changelog-section">
+              <div class="section-label">New shows</div>
+              <ul>${items}</ul>
+            </div>`);
+          }
+
+          if (entry.new_recordings?.length) {
+            const items = entry.new_recordings.map(r =>
+              `<li><span class="item-date">${r.show_date}</span>${r.venue ? `<span class="item-venue">${r.venue}</span>` : ''}
+               <br><span class="item-id">${r.id}${r.title ? ` — ${r.title}` : ''}</span></li>`
+            ).join('');
+            sections.push(`<div class="changelog-section">
+              <div class="section-label">New recordings</div>
+              <ul>${items}</ul>
+            </div>`);
+          }
+
+          if (entry.removed_recordings?.length) {
+            const items = entry.removed_recordings.map(r =>
+              `<li><span class="item-date">${r.date}</span>${r.venue ? `<span class="item-venue">${r.venue}</span>` : ''}
+               <br><span class="item-id">${r.id}</span> <span class="item-removed">(removed — 404)</span></li>`
+            ).join('');
+            sections.push(`<div class="changelog-section">
+              <div class="section-label">Removed recordings</div>
+              <ul>${items}</ul>
+            </div>`);
+          }
+
+          if (!sections.length) return '';
+
+          return `<div class="changelog-card">
+            <div class="card-timestamp">${label}</div>
+            ${sections.join('')}
+          </div>`;
+        }).filter(Boolean).join('');
+      })
+      .catch(() => {
+        document.getElementById('no-data').textContent = 'No changelog available yet.';
+      });
+  </script>
+</body>
+</html>

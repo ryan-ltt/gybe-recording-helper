@@ -33,6 +33,7 @@ JSON_PATH = os.path.join(SCRIPT_DIR, 'setlists.json')
 DATA_PATH = os.path.join(SCRIPT_DIR, 'setlists-data.js')
 LAST_RUN_PATH = os.path.join(SCRIPT_DIR, '.last-update')
 LAST_UPDATE_JS = os.path.join(SCRIPT_DIR, 'last-update.js')
+CHANGELOG_PATH = os.path.join(SCRIPT_DIR, 'changelog.json')
 
 # ─── Args ────────────────────────────────────────────────────────────────────
 args = sys.argv[1:]
@@ -189,7 +190,8 @@ def check_recording_live(url):
         return True  # network error — assume live, don't prune
 
 def prune_dead_recordings(shows):
-    """Remove recordings that 404 on archive.org. Returns (pruned_shows, removed_count)."""
+    """Remove recordings that 404 on archive.org. Returns (pruned_shows, removed_list).
+    removed_list entries: {'date', 'venue', 'id'}"""
     removed = []
     for show in shows:
         live = []
@@ -197,11 +199,48 @@ def prune_dead_recordings(shows):
             if check_recording_live(rec['url']):
                 live.append(rec)
             else:
-                removed.append((show['date'], rec['id']))
+                removed.append({'date': show['date'], 'venue': show.get('venue', ''), 'id': rec['id']})
                 print(f'  - [{rec["id"]}] on {show["date"]} is dead (404) — removing')
             time.sleep(0.1)
         show['recordings'] = live
-    return shows, len(removed)
+    return shows, removed
+
+# ─── Changelog ────────────────────────────────────────────────────────────────
+def write_changelog(timestamp, new_shows, rec_updates, pruned, resolved_shows=None):
+    """Append an entry to changelog.json."""
+    entry = {'timestamp': timestamp}
+
+    confirmed_shows = [s for s in new_shows if s.get('songs')]
+    all_new_shows = confirmed_shows + (resolved_shows or [])
+    if all_new_shows:
+        entry['new_shows'] = [
+            {'date': s['date'], 'venue': s['venue']}
+            for s in all_new_shows
+        ]
+
+    if rec_updates:
+        entry['new_recordings'] = [
+            {'show_date': r.get('show_date', date), 'venue': r.get('venue', ''), 'id': r['id'], 'title': r['title']}
+            for date, recs in rec_updates.items()
+            for r in recs
+        ]
+
+    if pruned:
+        entry['removed_recordings'] = pruned  # already {date, venue, id}
+
+    if len(entry) == 1:  # only 'date' key — nothing to record
+        return
+
+    changelog = []
+    if os.path.exists(CHANGELOG_PATH):
+        with open(CHANGELOG_PATH) as f:
+            changelog = json.load(f)
+
+    changelog.append(entry)
+
+    with open(CHANGELOG_PATH, 'w') as f:
+        json.dump(changelog, f, indent=2)
+    print('Wrote changelog.json')
 
 # ─── Archive.org helpers ──────────────────────────────────────────────────────
 def fetch_archive_recordings(extra_filter='', rows=500):
@@ -445,20 +484,21 @@ def main():
             full_years = {('19' if int(y) >= 90 else '20') + y for y in year_args}
             prune_targets = [s for s in merged if s['date'][:4] in full_years]
             rest = [s for s in merged if s['date'][:4] not in full_years]
-            prune_targets, pruned_count = prune_dead_recordings(prune_targets)
+            prune_targets, pruned = prune_dead_recordings(prune_targets)
             merged = sorted(rest + prune_targets, key=lambda s: s['date'])
         else:
-            merged, pruned_count = prune_dead_recordings(merged)
-        if not pruned_count:
+            merged, pruned = prune_dead_recordings(merged)
+        if not pruned:
             print('All recordings live. Everything is up to date.')
             return
-        print(f'Removed {pruned_count} dead recording(s)')
+        print(f'Removed {len(pruned)} dead recording(s)')
         with open(JSON_PATH, 'w') as f:
             json.dump(merged, f, indent=2)
         print(f'Wrote setlists.json ({len(merged)} shows)')
         with open(DATA_PATH, 'w') as f:
             f.write('const SETLISTS_DATA = ' + json.dumps(merged, indent=2) + ';\n')
         print('Wrote setlists-data.js')
+        write_changelog(timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), new_shows=[], rec_updates={}, pruned=pruned)
         return
 
     if new_shows:
@@ -500,12 +540,12 @@ def main():
         full_years = {('19' if int(y) >= 90 else '20') + y for y in year_args}
         prune_targets = [s for s in merged if s['date'][:4] in full_years]
         rest = [s for s in merged if s['date'][:4] not in full_years]
-        prune_targets, pruned_count = prune_dead_recordings(prune_targets)
+        prune_targets, pruned = prune_dead_recordings(prune_targets)
         merged = sorted(rest + prune_targets, key=lambda s: s['date'])
     else:
-        merged, pruned_count = prune_dead_recordings(merged)
-    if pruned_count:
-        print(f'  Removed {pruned_count} dead recording(s)')
+        merged, pruned = prune_dead_recordings(merged)
+    if pruned:
+        print(f'  Removed {len(pruned)} dead recording(s)')
     else:
         print('  All recordings live.')
     print()
@@ -518,11 +558,23 @@ def main():
         f.write('const SETLISTS_DATA = ' + json.dumps(merged, indent=2) + ';\n')
     print(f'Wrote setlists-data.js')
 
-    today = datetime.now().strftime('%Y-%m-%d')
+    now = datetime.now()
+    today = now.strftime('%Y-%m-%d')
     with open(LAST_RUN_PATH, 'w') as f:
         f.write(today)
     with open(LAST_UPDATE_JS, 'w') as f:
         f.write(f'const LAST_UPDATED = {json.dumps(today)};\n')
+
+    # Enrich rec_updates with venue for changelog
+    rec_updates_with_venue = {
+        date: [dict(r, show_date=date, venue=show_by_date.get(date, {}).get('venue', '')) for r in recs]
+        for date, recs in rec_updates.items()
+    }
+    resolved_shows = [
+        {'date': date, 'venue': show_by_date[date].get('venue', '')}
+        for date in resolved
+    ]
+    write_changelog(timestamp=now.strftime('%Y-%m-%d %H:%M:%S'), new_shows=new_shows, rec_updates=rec_updates_with_venue, pruned=pruned, resolved_shows=resolved_shows)
 
 if __name__ == '__main__':
     main()
