@@ -2884,7 +2884,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2001-09-27",
-    "venue": "opera\nhouse, toronto, on",
+    "venue": "opera house, toronto, on",
     "songs": [
       "gathering storm",
       "12.28.99 (w/ outro)",
@@ -2893,6 +2893,7 @@ const SETLISTS_DATA = [
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "note : '12-28-99' has been re-worked. this is the first performance of 'mfr' and the version is similar to the album recording with a faster middle section. the band is well prepared for this tour!",
     "recordings": [
       {
         "id": "gybe2001-09-27",
@@ -2908,7 +2909,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2001-09-28",
-    "venue": "palais\nroyale, toronto, on",
+    "venue": "palais royale, toronto, on",
     "songs": [
       "moya",
       "tazer floyd",
@@ -2917,6 +2918,7 @@ const SETLISTS_DATA = [
       "motherfucker = redeemer",
       "gathering storm"
     ],
+    "note": "note : &nbsp; the 1,2,3,4 before 'john hughes' is replaced by 'shopping is patriotic, world leader's say, 1,2,3,4'. back",
     "recordings": [
       {
         "id": "gybe2001-09-28.flac16",
@@ -2932,7 +2934,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2001-09-29",
-    "venue": "st.andrews\nhall, detroit, mi",
+    "venue": "st.andrews hall, detroit, mi",
     "songs": [
       "tazer floyd",
       "moya",
@@ -2945,7 +2947,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2001-09-30",
-    "venue": "beachland\nballroom, cleveland, oh",
+    "venue": "beachland ballroom, cleveland, oh",
     "songs": [
       "tazer floyd",
       "dead metheny",
@@ -2955,6 +2957,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : versions of 'dead flag blues (outro)' are fast this tour",
     "recordings": [
       {
         "id": "gybe2001-09-30",
@@ -2970,7 +2973,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2001-10-01",
-    "venue": "wexner\nperformance space, columbus, oh",
+    "venue": "wexner performance space, columbus, oh",
     "songs": [
       "the dead flag blues",
       "12.28.99 (w/ outro)",
@@ -2979,11 +2982,12 @@ const SETLISTS_DATA = [
       "motherfucker = redeemer",
       "blaise bailey finnegan III"
     ],
+    "note": "note : the first known and confirmed performance of 'the dead flag blues' after 1999. the song is similar to earlier live version but a bit noisier and louder like most of the other stuff from 2000 and onward. this is the last performance of it until 2010",
     "recordings": []
   },
   {
     "date": "2001-10-02",
-    "venue": "centrum\nhall, chicago, il",
+    "venue": "centrum hall, chicago, il",
     "songs": [
       "moya",
       "tazer floyd",
@@ -2992,6 +2996,7 @@ const SETLISTS_DATA = [
       "gathering storm",
       "motherfucker = redeemer"
     ],
+    "note": "note : Mick Harvey was the original scheduled opener but could not make the show",
     "recordings": [
       {
         "id": "ajc02675_gybe2001-10-02.ajcproject",
@@ -3002,7 +3007,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2001-10-03",
-    "venue": "miramar\ntheater, milwaukee, wi",
+    "venue": "miramar theater, milwaukee, wi",
     "songs": [
       "moya",
       "john hughes",
@@ -3015,7 +3020,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2001-10-29",
-    "venue": "liquid\nroom, shinjuku, tokyo, jp",
+    "venue": "liquid room, shinjuku, tokyo, jp",
     "songs": [
       "tazer floyd",
       "moya",
@@ -3029,7 +3034,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2001-10-30",
-    "venue": "liquid\nroom, shinjuku, tokyo, jp",
+    "venue": "liquid room, shinjuku, tokyo, jp",
     "songs": [
       "12-28-99",
       "tazer floyd",
@@ -3040,6 +3045,7 @@ const SETLISTS_DATA = [
       "moya",
       "the dead flag blues (outro)"
     ],
+    "note": "note : they skip the '12-28-99' outro on this one",
     "recordings": [
       {
         "id": "gybe2001-10-30.VHS-audio",
@@ -3050,7 +3056,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2001-11-01",
-    "venue": "club\nquattro, nagoya, jp",
+    "venue": "club quattro, nagoya, jp",
     "songs": [
       "tazer floyd",
       "moya",
@@ -3059,11 +3065,12 @@ const SETLISTS_DATA = [
       "gathering storm",
       "blaise bailey finnegan III"
     ],
+    "note": "note : last known performance of the '12-28-99' outro until 2010",
     "recordings": []
   },
   {
     "date": "2001-11-02",
-    "venue": "club\nquattro, shinsaibashi, osaka, jp",
+    "venue": "club quattro, shinsaibashi, osaka, jp",
     "songs": [
       "12-28-99",
       "dead metheny",
@@ -3074,6 +3081,7 @@ const SETLISTS_DATA = [
       "moya",
       "dead flag blues (outro)"
     ],
+    "note": "note : their longest performance until 2002. 'gathering storm' is extended&nbsp; with some noise",
     "recordings": [
       {
         "id": "gybe2001-11-02",
@@ -3084,7 +3092,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2002-01-13",
-    "venue": "th\u00e9atre\nla plaza, montr\u00e9al, qc",
+    "venue": "th\u00e9atre la plaza, montr\u00e9al, qc",
     "songs": [
       "gathering storm",
       "dead metheny (w/ outro)",
@@ -3094,6 +3102,7 @@ const SETLISTS_DATA = [
       "tazer floyd",
       "the cowboy (w/ bruce)"
     ],
+    "note": "note : aidan starts each of the four shows with a speech in french. this first night is dedicated against 'police brutality'. the set starts violently with people screaming 'stand up', 'sit down'. most of the songs are re-worked for this tour. each performance of 'dead metheny' from now on contains a new five minutes outro. 'world police' is extented with a new crescendo. the middle part of 'motherfucker=redeemer' is slowed down. this is the first performance of 'the cowboy' since 1998",
     "recordings": [
       {
         "id": "gybe2002-01-13.alt",
@@ -3109,7 +3118,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2002-01-14",
-    "venue": "th\u00e9atre\nla plaza, montr\u00e9al, qc",
+    "venue": "th\u00e9atre la plaza, montr\u00e9al, qc",
     "songs": [
       "tazer floyd",
       "12.28.99",
@@ -3120,6 +3129,7 @@ const SETLISTS_DATA = [
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
+    "note": "note : aidan dedicates the set to 'prisonners of 09-11'. 'the sad mafioso' has been re-worked with some new violin lines",
     "recordings": [
       {
         "id": "gybe2002-01-14",
@@ -3135,7 +3145,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2002-01-15",
-    "venue": "th\u00e9atre\nla plaza, montr\u00e9al, qc",
+    "venue": "th\u00e9atre la plaza, montr\u00e9al, qc",
     "songs": [
       "gathering storm",
       "dead metheny (w/ outro)",
@@ -3146,6 +3156,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the cowboy (w/ aidan)"
     ],
+    "note": "note : aidan dedicates the show 'to the end of time, the start of a community and to pretzel'. dave broke a chord&nbsp; on 'dead metheny' so the band did a ten minutes improvisation. &nbsp;",
     "recordings": [
       {
         "id": "gybe2002-01-15.flacf",
@@ -3161,7 +3172,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2002-01-16",
-    "venue": "th\u00e9atre\nla plaza, montr\u00e9al, qc",
+    "venue": "th\u00e9atre la plaza, montr\u00e9al, qc",
     "songs": [
       "tazer floyd",
       "12.28.99",
@@ -3171,6 +3182,7 @@ const SETLISTS_DATA = [
       "gathering storm",
       "the dead flag blues (outro)"
     ],
+    "note": "note : the set started late as thierry had equipment problems. aidan dedicates the show to the 'defunct tour bus'. 'gathering storm' is extended for a couple of minutes",
     "recordings": [
       {
         "id": "gybe2002-01-16.alt",
@@ -3194,6 +3206,7 @@ const SETLISTS_DATA = [
       "world police",
       "motherfucker = redeemer"
     ],
+    "note": "note : the band got in paris in the after-noon. this set was particularly difficult. aidan does another opening speech in french but it's not quiet clear what he says",
     "recordings": [
       {
         "id": "gybe2002-01-20.TCD-D8",
@@ -3204,7 +3217,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2002-01-22",
-    "venue": "l'\u00e9changeur",
+    "venue": "l'\u00e9changeur, bagnolet, paris, fr",
     "songs": [
       "gathering storm",
       "dead metheny (w/ outro)",
@@ -3216,6 +3229,7 @@ const SETLISTS_DATA = [
       "the dead flag blues (outro)",
       "the sad mafioso"
     ],
+    "note": "note : the improvisation is a shorter 5 min. version of the montreal improvisation",
     "recordings": [
       {
         "id": "gybe2002-01-22.alt",
@@ -3282,6 +3296,7 @@ const SETLISTS_DATA = [
       "moya",
       "the dead flag blues (outro)"
     ],
+    "note": "note : there is an improvisation after the first part of 'gathering storm'. &nbsp;",
     "recordings": [
       {
         "id": "gybe2002-01-24.TCD-D8",
@@ -3314,6 +3329,7 @@ const SETLISTS_DATA = [
       "the dead flag blues (outro)",
       "the cowboy"
     ],
+    "note": "note : their longest known performance! they add 'john hughes' to the set and dedicate the song to yannick who went back to poitiers to bring back some equipment the band forgot",
     "recordings": [
       {
         "id": "gybe2002-01-25.3cd",
@@ -3357,7 +3373,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2002-01-29",
-    "venue": "garage,\nlisboa, por",
+    "venue": "garage, lisboa, por",
     "songs": [
       "gathering storm",
       "dead metheny",
@@ -3367,6 +3383,7 @@ const SETLISTS_DATA = [
       "monheim",
       "moya"
     ],
+    "note": "note : bruce setlist contains four more tracks! monheim was played with the bbf3 tape",
     "recordings": []
   },
   {
@@ -3438,6 +3455,7 @@ const SETLISTS_DATA = [
       "moya",
       "the dead flag blues (outro)"
     ],
+    "note": "note : they planned a third encore 'the sad mafioso' but dave's amp was broke. 'mfr' is extented a bit with a new outro",
     "recordings": [
       {
         "id": "gybe2002-02-05.LOSSY",
@@ -3462,8 +3480,8 @@ const SETLISTS_DATA = [
       "motherfucker=redeemer",
       "the cowboy"
     ],
-    "recordings": [],
-    "note": "thanks to christophe"
+    "note": "thanks to christophe",
+    "recordings": []
   },
   {
     "date": "2002-02-07",
@@ -3477,6 +3495,7 @@ const SETLISTS_DATA = [
       "(?)blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : not confirmed - out of order",
     "recordings": []
   },
   {
@@ -3489,6 +3508,7 @@ const SETLISTS_DATA = [
       "the dead flag blues (outro)",
       "the sad mafioso"
     ],
+    "note": "note : the attendance was&nbsp; over 1500. unknown songs are apparently 12.28.99, tazer floyd and world police",
     "recordings": []
   },
   {
@@ -3503,6 +3523,7 @@ const SETLISTS_DATA = [
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "note : not confirmed - dave broke his amp so they couldn't play a possible third encore",
     "recordings": []
   },
   {
@@ -3510,7 +3531,7 @@ const SETLISTS_DATA = [
     "venue": "link, bologna, it",
     "songs": [],
     "recordings": [],
-    "note": "w/ giardini di mir&ograve;"
+    "note": "w/ giardini di mir\u00f2"
   },
   {
     "date": "2002-02-13",
@@ -3523,6 +3544,7 @@ const SETLISTS_DATA = [
       "motherfucking=redeemer",
       "(?)"
     ],
+    "note": "note : not confirmed - 6 songs",
     "recordings": []
   },
   {
@@ -3574,7 +3596,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2002-03-14",
-    "venue": "&iacute;slenska &oacute;peran, reykjav&iacute;k, ic",
+    "venue": "\u00edslenska \u00f3peran, reykjav\u00edk, ic",
     "songs": [],
     "recordings": []
   },
@@ -3677,6 +3699,7 @@ const SETLISTS_DATA = [
       "the sad mafioso",
       "(?)the dead flag blues (outro)"
     ],
+    "note": "note : not confirmed",
     "recordings": []
   },
   {
@@ -3690,6 +3713,7 @@ const SETLISTS_DATA = [
       "motherfucking=redeemer",
       "blaise bailey finnegan III"
     ],
+    "note": "note : 'bbf3' was played without the tape",
     "recordings": []
   },
   {
@@ -3743,6 +3767,7 @@ const SETLISTS_DATA = [
       "moya",
       "world police"
     ],
+    "note": "note : for the first time, they play the complete 5 minute new outro to 'mfr', it will be played in for most of the april shows. 'dead metheny' is extented for a few minutes",
     "recordings": [
       {
         "id": "gybe2002-03-31.shn",
@@ -3824,7 +3849,7 @@ const SETLISTS_DATA = [
   },
   {
     "date": "2002-04-05",
-    "venue": "vox hall, &aring;rhus, den",
+    "venue": "vox hall, \u00e5rhus, den",
     "songs": [],
     "recordings": []
   },
@@ -3860,6 +3885,7 @@ const SETLISTS_DATA = [
       "motherfucker=redeemer",
       "the sad mafioso + outro"
     ],
+    "note": "note : the new outro of 'mfr' is not played. 'sad mafioso' ends with about five minutes of guitar noises",
     "recordings": [
       {
         "id": "gybe2002-04-08.flac16",
@@ -3922,6 +3948,7 @@ const SETLISTS_DATA = [
       "moya",
       "j.l.h. outro"
     ],
+    "note": "note : last song without dave",
     "recordings": []
   },
   {
@@ -3957,6 +3984,7 @@ const SETLISTS_DATA = [
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
+    "note": "note : there is a short improvisation before 'tazer floyd' with a riff from dave not unlike stuff by 'set fire to flames'. there is a drum oriented improvisation before 'mfr'",
     "recordings": [
       {
         "id": "gybe2002-04-13.TCD-D8",
@@ -4097,6 +4125,7 @@ const SETLISTS_DATA = [
       "world police",
       "the sad mafioso"
     ],
+    "note": "note : the band was headlining the second stage. aidan shouts 'this is for people of jenin' in 'the sad mafioso'",
     "recordings": [
       {
         "id": "gybe2002-04-20",
