@@ -17517,13 +17517,7 @@ const SETLISTS_DATA = [
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": [
-      {
-        "id": "gybe2026-03-08",
-        "url": "https://archive.org/details/gybe2026-03-08",
-        "title": "Godspeed You! Black Emperor Live at Centrum Koncertowe A2 on 2026-03-08"
-      }
-    ]
+    "recordings": []
   },
   {
     "date": "2026-03-09",

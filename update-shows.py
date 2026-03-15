@@ -176,6 +176,33 @@ def parse_note(html):
             parts.append(text)
     return '  '.join(parts)
 
+# ─── Dead recording pruner ────────────────────────────────────────────────────
+def check_recording_live(url):
+    """Return True if the archive.org URL resolves (not 404)."""
+    try:
+        req = urllib.request.Request(url, method='HEAD', headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status < 400
+    except urllib.error.HTTPError as e:
+        return e.code != 404
+    except Exception:
+        return True  # network error — assume live, don't prune
+
+def prune_dead_recordings(shows):
+    """Remove recordings that 404 on archive.org. Returns (pruned_shows, removed_count)."""
+    removed = []
+    for show in shows:
+        live = []
+        for rec in show.get('recordings', []):
+            if check_recording_live(rec['url']):
+                live.append(rec)
+            else:
+                removed.append((show['date'], rec['id']))
+                print(f'  - [{rec["id"]}] on {show["date"]} is dead (404) — removing')
+            time.sleep(0.1)
+        show['recordings'] = live
+    return shows, len(removed)
+
 # ─── Archive.org helpers ──────────────────────────────────────────────────────
 def fetch_archive_recordings(extra_filter='', rows=500):
     """Fetch GYBE recordings from archive.org, optionally filtered (e.g. by addeddate)."""
@@ -412,7 +439,26 @@ def main():
     total_new_recs = sum(len(v) for v in rec_updates.values())
 
     if not new_shows and not new_stubs and not rec_updates and not resolved:
-        print('Nothing new found. Everything is up to date.')
+        print('Nothing new to add. Checking for dead recordings...')
+        merged = sorted(existing, key=lambda s: s['date'])
+        if year_args:
+            full_years = {('19' if int(y) >= 90 else '20') + y for y in year_args}
+            prune_targets = [s for s in merged if s['date'][:4] in full_years]
+            rest = [s for s in merged if s['date'][:4] not in full_years]
+            prune_targets, pruned_count = prune_dead_recordings(prune_targets)
+            merged = sorted(rest + prune_targets, key=lambda s: s['date'])
+        else:
+            merged, pruned_count = prune_dead_recordings(merged)
+        if not pruned_count:
+            print('All recordings live. Everything is up to date.')
+            return
+        print(f'Removed {pruned_count} dead recording(s)')
+        with open(JSON_PATH, 'w') as f:
+            json.dump(merged, f, indent=2)
+        print(f'Wrote setlists.json ({len(merged)} shows)')
+        with open(DATA_PATH, 'w') as f:
+            f.write('const SETLISTS_DATA = ' + json.dumps(merged, indent=2) + ';\n')
+        print('Wrote setlists-data.js')
         return
 
     if new_shows:
@@ -447,6 +493,22 @@ def main():
         show.pop('setlist_pending', None)
 
     merged = sorted(existing + new_shows + list(new_stubs.values()), key=lambda s: s['date'])
+
+    # ── Step 4: Prune dead recordings ─────────────────────────────────────────
+    print('Checking for dead recordings on archive.org...')
+    if year_args:
+        full_years = {('19' if int(y) >= 90 else '20') + y for y in year_args}
+        prune_targets = [s for s in merged if s['date'][:4] in full_years]
+        rest = [s for s in merged if s['date'][:4] not in full_years]
+        prune_targets, pruned_count = prune_dead_recordings(prune_targets)
+        merged = sorted(rest + prune_targets, key=lambda s: s['date'])
+    else:
+        merged, pruned_count = prune_dead_recordings(merged)
+    if pruned_count:
+        print(f'  Removed {pruned_count} dead recording(s)')
+    else:
+        print('  All recordings live.')
+    print()
 
     with open(JSON_PATH, 'w') as f:
         json.dump(merged, f, indent=2)
