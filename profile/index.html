@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="/config.js" onerror="void 0"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="/setlists-data.js"></script>
     <script src="/best-recordings.js"></script>
     <link rel="stylesheet" href="/index.css">
     <style>
@@ -279,16 +278,6 @@
         const showByDate = {};
         const showsWithRecordingsByYear = {};
         let totalShowsWithRecordings = 0;
-        if (typeof SETLISTS_DATA !== 'undefined') {
-            for (const s of SETLISTS_DATA) {
-                showByDate[s.date] = s;
-                if (s.recordings && s.recordings.length > 0) {
-                    const y = s.date.slice(0, 4);
-                    showsWithRecordingsByYear[y] = (showsWithRecordingsByYear[y] || 0) + 1;
-                    totalShowsWithRecordings++;
-                }
-            }
-        }
 
         function toggleTheme() {
             const isDark = document.documentElement.classList.toggle('dark');
@@ -606,31 +595,41 @@
         }
 
         // Init
-        if (sbClient) {
-            sbClient.auth.getSession().then(async ({ data: { session } }) => {
-                currentUser = session?.user ?? null;
-                if (currentUser) {
-                    const [profileRes, trackingRes, votesRes] = await Promise.all([
-                        sbClient.from('profiles').select('username, created_at').eq('user_id', currentUser.id).single(),
-                        sbClient.from('show_tracking').select('show_date,attended,listened,listened_notes,attended_notes').eq('user_id', currentUser.id),
-                        sbClient.from('votes').select('song, show_date').eq('user_id', currentUser.id)
-                    ]);
-                    currentUsername = profileRes.data?.username || null;
-                    currentUserCreatedAt = profileRes.data?.created_at || null;
-                    trackingData = {};
-                    if (trackingRes.data) {
-                        for (const row of trackingRes.data) {
-                            trackingData[row.show_date] = { attended: row.attended, listened: row.listened, listened_notes: row.listened_notes || '', attended_notes: row.attended_notes || '' };
-                        }
-                    }
-                    votesData = votesRes.data || [];
+        fetch('/setlists.json').then(r => r.json()).then(setlistsData => {
+            for (const s of setlistsData) {
+                showByDate[s.date] = s;
+                if (s.recordings && s.recordings.length > 0) {
+                    const y = s.date.slice(0, 4);
+                    showsWithRecordingsByYear[y] = (showsWithRecordingsByYear[y] || 0) + 1;
+                    totalShowsWithRecordings++;
                 }
-                updateHeaderAuth();
+            }
+            if (sbClient) {
+                sbClient.auth.getSession().then(async ({ data: { session } }) => {
+                    currentUser = session?.user ?? null;
+                    if (currentUser) {
+                        const [profileRes, trackingRes, votesRes] = await Promise.all([
+                            sbClient.from('profiles').select('username, created_at').eq('user_id', currentUser.id).single(),
+                            sbClient.from('show_tracking').select('show_date,attended,listened,listened_notes,attended_notes').eq('user_id', currentUser.id),
+                            sbClient.from('votes').select('song, show_date').eq('user_id', currentUser.id)
+                        ]);
+                        currentUsername = profileRes.data?.username || null;
+                        currentUserCreatedAt = profileRes.data?.created_at || null;
+                        trackingData = {};
+                        if (trackingRes.data) {
+                            for (const row of trackingRes.data) {
+                                trackingData[row.show_date] = { attended: row.attended, listened: row.listened, listened_notes: row.listened_notes || '', attended_notes: row.attended_notes || '' };
+                            }
+                        }
+                        votesData = votesRes.data || [];
+                    }
+                    updateHeaderAuth();
+                    renderProfile();
+                });
+            } else {
                 renderProfile();
-            });
-        } else {
-            renderProfile();
-        }
+            }
+        });
     </script>
 </body>
 </html>

@@ -32,7 +32,6 @@ YEAR_PAGES = [
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_PATH = os.path.join(SCRIPT_DIR, 'setlists.json')
-DATA_PATH = os.path.join(SCRIPT_DIR, 'setlists-data.js')
 
 def fetch(url):
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -252,9 +251,6 @@ def merge_and_write(new_shows):
     with open(JSON_PATH, 'w') as f:
         json.dump(merged, f, indent=2)
     print(f'Wrote setlists.json ({len(merged)} shows)', file=sys.stderr)
-    with open(DATA_PATH, 'w') as f:
-        f.write('const SETLISTS_DATA = ' + json.dumps(merged, indent=2) + ';\n')
-    print(f'Wrote setlists-data.js', file=sys.stderr)
 
 
 def main():

@@ -20,7 +20,6 @@ import os
 BASE = 'https://gybecc.neocities.org/gybecc/'
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_PATH = os.path.join(SCRIPT_DIR, 'setlists.json')
-DATA_PATH = os.path.join(SCRIPT_DIR, 'setlists-data.js')
 
 YEAR_PAGES = [
     '95','96','97','98','99',
@@ -211,10 +210,6 @@ def main():
     with open(JSON_PATH, 'w') as f:
         json.dump(merged, f, indent=2)
     print(f'\nWrote setlists.json')
-
-    with open(DATA_PATH, 'w') as f:
-        f.write('const SETLISTS_DATA = ' + json.dumps(merged, indent=2) + ';\n')
-    print(f'Wrote setlists-data.js')
 
 if __name__ == '__main__':
     main()

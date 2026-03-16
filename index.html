@@ -1012,7 +1012,6 @@
         </div>
     </main>
 
-    <script src="setlists-data.js"></script>
     <script src="best-recordings.js"></script>
     <script>
 // ─── Canonical songs ───────────────────────────────────────────────────────
@@ -1159,7 +1158,6 @@ let showsWithRecordingsByYear = {}; // year → count of shows with recordings
 let totalShowsWithRecordings = 0;
 
 function buildIndex() {
-    shows = SETLISTS_DATA;
     showIndex = {};
     showSongSets = [];
     showByDate = {};
@@ -1938,7 +1936,7 @@ function renderPicks() {
         return;
     }
     const showMap = {};
-    for (const s of SETLISTS_DATA) showMap[s.date] = s;
+    for (const s of shows) showMap[s.date] = s;
     container.innerHTML = RECOMMENDATIONS.map(rec => {
         const show = showMap[rec.date];
         if (!show) return '';
@@ -1979,12 +1977,15 @@ let trackingLoaded = false;
 let currentUser = null;
 let currentUsername = null;
 
-buildIndex();
-buildAlbumSections();
-renderSongGrid();
-buildEras();
-renderPicks();
-updateErasTrackSection();
+fetch('setlists.json').then(r => r.json()).then(data => {
+    shows = data;
+    buildIndex();
+    buildAlbumSections();
+    renderSongGrid();
+    buildEras();
+    renderPicks();
+    updateErasTrackSection();
+});
 
 // ─── Supabase init ─────────────────────────────────────────────────────────
 const _SB_URL = typeof SUPABASE_URL !== 'undefined' ? SUPABASE_URL : 'https://jouivrvbgyqtyvrrcwcs.supabase.co';

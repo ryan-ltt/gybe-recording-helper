@@ -30,7 +30,6 @@ ARCHIVE_SEARCH = 'https://archive.org/advancedsearch.php'
 ARCHIVE_META = 'https://archive.org/metadata/'
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_PATH = os.path.join(SCRIPT_DIR, 'setlists.json')
-DATA_PATH = os.path.join(SCRIPT_DIR, 'setlists-data.js')
 LAST_RUN_PATH = os.path.join(SCRIPT_DIR, '.last-update')
 LAST_UPDATE_JS = os.path.join(SCRIPT_DIR, 'last-update.js')
 CHANGELOG_PATH = os.path.join(SCRIPT_DIR, 'changelog.json')
@@ -495,9 +494,6 @@ def main():
         with open(JSON_PATH, 'w') as f:
             json.dump(merged, f, indent=2)
         print(f'Wrote setlists.json ({len(merged)} shows)')
-        with open(DATA_PATH, 'w') as f:
-            f.write('const SETLISTS_DATA = ' + json.dumps(merged, indent=2) + ';\n')
-        print('Wrote setlists-data.js')
         write_changelog(timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), new_shows=[], rec_updates={}, pruned=pruned)
         return
 
@@ -553,10 +549,6 @@ def main():
     with open(JSON_PATH, 'w') as f:
         json.dump(merged, f, indent=2)
     print(f'\nWrote setlists.json ({len(merged)} shows)')
-
-    with open(DATA_PATH, 'w') as f:
-        f.write('const SETLISTS_DATA = ' + json.dumps(merged, indent=2) + ';\n')
-    print(f'Wrote setlists-data.js')
 
     now = datetime.now()
     today = now.strftime('%Y-%m-%d')
