@@ -17172,11 +17172,6 @@ const SETLISTS_DATA = [
         "id": "gybe2025-12-10.aacf",
         "url": "https://archive.org/details/gybe2025-12-10.aacf",
         "title": "Godspeed You! Black Emperor Live at Bandai Namco on 2025-12-10"
-      },
-      {
-        "id": "gybe2025-12-10.aactoflac16",
-        "url": "https://archive.org/details/gybe2025-12-10.aactoflac16",
-        "title": "Godspeed You! Black Emperor Live at Bandai Namco Dream Hall on 2025-12-10"
       }
     ]
   },
@@ -17486,7 +17481,13 @@ const SETLISTS_DATA = [
       "bosses hang",
       "gathering storm"
     ],
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-03-05.H1n.",
+        "url": "https://archive.org/details/gybe2026-03-05.H1n.",
+        "title": "Godspeed You! Black Emperor Live at Progresja on 2026-03-05"
+      }
+    ]
   },
   {
     "date": "2026-03-06",
@@ -17517,7 +17518,13 @@ const SETLISTS_DATA = [
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-03-08.H1n.",
+        "url": "https://archive.org/details/gybe2026-03-08.H1n.",
+        "title": "Godspeed You! Black Emperor Live at Centrum Koncertowe A2 on 2026-03-08"
+      }
+    ]
   },
   {
     "date": "2026-03-09",
@@ -17602,7 +17609,17 @@ const SETLISTS_DATA = [
   {
     "date": "2026-03-15",
     "venue": "schlachthof, wiesbaden, ger",
-    "songs": [],
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "monheim",
+      "pale spectator takes photographs",
+      "chart #3",
+      "world police",
+      "gathering storm"
+    ],
     "recordings": [],
     "note": "w/ kristof hahn"
   },

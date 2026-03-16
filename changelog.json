@@ -30,7 +30,7 @@
     "new_shows": [
       {
         "date": "2026-03-06",
-        "venue": "ck zamek, poznań, pol"
+        "venue": "ck zamek, pozna\u0144, pol"
       }
     ]
   },
@@ -39,7 +39,7 @@
     "new_shows": [
       {
         "date": "2026-03-08",
-        "venue": "a2, wrocław, pol"
+        "venue": "a2, wroc\u0142aw, pol"
       }
     ],
     "new_recordings": [
@@ -54,7 +54,10 @@
   {
     "timestamp": "2026-03-10 08:52:00",
     "new_shows": [
-      { "date": "2026-03-09", "venue": "fléda, brno, cz" }
+      {
+        "date": "2026-03-09",
+        "venue": "fl\u00e9da, brno, cz"
+      }
     ]
   },
   {
@@ -71,9 +74,18 @@
   {
     "timestamp": "2026-03-13 08:50:00",
     "new_shows": [
-      { "date": "2026-03-10", "venue": "dürer kert, budapest, hu" },
-      { "date": "2026-03-11", "venue": "posthof, linz, au" },
-      { "date": "2026-03-12", "venue": "archa+, praha, cz" }
+      {
+        "date": "2026-03-10",
+        "venue": "d\u00fcrer kert, budapest, hu"
+      },
+      {
+        "date": "2026-03-11",
+        "venue": "posthof, linz, au"
+      },
+      {
+        "date": "2026-03-12",
+        "venue": "archa+, praha, cz"
+      }
     ],
     "new_recordings": [
       {
@@ -93,7 +105,10 @@
   {
     "timestamp": "2026-03-14 08:41:00",
     "new_shows": [
-      { "date": "2026-03-13", "venue": "arena, wien, au" }
+      {
+        "date": "2026-03-13",
+        "venue": "arena, wien, au"
+      }
     ]
   },
   {
@@ -101,9 +116,39 @@
     "new_recordings": [
       {
         "show_date": "2026-03-08",
-        "venue": "a2, wrocław, pol",
+        "venue": "a2, wroc\u0142aw, pol",
         "id": "gybe2026-03-08",
         "title": "Godspeed You! Black Emperor Live at Centrum Koncertowe A2 on 2026-03-08"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-03-16 09:16:48",
+    "new_shows": [
+      {
+        "date": "2026-03-15",
+        "venue": "schlachthof, wiesbaden, ger"
+      }
+    ],
+    "new_recordings": [
+      {
+        "show_date": "2026-03-08",
+        "venue": "a2, wroc\u0142aw, pol",
+        "id": "gybe2026-03-08.H1n.",
+        "title": "Godspeed You! Black Emperor Live at Centrum Koncertowe A2 on 2026-03-08"
+      },
+      {
+        "show_date": "2026-03-05",
+        "venue": "progresja, warszawa, pol",
+        "id": "gybe2026-03-05.H1n.",
+        "title": "Godspeed You! Black Emperor Live at Progresja on 2026-03-05"
+      }
+    ],
+    "removed_recordings": [
+      {
+        "date": "2025-12-10",
+        "venue": "bandai namco, shanghai, chi",
+        "id": "gybe2025-12-10.aactoflac16"
       }
     ]
   }
