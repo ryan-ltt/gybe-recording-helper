@@ -1425,7 +1425,7 @@ let seedIdx = null;            // single seed show index
 let listenedDates = new Set(); // dates from uploaded list
 
 function showLabel(show) {
-    return `${show.date} — ${show.venue}`;
+    return `${show.date} - ${show.venue}`;
 }
 
 function onShowSearch() {
@@ -2076,7 +2076,7 @@ async function sendPasswordReset() {
     const { error } = await sbClient.auth.resetPasswordForEmail(email, { redirectTo });
     if (error) { msg.className = 'error'; msg.textContent = error.message; return; }
     msg.className = 'success';
-    msg.textContent = 'reset link sent — check your email.';
+    msg.textContent = 'reset link sent - check your email.';
 }
 
 async function doLogin() {
@@ -2392,7 +2392,7 @@ function onVersionSubmitSearch(song) {
     }
     if (matches.length === 0) { dropdown.style.display = 'none'; return; }
     dropdown.innerHTML = matches.map(i =>
-        `<div class="show-dropdown-item" onmousedown='setVersionSubmitShow(${JSON.stringify(song)}, ${JSON.stringify(shows[i].date)})'>${shows[i].date}${shows[i].venue ? ' — ' + shows[i].venue : ''}</div>`
+        `<div class="show-dropdown-item" onmousedown='setVersionSubmitShow(${JSON.stringify(song)}, ${JSON.stringify(shows[i].date)})'>${shows[i].date}${shows[i].venue ? ' - ' + shows[i].venue : ''}</div>`
     ).join('');
     dropdown.style.display = 'block';
 }
@@ -2408,7 +2408,7 @@ function setVersionSubmitShow(song, date, silent) {
     if (input && !silent) input.value = '';
     const selectedDiv = document.getElementById('versionSubmitSelected');
     if (selectedDiv) {
-        selectedDiv.innerHTML = `<div class="seed-tag" style="margin-bottom:0;">${date}${show?.venue ? ' — ' + show.venue : ''}<span class="remove" onclick="clearVersionSubmitShow()">×</span></div>`;
+        selectedDiv.innerHTML = `<div class="seed-tag" style="margin-bottom:0;">${date}${show?.venue ? ' - ' + show.venue : ''}<span class="remove" onclick="clearVersionSubmitShow()">×</span></div>`;
     }
     const btn = document.getElementById('versionSubmitBtn');
     if (btn) btn.disabled = false;
@@ -2509,7 +2509,7 @@ function renderPicksTopShows() {
   if (top.length === 0) { el.innerHTML = ''; return; }
   const showMap = {};
   if (typeof shows !== 'undefined') for (const s of shows) showMap[s.date] = s;
-  el.innerHTML = `<div class="era-block picks-aggregate"><div class="era-header" onclick="toggleTopShows()"><div style="display:flex;align-items:baseline;gap:10px;"><div class="era-title" style="font-style:italic;">most picked shows</div><span class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;">community</span></div><div style="display:flex;align-items:center;gap:16px;"><div class="era-meta">top ${top.length}</div><div class="era-toggle" id="topShowsToggle">−</div></div></div><div class="era-body open" id="topShowsBody"><ol style="list-style:none;padding:0;margin:0;">${top.map(([date, count], i) => { const show = showMap[date]; const venue = show ? show.venue : ''; const bestRecId = (typeof BEST_RECORDINGS !== 'undefined' && BEST_RECORDINGS[date]) ? BEST_RECORDINGS[date] : null; const recs = show && show.recordings ? show.recordings : []; const recsHtml = recs.length > 0 ? `<div class="recordings" style="padding-left:26px;">${recs.map((r, ri) => `<a href="${r.url}" target="_blank"${bestRecId === r.id ? ' style="font-weight:bold"' : ''}>[${ri + 1}]</a>`).join('')}</div>` : ''; return `<li style="padding:8px 16px;border-bottom:1px solid #eee;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted" style="display:inline-block;width:20px;text-align:right;">${i + 1}.</span> <strong>${date}</strong>${venue ? ` <span class="muted">— ${venue}</span>` : ''} <span class="muted" style="font-size:11px;">(${count} pick${count !== 1 ? 's' : ''})</span>${recsHtml}</li>`; }).join('')}</ol></div></div>`;
+  el.innerHTML = `<div class="era-block picks-aggregate"><div class="era-header" onclick="toggleTopShows()"><div style="display:flex;align-items:baseline;gap:10px;"><div class="era-title" style="font-style:italic;">most picked shows</div><span class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;">community</span></div><div style="display:flex;align-items:center;gap:16px;"><div class="era-meta">top ${top.length}</div><div class="era-toggle" id="topShowsToggle">−</div></div></div><div class="era-body open" id="topShowsBody"><ol style="list-style:none;padding:0;margin:0;">${top.map(([date, count], i) => { const show = showMap[date]; const venue = show ? show.venue : ''; const bestRecId = (typeof BEST_RECORDINGS !== 'undefined' && BEST_RECORDINGS[date]) ? BEST_RECORDINGS[date] : null; const recs = show && show.recordings ? show.recordings : []; const recsHtml = recs.length > 0 ? `<div class="recordings" style="padding-left:26px;">${recs.map((r, ri) => `<a href="${r.url}" target="_blank"${bestRecId === r.id ? ' style="font-weight:bold"' : ''}>[${ri + 1}]</a>`).join('')}</div>` : ''; return `<li style="padding:8px 16px;border-bottom:1px solid #eee;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted" style="display:inline-block;width:20px;text-align:right;">${i + 1}.</span> <strong>${date}</strong>${venue ? ` <span class="muted">- ${venue}</span>` : ''} <span class="muted" style="font-size:11px;">(${count} pick${count !== 1 ? 's' : ''})</span>${recsHtml}</li>`; }).join('')}</ol></div></div>`;
 }
 
 
@@ -2575,7 +2575,7 @@ function renderPicksCardBody(uid) {
       const noteHtml = isMe
         ? `<textarea placeholder="add a note..." oninput="updatePickNote('${pick.show_date}',this.value);this.style.height='auto';this.style.height=this.scrollHeight+'px'" draggable="false" onmousedown="this.closest('li').setAttribute('draggable','false')" onblur="this.closest('li').setAttribute('draggable','true')" style="margin-top:6px;margin-left:20px;width:calc(100% - 76px);font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;padding:4px 6px;border:1px solid #ccc;background:transparent;color:inherit;resize:none;overflow:hidden;display:block;box-sizing:border-box;">${(pick.note || '').replace(/</g,'&lt;')}</textarea>`
         : (pick.note ? `<div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:3px;padding-left:20px;">${pick.note}</div>` : '');
-      return `<li ${dragAttr} data-date="${pick.show_date}" style="position:relative;padding:8px 16px;${isMe ? 'padding-right:56px;' : ''}border-bottom:1px solid #eee;${isMe ? 'cursor:grab;' : ''}"><span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted">${i + 1}.</span> <strong>${pick.show_date}</strong>${venue ? ` <span class="muted">— ${venue}</span>` : ''}</span>${recsHtml}${noteHtml}${removeBtn}</li>`;
+      return `<li ${dragAttr} data-date="${pick.show_date}" style="position:relative;padding:8px 16px;${isMe ? 'padding-right:56px;' : ''}border-bottom:1px solid #eee;${isMe ? 'cursor:grab;' : ''}"><span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted">${i + 1}.</span> <strong>${pick.show_date}</strong>${venue ? ` <span class="muted">- ${venue}</span>` : ''}</span>${recsHtml}${noteHtml}${removeBtn}</li>`;
     }).join('');
     html += '</ol>';
     if (isMe) html += '<p style="font-family:Monaco,\'JetBrains Mono\',monospace;font-size:11px;color:#888;padding:4px 16px;margin:0;">drag to reorder</p>';
@@ -2586,7 +2586,7 @@ function renderPicksCardBody(uid) {
     if (canAdd) {
       html += `<div style="position:relative;"><input type="text" class="search-box" id="picksAddInput" placeholder="search for a show to add..." oninput="picksShowSearch(this.value,'${uid}')" autocomplete="off" style="margin:0;width:100%;box-sizing:border-box;"><div id="picksDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:100;background:white;border:2px solid black;max-height:200px;overflow-y:auto;"></div></div>`;
     } else {
-      html += `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#888;margin:0;">10/10 picks — remove one to add another.</p>`;
+      html += `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#888;margin:0;">10/10 picks, remove one to add another.</p>`;
     }
     html += `<button class="find-btn" onclick="saveMyPicks('${uid}')" style="margin-top:8px;">save order</button>`;
     html += `</div>`;
@@ -2626,7 +2626,7 @@ function picksShowSearch(q, uid) {
   const existing = new Set(myPicksDraft.map(p => p.show_date));
   const matches = (typeof shows !== 'undefined' ? shows : []).filter(s => !existing.has(s.date) && (s.date.includes(q) || (s.venue && s.venue.toLowerCase().includes(qLow)))).slice(0, 8);
   if (matches.length === 0) { dropdown.style.display = 'none'; return; }
-  dropdown.innerHTML = matches.map(s => `<div style="padding:6px 10px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;cursor:pointer;" onmousedown="addPickFromDropdown('${uid}','${s.date}')" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">${s.date}${s.venue ? ' — ' + s.venue : ''}</div>`).join('');
+  dropdown.innerHTML = matches.map(s => `<div style="padding:6px 10px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;cursor:pointer;" onmousedown="addPickFromDropdown('${uid}','${s.date}')" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">${s.date}${s.venue ? ' - ' + s.venue : ''}</div>`).join('');
   dropdown.style.display = 'block';
 }
 
@@ -2811,7 +2811,7 @@ function renderUserBody(uid) {
                     const date = v.show_date.replace(/[a-z]$/, '');
                     return `<div class="era-show-row" style="cursor:default;">
                         <span class="era-show-date">${date}</span>
-                        <span class="era-show-venue">${v.song}${venue ? ` <span class="dim" style="font-size:10px;">— ${venue}</span>` : ''}</span>
+                        <span class="era-show-venue">${v.song}${venue ? ` <span class="dim" style="font-size:10px;">- ${venue}</span>` : ''}</span>
                     </div>`;
                 }).join('');
                 const count = votes.length;
