@@ -1972,7 +1972,9 @@ if (sbClient) {
         }
     });
     sbClient.auth.onAuthStateChange((_event, session) => {
-        currentUser = session?.user ?? null;
+        const newUser = session?.user ?? null;
+        if (newUser?.id === currentUser?.id) return;
+        currentUser = newUser;
         picksLoaded = false; picksData = []; myPicksDraft = [];
         if (currentUser) {
             fetchUsername(currentUser.id).then(u => {
@@ -2571,7 +2573,7 @@ function renderPicksCardBody(uid) {
       const dragAttr = isMe ? `draggable="true" data-idx="${i}"` : '';
       const removeBtn = isMe ? `<button class="header-btn" onclick="removePick('${uid}','${pick.show_date}')" style="position:absolute;top:6px;right:10px;font-size:11px;padding:2px 7px;">✕</button>` : '';
       const noteHtml = isMe
-        ? `<input type="text" placeholder="add a note..." value="${(pick.note || '').replace(/"/g, '&quot;')}" oninput="updatePickNote('${pick.show_date}',this.value)" style="margin-top:4px;margin-left:20px;width:calc(100% - 76px);font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;padding:2px 5px;border:1px solid #ccc;background:transparent;color:inherit;">`
+        ? `<textarea placeholder="add a note..." oninput="updatePickNote('${pick.show_date}',this.value);this.style.height='auto';this.style.height=this.scrollHeight+'px'" draggable="false" onmousedown="this.closest('li').setAttribute('draggable','false')" onblur="this.closest('li').setAttribute('draggable','true')" style="margin-top:6px;margin-left:20px;width:calc(100% - 76px);font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;padding:4px 6px;border:1px solid #ccc;background:transparent;color:inherit;resize:none;overflow:hidden;display:block;box-sizing:border-box;">${(pick.note || '').replace(/</g,'&lt;')}</textarea>`
         : (pick.note ? `<div style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:#888;margin-top:3px;padding-left:20px;">${pick.note}</div>` : '');
       return `<li ${dragAttr} data-date="${pick.show_date}" style="position:relative;padding:8px 16px;${isMe ? 'padding-right:56px;' : ''}border-bottom:1px solid #eee;${isMe ? 'cursor:grab;' : ''}"><span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span style="color:#888;">${i + 1}.</span> <strong>${pick.show_date}</strong>${venue ? ` <span style="color:#888;">— ${venue}</span>` : ''}</span>${recsHtml}${noteHtml}${removeBtn}</li>`;
     }).join('');
@@ -2591,6 +2593,7 @@ function renderPicksCardBody(uid) {
   }
   body.innerHTML = html;
   if (isMe && picks.length > 0) attachPicksDragHandlers(uid);
+  if (isMe) body.querySelectorAll('textarea').forEach(t => { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; });
 }
 
 function attachPicksDragHandlers(uid) {
