@@ -1948,6 +1948,8 @@ let currentUsername = null;
 let picksData = [];
 let picksLoaded = false;
 let myPicksDraft = [];
+let myPicksDirty = false;
+let myPicksSaved = []; // snapshot of last saved state for per-row dirty tracking
 let picksDragSrcIdx = null;
 
 fetch('setlists.json').then(r => r.json()).then(data => {
@@ -2498,6 +2500,7 @@ function seedMyPicksDraft() {
   if (!currentUser) { myPicksDraft = []; return; }
   const me = picksData.find(u => u.user_id === currentUser.id);
   myPicksDraft = me ? me.picks.map(p => ({ ...p })) : [];
+  myPicksSaved = me ? me.picks.map(p => ({ ...p })) : [];
 }
 
 function renderPicksTopShows() {
@@ -2572,10 +2575,13 @@ function renderPicksCardBody(uid) {
       const recsHtml = recs.length > 0 ? `<div class="recordings" style="padding-left:20px;">${recs.map((r, ri) => `<a href="${r.url}" target="_blank"${bestRecId === r.id ? ' style="font-weight:bold"' : ''}>[${ri + 1}]</a>`).join('')}</div>` : '';
       const dragAttr = isMe ? `draggable="true" data-idx="${i}"` : '';
       const removeBtn = isMe ? `<button class="header-btn" onclick="removePick('${uid}','${pick.show_date}')" style="position:absolute;top:6px;right:10px;font-size:11px;padding:2px 7px;">✕</button>` : '';
+      const savedEntry = myPicksSaved.find(p => p.show_date === pick.show_date);
+      const rowDirty = isMe && (!savedEntry || savedEntry.rank !== i + 1 || savedEntry.note !== (pick.note || null));
+      const dirtyBadge = rowDirty ? `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;color:#c0392b;margin-left:6px;">unsaved</span>` : '';
       const noteHtml = isMe
         ? `<textarea placeholder="add a note..." oninput="updatePickNote('${pick.show_date}',this.value);this.style.height='auto';this.style.height=this.scrollHeight+'px'" draggable="false" onmousedown="this.closest('li').setAttribute('draggable','false')" onblur="this.closest('li').setAttribute('draggable','true')" style="margin-top:6px;margin-left:20px;width:calc(100% - 76px);font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;padding:4px 6px;border:1px solid #ccc;background:transparent;color:inherit;resize:none;overflow:hidden;display:block;box-sizing:border-box;">${(pick.note || '').replace(/</g,'&lt;')}</textarea>`
         : (pick.note ? `<div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:3px;padding-left:20px;">${pick.note}</div>` : '');
-      return `<li ${dragAttr} data-date="${pick.show_date}" style="position:relative;padding:8px 16px;${isMe ? 'padding-right:56px;' : ''}border-bottom:1px solid #eee;${isMe ? 'cursor:grab;' : ''}"><span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted">${i + 1}.</span> <strong>${pick.show_date}</strong>${venue ? ` <span class="muted">- ${venue}</span>` : ''}</span>${recsHtml}${noteHtml}${removeBtn}</li>`;
+      return `<li ${dragAttr} data-date="${pick.show_date}" style="position:relative;padding:8px 16px;${isMe ? 'padding-right:56px;' : ''}border-bottom:1px solid #eee;${isMe ? 'cursor:grab;' : ''}"><span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted">${i + 1}.</span> <strong>${pick.show_date}</strong>${venue ? ` <span class="muted">- ${venue}</span>` : ''}${dirtyBadge}</span>${recsHtml}${noteHtml}${removeBtn}</li>`;
     }).join('');
     html += '</ol>';
     if (isMe) html += '<p style="font-family:Monaco,\'JetBrains Mono\',monospace;font-size:11px;color:#888;padding:4px 16px;margin:0;">drag to reorder</p>';
@@ -2611,6 +2617,7 @@ function attachPicksDragHandlers(uid) {
       const moved = myPicksDraft.splice(picksDragSrcIdx, 1)[0];
       myPicksDraft.splice(targetIdx, 0, moved);
       picksDragSrcIdx = null;
+      myPicksDirty = true;
       const body = document.getElementById('pbody-' + uid);
       delete body.dataset.rendered;
       renderPicksCardBody(uid);
@@ -2634,6 +2641,7 @@ function addPickFromDropdown(uid, date) {
   if (myPicksDraft.length >= 10) return;
   if (myPicksDraft.some(p => p.show_date === date)) return;
   myPicksDraft.push({ show_date: date, rank: myPicksDraft.length + 1, note: null });
+  myPicksDirty = true;
   const inp = document.getElementById('picksAddInput');
   if (inp) inp.value = '';
   const dd = document.getElementById('picksDropdown');
@@ -2650,11 +2658,30 @@ function addPickFromDropdown(uid, date) {
 
 function updatePickNote(date, value) {
   const pick = myPicksDraft.find(p => p.show_date === date);
-  if (pick) pick.note = value || null;
+  if (!pick) return;
+  pick.note = value || null;
+  myPicksDirty = true;
+  const savedEntry = myPicksSaved.find(p => p.show_date === date);
+  const rowDirty = !savedEntry || savedEntry.note !== (pick.note || null);
+  const li = document.querySelector(`li[data-date="${date}"]`);
+  if (!li) return;
+  const span = li.querySelector('span');
+  if (!span) return;
+  let badge = span.querySelector('.pick-unsaved-badge');
+  if (rowDirty && !badge) {
+    badge = document.createElement('span');
+    badge.className = 'pick-unsaved-badge';
+    badge.style.cssText = 'font-family:Monaco,"JetBrains Mono",monospace;font-size:10px;color:#c0392b;margin-left:6px;';
+    badge.textContent = 'unsaved';
+    span.appendChild(badge);
+  } else if (!rowDirty && badge) {
+    badge.remove();
+  }
 }
 
 function removePick(uid, date) {
   myPicksDraft = myPicksDraft.filter(p => p.show_date !== date);
+  myPicksDirty = true;
   const body = document.getElementById('pbody-' + uid);
   delete body.dataset.rendered;
   renderPicksCardBody(uid);
@@ -2674,6 +2701,8 @@ async function saveMyPicks(uid) {
   const me = picksData.find(u => u.user_id === currentUser.id);
   if (me) me.picks = rows.map((r, i) => ({ ...r }));
   else { picksData.unshift({ user_id: currentUser.id, username: currentUsername || currentUser.id, picks: rows.map(r => ({ ...r })) }); }
+  myPicksDirty = false;
+  myPicksSaved = rows.map(r => ({ ...r }));
   if (btn) { btn.textContent = 'saved!'; setTimeout(() => { if (btn) { btn.textContent = 'save order'; btn.disabled = false; } }, 1500); }
 }
 
@@ -2727,7 +2756,14 @@ async function loadUsers() {
         votesByUser[row.user_id].push({ song: row.song, show_date: row.show_date });
     }
 
-    usersData = profiles.map(p => ({ ...p, tracking: trackingByUser[p.user_id] || {}, votes: votesByUser[p.user_id] || [] }));
+    const { data: allPicks } = await sbClient.from('user_picks').select('user_id, show_date, rank, note').in('user_id', ids).order('rank', { ascending: true });
+    const picksByUser = {};
+    if (allPicks) for (const row of allPicks) {
+        if (!picksByUser[row.user_id]) picksByUser[row.user_id] = [];
+        picksByUser[row.user_id].push({ show_date: row.show_date, rank: row.rank, note: row.note });
+    }
+
+    usersData = profiles.map(p => ({ ...p, tracking: trackingByUser[p.user_id] || {}, votes: votesByUser[p.user_id] || [], picks: picksByUser[p.user_id] || [] }));
 
     document.getElementById('usersControls').style.display = 'flex';
     if (!currentUser) {
@@ -2791,9 +2827,25 @@ function renderUserBody(uid) {
     const attendedCount = Object.values(profile.tracking).filter(td => td.attended).length;
     const listenedCount = Object.values(profile.tracking).filter(td => td.listened).length;
     const votesCount = profile.votes.length;
+    const picksCount = profile.picks ? profile.picks.length : 0;
 
     let listHtml;
-    if (activeTab === 'votes') {
+    if (activeTab === 'picks') {
+        const picks = (profile.picks || []).sort((a, b) => a.rank - b.rank);
+        if (picks.length === 0) {
+            listHtml = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;margin:0;">no picks yet.</p>`;
+        } else {
+            listHtml = `<ol style="list-style:none;padding:0;margin:0;">${picks.map((pick, i) => {
+                const show = showByDate[pick.show_date];
+                const venue = show ? show.venue : '';
+                const bestId = BEST_RECORDINGS[pick.show_date];
+                const recs = show && show.recordings ? show.recordings : [];
+                const recsHtml = recs.length > 0 ? `<div class="era-show-recs" style="padding-left:20px;">${recs.map((r, ri) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${ri + 1}]</a>`).join('')}</div>` : '';
+                const noteHtml = pick.note ? `<div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:3px;padding-left:20px;">${pick.note}</div>` : '';
+                return `<li style="padding:8px 0;border-bottom:1px solid #eee;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted" style="display:inline-block;width:20px;text-align:right;">${i + 1}.</span> <strong>${pick.show_date}</strong>${venue ? ` <span class="muted">— ${venue}</span>` : ''}${recsHtml}${noteHtml}</li>`;
+            }).join('')}</ol>`;
+        }
+    } else if (activeTab === 'votes') {
         if (votesCount === 0) {
             listHtml = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;margin:0;">no votes yet.</p>`;
         } else {
@@ -2894,6 +2946,7 @@ function renderUserBody(uid) {
             <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='attended'?'black':'transparent'};margin-bottom:-2px;${activeTab==='attended'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','attended')">attended (${attendedCount})</button>
             <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='listened'?'black':'transparent'};margin-bottom:-2px;${activeTab==='listened'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','listened')">listened (${listenedCount})</button>
             <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='votes'?'black':'transparent'};margin-bottom:-2px;${activeTab==='votes'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','votes')">votes (${votesCount})</button>
+            <button style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;padding:5px 14px;border:none;background:none;cursor:pointer;border-bottom:3px solid ${activeTab==='picks'?'black':'transparent'};margin-bottom:-2px;${activeTab==='picks'?'font-weight:bold;':''}" onclick="switchUserTab('${uid}','picks')">picks (${picksCount})</button>
         </div>
         ${listHtml}
         ${profile.created_at ? `<div class="dim" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:16px;">member since ${profile.created_at.slice(0,10)}</div>` : ''}`;
