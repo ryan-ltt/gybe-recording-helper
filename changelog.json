@@ -160,5 +160,22 @@
         "venue": "festsaal kreuzberg, berlin, ger"
       }
     ]
+  },
+  {
+    "timestamp": "2026-03-17 17:43:08",
+    "new_recordings": [
+      {
+        "show_date": "2003-03-12",
+        "venue": "engine room, houston, tx",
+        "id": "youtube-zqSFCch_xHM",
+        "title": "Godspeed You! Black Emperor Live at Engine Room on 2003-03-12"
+      },
+      {
+        "show_date": "2003-03-14",
+        "venue": "ridglea theater, forth worth, tx",
+        "id": "youtube-UfEydidxowY",
+        "title": "Godspeed You! Black Emperor Live at Ridglea Theater on 2003-03-14"
+      }
+    ]
   }
 ]
