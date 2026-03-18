@@ -1200,7 +1200,7 @@ function renderShowCard(show, labelHtml, highlightSet) {
         return highlighted ? `<span class="matched">${rawSong}</span>` : rawSong;
     }).join(' &nbsp;·&nbsp; ');
     const thanksSuffix = show.note
-        ? `<div class="muted" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:11px;margin-top:6px;">${show.note}</div>`
+        ? `<div class="muted" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:11px;margin-top:6px;white-space:pre-line;">${show.note}</div>`
         : '';
 
     const bestId = BEST_RECORDINGS[show.date];
@@ -1848,7 +1848,7 @@ function renderEraShowList(eraShows, filter) {
                 `<br><span class="muted" style="font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
         }
         setlistText += mainSongs.join('<br>');
-        if (s.note) setlistText += `<br><span class="muted" style="padding-left:16px;font-size:11px;">${s.note}</span>`;
+        if (s.note) setlistText += `<br><span class="muted" style="padding-left:16px;font-size:11px;white-space:pre-line;">${s.note}</span>`;
         const id = 'sl-' + s.date.replace(/\W/g, '-');
         const td = trackingData[s.date] || { attended: false, listened: false };
         const isPast = s.date.replace(/[a-z]$/, '') <= new Date().toISOString().slice(0, 10);
@@ -2907,7 +2907,7 @@ function renderUserBody(uid) {
                         `<br><span class="muted" style="font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
                 }
                 setlistText += mainSongs.join('<br>');
-                if (s.note) setlistText += `<br><span class="muted" style="padding-left:16px;font-size:11px;">${s.note}</span>`;
+                if (s.note) setlistText += `<br><span class="muted" style="padding-left:16px;font-size:11px;white-space:pre-line;">${s.note}</span>`;
                 const userNote = profile.tracking[s.date]?.[noteField] || '';
                 const id = `u${uid}-sl-` + s.date.replace(/\W/g, '-');
                 const hasSetlist = s.songs.length > 0;
