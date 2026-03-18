@@ -2590,7 +2590,7 @@ function renderPicksCardBody(uid) {
     const canAdd = picks.length < 10;
     html += `<div style="padding:12px 16px;border-top:${picks.length > 0 ? '1px solid #eee' : 'none'};">`;
     if (canAdd) {
-      html += `<div style="position:relative;"><input type="text" class="search-box" id="picksAddInput" placeholder="search for a show to add..." oninput="picksShowSearch(this.value,'${uid}')" autocomplete="off" style="margin:0;width:100%;box-sizing:border-box;"><div id="picksDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:100;background:white;border:2px solid black;max-height:200px;overflow-y:auto;"></div></div>`;
+      html += `<div style="position:relative;"><input type="text" class="search-box" id="picksAddInput" placeholder="search for a show to add..." oninput="picksShowSearch(this.value,'${uid}')" autocomplete="off" style="margin:0;width:100%;box-sizing:border-box;"><div class="show-dropdown" id="picksDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:100;max-height:200px;overflow-y:auto;"></div></div>`;
     } else {
       html += `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:#888;margin:0;">10/10 picks, remove one to add another.</p>`;
     }
@@ -2633,7 +2633,7 @@ function picksShowSearch(q, uid) {
   const existing = new Set(myPicksDraft.map(p => p.show_date));
   const matches = (typeof shows !== 'undefined' ? shows : []).filter(s => !existing.has(s.date) && (s.date.includes(q) || (s.venue && s.venue.toLowerCase().includes(qLow)))).slice(0, 8);
   if (matches.length === 0) { dropdown.style.display = 'none'; return; }
-  dropdown.innerHTML = matches.map(s => `<div style="padding:6px 10px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;cursor:pointer;" onmousedown="addPickFromDropdown('${uid}','${s.date}')" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">${s.date}${s.venue ? ' - ' + s.venue : ''}</div>`).join('');
+  dropdown.innerHTML = matches.map(s => `<div class="show-dropdown-item" onmousedown="addPickFromDropdown('${uid}','${s.date}')">${s.date}${s.venue ? ' - ' + s.venue : ''}</div>`).join('');
   dropdown.style.display = 'block';
 }
 
