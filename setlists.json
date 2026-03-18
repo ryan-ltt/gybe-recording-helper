@@ -17599,7 +17599,13 @@
       "bosses hang",
       "gathering storm"
     ],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "gybe2026-03-12",
+        "url": "https://archive.org/details/gybe2026-03-12",
+        "title": "Godspeed You! Black Emperor Live at Archa+ on 2026-03-12"
+      }
+    ],
     "note": "w/ kristof hahn"
   },
   {
@@ -17654,7 +17660,16 @@
   {
     "date": "2026-03-17",
     "venue": "markthalle, hamburg, ger",
-    "songs": [],
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "fire at static valley",
+      "pale spectator takes photographs",
+      "moya",
+      "blaise bailey finnegan III"
+    ],
     "recordings": [],
     "note": "w/ kristof hahn"
   },

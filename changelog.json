@@ -177,5 +177,22 @@
         "title": "Godspeed You! Black Emperor Live at Ridglea Theater on 2003-03-14"
       }
     ]
+  },
+  {
+    "timestamp": "2026-03-18 09:12:27",
+    "new_shows": [
+      {
+        "date": "2026-03-17",
+        "venue": "markthalle, hamburg, ger"
+      }
+    ],
+    "new_recordings": [
+      {
+        "show_date": "2026-03-12",
+        "venue": "archa+, praha, cz",
+        "id": "gybe2026-03-12",
+        "title": "Godspeed You! Black Emperor Live at Archa+ on 2026-03-12"
+      }
+    ]
   }
 ]
