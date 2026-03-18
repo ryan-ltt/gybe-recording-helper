@@ -30,6 +30,15 @@ YEAR_PAGES = [
     '22','23','24','25','26',
 ]
 
+# Shows with non-standard URLs that won't be found by the date-link regex.
+# date is the key used in setlists.json; url is fetched as-is.
+SPECIAL_SHOW_LINKS = {
+    '11': [
+        {'url': BASE + '2011-04-24-matinee', 'date': '2011-04-24'},
+        {'url': BASE + '2011-04-24-soiree',  'date': '2011-04-24b'},
+    ],
+}
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_PATH = os.path.join(SCRIPT_DIR, 'setlists.json')
 
@@ -122,6 +131,49 @@ def parse_year_page_table(html, year_suffix):
     return shows
 
 
+def extract_year_table_extras(html, year_suffix):
+    """Return {date: extra_text} for every row in the year-page table, including linked shows."""
+    extras = {}
+    full_year = ('19' if int(year_suffix) >= 90 else '20') + year_suffix
+    rows = re.split(r'<tr(?:\s[^>]*)?>',  html, flags=re.I)
+    current_month = None
+
+    for row in rows:
+        cells = re.findall(r'<td[^>]*>([\s\S]*?)(?=<td|</tr>)', row, re.I)
+
+        if re.search(r'COLSPAN\s*=\s*["\s]?2', row, re.I) and len(cells) >= 1:
+            text = strip_tags(cells[0]).strip().lower()
+            for name, num in MONTHS.items():
+                if name in text:
+                    ym = re.search(r'\b(19\d{2}|20\d{2})\b', text)
+                    if ym:
+                        full_year = ym.group(1)
+                    current_month = num
+                    break
+            continue
+
+        if not current_month or len(cells) < 4:
+            continue
+
+        day_text = strip_tags(cells[0]).strip()
+        extra    = re.sub(r'\s+', ' ', strip_tags(cells[3])).strip()
+
+        if '?' in day_text:
+            continue
+        day_digits = re.sub(r'[^\d]', '', day_text)
+        if not day_digits:
+            continue
+        day = int(day_digits)
+        if day < 1 or day > 31:
+            continue
+
+        date = f'{full_year}-{current_month}-{day:02d}'
+        if extra and extra != '-':
+            extras[date] = extra
+
+    return extras
+
+
 def parse_show(html, date):
     # Venue: find the first BGCOLOR="#000000" cell whose stripped text looks like a venue.
     # Skip cells that are: the page title, a date (YYYY-MM-DD), a duration (HH:MM), or "setlist".
@@ -195,7 +247,7 @@ def parse_note(html):
         text = re.sub(r'\s+', ' ', text).strip().rstrip('.')
         if text:
             parts.append(text)
-    return '  '.join(parts)
+    return '\n'.join(parts)
 
 
 def scrape_year(yr, seen_dates):
@@ -211,6 +263,7 @@ def scrape_year(yr, seen_dates):
 
     links = extract_show_links(html)
     print(f'  {len(links)} linked shows found', file=sys.stderr)
+    extras = extract_year_table_extras(html, yr)
 
     for link in links:
         date = link['date']
@@ -223,7 +276,33 @@ def scrape_year(yr, seen_dates):
         except Exception as e:
             print(f'    ERROR: {e}', file=sys.stderr)
             continue
-        shows.append(parse_show(show_html, date))
+        show = parse_show(show_html, date)
+        table_extra = extras.get(date, '')
+        if table_extra:
+            existing = show.get('note', '')
+            combined = '\n'.join(p for p in [table_extra, existing] if p)
+            show['note'] = combined
+        shows.append(show)
+        time.sleep(0.15)
+
+    for link in SPECIAL_SHOW_LINKS.get(yr, []):
+        date = link['date']
+        if date in seen_dates:
+            continue
+        seen_dates.add(date)
+        print(f'  Fetching {link["url"]}', file=sys.stderr)
+        try:
+            show_html = fetch(link['url'])
+        except Exception as e:
+            print(f'    ERROR: {e}', file=sys.stderr)
+            continue
+        show = parse_show(show_html, date)
+        table_extra = extras.get(date, '')
+        if table_extra:
+            existing = show.get('note', '')
+            combined = '\n'.join(p for p in [table_extra, existing] if p)
+            show['note'] = combined
+        shows.append(show)
         time.sleep(0.15)
 
     table_shows = parse_year_page_table(html, yr)

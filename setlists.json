@@ -1,5 +1,18 @@
 [
   {
+    "date": "1996-07-05",
+    "venue": "hotel2tango, montr\u00e9al, qc",
+    "songs": [],
+    "recordings": []
+  },
+  {
+    "date": "1996-12-14",
+    "venue": "hotel2tango, montr\u00e9al, qc",
+    "songs": [],
+    "recordings": [],
+    "note": "w/ exhaust, shag, spill. benefit for the santropol roulant"
+  },
+  {
     "date": "1997-02-15",
     "venue": "hotel2tango, montreal, qc",
     "songs": [],
@@ -25,6 +38,7 @@
     "songs": [
       "the piece"
     ],
+    "note": "w/ smallmouth and guh\nnote : one long 45 min. piece was played without interruptions",
     "recordings": []
   },
   {
@@ -101,6 +115,7 @@
       "kicking horses on brokenhill",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ fell gang and braino",
     "recordings": [
       {
         "id": "godspeed1997-10-05",
@@ -167,6 +182,7 @@
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "w/ exhaust and kepler",
     "recordings": [
       {
         "id": "gybe1998-04-25.T",
@@ -215,7 +231,7 @@
       "dead metheny",
       "sad mafioso"
     ],
-    "note": "note : opening for Sonic Youth. &nbsp;",
+    "note": "opening for Sonic Youth\nnote : opening for Sonic Youth. &nbsp;",
     "recordings": [
       {
         "id": "gybe1998-05-10",
@@ -238,7 +254,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "note": "note : announced only for an hour the day before the show",
+    "note": "w/ fly pan am\nnote : announced only for an hour the day before the show",
     "recordings": []
   },
   {
@@ -257,7 +273,7 @@
       "dead metheny",
       "sad mafioso"
     ],
-    "note": "note : less than ten people were there",
+    "note": "w/ flowchart\nnote : less than ten people were there",
     "recordings": []
   },
   {
@@ -277,6 +293,7 @@
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "w/ spatula",
     "recordings": [
       {
         "id": "gybe1998-09-15.cradle_tlr",
@@ -357,6 +374,7 @@
       "blaise bailey finnegan III",
       "dead metheny"
     ],
+    "note": "opening for low",
     "recordings": [
       {
         "id": "gybe1998-10-02",
@@ -374,6 +392,7 @@
       "blaise bailey finnegan III",
       "sad mafioso"
     ],
+    "note": "opening for low",
     "recordings": [
       {
         "id": "gybe1998-10-03",
@@ -430,6 +449,7 @@
       "[encore low-godspeed]",
       "do you know how to waltz"
     ],
+    "note": "opening for low",
     "recordings": [
       {
         "id": "gybe1998-10-10",
@@ -479,6 +499,7 @@
       "sad mafioso",
       "john hughes"
     ],
+    "note": "w/ fly pan am, seppuku, blue light blockade",
     "recordings": [
       {
         "id": "gybe1998-10-16",
@@ -498,6 +519,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ loren mazzacane connors, sam shalabi, david kristian, alex st-onge",
     "recordings": []
   },
   {
@@ -522,6 +544,7 @@
       "monheim",
       "world police (part I)"
     ],
+    "note": "w/ electroscope",
     "recordings": [
       {
         "id": "gybe1998-11-19",
@@ -549,7 +572,7 @@
       "monheim",
       "steve reich"
     ],
-    "note": "note : the whole performance is also known as \"hung over as the queen in maida vale\"",
+    "note": "john peel session\nnote : the whole performance is also known as \"hung over as the queen in maida vale\"",
     "recordings": [
       {
         "id": "gybe1998-11-22.rebroadcast",
@@ -573,6 +596,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ fridge and amp",
     "recordings": [
       {
         "id": "gybe1998-11-23.flac",
@@ -605,6 +629,7 @@
       "world police",
       "moya"
     ],
+    "note": "w/ quickspace",
     "recordings": [
       {
         "id": "gybe1998-11-26",
@@ -750,6 +775,7 @@
       "john hughes",
       "j.l.h. outro jam"
     ],
+    "note": "w/ runde 1",
     "recordings": [
       {
         "id": "gybe1998-12-17.flac16",
@@ -798,6 +824,7 @@
       "gathering storm (part II)",
       "world police"
     ],
+    "note": "velinx festival",
     "recordings": [
       {
         "id": "gybe1999-04-16.TCD-D8",
@@ -898,6 +925,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ belle & sebastian, mogwai, flaming lips, mercury rev etc.",
     "recordings": [
       {
         "id": "gybe1999-04-25",
@@ -926,6 +954,7 @@
       "sad mafioso",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ electric sound of joy",
     "recordings": [
       {
         "id": "gybe1999-04-27",
@@ -973,6 +1002,7 @@
       "sad mafioso",
       "blaise bailey finnegan III"
     ],
+    "note": "fimav festival",
     "recordings": [
       {
         "id": "gybe1999-05-24.flacf",
@@ -1005,6 +1035,7 @@
     "songs": [
       "j.l.h outro"
     ],
+    "note": "w/ Mogwai, Peeps Into Fairyland",
     "recordings": []
   },
   {
@@ -1020,6 +1051,7 @@
       "blaise bailey finnegan III",
       "john hughes"
     ],
+    "note": "w/ fridge",
     "recordings": [
       {
         "id": "gybe1999-07-13",
@@ -1042,6 +1074,7 @@
       "end jam",
       "sad mafioso"
     ],
+    "note": "w/ silo",
     "recordings": []
   },
   {
@@ -1059,6 +1092,7 @@
       "sad mafioso",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ fridge, silo",
     "recordings": [
       {
         "id": "gybe1999-07-15.TCD-D100",
@@ -1082,6 +1116,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ fridge, silo",
     "recordings": []
   },
   {
@@ -1413,7 +1448,7 @@
       "john hughes",
       "blaise bailey finnegan III"
     ],
-    "note": "note : the band was opening for mogwai. the show was delayed for several hours as mogwai were late. some members of godspeed joined mogwai for their last song 'like herod'. here's the band setlist :",
+    "note": "w/ mogwai, ganger\nnote : the band was opening for mogwai. the show was delayed for several hours as mogwai were late. some members of godspeed joined mogwai for their last song 'like herod'. here's the band setlist :",
     "recordings": []
   },
   {
@@ -1427,7 +1462,7 @@
       "john hughes",
       "blaise bailey finnegan III"
     ],
-    "note": "note : last ever version of the full 'world police'. only the opening section of 'gathering storm' is played on a few shows of this tour",
+    "note": "w/ labradford\nnote : last ever version of the full 'world police'. only the opening section of 'gathering storm' is played on a few shows of this tour",
     "recordings": [
       {
         "id": "gybe1999-09-04.shn",
@@ -1452,6 +1487,7 @@
       "blaise bailey finnegan III",
       "the sad mafioso"
     ],
+    "note": "w/ labradford",
     "recordings": [
       {
         "id": "gybe1999-09-05",
@@ -1484,6 +1520,7 @@
       "john hughes",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ labradford",
     "recordings": []
   },
   {
@@ -1497,6 +1534,7 @@
       "john hughes",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ labradford",
     "recordings": [
       {
         "id": "gybe1999-09-09.DAT",
@@ -1523,6 +1561,7 @@
       "blaise bailey finnegan III",
       "the sad mafioso"
     ],
+    "note": "w/ labradford, low",
     "recordings": [
       {
         "id": "gybe1999-09-10",
@@ -1544,7 +1583,7 @@
       "blaise bailey finnegan III",
       "the sad mafioso"
     ],
-    "note": "thanks to dane mills!",
+    "note": "w/ labradford\nthanks to dane mills!",
     "recordings": []
   },
   {
@@ -1559,6 +1598,7 @@
       "the sad mafioso",
       "dead metheny"
     ],
+    "note": "w/ labradford",
     "recordings": [
       {
         "id": "gybe1999-09-13",
@@ -1588,6 +1628,7 @@
       "john hughes",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ labradford",
     "recordings": [
       {
         "id": "gybe1999-09-15",
@@ -1608,6 +1649,7 @@
       "blaise bailey finnegan II",
       "the sad mafioso"
     ],
+    "note": "w/ labradford",
     "recordings": [
       {
         "id": "ajc02676_gybe1999-09-16.ajcproject",
@@ -1632,6 +1674,7 @@
       "blaise bailey finnegan II",
       "the sad mafioso"
     ],
+    "note": "w/ labradford",
     "recordings": [
       {
         "id": "gybe1999-09-17",
@@ -1652,7 +1695,7 @@
       "gathering storm",
       "the sad mafioso"
     ],
-    "note": "note : five minutes intro with drones and some drums and glockenspiel. they close the show with the 'chart #3' tape for a few minutes after 'the sad mafioso'. collaboration with labradford for 'peasy', as for most of the end of the tour",
+    "note": "w/ labradford\nnote : five minutes intro with drones and some drums and glockenspiel. they close the show with the 'chart #3' tape for a few minutes after 'the sad mafioso'. collaboration with labradford for 'peasy', as for most of the end of the tour",
     "recordings": [
       {
         "id": "gybe1999-09-20",
@@ -1674,7 +1717,7 @@
       "blaise bailey finnegan II",
       "the sad mafioso"
     ],
-    "note": "note : 'nothing's alright in our life' tape from the first album opening the show, segueing into a five minutes drone improvisation similar to the seattle show",
+    "note": "w/ labradford\nnote : 'nothing's alright in our life' tape from the first album opening the show, segueing into a five minutes drone improvisation similar to the seattle show",
     "recordings": [
       {
         "id": "gybe1999-09-21",
@@ -1705,7 +1748,7 @@
       "john hughes",
       "blaise bailey finnegan II"
     ],
-    "note": "note : short, and noisy improvisation with drums to start the show",
+    "note": "w/ labradford\nnote : short, and noisy improvisation with drums to start the show",
     "recordings": [
       {
         "id": "gybe1999-09-22.flacf",
@@ -1732,7 +1775,7 @@
       "blaise bailey finnegan II",
       "the sad mafioso"
     ],
-    "note": "note : longest show, and second largest show of the tour after montreal",
+    "note": "w/ labradford, matmos\nnote : longest show, and second largest show of the tour after montreal",
     "recordings": [
       {
         "id": "gybe1999-09-23",
@@ -1753,6 +1796,7 @@
       "blaise bailey finnegan II",
       "moya"
     ],
+    "note": "w/ labradford, scarnella",
     "recordings": [
       {
         "id": "gybe1999-09-24",
@@ -1772,6 +1816,7 @@
       "john hughes",
       "blaise bailey finnegan II"
     ],
+    "note": "w/ labradford, physics",
     "recordings": [
       {
         "id": "gybe1999-09-25",
@@ -1796,6 +1841,7 @@
       "john hughes",
       "the sad mafioso"
     ],
+    "note": "w/ labradford",
     "recordings": [
       {
         "id": "gybe1999-09-26.shnf",
@@ -1821,7 +1867,7 @@
       "john hughes",
       "blaise bailey finnegan III"
     ],
-    "note": "note : collaboration with labradford for 'peasy'",
+    "note": "w/ labradford\nnote : collaboration with labradford for 'peasy'",
     "recordings": []
   },
   {
@@ -1835,6 +1881,7 @@
       "john hughes",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ labradford",
     "recordings": [
       {
         "id": "gybe1999-09-30",
@@ -1854,7 +1901,7 @@
       "john hughes",
       "blaise bailey finnegan III"
     ],
-    "note": "note : collaboration with labradford on 'peasy'",
+    "note": "w/ labradford\nnote : collaboration with labradford on 'peasy'",
     "recordings": [
       {
         "id": "gybe1999-10-01.flacf",
@@ -1874,6 +1921,7 @@
       "dead metheny",
       "the sad mafioso"
     ],
+    "note": "w/ the bell brothers",
     "recordings": []
   },
   {
@@ -1888,6 +1936,7 @@
       "john hughes",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ labradford",
     "recordings": [
       {
         "id": "gybe1999-10-03.cradle_acidjack",
@@ -1907,6 +1956,7 @@
       "gathering storm",
       "john hughes"
     ],
+    "note": "w/hanged up",
     "recordings": [
       {
         "id": "gybe2000-03-20",
@@ -1926,6 +1976,7 @@
       "3rd part",
       "blaise bailey finnegan III"
     ],
+    "note": "w/kepler",
     "recordings": [
       {
         "id": "gybe2000-03-21",
@@ -1946,6 +1997,7 @@
       "blaise bailey finnegan III",
       "3rd part"
     ],
+    "note": "w/steak 72",
     "recordings": [
       {
         "id": "gybe2000-03-22",
@@ -1998,6 +2050,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ sigur ros, fly pan am",
     "recordings": []
   },
   {
@@ -2012,6 +2065,7 @@
       "12-28-99 (w/ outro)",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ sigur ros, fly pan am",
     "recordings": [
       {
         "id": "gybe2000-04-03",
@@ -2029,6 +2083,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ sigur ros, fly pan am",
     "recordings": []
   },
   {
@@ -2043,6 +2098,7 @@
       "blaise bailey finnegan III",
       "john hughes"
     ],
+    "note": "w/ sigur ros, fly pan am",
     "recordings": []
   },
   {
@@ -2056,6 +2112,7 @@
       "gathering storm",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ sigur ros, fly pan am",
     "recordings": []
   },
   {
@@ -2071,6 +2128,7 @@
       "blaise bailey finnegan III",
       "dead flag blues (outro)"
     ],
+    "note": "w/ fly pan am, labradford....",
     "recordings": [
       {
         "id": "gybe2000-04-07.DAT",
@@ -2096,6 +2154,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ fly pan am",
     "recordings": [
       {
         "id": "gybe2000-04-09",
@@ -2137,6 +2196,7 @@
       "gathering storm",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ fly pan am",
     "recordings": []
   },
   {
@@ -2163,7 +2223,7 @@
       "gathering storm",
       "blaise bailey finnegan III"
     ],
-    "note": "note : likely incomplete &nbsp; &nbsp; &nbsp;",
+    "note": "w/ fly pan am\nnote : likely incomplete &nbsp; &nbsp; &nbsp;",
     "recordings": []
   },
   {
@@ -2192,6 +2252,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ fly pan am",
     "recordings": [
       {
         "id": "gybe2000-04-21.T",
@@ -2216,6 +2277,7 @@
       "blaise bailey finnegan III",
       "the sad mafioso"
     ],
+    "note": "w/ fly pan am",
     "recordings": [
       {
         "id": "gybe2000-04-22.TCD-D8_remaster",
@@ -2240,7 +2302,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
-    "note": "note : benefit for the 'anthology film archive'. the band played after a couple of movies. there is a break after 'gathering storm' due to a problem with the fire department. first version of 'tazer floyd', a bit faster and&nbsp; without the outro",
+    "note": "anthology film archives benefit\nnote : benefit for the 'anthology film archive'. the band played after a couple of movies. there is a break after 'gathering storm' due to a problem with the fire department. first version of 'tazer floyd', a bit faster and&nbsp; without the outro",
     "recordings": [
       {
         "id": "gybe2000-08-10.fixed",
@@ -2261,7 +2323,7 @@
       "blaise bailey finnegan III",
       "monheim"
     ],
-    "note": "note : benefit for the 'anthology film archive'. the band played after a four movies from the canadian film board",
+    "note": "anthology film archives benefit\nnote : benefit for the 'anthology film archive'. the band played after a four movies from the canadian film board",
     "recordings": [
       {
         "id": "gybe2000-08-11.fixed",
@@ -2296,7 +2358,7 @@
       "blaise bailey finnegan III",
       "gathering storm (part 2)"
     ],
-    "note": "note : the encore starts with noise which could be the intro to 'the sad mafioso but they choose to play the second part of 'gathering storm'. there was no opener, the band played after four movies from the canada film board",
+    "note": "no opener\nnote : the encore starts with noise which could be the intro to 'the sad mafioso but they choose to play the second part of 'gathering storm'. there was no opener, the band played after four movies from the canada film board",
     "recordings": [
       {
         "id": "gybe2000-10-05",
@@ -2330,7 +2392,7 @@
       "dead metheny",
       "dead flag blues (outro)"
     ],
-    "note": "note : the encore 'dead metheny' ends with a noise jam which segues into the outro",
+    "note": "w/ bardo pond\nnote : the encore 'dead metheny' ends with a noise jam which segues into the outro",
     "recordings": [
       {
         "id": "gybe2000-10-07",
@@ -2354,7 +2416,7 @@
       "tazer floyd",
       "dead metheny"
     ],
-    "note": "note : the improvisation is about ten minutes of a noisy guitar jam",
+    "note": "w/ bardo pond\nnote : the improvisation is about ten minutes of a noisy guitar jam",
     "recordings": [
       {
         "id": "gybe2000-10-08",
@@ -2374,6 +2436,7 @@
       "blaise bailey finnegan III",
       "world police"
     ],
+    "note": "w/ bardo pond, comae",
     "recordings": [
       {
         "id": "gybe2000-10-09",
@@ -2392,6 +2455,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ bardo pond, sonna",
     "recordings": [
       {
         "id": "gybe2000-10-10",
@@ -2412,6 +2476,7 @@
       "blaise bailey finnegan III",
       "tazer floyd"
     ],
+    "note": "w/ jean smith/mecca normal",
     "recordings": []
   },
   {
@@ -2427,6 +2492,7 @@
       "blaise bailey finnegan III",
       "dead flag blues (outro)"
     ],
+    "note": "w/ jean smith/mecca normal",
     "recordings": []
   },
   {
@@ -2439,7 +2505,7 @@
       "12-28-99 (w/ outro)",
       "gathering storm"
     ],
-    "note": "note : early all ages show. the set starts with a noisy drone improvisation with durms",
+    "note": "w/ jean smith/mecca normal\nnote : early all ages show. the set starts with a noisy drone improvisation with durms",
     "recordings": [
       {
         "id": "gybe2000-10-27.early",
@@ -2461,7 +2527,7 @@
       "blaise bailey finnegan IIII",
       "the dead flag blues outro"
     ],
-    "note": "note : the band tried to re-create the second part of 'world police' but it's far from that. the improvisation is a ten minutes minimal jam which starts with drones and sloppy drum beats",
+    "note": "w/ jean smith/mecca normal\nnote : the band tried to re-create the second part of 'world police' but it's far from that. the improvisation is a ten minutes minimal jam which starts with drones and sloppy drum beats",
     "recordings": [
       {
         "id": "gybe2000-10-28",
@@ -2482,7 +2548,7 @@
       "blaise bailey finnegan IIII",
       "the dead flag blues (outro)"
     ],
-    "note": "note : the band joined mecca normal for the last song of their set. back",
+    "note": "w/ jean smith/mecca normal\nnote : the band joined mecca normal for the last song of their set. back",
     "recordings": [
       {
         "id": "gybe2000-10-30.flac16",
@@ -2503,7 +2569,7 @@
       "blaise bailey finnegan III",
       "12.28.99"
     ],
-    "note": "note : the band joined mecca normal for the last song of their set. for halloween, someone touring with the band starts screaming like a monkey and running in the room creating some confusion in the 'john hughes' intro",
+    "note": "w/ jean smith/mecca normal\nnote : the band joined mecca normal for the last song of their set. for halloween, someone touring with the band starts screaming like a monkey and running in the room creating some confusion in the 'john hughes' intro",
     "recordings": [
       {
         "id": "gybe2000-10-31.gybe2000Matrix",
@@ -2545,7 +2611,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
-    "note": "note : the set begins with a ten minutes improvisation with loud drones, drums and some riffs at the end",
+    "note": "w/ jean smith/mecca normal, broadcast\nnote : the set begins with a ten minutes improvisation with loud drones, drums and some riffs at the end",
     "recordings": [
       {
         "id": "gybe2000-11-01",
@@ -2617,7 +2683,7 @@
       "the dead flag blues (outro)",
       "j.l.h. outro"
     ],
-    "note": "note : intro of '12-28-99' is aborted for a ten minutes improvisation. &nbsp;",
+    "note": "w/ town and country\nnote : intro of '12-28-99' is aborted for a ten minutes improvisation. &nbsp;",
     "recordings": [
       {
         "id": "gybe2000-11-19.SBD",
@@ -2654,7 +2720,7 @@
       "3rd part",
       "the dead flag blues (outro)"
     ],
-    "note": "note : rare version of '3rd part' on this tour. &nbsp;",
+    "note": "w/ town and country\nnote : rare version of '3rd part' on this tour. &nbsp;",
     "recordings": [
       {
         "id": "gybe2000-11-20.flacf",
@@ -2682,6 +2748,7 @@
       "john hughes",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ town and country",
     "recordings": []
   },
   {
@@ -2697,7 +2764,7 @@
       "moya",
       "the dead flag blues (outro)"
     ],
-    "note": "note : good show. extended intro to '3rd part' and first version of 'sad mafioso' since october 99",
+    "note": "w/ town and country\nnote : good show. extended intro to '3rd part' and first version of 'sad mafioso' since october 99",
     "recordings": [
       {
         "id": "gybe2000-11-22.flacf",
@@ -2731,6 +2798,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ w. oldham/m. turner",
     "recordings": [
       {
         "id": "gybe2000-12-01.somerville",
@@ -2750,6 +2818,7 @@
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ w. oldham/m. turner",
     "recordings": [
       {
         "id": "gybe2000-12-02.shnf",
@@ -2773,7 +2842,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
-    "note": "note : aidan did a speech at the beginning of the show. setlist incomplete",
+    "note": "w/ w. oldham/m. turner\nnote : aidan did a speech at the beginning of the show. setlist incomplete",
     "recordings": []
   },
   {
@@ -2788,6 +2857,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ w. oldham/m. turner",
     "recordings": [
       {
         "id": "gybe2000-12-04",
@@ -2808,6 +2878,7 @@
       "the sad mafioso",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ w. oldham/m. turner",
     "recordings": [
       {
         "id": "gybe2000-12-05",
@@ -2833,7 +2904,7 @@
       "gathering storm",
       "the dead flag blues (outro)"
     ],
-    "note": "note : extended noise jam of 'gathering storm'",
+    "note": "w/ w. oldham/m. turner\nnote : extended noise jam of 'gathering storm'",
     "recordings": []
   },
   {
@@ -2848,7 +2919,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
-    "note": "note : 'bbf3' is played without the tape",
+    "note": "w/ w. oldham/m. turner\nnote : 'bbf3' is played without the tape",
     "recordings": []
   },
   {
@@ -2862,6 +2933,7 @@
       "gathering storm",
       "the sad mafioso"
     ],
+    "note": "w/ w. oldham/m. turner",
     "recordings": []
   },
   {
@@ -2891,7 +2963,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
-    "note": "note : memorable performance. longest show of 2000. ten minutes opening speech, with efrim reading a manifesto in english about a 'popular republic of montreal run by the people for the people'. the most funny part was roger traducing in french",
+    "note": "w/ calla\nnote : memorable performance. longest show of 2000. ten minutes opening speech, with efrim reading a manifesto in english about a 'popular republic of montreal run by the people for the people'. the most funny part was roger traducing in french",
     "recordings": [
       {
         "id": "gybe2000-12-10",
@@ -2926,7 +2998,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "note": "note : '12-28-99' has been re-worked. this is the first performance of 'mfr' and the version is similar to the album recording with a faster middle section. the band is well prepared for this tour!",
+    "note": "w/ dinner is ruined\nnote : '12-28-99' has been re-worked. this is the first performance of 'mfr' and the version is similar to the album recording with a faster middle section. the band is well prepared for this tour!",
     "recordings": [
       {
         "id": "gybe2001-09-27",
@@ -2951,7 +3023,7 @@
       "motherfucker = redeemer",
       "gathering storm"
     ],
-    "note": "note : &nbsp; the 1,2,3,4 before 'john hughes' is replaced by 'shopping is patriotic, world leader's say, 1,2,3,4'. back",
+    "note": "w/ hanged up\nnote : &nbsp; the 1,2,3,4 before 'john hughes' is replaced by 'shopping is patriotic, world leader's say, 1,2,3,4'. back",
     "recordings": [
       {
         "id": "gybe2001-09-28.flac16",
@@ -2976,6 +3048,7 @@
       "motherfucker = redeemer",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ larval",
     "recordings": []
   },
   {
@@ -2990,7 +3063,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
-    "note": "note : versions of 'dead flag blues (outro)' are fast this tour",
+    "note": "w/ boxstep\nnote : versions of 'dead flag blues (outro)' are fast this tour",
     "recordings": [
       {
         "id": "gybe2001-09-30",
@@ -3015,7 +3088,7 @@
       "motherfucker = redeemer",
       "blaise bailey finnegan III"
     ],
-    "note": "note : the first known and confirmed performance of 'the dead flag blues' after 1999. the song is similar to earlier live version but a bit noisier and louder like most of the other stuff from 2000 and onward. this is the last performance of it until 2010",
+    "note": "w/ boxstep\nnote : the first known and confirmed performance of 'the dead flag blues' after 1999. the song is similar to earlier live version but a bit noisier and louder like most of the other stuff from 2000 and onward. this is the last performance of it until 2010",
     "recordings": []
   },
   {
@@ -3029,7 +3102,7 @@
       "gathering storm",
       "motherfucker = redeemer"
     ],
-    "note": "note : Mick Harvey was the original scheduled opener but could not make the show",
+    "note": "w/ califone, telefon tel aviv\nnote : Mick Harvey was the original scheduled opener but could not make the show",
     "recordings": [
       {
         "id": "ajc02675_gybe2001-10-02.ajcproject",
@@ -3049,6 +3122,7 @@
       "blaise bailey finnegan III",
       "(incomplete)"
     ],
+    "note": "w/ califone",
     "recordings": []
   },
   {
@@ -3135,7 +3209,7 @@
       "tazer floyd",
       "the cowboy (w/ bruce)"
     ],
-    "note": "note : aidan starts each of the four shows with a speech in french. this first night is dedicated against 'police brutality'. the set starts violently with people screaming 'stand up', 'sit down'. most of the songs are re-worked for this tour. each performance of 'dead metheny' from now on contains a new five minutes outro. 'world police' is extented with a new crescendo. the middle part of 'motherfucker=redeemer' is slowed down. this is the first performance of 'the cowboy' since 1998",
+    "note": "w/ deep dark united\nnote : aidan starts each of the four shows with a speech in french. this first night is dedicated against 'police brutality'. the set starts violently with people screaming 'stand up', 'sit down'. most of the songs are re-worked for this tour. each performance of 'dead metheny' from now on contains a new five minutes outro. 'world police' is extented with a new crescendo. the middle part of 'motherfucker=redeemer' is slowed down. this is the first performance of 'the cowboy' since 1998",
     "recordings": [
       {
         "id": "gybe2002-01-13.alt",
@@ -3162,7 +3236,7 @@
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
-    "note": "note : aidan dedicates the set to 'prisonners of 09-11'. 'the sad mafioso' has been re-worked with some new violin lines",
+    "note": "w/ born dead icons\nnote : aidan dedicates the set to 'prisonners of 09-11'. 'the sad mafioso' has been re-worked with some new violin lines",
     "recordings": [
       {
         "id": "gybe2002-01-14",
@@ -3189,7 +3263,7 @@
       "blaise bailey finnegan III",
       "the cowboy (w/ aidan)"
     ],
-    "note": "note : aidan dedicates the show 'to the end of time, the start of a community and to pretzel'. dave broke a chord&nbsp; on 'dead metheny' so the band did a ten minutes improvisation. &nbsp;",
+    "note": "w/ tim hecker\nnote : aidan dedicates the show 'to the end of time, the start of a community and to pretzel'. dave broke a chord&nbsp; on 'dead metheny' so the band did a ten minutes improvisation. &nbsp;",
     "recordings": [
       {
         "id": "gybe2002-01-15.flacf",
@@ -3215,7 +3289,7 @@
       "gathering storm",
       "the dead flag blues (outro)"
     ],
-    "note": "note : the set started late as thierry had equipment problems. aidan dedicates the show to the 'defunct tour bus'. 'gathering storm' is extended for a couple of minutes",
+    "note": "w/ crackpot\nnote : the set started late as thierry had equipment problems. aidan dedicates the show to the 'defunct tour bus'. 'gathering storm' is extended for a couple of minutes",
     "recordings": [
       {
         "id": "gybe2002-01-16.alt",
@@ -3262,7 +3336,7 @@
       "the dead flag blues (outro)",
       "the sad mafioso"
     ],
-    "note": "note : the improvisation is a shorter 5 min. version of the montreal improvisation",
+    "note": "w/ christian fennesz, marc sens\nnote : the improvisation is a shorter 5 min. version of the montreal improvisation",
     "recordings": [
       {
         "id": "gybe2002-01-22.alt",
@@ -3299,6 +3373,7 @@
       "the dead flag blues (outro)",
       "the cowboy"
     ],
+    "note": "w/ trio angulaire",
     "recordings": [
       {
         "id": "gybe2002-01-23.shnf",
@@ -3329,7 +3404,7 @@
       "moya",
       "the dead flag blues (outro)"
     ],
-    "note": "note : there is an improvisation after the first part of 'gathering storm'. &nbsp;",
+    "note": "w/ nlf 3\nnote : there is an improvisation after the first part of 'gathering storm'. &nbsp;",
     "recordings": [
       {
         "id": "gybe2002-01-24.TCD-D8",
@@ -3463,6 +3538,7 @@
       "gathering storm",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ shub, absinthe provisoire",
     "recordings": [
       {
         "id": "gybe2002-02-03",
@@ -3488,7 +3564,7 @@
       "moya",
       "the dead flag blues (outro)"
     ],
-    "note": "note : they planned a third encore 'the sad mafioso' but dave's amp was broke. 'mfr' is extented a bit with a new outro",
+    "note": "w/ yo-jin-gen\nnote : they planned a third encore 'the sad mafioso' but dave's amp was broke. 'mfr' is extented a bit with a new outro",
     "recordings": [
       {
         "id": "gybe2002-02-05.LOSSY",
@@ -3577,7 +3653,7 @@
       "motherfucking=redeemer",
       "(?)"
     ],
-    "note": "note : not confirmed - 6 songs",
+    "note": "w/ giardini di mir\u00f2\nnote : not confirmed - 6 songs",
     "recordings": []
   },
   {
@@ -3619,6 +3695,7 @@
       "world police",
       "moya"
     ],
+    "note": "w/ stafr\u00e6nn h\u00e1kon",
     "recordings": [
       {
         "id": "GYBE2002-03-13.GYBE2002-03-13",
@@ -3644,6 +3721,7 @@
       "motherfucking=redeemer",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ kepler",
     "recordings": [
       {
         "id": "gybe2002-03-16.DAT",
@@ -3665,6 +3743,7 @@
       "moya",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ kepler",
     "recordings": [
       {
         "id": "gybe2002-03-18",
@@ -3684,6 +3763,7 @@
       "motherfucking=redeemer",
       "moya"
     ],
+    "note": "w/ kepler",
     "recordings": [
       {
         "id": "gybe2002-03-20.MD",
@@ -3704,6 +3784,7 @@
       "world police",
       "moya"
     ],
+    "note": "w/ kepler",
     "recordings": []
   },
   {
@@ -3718,6 +3799,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ kepler",
     "recordings": []
   },
   {
@@ -3732,7 +3814,7 @@
       "the sad mafioso",
       "(?)the dead flag blues (outro)"
     ],
-    "note": "note : not confirmed",
+    "note": "w/ kepler\nnote : not confirmed",
     "recordings": []
   },
   {
@@ -3746,7 +3828,7 @@
       "motherfucking=redeemer",
       "blaise bailey finnegan III"
     ],
-    "note": "note : 'bbf3' was played without the tape",
+    "note": "w/ kepler\nnote : 'bbf3' was played without the tape",
     "recordings": []
   },
   {
@@ -3760,6 +3842,7 @@
       "motherfucking=redeemer",
       "moya"
     ],
+    "note": "w/ kepler",
     "recordings": [
       {
         "id": "gybe2002-03-27.MD",
@@ -3800,7 +3883,7 @@
       "moya",
       "world police"
     ],
-    "note": "note : for the first time, they play the complete 5 minute new outro to 'mfr', it will be played in for most of the april shows. 'dead metheny' is extented for a few minutes",
+    "note": "w/ monopot\nnote : for the first time, they play the complete 5 minute new outro to 'mfr', it will be played in for most of the april shows. 'dead metheny' is extented for a few minutes",
     "recordings": [
       {
         "id": "gybe2002-03-31.shn",
@@ -3899,6 +3982,7 @@
       "the dead flag blues (outro)",
       "j.l.h. outro"
     ],
+    "note": "w/ hannah marcus",
     "recordings": [
       {
         "id": "gybe2002-04-06",
@@ -3918,7 +4002,7 @@
       "motherfucker=redeemer",
       "the sad mafioso + outro"
     ],
-    "note": "note : the new outro of 'mfr' is not played. 'sad mafioso' ends with about five minutes of guitar noises",
+    "note": "w/ hannah marcus\nnote : the new outro of 'mfr' is not played. 'sad mafioso' ends with about five minutes of guitar noises",
     "recordings": [
       {
         "id": "gybe2002-04-08.flac16",
@@ -3939,6 +4023,7 @@
       "motherfucker=redeemer",
       "world police"
     ],
+    "note": "w/ hannah marcus",
     "recordings": [
       {
         "id": "gybe2002-04-09.DAT",
@@ -3981,7 +4066,7 @@
       "moya",
       "j.l.h. outro"
     ],
-    "note": "note : last song without dave",
+    "note": "w/ hannah marcus\nnote : last song without dave",
     "recordings": []
   },
   {
@@ -4017,7 +4102,7 @@
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
-    "note": "note : there is a short improvisation before 'tazer floyd' with a riff from dave not unlike stuff by 'set fire to flames'. there is a drum oriented improvisation before 'mfr'",
+    "note": "w/ hannah marcus, machine that flashes\nnote : there is a short improvisation before 'tazer floyd' with a riff from dave not unlike stuff by 'set fire to flames'. there is a drum oriented improvisation before 'mfr'",
     "recordings": [
       {
         "id": "gybe2002-04-13.TCD-D8",
@@ -4043,6 +4128,7 @@
       "gathering storm",
       "improvisation"
     ],
+    "note": "w/ hannah marcus",
     "recordings": [
       {
         "id": "gybe2002-04-15.flacf",
@@ -4093,6 +4179,7 @@
       "gathering storm",
       "the dead flag blues (outro)"
     ],
+    "note": "w/ do make say think, one speed bike",
     "recordings": [
       {
         "id": "gybe2002-04-17",
@@ -4118,6 +4205,7 @@
       "the sad mafioso",
       "j.l.h. outro"
     ],
+    "note": "w/ do make say think",
     "recordings": [
       {
         "id": "gybe2002-04-18.T",
@@ -4158,7 +4246,7 @@
       "world police",
       "the sad mafioso"
     ],
-    "note": "note : the band was headlining the second stage. aidan shouts 'this is for people of jenin' in 'the sad mafioso'",
+    "note": "w/ do make say think\nnote : the band was headlining the second stage. aidan shouts 'this is for people of jenin' in 'the sad mafioso'",
     "recordings": [
       {
         "id": "gybe2002-04-20",
@@ -4197,7 +4285,7 @@
       "albanian",
       "motherfucker = redeemer"
     ],
-    "note": "thanks to mark, adam",
+    "note": "w/ black dice\nthanks to mark, adam",
     "recordings": []
   },
   {
@@ -4211,7 +4299,7 @@
       "motherfucker = redeemer",
       "blaise bailey finnegan III"
     ],
-    "note": "thanks to derek, chris",
+    "note": "w/ black dice\nthanks to derek, chris",
     "recordings": [
       {
         "id": "gybe2003-03-04",
@@ -4240,7 +4328,7 @@
       "albanian",
       "motherfucker = redeemer"
     ],
-    "note": "note : tazer floyd, the encore, was not played  thanks to mark, hassan",
+    "note": "w/ black dice\nnote : tazer floyd, the encore, was not played\nthanks to mark, hassan",
     "recordings": [
       {
         "id": "gybe2003-03-05.shn",
@@ -4277,7 +4365,7 @@
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
-    "note": "note : speech by aidan before the encore. thanks to chris, steve, and cory  thanks to chris, steve, and cory",
+    "note": "w/ black dice\nnote : speech by aidan before the encore. thanks to chris, steve, and cory\nthanks to chris, steve, and cory",
     "recordings": [
       {
         "id": "gybe2003-03-06.ccm4",
@@ -4307,7 +4395,7 @@
       "motherfucker=redeemer",
       "world police"
     ],
-    "note": "thanks to todd",
+    "note": "w/ black dice\nthanks to todd",
     "recordings": [
       {
         "id": "gybe2003-03-07",
@@ -4333,7 +4421,7 @@
       "blaise bailey finnegan III",
       "moya"
     ],
-    "note": "thanks to alexander",
+    "note": "w/ black dice\nthanks to alexander",
     "recordings": [
       {
         "id": "gybe2003-03-08.flac",
@@ -4358,7 +4446,7 @@
       "motherfucker=redeemer",
       "the sad mafioso"
     ],
-    "note": "thanks to daniel",
+    "note": "w/ bardo pond\nthanks to daniel",
     "recordings": [
       {
         "id": "gybe2003-03-09.dpa",
@@ -4384,7 +4472,7 @@
       "blaise bailey finnegan III",
       "moya"
     ],
-    "note": "thanks to mike &nbsp;",
+    "note": "w/ bardo pond\nthanks to mike &nbsp;",
     "recordings": [
       {
         "id": "gybe2003-03-11",
@@ -4404,7 +4492,7 @@
       "motherfucker=redeemer",
       "the dead flag blues (outro)"
     ],
-    "note": "note : the encore on the setlist, tazer floyd, was not played  thanks to douglas, ricky",
+    "note": "w/ bardo pond\nnote : the encore on the setlist, tazer floyd, was not played\nthanks to douglas, ricky",
     "recordings": [
       {
         "id": "youtube-zqSFCch_xHM",
@@ -4425,7 +4513,7 @@
       "blaise bailey finnegan III",
       "the sad mafioso"
     ],
-    "note": "thanks to j &nbsp;",
+    "note": "w/ bardo pond\nthanks to j &nbsp;",
     "recordings": [
       {
         "id": "gybe2003-03-13",
@@ -4445,7 +4533,7 @@
       "motherfucker=redeemer",
       "world police"
     ],
-    "note": "thanks to tim and will akers &nbsp;",
+    "note": "w/ bardo pond\nthanks to tim and will akers &nbsp;",
     "recordings": [
       {
         "id": "youtube-UfEydidxowY",
@@ -4466,7 +4554,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
-    "note": "note : there was a speech before the encore  thanks to andrij, andy, evan",
+    "note": "w/ bardo pond\nnote : there was a speech before the encore\nthanks to andrij, andy, evan",
     "recordings": [
       {
         "id": "gybe2003-03-16.shn",
@@ -4491,7 +4579,7 @@
       "motherfucker=redeemer",
       "blaise bailey finnegan III"
     ],
-    "note": "note : there was a speech before the encore",
+    "note": "w/ bardo pond\nnote : there was a speech before the encore",
     "recordings": []
   },
   {
@@ -4506,7 +4594,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
-    "note": "thanks to adam",
+    "note": "w/ bardo pond\nthanks to adam",
     "recordings": []
   },
   {
@@ -4522,7 +4610,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
-    "note": "note : aidan gave a short speech before the encore  thanks to derek",
+    "note": "w/ bardo pond\nnote : aidan gave a short speech before the encore\nthanks to derek",
     "recordings": []
   },
   {
@@ -4536,7 +4624,7 @@
       "motherfucker=redeemer",
       "moya"
     ],
-    "note": "note : efrim gave a speech about the protest in chicago before the show. a letter from the band was also handed out before the show  thanks to josh, matt, bob &nbsp;",
+    "note": "w/ bardo pond\nnote : efrim gave a speech about the protest in chicago before the show. a letter from the band was also handed out before the show\nthanks to josh, matt, bob &nbsp;",
     "recordings": [
       {
         "id": "gybe2003-03-20.flac",
@@ -4557,7 +4645,7 @@
       "gathering storm",
       "blaise bailey finnegan III"
     ],
-    "note": "note : brief speech by efrim before the encore. 'bbf3' was extented with some noise  thanks to terry, bob &nbsp;",
+    "note": "w/ black dice\nnote : brief speech by efrim before the encore. 'bbf3' was extented with some noise\nthanks to terry, bob &nbsp;",
     "recordings": [
       {
         "id": "gybe2003-03-21.flac",
@@ -4578,7 +4666,7 @@
       "world police",
       "dead metheny"
     ],
-    "note": "note : not confirmed  thanks to david &nbsp;",
+    "note": "w/ black dice\nnote : not confirmed\nthanks to david &nbsp;",
     "recordings": []
   },
   {
@@ -4592,7 +4680,7 @@
       "motherfucker=redeemer",
       "moya"
     ],
-    "note": "thanks to matthew",
+    "note": "w/ black dice\nthanks to matthew",
     "recordings": []
   },
   {
@@ -4608,7 +4696,7 @@
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
-    "note": "thanks to zack, brett &nbsp;",
+    "note": "w/ black dice\nthanks to zack, brett &nbsp;",
     "recordings": [
       {
         "id": "gybe2003-03-25",
@@ -4628,7 +4716,7 @@
       "motherfucker=redeemer",
       "tazer floyd"
     ],
-    "note": "note : the band opened with a speech  thanks to matt &nbsp;",
+    "note": "w/ black dice\nnote : the band opened with a speech\nthanks to matt &nbsp;",
     "recordings": [
       {
         "id": "gybe2003-03-26.flac",
@@ -4654,7 +4742,7 @@
       "world police",
       "the sad mafioso"
     ],
-    "note": "note : efrim did a speech before the encore  thanks to ren, pierre &nbsp;",
+    "note": "w/ black dice, polmo popo\nnote : efrim did a speech before the encore\nthanks to ren, pierre &nbsp;",
     "recordings": [
       {
         "id": "gybe2003-03-27.ccm4",
@@ -4689,7 +4777,7 @@
       "motherfucking=redeemer",
       "blaise bailey finnegan III"
     ],
-    "note": "thanks to ren, pierre &nbsp;",
+    "note": "w/ black dice, lullabye arkestra\nthanks to ren, pierre &nbsp;",
     "recordings": [
       {
         "id": "gybe2003-03-28.flac16",
@@ -4709,7 +4797,7 @@
       "dead metheny",
       "tazer floyd"
     ],
-    "note": "note : no encore, maybe due to some confusion between the band and the venue  thanks to nasir",
+    "note": "w/ black dice, polmo popo\nnote : no encore, maybe due to some confusion between the band and the venue\nthanks to nasir",
     "recordings": [
       {
         "id": "gybe2003-03-29",
@@ -4729,7 +4817,7 @@
       "motherfucker=redeemer",
       "blaise bailey finnegan III"
     ],
-    "note": "note : efrim did a speech before the encore. he talked about how cmu has a military contract and how the help develop bombs  thanks to john",
+    "note": "w/ black dice\nnote : efrim did a speech before the encore. he talked about how cmu has a military contract and how the help develop bombs\nthanks to john",
     "recordings": []
   },
   {
@@ -4744,7 +4832,7 @@
       "world police",
       "the sad mafioso"
     ],
-    "note": "note : may be out of order, aidan did a speech before the encore  thanks to jonathan",
+    "note": "w/ black dice\nnote : may be out of order, aidan did a speech before the encore\nthanks to jonathan",
     "recordings": []
   },
   {
@@ -4758,7 +4846,7 @@
       "motherfucker=redeemer",
       "blaise bailey finnegan III"
     ],
-    "note": "thanks to jonathan",
+    "note": "w/ black dice\nthanks to jonathan",
     "recordings": [
       {
         "id": "gybe2003-04-02",
@@ -4779,7 +4867,7 @@
       "tazer floyd",
       "moya"
     ],
-    "note": "note : there was a speech by efrim before 'moya'  thanks to keith, christopher",
+    "note": "w/ jackie-o-motherfucker\nnote : there was a speech by efrim before 'moya'\nthanks to keith, christopher",
     "recordings": [
       {
         "id": "gybe2003-04-03.dmf",
@@ -4804,7 +4892,7 @@
       "motherfucker=redeemer",
       "the dead flag blues (outro)"
     ],
-    "note": "note : the setlist said the encore was to be 'The Sad Mafioso' but it was aborted  thanks to keith, max &nbsp;",
+    "note": "w/ jackie-o-motherfucker\nnote : the setlist said the encore was to be 'The Sad Mafioso' but it was aborted\nthanks to keith, max &nbsp;",
     "recordings": [
       {
         "id": "gybe2003-04-04.flac",
@@ -4823,7 +4911,7 @@
       "albanian",
       "world police"
     ],
-    "note": "note : the improvisation is a five minute drone intro for 'monheim'",
+    "note": "w/ jackie-o-motherfucker\nnote : the improvisation is a five minute drone intro for 'monheim'",
     "recordings": [
       {
         "id": "gybe2003-04-05.shn",
@@ -4853,7 +4941,7 @@
       "motherfucker=redeemer",
       "blaise bailey finnegan III"
     ],
-    "note": "thanks to dave",
+    "note": "w/ jackie-o-motherfucker\nthanks to dave",
     "recordings": [
       {
         "id": "gybe2003-04-06.shn",
@@ -4885,7 +4973,7 @@
       "motherfucker=redeemer",
       "dead metheny"
     ],
-    "note": "note : there was a speech before the encore  thanks to evan and barry!",
+    "note": "w/ jackie-o-motherfucker\nnote : there was a speech before the encore\nthanks to evan and barry!",
     "recordings": [
       {
         "id": "GSYBE2003-04-09",
@@ -4910,7 +4998,7 @@
       "moya (?)",
       "blaise bailey finnegan III"
     ],
-    "note": "note : incomplete and not confirmed  thanks to shawn",
+    "note": "w/ jackie-o-motherfucker\nnote : incomplete and not confirmed\nthanks to shawn",
     "recordings": []
   },
   {
@@ -4923,7 +5011,7 @@
       "albanian",
       "motherfucker=redeemer"
     ],
-    "note": "note : the encore (tazer floyd) was aborted, perhaps because the show started late  thanks to evan and barry! &nbsp;",
+    "note": "w/ jackie-o-motherfucker\nnote : the encore (tazer floyd) was aborted, perhaps because the show started late\nthanks to evan and barry! &nbsp;",
     "recordings": []
   },
   {
@@ -4938,7 +5026,7 @@
       "dead metheny",
       "the dead flag blues (outro)"
     ],
-    "note": "note : the show was in a large cathedral-type church. the improvisations are five minute intros to the first two songs. jackie-o-motherfucker joined the band for 'the dead flag blues'",
+    "note": "w/ jackie-o-motherfucker\nnote : the show was in a large cathedral-type church. the improvisations are five minute intros to the first two songs. jackie-o-motherfucker joined the band for 'the dead flag blues'",
     "recordings": [
       {
         "id": "gybe2003-04-12.flac16",
@@ -4959,7 +5047,7 @@
       "dead metheny",
       "moya"
     ],
-    "note": "note : the original setlist with 'mfr' was changed due to time constraint",
+    "note": "w/ jackie-o-motherfucker\nnote : the original setlist with 'mfr' was changed due to time constraint",
     "recordings": [
       {
         "id": "gybe2003-04-13.flacf",
@@ -4984,7 +5072,7 @@
       "motherfucker=redeemer",
       "the sad mafioso"
     ],
-    "note": "note : about five minutes of noise after 'sad mafioso'",
+    "note": "w /lullabye arkestra\nnote : about five minutes of noise after 'sad mafioso'",
     "recordings": [
       {
         "id": "gybe2003-04-14.shn",
@@ -5010,7 +5098,7 @@
       "world police",
       "the dead flag blues (outro)"
     ],
-    "note": "note : the first encore on the setlist 'bbf3' was aborted",
+    "note": "w/ de la caucase\nnote : the first encore on the setlist 'bbf3' was aborted",
     "recordings": [
       {
         "id": "gybe2003-04-15",
@@ -5036,7 +5124,7 @@
       "monheim",
       "the dead flag blues (outro)"
     ],
-    "note": "thanks to yannick",
+    "note": "w/ hanged up\nthanks to yannick",
     "recordings": [
       {
         "id": "gybe2003-05-08.YP",
@@ -5056,7 +5144,7 @@
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
-    "note": "note : the band played in a large seated conference room. the band whistled the intro of 'mfr' before dave played his music box  thanks to yannick",
+    "note": "w/ hanged up\nnote : the band played in a large seated conference room. the band whistled the intro of 'mfr' before dave played his music box\nthanks to yannick",
     "recordings": [
       {
         "id": "gybe2003-05-09.YP",
@@ -5079,7 +5167,7 @@
       "blaise bailey finnegan III",
       "the dead flag blues (outro)"
     ],
-    "note": "note : sold out and packed  thanks to wim, yannick",
+    "note": "w/ hanged up\nnote : sold out and packed\nthanks to wim, yannick",
     "recordings": [
       {
         "id": "gybe2003-05-10",
@@ -5106,7 +5194,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "note": "note : dave broke some cords on 'albanian' and they did an improvisation  thanks to yannick, tristan, christophe",
+    "note": "w/ hanged up\nnote : dave broke some cords on 'albanian' and they did an improvisation\nthanks to yannick, tristan, christophe",
     "recordings": [
       {
         "id": "gybe2003-05-12.flacf",
@@ -5131,7 +5219,7 @@
       "motherfucker=redeemer",
       "sad mafioso"
     ],
-    "note": "note : sold out. possible second encore not played (world police or monheim)  thanks to yannick, tristan",
+    "note": "w/ hanged up\nnote : sold out. possible second encore not played (world police or monheim)\nthanks to yannick, tristan",
     "recordings": [
       {
         "id": "gybe2003-05-13.TCD-D8",
@@ -5163,7 +5251,7 @@
       "moya",
       "the dead flag blues (outro)"
     ],
-    "note": "note : world premier of the new song 'gamelan'. sold out and packed. aidan apoligized for the 'over capacity' number of tickets sold  thanks to yannick",
+    "note": "w/ hanged up\nnote : world premier of the new song 'gamelan'. sold out and packed. aidan apoligized for the 'over capacity' number of tickets sold\nthanks to yannick",
     "recordings": [
       {
         "id": "gybe2003-05-14",
@@ -5198,7 +5286,7 @@
       "wold police",
       "the dead flag blues (outro)"
     ],
-    "note": "thanks to yannick",
+    "note": "w/ hanged up, smog\nthanks to yannick",
     "recordings": [
       {
         "id": "gybe2003-05-15.TCD-D8",
@@ -5218,7 +5306,7 @@
       "motherfucker=redeemer",
       "tazer floyd"
     ],
-    "note": "thanks to yannick",
+    "note": "w/ hanged up, shalabi effect\nthanks to yannick",
     "recordings": [
       {
         "id": "gybe2003-05-16.TCD-D8",
@@ -5244,7 +5332,7 @@
       "blaise bailey finnegan III",
       "outro"
     ],
-    "note": "note : 'bbf3' played without the tape. it ends with a noise outro with efrim, thierry and dave on drums  thanks to yannick, christophe",
+    "note": "w/ hanged up\nnote : 'bbf3' played without the tape. it ends with a noise outro with efrim, thierry and dave on drums\nthanks to yannick, christophe",
     "recordings": []
   },
   {
@@ -5266,7 +5354,7 @@
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
-    "note": "thanks to christophe",
+    "note": "w/ hanged up\nthanks to christophe",
     "recordings": []
   },
   {
@@ -5290,7 +5378,7 @@
       "gamelan",
       "(incomplete)"
     ],
-    "note": "note : thought to be the last of three versions of 'gamelan' on this tour",
+    "note": "w/ hanged up\nnote : thought to be the last of three versions of 'gamelan' on this tour",
     "recordings": []
   },
   {
@@ -5304,6 +5392,7 @@
       "motherfucking=redeemer",
       "the sad mafioso"
     ],
+    "note": "w/ hanged up",
     "recordings": [
       {
         "id": "gybe2003-05-24",
@@ -5323,7 +5412,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
-    "note": "thanks to manuel &nbsp;",
+    "note": "w/ hanged up\nthanks to manuel &nbsp;",
     "recordings": []
   },
   {
@@ -5337,7 +5426,7 @@
       "motherfucker=redeemer",
       "the dead flag blues (outro)"
     ],
-    "note": "thanks to diogo",
+    "note": "w/ hanged up\nthanks to diogo",
     "recordings": []
   },
   {
@@ -5353,7 +5442,7 @@
       "the sad mafioso",
       "the dead flag blues (outro)"
     ],
-    "note": "note : first version of 'john hughes' of the year  thanks to antonio fernando",
+    "note": "w/ hanged up\nnote : first version of 'john hughes' of the year\nthanks to antonio fernando",
     "recordings": []
   },
   {
@@ -5367,7 +5456,7 @@
       "motherfucker=redeemer",
       "blaise bailey finnegan III"
     ],
-    "note": "thanks to luis, javi",
+    "note": "w/ hanged up\nthanks to luis, javi",
     "recordings": []
   },
   {
@@ -5395,7 +5484,7 @@
       "dead metheny",
       "the sad mafioso"
     ],
-    "note": "thanks to costas",
+    "note": "w/ hanged up\nthanks to costas",
     "recordings": []
   },
   {
@@ -5409,7 +5498,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
-    "note": "thanks to costas back",
+    "note": "w/ hanged up\nthanks to costas back",
     "recordings": []
   },
   {
@@ -5433,7 +5522,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
-    "note": "note : this is the bands first performance since june 2003. for this era of godspeed each show begins with a 20 minutes improvisation known as 'hope drone', and ends with a noisy outro which segues from the endings of the final song, ending with the 'string loops' sample to close the show. moya has rejoined the band, and norsola departed, so most of the songs have been reworked. 'albanian' now sounds much closer to the album version. this is the first performance of 'chart #3' since 2000. it will be played as the intro to 'world police' for most shows on this tour",
+    "note": "all tomorrow's parties\nnote : this is the bands first performance since june 2003. for this era of godspeed each show begins with a 20 minutes improvisation known as 'hope drone', and ends with a noisy outro which segues from the endings of the final song, ending with the 'string loops' sample to close the show. moya has rejoined the band, and norsola departed, so most of the songs have been reworked. 'albanian' now sounds much closer to the album version. this is the first performance of 'chart #3' since 2000. it will be played as the intro to 'world police' for most shows on this tour",
     "recordings": [
       {
         "id": "gybe2010-12-03.dpa4061.rob.flac16",
@@ -5460,7 +5549,7 @@
       "the cowboy",
       "the sad mafioso"
     ],
-    "note": "note : first performance of 'the cowboy' since april 2002",
+    "note": "all tomorrow's parties\nnote : first performance of 'the cowboy' since april 2002",
     "recordings": [
       {
         "id": "gybe2010-12-04",
@@ -5488,7 +5577,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "note": "note : this is the first performance of 'the dead flag blues' since 2001. it is similar to the earlier live versions",
+    "note": "all tomorrow's parties\nnote : this is the first performance of 'the dead flag blues' since 2001. it is similar to the earlier live versions",
     "recordings": [
       {
         "id": "gybe2010-12-05.mtx",
@@ -5521,6 +5610,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ michael flower",
     "recordings": [
       {
         "id": "GYBE2010-12-07.GYBE",
@@ -5543,6 +5633,7 @@
       "the cowboy",
       "the sad mafioso"
     ],
+    "note": "w/ rm hubbert",
     "recordings": [
       {
         "id": "gybe2010-12-08",
@@ -5571,6 +5662,7 @@
       "blaise bailey finnegan III",
       "tazer floyd"
     ],
+    "note": "no opener",
     "recordings": [
       {
         "id": "gybe2010-12-10.r09.flac16",
@@ -5593,6 +5685,7 @@
       "world police",
       "the sad mafioso"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": [
       {
         "id": "gybe2010-12-12",
@@ -5615,6 +5708,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": []
   },
   {
@@ -5630,6 +5724,7 @@
       "the cowboy",
       "the sad mafioso"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": [
       {
         "id": "gybe2010-12-14.aud.flac16",
@@ -5658,7 +5753,7 @@
       "blaise bailey finnegan III",
       "12-28-99 (outro)"
     ],
-    "note": "note : this is the last performance ever of 'the dead flag blues'. first performance of the '12-28-99' outro since 2001",
+    "note": "w/ dead rat orchestra\nnote : this is the last performance ever of 'the dead flag blues'. first performance of the '12-28-99' outro since 2001",
     "recordings": [
       {
         "id": "gybe2010-12-15.ca-11.flac16",
@@ -5742,6 +5837,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2011-01-14.24bits",
@@ -5764,6 +5860,7 @@
       "tazer floyd",
       "the sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2011-01-15",
@@ -5796,6 +5893,7 @@
       "dead metheny",
       "the sad mafioso"
     ],
+    "note": "w/ lau nau",
     "recordings": [
       {
         "id": "gybe2011-01-17",
@@ -5819,6 +5917,7 @@
       "the cowboy",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2011-01-19.r-09.remastered.flac24",
@@ -5847,6 +5946,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2011-01-20",
@@ -5869,6 +5969,7 @@
       "gathering storm",
       "the sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -5885,6 +5986,7 @@
       "gathering storm",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -5901,6 +6003,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ colin stetson",
     "recordings": [
       {
         "id": "gybe2011-01-25.cos11s.flac16",
@@ -5923,6 +6026,7 @@
       "monheim",
       "the sad mafioso"
     ],
+    "note": "w/ colin stetson",
     "recordings": []
   },
   {
@@ -5939,6 +6043,7 @@
       "gathering storm",
       "the sad mafioso"
     ],
+    "note": "w/ colin stetson",
     "recordings": [
       {
         "id": "gybe2011-01-27",
@@ -5962,6 +6067,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ colin stetson",
     "recordings": [
       {
         "id": "gybe2011-01-28",
@@ -5984,6 +6090,7 @@
       "dead metheny",
       "the sad mafioso"
     ],
+    "note": "w/ colin stetson",
     "recordings": [
       {
         "id": "gybe2011-01-29",
@@ -6007,6 +6114,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ colin stetson",
     "recordings": []
   },
   {
@@ -6023,6 +6131,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -6040,6 +6149,7 @@
       "tazer floyd",
       "the sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -6056,6 +6166,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ eric chenaux",
     "recordings": [
       {
         "id": "gybe2011-02-16.dpa4061.flac",
@@ -6078,6 +6189,7 @@
       "tazer floyd",
       "the sad mafioso"
     ],
+    "note": "w/ kurt wagner",
     "recordings": []
   },
   {
@@ -6095,6 +6207,7 @@
       "gathering storm",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ samara lubelski",
     "recordings": []
   },
   {
@@ -6111,6 +6224,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ eric chenaux",
     "recordings": [
       {
         "id": "gybe2011-02-19",
@@ -6134,7 +6248,7 @@
       "gathering storm",
       "the sad mafioso"
     ],
-    "note": "note : first performance of j.l.h. outro since 2002",
+    "note": "w/ eric chenaux\nnote : first performance of j.l.h. outro since 2002",
     "recordings": [
       {
         "id": "gybe2011-02-20.m300.flac16",
@@ -6158,7 +6272,7 @@
       "the cowboy",
       "blaise bailey finnegan III"
     ],
-    "note": "note : last ever performance of 'gamelan', a bit more similar to the album version",
+    "note": "w/ sic alps\nnote : last ever performance of 'gamelan', a bit more similar to the album version",
     "recordings": [
       {
         "id": "gybe2011-02-21",
@@ -6192,6 +6306,7 @@
       "gathering storm",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ eric chenaux",
     "recordings": []
   },
   {
@@ -6208,6 +6323,7 @@
       "tazer floyd",
       "the sad mafioso"
     ],
+    "note": "w/ evangelista",
     "recordings": []
   },
   {
@@ -6224,7 +6340,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
-    "note": "note : the first performance in japan since november 2001",
+    "note": "w/ eric chenaux\nnote : the first performance in japan since november 2001",
     "recordings": []
   },
   {
@@ -6242,6 +6358,7 @@
       "the cowboy",
       "the sad mafioso"
     ],
+    "note": "w/ joshua abrams",
     "recordings": []
   },
   {
@@ -6606,6 +6723,7 @@
       "tazer floyd",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ eric chenaux",
     "recordings": [
       {
         "id": "gybe2011-04-22.flac16",
@@ -6633,6 +6751,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ the sadies",
     "recordings": [
       {
         "id": "gybe2011-04-23",
@@ -6655,6 +6774,7 @@
       "gathering storm",
       "sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2011-04-24.early",
@@ -6699,7 +6819,7 @@
       "moya",
       "the sad mafioso"
     ],
-    "note": "note : ones of the smallest room the band ever played in, 250 capacity",
+    "note": "w/ total life\nnote : ones of the smallest room the band ever played in, 250 capacity",
     "recordings": [
       {
         "id": "gybe2011-04-26.flacf",
@@ -6722,6 +6842,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2011-04-27.dpa.flac",
@@ -6745,6 +6866,7 @@
       "tazer floyd",
       "sad mafioso"
     ],
+    "note": "w/ black feelings",
     "recordings": [
       {
         "id": "gybe2011-04-28.dpa.flac",
@@ -6772,6 +6894,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ martin t\u00e9trault",
     "recordings": [
       {
         "id": "gybe2011-04-29.mtx",
@@ -6805,6 +6928,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ dreamcatcher",
     "recordings": [
       {
         "id": "gybe2011-05-01.flac",
@@ -6827,6 +6951,7 @@
       "tazer floyd",
       "sad mafioso"
     ],
+    "note": "w/ nutsak",
     "recordings": [
       {
         "id": "gybe2011-05-02.dpa.flac",
@@ -6849,6 +6974,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ rm hubbert",
     "recordings": []
   },
   {
@@ -6865,6 +6991,7 @@
       "gathering storm",
       "sad mafioso"
     ],
+    "note": "w/ transept",
     "recordings": []
   },
   {
@@ -6880,6 +7007,7 @@
       "gathering storm",
       "sad mafioso"
     ],
+    "note": "all tomorrow's parties",
     "recordings": [
       {
         "id": "gybe2011-07-24",
@@ -6901,6 +7029,7 @@
       "gathering storm",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ trumpets of death",
     "recordings": [
       {
         "id": "gybe2011-07-25",
@@ -6919,6 +7048,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "coachella festival",
     "recordings": [
       {
         "id": "gybe2012-04-14.aud.flac16",
@@ -6961,6 +7091,7 @@
       "tazer floyd",
       "the sad mafioso"
     ],
+    "note": "w/ pierced arrows",
     "recordings": [
       {
         "id": "gybe2012-04-16.m300.flac16",
@@ -6992,6 +7123,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ pierced arrows",
     "recordings": [
       {
         "id": "gybe2012-04-17",
@@ -7013,6 +7145,7 @@
       "world police",
       "the sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2012-04-18.ak40",
@@ -7040,6 +7173,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ total life\nnote : part of new song 'behemoth' is teased during the opening drone",
     "recordings": [
       {
         "id": "gybe2012-04-19.mk4cmr",
@@ -7062,6 +7196,7 @@
       "moya",
       "the sad mafioso"
     ],
+    "note": "w/ total life\nnote : part of new song 'behemoth' is teased during the opening drone",
     "recordings": [
       {
         "id": "gybe2012-04-20.m300.flac16",
@@ -7079,6 +7214,7 @@
       "tazer floyd",
       "world police"
     ],
+    "note": "coachella festival\nnote : last show with bruce on drums",
     "recordings": [
       {
         "id": "gybe2012-04-21.aud",
@@ -7097,6 +7233,7 @@
       "world police",
       "behemoth"
     ],
+    "note": "pitchfork festival\nnote : first ever show with tim on drums and the first performance of 'behemoth'. this song will be played at almost every performance from 2012-2016. this version is still very unfinished. 'albanian' has been re-worked",
     "recordings": [
       {
         "id": "gybe2012-07-14",
@@ -7110,7 +7247,7 @@
     "venue": "l'agora des arts, rouyn-noranda, qc",
     "songs": [],
     "recordings": [],
-    "note": "festival de musique &eacute;mergente"
+    "note": "festival de musique \u00e9mergente"
   },
   {
     "date": "2012-09-20",
@@ -7121,6 +7258,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ vaz, bunny brains (confirmation?)\nnote : 'behemoth' has been reworked and now sounds a lot closer to the album version",
     "recordings": [
       {
         "id": "gybe2012-09-20.H4",
@@ -7138,6 +7276,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "all tomorrow's parties",
     "recordings": []
   },
   {
@@ -7150,6 +7289,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ glenn jones",
     "recordings": [
       {
         "id": "gybe2012-10-01",
@@ -7169,6 +7309,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ bardo pond",
     "recordings": [
       {
         "id": "gybe2012-10-02",
@@ -7187,6 +7328,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ zomes",
     "recordings": []
   },
   {
@@ -7199,6 +7341,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ airstrip",
     "recordings": []
   },
   {
@@ -7212,6 +7355,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -7224,6 +7368,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -7236,6 +7381,7 @@
       "behemoth",
       "(?)"
     ],
+    "note": "w/ g string orchestra\nnote : unconfirmed. first unknown song is either 'gathering storm' or 'monheim', second unknown song is either 'sad mafioso' or 'world police'",
     "recordings": []
   },
   {
@@ -7248,6 +7394,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ knest",
     "recordings": [
       {
         "id": "gybe2012-10-09.flac16",
@@ -7267,6 +7414,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ david dondero",
     "recordings": []
   },
   {
@@ -7281,6 +7429,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -7293,6 +7442,7 @@
       "behemoth",
       "gathering storm"
     ],
+    "note": "w/ kurt wagner",
     "recordings": []
   },
   {
@@ -7305,6 +7455,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ amen dunes",
     "recordings": []
   },
   {
@@ -7317,6 +7468,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ amen dunes",
     "recordings": []
   },
   {
@@ -7329,6 +7481,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ tony conrad\nnote : the band played without sophie due to a family emergency",
     "recordings": [
       {
         "id": "gybe2012-10-15",
@@ -7347,6 +7500,7 @@
       "behemoth",
       "improvisation"
     ],
+    "note": "amplifest\nnote : the last song was supposed to be 'sad mafioso' but dave's guitar was broke. the show ends with a few minute's improvisation from sophie",
     "recordings": []
   },
   {
@@ -7359,6 +7513,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": []
   },
   {
@@ -7372,6 +7527,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": []
   },
   {
@@ -7384,6 +7540,7 @@
       "behemoth",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": []
   },
   {
@@ -7396,6 +7553,7 @@
       "behemoth",
       "blaise bailey finnegan III"
     ],
+    "note": "s.o.y. festival",
     "recordings": []
   },
   {
@@ -7408,6 +7566,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": [
       {
         "id": "gybe2012-11-04.OKMIIr.flac16",
@@ -7431,6 +7590,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": [
       {
         "id": "gybe2012-11-04.dpa",
@@ -7449,6 +7609,7 @@
       "behemoth",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": [
       {
         "id": "gybe2012-11-05.ca-11.London.flac16",
@@ -7472,6 +7633,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ baby fire",
     "recordings": [
       {
         "id": "gybe2012-11-07.ca14",
@@ -7496,6 +7658,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ big eater",
     "recordings": [
       {
         "id": "gybe2012-11-08.dpa",
@@ -7529,6 +7692,7 @@
       "behemoth",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ air cushion finish",
     "recordings": [
       {
         "id": "gybe2012-11-09.ca-11",
@@ -7552,6 +7716,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ air cushion finish",
     "recordings": [
       {
         "id": "gybe2012-11-10",
@@ -7571,6 +7736,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ air cushion finish",
     "recordings": [
       {
         "id": "gybe2012-11-11",
@@ -7589,6 +7755,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ trapist",
     "recordings": [
       {
         "id": "gybe2012-11-12.cos11s.flac16",
@@ -7607,6 +7774,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ dirty three",
     "recordings": []
   },
   {
@@ -7621,6 +7789,7 @@
       "behemoth",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ dead rat orchestra\nnote : last confirmed performance of the '12-28-99' outro",
     "recordings": [
       {
         "id": "gybe2012-11-15.DPA4060",
@@ -7645,6 +7814,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "15 years of constellation festival",
     "recordings": [
       {
         "id": "gybe2012-11-16",
@@ -7663,6 +7833,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ michael morley\nnote : first oceania tour. 'behemoth' has been reworked",
     "recordings": []
   },
   {
@@ -7676,6 +7847,7 @@
       "world police",
       "behemoth"
     ],
+    "note": "w/ michael morley",
     "recordings": []
   },
   {
@@ -7689,6 +7861,7 @@
       "world police",
       "behemoth"
     ],
+    "note": "perth international arts festival",
     "recordings": []
   },
   {
@@ -7701,6 +7874,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ primitive motion",
     "recordings": []
   },
   {
@@ -7715,6 +7889,7 @@
       "world police",
       "behemoth"
     ],
+    "note": "w/ pimmon",
     "recordings": [
       {
         "id": "gybe2013-02-14.aud",
@@ -7738,6 +7913,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ chris smith",
     "recordings": [
       {
         "id": "gybe2013-02-15.aud",
@@ -7762,6 +7938,7 @@
       "world police",
       "behemoth"
     ],
+    "note": "atp i'll be your mirror festival",
     "recordings": [
       {
         "id": "gybe2013-02-16.brendan.flac24",
@@ -7820,6 +7997,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "note : their first performance in china",
     "recordings": [
       {
         "id": "gybe2013-04-12.matrix",
@@ -7904,6 +8082,7 @@
       "chart #3",
       "sad mafioso"
     ],
+    "note": "note : chart #3 was played as an intro to 'sad mafioso', perhaps because the original planned song was 'world police'",
     "recordings": []
   },
   {
@@ -7915,6 +8094,7 @@
       "moya",
       "behemoth"
     ],
+    "note": "o.f.f. festival",
     "recordings": [
       {
         "id": "gybe2013-08-03",
@@ -7935,6 +8115,7 @@
       "world police",
       "the cowboy (w/ tim)"
     ],
+    "note": "w/ air cushion finish\nnote : this is the first performance of 'the cowboy' since 2011, a reworked version with tim on drums",
     "recordings": [
       {
         "id": "gybe2013-08-05",
@@ -7969,6 +8150,7 @@
       "sad mafioso",
       "the cowboy"
     ],
+    "note": "w/ coelititan piscator",
     "recordings": [
       {
         "id": "gybe2013-08-06.leipzig2.ca-11.flac16",
@@ -8024,6 +8206,7 @@
       "behemoth",
       "blaise bailey finnegan III"
     ],
+    "note": "\u00f8yafestivalen",
     "recordings": []
   },
   {
@@ -8036,6 +8219,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "way out west festival",
     "recordings": []
   },
   {
@@ -8047,6 +8231,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "flow festival",
     "recordings": []
   },
   {
@@ -8059,6 +8244,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ terrie ex\nnote : there is a short improvisation before 'dead metheny'",
     "recordings": [
       {
         "id": "gybe2013-08-14.Amsterdam.Matrix.flac24",
@@ -8091,6 +8277,7 @@
       "behemoth",
       "blaise bailey finnegan III"
     ],
+    "note": "pukkelpop festival",
     "recordings": []
   },
   {
@@ -8103,6 +8290,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "la route du rock festival",
     "recordings": []
   },
   {
@@ -8116,6 +8304,7 @@
       "sad mafioso",
       "moya"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2013-08-18",
@@ -8140,6 +8329,7 @@
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "w/ gate",
     "recordings": [
       {
         "id": "gybe2013-09-04.aud.flac16",
@@ -8159,6 +8349,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -8172,6 +8363,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -8191,6 +8383,7 @@
       "moya",
       "behemoth"
     ],
+    "note": "w/ gate",
     "recordings": [
       {
         "id": "gybe2013-09-09.m300.flac16",
@@ -8214,6 +8407,7 @@
       "dead metheny",
       "behemoth"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2013-09-10",
@@ -8233,6 +8427,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ gate",
     "recordings": [
       {
         "id": "gybe2013-09-12.dab.flac24",
@@ -8256,6 +8451,7 @@
       "behemoth",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2013-09-14.dab.flac24",
@@ -8279,6 +8475,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ gate",
     "recordings": [
       {
         "id": "gybe2013-09-15.dab.flac24",
@@ -8297,6 +8494,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ gate",
     "recordings": [
       {
         "id": "gybe2013-09-16",
@@ -8312,6 +8510,7 @@
       "intro",
       "behemoth"
     ],
+    "note": "opening for nine inch nails\nnote : opening for Nine Inch Nails",
     "recordings": [
       {
         "id": "gybe2013-10-11",
@@ -8327,6 +8526,7 @@
       "intro",
       "behemoth"
     ],
+    "note": "opening for nine inch nails\nnote : opening for Nine Inch Nails",
     "recordings": [
       {
         "id": "gybe2013-10-12",
@@ -8342,6 +8542,7 @@
       "intro",
       "behemoth"
     ],
+    "note": "opening for nine inch nails\nnote : opening for Nine Inch Nails",
     "recordings": [
       {
         "id": "gybe2013-10-14",
@@ -8358,6 +8559,7 @@
       "albanian",
       "sad mafioso"
     ],
+    "note": "opening for nine inch nails\nnote : opening for Nine Inch Nails",
     "recordings": [
       {
         "id": "gybe2013-10-15.flacf",
@@ -8376,6 +8578,7 @@
       "moya",
       "behemoth"
     ],
+    "note": "w/ daniel higgs",
     "recordings": [
       {
         "id": "gybe2013-10-16",
@@ -8391,6 +8594,7 @@
       "intro",
       "behemoth"
     ],
+    "note": "opening for nine inch nails\nnote : opening for Nine Inch Nails",
     "recordings": [
       {
         "id": "gybe2013-10-18",
@@ -8406,6 +8610,7 @@
       "intro",
       "behemoth"
     ],
+    "note": "opening for nine inch nails\nnote : opening for Nine Inch Nails",
     "recordings": [
       {
         "id": "gybe2013-10-19.dpa",
@@ -8429,6 +8634,7 @@
       "moya",
       "behemoth"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -8438,6 +8644,7 @@
       "intro",
       "behemoth"
     ],
+    "note": "opening for nine inch nails\nnote : opening for Nine Inch Nails",
     "recordings": []
   },
   {
@@ -8447,6 +8654,7 @@
       "intro",
       "behemoth"
     ],
+    "note": "opening for nine inch nails\nnote : opening for Nine Inch Nails",
     "recordings": []
   },
   {
@@ -8456,6 +8664,7 @@
       "intro",
       "behemoth"
     ],
+    "note": "opening for nine inch nails\nnote : opening for Nine Inch Nails",
     "recordings": []
   },
   {
@@ -8469,6 +8678,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "mountain oasis festival",
     "recordings": []
   },
   {
@@ -8481,6 +8691,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ pharmakon",
     "recordings": [
       {
         "id": "gybe2013-11-21.flacf",
@@ -8500,6 +8711,7 @@
       "world police",
       "behemoth"
     ],
+    "note": "atp end of an era festival",
     "recordings": []
   },
   {
@@ -8512,6 +8724,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ neurosis",
     "recordings": [
       {
         "id": "gybe2014-01-18",
@@ -8532,6 +8745,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ neurosis",
     "recordings": [
       {
         "id": "gybe2014-01-19",
@@ -8550,6 +8764,7 @@
       "moya",
       "behemoth"
     ],
+    "note": "primavera festival",
     "recordings": []
   },
   {
@@ -8562,6 +8777,7 @@
       "moya",
       "behemoth"
     ],
+    "note": "primavera festival",
     "recordings": [
       {
         "id": "gybe2014-06-06.gybe2014-06-06.flac16",
@@ -8580,6 +8796,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ avec le soleil sortant de sa bouche\nnote : first perofrmance of 'bosses hang'",
     "recordings": []
   },
   {
@@ -8591,6 +8808,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ christ",
     "recordings": []
   },
   {
@@ -8603,6 +8821,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ carla bozulich\nnote : this is the first performance of 'anthem for no state'. it is a bit different from the album version, with some additional unreleased sections",
     "recordings": [
       {
         "id": "gybe2015-04-07.aud.flac24",
@@ -8631,6 +8850,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ carla bozulich",
     "recordings": [
       {
         "id": "gybe2015-04-08.dpa",
@@ -8655,6 +8875,7 @@
       "tazer floyd (w/ tim)",
       "behemoth"
     ],
+    "note": "w/ carla bozulich\nnote : first version of 'tazer floyd' since 2012, with tim on drums",
     "recordings": [
       {
         "id": "gybe2015-04-09",
@@ -8673,6 +8894,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ carla bozulich",
     "recordings": []
   },
   {
@@ -8685,6 +8907,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ carla bozulich",
     "recordings": []
   },
   {
@@ -8698,6 +8921,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ carla bozulich",
     "recordings": []
   },
   {
@@ -8710,6 +8934,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ carla bozulich",
     "recordings": []
   },
   {
@@ -8723,6 +8948,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ carla bozulich",
     "recordings": []
   },
   {
@@ -8736,6 +8962,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ total life",
     "recordings": [
       {
         "id": "gybe2015-04-17.dpa4061.rob.flac24",
@@ -8755,6 +8982,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ total life",
     "recordings": []
   },
   {
@@ -8767,6 +8995,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -8780,6 +9009,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -8793,6 +9023,7 @@
       "behemoth",
       "moya"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-04-22",
@@ -8817,6 +9048,7 @@
       "behemoth",
       "moya"
     ],
+    "note": "w/ carla bozulich",
     "recordings": [
       {
         "id": "gybe2015-04-23",
@@ -8836,6 +9068,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-04-24",
@@ -8854,6 +9087,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-04-25",
@@ -8873,6 +9107,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "donnau festival",
     "recordings": []
   },
   {
@@ -8886,6 +9121,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-04-28",
@@ -8904,6 +9140,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -8917,6 +9154,7 @@
       "tazer floyd",
       "behemoth"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-04-30.dpa",
@@ -8941,6 +9179,7 @@
       "moya",
       "behemoth"
     ],
+    "note": "rewire festival",
     "recordings": [
       {
         "id": "gybe2015-05-01",
@@ -8959,6 +9198,7 @@
       "anthem for no state",
       "behemoth"
     ],
+    "note": "sled island festival",
     "recordings": []
   },
   {
@@ -8972,6 +9212,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "sled island festival\nnote : not confirmed, may be out of order",
     "recordings": []
   },
   {
@@ -8985,6 +9226,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ helm",
     "recordings": [
       {
         "id": "gybe2015-06-30",
@@ -9004,6 +9246,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "all tomorrow's parties",
     "recordings": []
   },
   {
@@ -9017,6 +9260,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "bennic\u00e0ssim festival",
     "recordings": []
   },
   {
@@ -9030,6 +9274,7 @@
       "albanian",
       "sad mafioso"
     ],
+    "note": "zanne festival",
     "recordings": []
   },
   {
@@ -9042,6 +9287,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9055,6 +9301,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-09-09",
@@ -9073,6 +9320,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "hopscotch music festival",
     "recordings": [
       {
         "id": "gsybe2015-09-10.hopscotch_acidjack",
@@ -9092,6 +9340,7 @@
       "anthem for no state",
       "albanian"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "godspeedyoublackemperor2015-09-11.flac16",
@@ -9112,6 +9361,7 @@
       "gathering storm",
       "albanian"
     ],
+    "note": "w/ xylouris white\nnote : not confirmed",
     "recordings": []
   },
   {
@@ -9125,6 +9375,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9138,6 +9389,7 @@
       "albanian",
       "moya"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9150,6 +9402,7 @@
       "gathering storm",
       "albanian"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-9-16-warehouseliveset",
@@ -9169,6 +9422,7 @@
       "anthem for no state",
       "albanian"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-09-17",
@@ -9188,6 +9442,7 @@
       "anthem for no state",
       "albanian"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9200,6 +9455,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9212,6 +9468,7 @@
       "anthem for no state",
       "albanian"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-09-21",
@@ -9230,6 +9487,7 @@
       "anthem for no state",
       "albanian"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-09-22",
@@ -9249,6 +9507,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-09-23",
@@ -9268,6 +9527,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9281,6 +9541,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9294,6 +9555,7 @@
       "bosses hang",
       "albanian"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9307,6 +9569,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2015-09-28",
@@ -9326,6 +9589,7 @@
       "bosses hang",
       "albanian"
     ],
+    "note": "w/ amen dunes",
     "recordings": []
   },
   {
@@ -9339,6 +9603,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ samara lubelski",
     "recordings": [
       {
         "id": "GYBE2015-09-30.nyctaper",
@@ -9358,6 +9623,7 @@
       "bosses hang",
       "albanian"
     ],
+    "note": "w/ downtown boys",
     "recordings": []
   },
   {
@@ -9371,6 +9637,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": [
       {
         "id": "gybe2015-10-22",
@@ -9390,6 +9657,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": [
       {
         "id": "gybe2015-10-23",
@@ -9409,6 +9677,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ dead rat orchestra\nnote : the venue's fire alarm is activated during \"moya\"",
     "recordings": []
   },
   {
@@ -9422,6 +9691,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ nathaniel robin mann",
     "recordings": []
   },
   {
@@ -9435,6 +9705,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": []
   },
   {
@@ -9448,6 +9719,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ dead rat orchestra",
     "recordings": []
   },
   {
@@ -9459,6 +9731,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "pitchfork festival",
     "recordings": [
       {
         "id": "gybe2015-10-29",
@@ -9478,6 +9751,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -9491,6 +9765,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -9505,6 +9780,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": [
       {
         "id": "gybe2015-11-02.aud.flac24",
@@ -9524,6 +9800,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji",
     "recordings": [
       {
         "id": "gybe2015-11-03.audix.flac16",
@@ -9548,6 +9825,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -9562,6 +9840,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ xarah dion",
     "recordings": []
   },
   {
@@ -9575,6 +9854,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xarah dion",
     "recordings": []
   },
   {
@@ -9588,6 +9868,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xarah dion",
     "recordings": []
   },
   {
@@ -9601,6 +9882,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ xarah dion",
     "recordings": []
   },
   {
@@ -9611,6 +9893,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "w/ xarah dion\nnote : incomplete",
     "recordings": []
   },
   {
@@ -9625,6 +9908,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ xarah dion",
     "recordings": []
   },
   {
@@ -9638,6 +9922,7 @@
       "bosses hang",
       "albanian"
     ],
+    "note": "w/ xarah dion",
     "recordings": []
   },
   {
@@ -9651,6 +9936,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xarah dion",
     "recordings": []
   },
   {
@@ -9663,6 +9949,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xarah dion\nnote : their first performance in turkey",
     "recordings": [
       {
         "id": "gybe2015-11-17",
@@ -9688,6 +9975,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ vast plains",
     "recordings": []
   },
   {
@@ -9700,6 +9988,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ wrekmeister harmonies",
     "recordings": []
   },
   {
@@ -9712,6 +10001,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": [
       {
         "id": "gybe2016-01-31",
@@ -9737,6 +10027,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2016-02-03",
@@ -9755,6 +10046,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2016-02-04",
@@ -9773,6 +10065,7 @@
       "monheim",
       "albanian"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2016-02-05.dpa",
@@ -9791,6 +10084,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9803,6 +10097,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9815,6 +10110,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9827,6 +10123,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9839,6 +10136,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9851,6 +10149,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9864,6 +10163,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2016-02-14.tracked",
@@ -9892,6 +10192,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": []
   },
   {
@@ -9904,6 +10205,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": []
   },
   {
@@ -9916,6 +10218,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2016-03-07.crankingamps",
@@ -9934,6 +10237,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ xylouris white",
     "recordings": [
       {
         "id": "gybe2016-03-08",
@@ -9954,6 +10258,7 @@
       "albanian",
       "kicking horse on broken hill"
     ],
+    "note": "note : first performance of 'kicking horse on broken hill' since 1997",
     "recordings": []
   },
   {
@@ -10046,6 +10351,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": []
   },
   {
@@ -10063,6 +10369,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": []
   },
   {
@@ -10080,6 +10387,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": []
   },
   {
@@ -10097,6 +10405,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": [
       {
         "id": "gybe2016-06-14",
@@ -10120,6 +10429,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": []
   },
   {
@@ -10137,6 +10447,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": [
       {
         "id": "gybe2016-08-08",
@@ -10160,6 +10471,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": [
       {
         "id": "gybe2016-08-09",
@@ -10178,6 +10490,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "edinburgh international festival",
     "recordings": [
       {
         "id": "gybe2016-08-10",
@@ -10195,6 +10508,7 @@
       "behemoth",
       "sad mafioso"
     ],
+    "note": "rock altitude festival",
     "recordings": []
   },
   {
@@ -10207,6 +10521,7 @@
       "bosses hang",
       "dead metheny"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2016-08-13",
@@ -10242,6 +10557,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -10255,6 +10571,7 @@
       "blaise bailey finnegan III",
       "moya"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -10267,6 +10584,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2016-08-18",
@@ -10285,6 +10603,7 @@
       "blaise bailey finnegan III",
       "albanian"
     ],
+    "note": "arctangent festival",
     "recordings": [
       {
         "id": "gybe2016-08-19.dpa4061.rob.flac24",
@@ -10303,6 +10622,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2016-08-21",
@@ -10328,6 +10648,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ jessica moss",
     "recordings": [
       {
         "id": "gybe2016-09-19",
@@ -10346,6 +10667,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ no negative",
     "recordings": []
   },
   {
@@ -10359,6 +10681,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jordi rosen, cheap wig",
     "recordings": [
       {
         "id": "gybe2016-09-21",
@@ -10377,6 +10700,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jason sharp",
     "recordings": []
   },
   {
@@ -10389,6 +10713,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "desert daze festival",
     "recordings": []
   },
   {
@@ -10444,6 +10769,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": []
   },
   {
@@ -10457,6 +10783,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -10470,6 +10797,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -10483,6 +10811,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": []
   },
   {
@@ -10496,6 +10825,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -10509,6 +10839,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -10522,6 +10853,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -10535,6 +10867,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -10548,6 +10881,7 @@
       "2 nouveau tower",
       "sad mafioso"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -10561,6 +10895,7 @@
       "2 nouveau tower",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -10574,6 +10909,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -10587,6 +10923,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -10600,6 +10937,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ bardo pond, liars",
     "recordings": []
   },
   {
@@ -10613,6 +10951,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ bardo pond",
     "recordings": [
       {
         "id": "gybe2017-10-30",
@@ -10632,6 +10971,7 @@
       "2 nouveau tower",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ bardo pond, jessica moss",
     "recordings": [
       {
         "id": "gybe2017-10-31",
@@ -10651,6 +10991,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": [
       {
         "id": "gybe2017-11-01.brussel.ca-14.flac16",
@@ -10670,6 +11011,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": [
       {
         "id": "gybe2017-11-02",
@@ -10694,6 +11036,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": []
   },
   {
@@ -10707,6 +11050,7 @@
       "2 nouveau tower",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": []
   },
   {
@@ -10720,6 +11064,7 @@
       "2 nouveau tower",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": [
       {
         "id": "gybe2017-11-07",
@@ -10739,6 +11084,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "festival aural\nnote : first performance in m&eacute;xico",
     "recordings": []
   },
   {
@@ -10752,6 +11098,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ vyctoria",
     "recordings": []
   },
   {
@@ -10776,6 +11123,7 @@
       "anthem for no state",
       "blaise bailey finnegan III"
     ],
+    "note": "day for night festival",
     "recordings": []
   },
   {
@@ -10793,6 +11141,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": [
       {
         "id": "gybe2018-01-13.crankingamps",
@@ -10812,6 +11161,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": [
       {
         "id": "gybe2018-01-16",
@@ -10830,6 +11180,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "mona foma festival",
     "recordings": [
       {
         "id": "gybe2018-01-19.crankingamps",
@@ -10849,6 +11200,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -10862,6 +11214,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": []
   },
   {
@@ -10875,6 +11228,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ ada",
     "recordings": [
       {
         "id": "gybe2018-03-06.Zoom.flac16",
@@ -10894,6 +11248,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -10907,6 +11262,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -10920,6 +11276,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -10933,6 +11290,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen, tashi dorji",
     "recordings": []
   },
   {
@@ -10946,6 +11304,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen, tashi dorji",
     "recordings": []
   },
   {
@@ -10959,6 +11318,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen, tashi dorji",
     "recordings": []
   },
   {
@@ -10972,6 +11332,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen, tashi dorji",
     "recordings": [
       {
         "id": "gybe2018-03-14",
@@ -10991,6 +11352,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen, tashi dorji",
     "recordings": []
   },
   {
@@ -11004,6 +11366,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2018-03-16",
@@ -11023,6 +11386,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd, the hand",
     "recordings": []
   },
   {
@@ -11036,6 +11400,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2018-03-18.CM3.flac1644",
@@ -11060,6 +11425,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen, tashi dorji",
     "recordings": []
   },
   {
@@ -11073,6 +11439,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen, tashi dorji",
     "recordings": []
   },
   {
@@ -11085,6 +11452,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "big ears music festival",
     "recordings": [
       {
         "id": "GYBE2018-03-22",
@@ -11104,6 +11472,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11117,6 +11486,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd\nnote : sophie did a speech before the show",
     "recordings": [
       {
         "id": "gybe2018-03-24",
@@ -11136,6 +11506,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11149,6 +11520,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ pekko k\u00e4ppi & k:h:h:l",
     "recordings": []
   },
   {
@@ -11162,6 +11534,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -11175,6 +11548,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -11188,6 +11562,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": [
       {
         "id": "gybe2018-04-13.LS-14",
@@ -11212,6 +11587,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": [
       {
         "id": "gybe2018-04-14.dpa4061.flac24",
@@ -11230,6 +11606,7 @@
       "2 nouveau tower",
       "blaise bailey finnegan III"
     ],
+    "note": "a colossal weekend 2018",
     "recordings": []
   },
   {
@@ -11249,6 +11626,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ resina",
     "recordings": []
   },
   {
@@ -11262,6 +11640,7 @@
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "w/ resina",
     "recordings": []
   },
   {
@@ -11275,6 +11654,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11301,6 +11681,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "roadburn festival",
     "recordings": [
       {
         "id": "gybe2018-04-21.dpa4061.rob.flac24",
@@ -11320,6 +11701,7 @@
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "roadburn festival",
     "recordings": [
       {
         "id": "gybe2018-04-22.dpa4061.rob.flac24",
@@ -11339,6 +11721,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11352,6 +11735,7 @@
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11365,6 +11749,7 @@
       "2 nouveau tower",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11377,6 +11762,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "donnau festival",
     "recordings": [
       {
         "id": "gybe2018-04-27.cos11d",
@@ -11397,6 +11783,7 @@
       "sad mafioso",
       "moya"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2018-04-29",
@@ -11416,6 +11803,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11429,6 +11817,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11442,6 +11831,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11455,6 +11845,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": [
       {
         "id": "gybe2018-05-19.AT853sc",
@@ -11479,6 +11870,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -11492,6 +11884,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -11505,6 +11898,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": [
       {
         "id": "GYBE2018-05-23.losangeles.aud.flac24",
@@ -11529,6 +11923,7 @@
       "monheim",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -11542,6 +11937,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": [
       {
         "id": "gybe2018-05-25.flac24",
@@ -11561,6 +11957,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": [
       {
         "id": "gybe2018-05-26",
@@ -11580,6 +11977,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -11593,6 +11991,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": [
       {
         "id": "gybe2018-05-29.mk4.48khz.flac16",
@@ -11617,6 +12016,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11630,6 +12030,7 @@
       "monheim",
       "sad mafioso"
     ],
+    "note": "w/ daniel menche",
     "recordings": []
   },
   {
@@ -11643,6 +12044,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -11656,6 +12058,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -11669,6 +12072,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -11682,6 +12086,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ this will destroy you",
     "recordings": []
   },
   {
@@ -11707,6 +12112,7 @@
       "2 nouveau tower",
       "sad mafioso"
     ],
+    "note": "pointu festival",
     "recordings": []
   },
   {
@@ -11720,6 +12126,7 @@
       "monheim",
       "sad mafioso"
     ],
+    "note": "w/ mdc III",
     "recordings": [
       {
         "id": "gybe2018-07-09.flacf",
@@ -11743,6 +12150,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": [
       {
         "id": "gybe2018-07-13",
@@ -11766,6 +12174,7 @@
       "behemoth (part 2)",
       "the dead flag blues (tape)"
     ],
+    "note": "monumental\nnote : \"Monumental\" dance show",
     "recordings": [
       {
         "id": "gybe2018-07-14",
@@ -11785,6 +12194,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": []
   },
   {
@@ -11798,6 +12208,7 @@
       "monheim",
       "sad mafioso"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2018-08-07",
@@ -11817,6 +12228,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": []
   },
   {
@@ -11830,6 +12242,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": []
   },
   {
@@ -11843,6 +12256,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ emel mathlouthi",
     "recordings": [
       {
         "id": "gybe2018-08-10",
@@ -11862,6 +12276,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -11875,6 +12290,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2018-08-12.mp3",
@@ -11892,6 +12308,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "III points festival",
     "recordings": []
   },
   {
@@ -11905,6 +12322,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas\nnote : first performance of the new songs 'glacier' and 'cliff'",
     "recordings": []
   },
   {
@@ -11918,6 +12336,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas",
     "recordings": []
   },
   {
@@ -11931,6 +12350,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas",
     "recordings": [
       {
         "id": "gybe2019-08-10",
@@ -11950,6 +12370,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas\nnote : good show, although there were some equipment problems during '2 nouveau tower'",
     "recordings": []
   },
   {
@@ -11963,6 +12384,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ devin brahja waldman",
     "recordings": []
   },
   {
@@ -11976,6 +12398,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ devin brahja waldman",
     "recordings": []
   },
   {
@@ -11989,6 +12412,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ devin brahja waldman",
     "recordings": []
   },
   {
@@ -12001,6 +12425,7 @@
       "glacier",
       "blaise bailey finnegan III"
     ],
+    "note": "psycho las vegas",
     "recordings": []
   },
   {
@@ -12014,6 +12439,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ patrick shirioshi, carla bozulich\nnote : they opened with a 12 minutes drone piece with carla bozulich on vocals",
     "recordings": [
       {
         "id": "gybe2019-08-17",
@@ -12043,6 +12469,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ patrick shirioshi",
     "recordings": [
       {
         "id": "gybe2019-08-18",
@@ -12053,7 +12480,7 @@
   },
   {
     "date": "2019-08-20",
-    "venue": "ace of spades, sacramento,  ca",
+    "venue": "ace of spades, sacramento, ca",
     "songs": [
       "intro",
       "albanian",
@@ -12062,6 +12489,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -12075,6 +12503,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -12088,6 +12517,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -12101,6 +12531,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -12114,6 +12545,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ devin brahja waldman",
     "recordings": []
   },
   {
@@ -12127,6 +12559,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2019-08-26",
@@ -12146,6 +12579,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ kgd",
     "recordings": [
       {
         "id": "gybe2019-08-27",
@@ -12165,6 +12599,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -12178,6 +12613,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ kgd",
     "recordings": []
   },
   {
@@ -12191,6 +12627,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ myriam gendron",
     "recordings": [
       {
         "id": "gybe2019-11-03",
@@ -12210,6 +12647,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ eliza kavtion",
     "recordings": [
       {
         "id": "gybe2019-11-04",
@@ -12229,6 +12667,7 @@
       "cliff",
       "albanian"
     ],
+    "note": "w/ backxwash",
     "recordings": [
       {
         "id": "gybe2019-11-05",
@@ -12249,6 +12688,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ light conductor",
     "recordings": [
       {
         "id": "gybe2019-11-09.Lisbon-LAV",
@@ -12273,6 +12713,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ light conductor",
     "recordings": []
   },
   {
@@ -12286,6 +12727,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ light conductor",
     "recordings": []
   },
   {
@@ -12299,6 +12741,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ light conductor",
     "recordings": []
   },
   {
@@ -12312,6 +12755,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ light conductor",
     "recordings": []
   },
   {
@@ -12325,6 +12769,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ light conductor",
     "recordings": []
   },
   {
@@ -12338,6 +12783,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ light conductor",
     "recordings": []
   },
   {
@@ -12351,6 +12797,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": [
       {
         "id": "gybe2019-11-17",
@@ -12369,6 +12816,7 @@
       "2 nouveau tower",
       "sad mafioso"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -12382,6 +12830,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -12395,6 +12844,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -12408,6 +12858,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": []
   },
   {
@@ -12421,6 +12872,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": [
       {
         "id": "gybe2019-11-23.cos11d",
@@ -12440,6 +12892,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": [
       {
         "id": "gybe2019-11-24",
@@ -12459,6 +12912,7 @@
       "cliff",
       "albanian"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": [
       {
         "id": "gybe2019-11-25.ca11",
@@ -12483,6 +12937,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": [
       {
         "id": "gybe2019-11-27.xyms",
@@ -12507,6 +12962,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ mette rasmussen",
     "recordings": [
       {
         "id": "gybe2019-11-28.flac16",
@@ -12514,6 +12970,13 @@
         "title": "Godspeed You! Black Emperor Live at 1930 Moscow on 2019-11-28"
       }
     ]
+  },
+  {
+    "date": "2020-04-19",
+    "venue": "hattori ryokuchi hall, osaka, jp",
+    "songs": [],
+    "recordings": [],
+    "note": "*CANCELLED*"
   },
   {
     "date": "2022-02-25",
@@ -12526,6 +12989,7 @@
       "albanian",
       "cliff"
     ],
+    "note": "w/ manas\nnote : first confirmed performance of 'gathering storm' since september 2016. 'cliff' was extended for a few minutes. it ends with the bells sample from the new album. thanks to zeroxysm and filefly\nthanks to zeroxysm and filefly",
     "recordings": [
       {
         "id": "gybe2022-02-25.aud.flac16",
@@ -12555,6 +13019,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ manas\nnote : short break in the set during 'bosses hang' due to equipment catching fire. thanks to tollbooths and eve\nthanks to tollbooths and eve",
     "recordings": [
       {
         "id": "gybe2022-02-26",
@@ -12574,6 +13039,7 @@
       "albanian",
       "cliff"
     ],
+    "note": "w/ manas\nnote : aidan gave a speech before 'gathering storm'. thanks to gonzalez and jessica\nthanks to gonzalez and jessica",
     "recordings": []
   },
   {
@@ -12587,8 +13053,8 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
-    "note": "thanks to izeaid"
+    "note": "w/ manas\nthanks to izeaid",
+    "recordings": []
   },
   {
     "date": "2022-03-02",
@@ -12601,6 +13067,7 @@
       "albanian",
       "cliff"
     ],
+    "note": "w/ manas\nthanks to woody, gus, and jessica",
     "recordings": [
       {
         "id": "gybe2022-03-02.iQ7",
@@ -12612,8 +13079,7 @@
         "url": "https://archive.org/details/gybe2022-03-02",
         "title": "Godspeed You! Black Emperor Live at Music Box on 2022-03-02"
       }
-    ],
-    "note": "thanks to woody, gus, and jessica"
+    ]
   },
   {
     "date": "2022-03-03",
@@ -12626,6 +13092,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas\nthanks to erik and jessica",
     "recordings": [
       {
         "id": "gybe2022-03-03",
@@ -12637,8 +13104,7 @@
         "url": "https://archive.org/details/gybe2022-03-03.flac24",
         "title": "Godspeed You! Black Emperor Live at The Belasco Theatre on 2022-03-03"
       }
-    ],
-    "note": "thanks to erik and jessica"
+    ]
   },
   {
     "date": "2022-03-04",
@@ -12651,6 +13117,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ manas\nthanks to sumerian, lucas, tankhaus, bowen, and jessica",
     "recordings": [
       {
         "id": "gybe2022-03-04",
@@ -12662,8 +13129,7 @@
         "url": "https://archive.org/details/gybe2022-03-04.matrix",
         "title": "Godspeed You! Black Emperor Live at The UC Theatre on 2022-03-04"
       }
-    ],
-    "note": "thanks to sumerian, lucas, tankhaus, bowen, and jessica"
+    ]
   },
   {
     "date": "2022-03-05",
@@ -12676,6 +13142,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas\nthanks to sumerian, lucas, bowen, tankhaus, michael, loughney, and jessica",
     "recordings": [
       {
         "id": "gybe2022-03-05",
@@ -12702,8 +13169,7 @@
         "url": "https://archive.org/details/gybe2002-03-05",
         "title": "Godspeed You! Black Emperor Live at The Regency Ballroom on 2022-03-05"
       }
-    ],
-    "note": "thanks to sumerian, lucas, bowen, tankhaus, michael, loughney, and jessica"
+    ]
   },
   {
     "date": "2022-03-06",
@@ -12716,14 +13182,14 @@
       "monheim",
       "albanian"
     ],
+    "note": "w/ manas\nthanks to lieutzip, bowen, and jessica",
     "recordings": [
       {
         "id": "gybe2022-03-06",
         "url": "https://archive.org/details/gybe2022-03-06",
         "title": "Godspeed You! Black Emperor Live at The Phoenix Theater, Petaluma, CA on 2022-03-06"
       }
-    ],
-    "note": "thanks to lieutzip, bowen, and jessica"
+    ]
   },
   {
     "date": "2022-03-08",
@@ -12736,14 +13202,14 @@
       "albanian",
       "cliff"
     ],
+    "note": "w/ humming amps trio\nthanks to jonathan",
     "recordings": [
       {
         "id": "gybe2022-03-08",
         "url": "https://archive.org/details/gybe2022-03-08",
         "title": "Godspeed You! Black Emperor Live at The Showbox on 2022-03-08"
       }
-    ],
-    "note": "thanks to jonathan"
+    ]
   },
   {
     "date": "2022-03-09",
@@ -12756,6 +13222,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ humming amps trio\nthanks to sumerian",
     "recordings": [
       {
         "id": "gybe2022-03-09",
@@ -12767,8 +13234,7 @@
         "url": "https://archive.org/details/gybe2022-03-09.mastered",
         "title": "Godspeed You! Black Emperor Live at Roseland Theater on 2022-03-09"
       }
-    ],
-    "note": "thanks to sumerian"
+    ]
   },
   {
     "date": "2022-03-10",
@@ -12781,6 +13247,7 @@
       "moya",
       "cliff"
     ],
+    "note": "w/ humming amps\nnote : they played without mauro and moya. thanks to jon\nthanks to jon",
     "recordings": [
       {
         "id": "gybe2022-03-10.Victoria",
@@ -12800,6 +13267,7 @@
       "albanian",
       "cliff"
     ],
+    "note": "w/ humming amps\nthanks to jon and leif",
     "recordings": [
       {
         "id": "gybe2022-03-11.Vancouver",
@@ -12811,8 +13279,7 @@
         "url": "https://archive.org/details/gybe2022-03-11.leifh",
         "title": "Godspeed You Black Emperor! Live at Vogue Theatre on 2022-03-11"
       }
-    ],
-    "note": "thanks to jon and leif"
+    ]
   },
   {
     "date": "2022-03-12",
@@ -12825,14 +13292,14 @@
       "anthem for no state",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ humming amps\nthanks to jon",
     "recordings": [
       {
         "id": "gybe2022-03-12.Kelowna",
         "url": "https://archive.org/details/gybe2022-03-12.Kelowna",
         "title": "Godspeed You! Black Emperor Live at Kelowna Community Theatre on 2022-03-12"
       }
-    ],
-    "note": "thanks to jon"
+    ]
   },
   {
     "date": "2022-03-14",
@@ -12845,6 +13312,7 @@
       "anthem for no state",
       "cliff"
     ],
+    "note": "w/ humming amps\nthanks to jon and sharon",
     "recordings": [
       {
         "id": "gybe2022-03-14.Calgary",
@@ -12856,8 +13324,7 @@
         "url": "https://archive.org/details/gybe2022-03-14.sharon",
         "title": "Godspeed You! Black Emperor Live at Palace Theatre on 2022-03-14"
       }
-    ],
-    "note": "thanks to jon and sharon"
+    ]
   },
   {
     "date": "2022-03-15",
@@ -12870,14 +13337,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ humming amps\nthanks to jon",
     "recordings": [
       {
         "id": "gybe2022-03-15.Edmonton",
         "url": "https://archive.org/details/gybe2022-03-15.Edmonton",
         "title": "Godspeed You! Black Emperor Live at Union Hall on 2022-03-15"
       }
-    ],
-    "note": "thanks to jon"
+    ]
   },
   {
     "date": "2022-03-16",
@@ -12890,6 +13357,7 @@
       "monheim",
       "sad mafioso"
     ],
+    "note": "w/ steve bates",
     "recordings": [
       {
         "id": "gybe2022-03-16",
@@ -12909,6 +13377,7 @@
       "albanian",
       "cliff"
     ],
+    "note": "w/ humming amps",
     "recordings": []
   },
   {
@@ -12922,14 +13391,14 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ hammerhead\nthanks to roffels",
     "recordings": [
       {
         "id": "gybe2022-03-18.AUD",
         "url": "https://archive.org/details/gybe2022-03-18.AUD",
         "title": "Godspeed You! Black Emperor Live at First Avenue, Minneapolis MN on 2022-03-18"
       }
-    ],
-    "note": "thanks to roffels"
+    ]
   },
   {
     "date": "2022-03-19",
@@ -12942,6 +13411,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ natural information society\nthanks to bob and nei",
     "recordings": [
       {
         "id": "gybe2022-03-19.mv88",
@@ -12953,8 +13423,7 @@
         "url": "https://archive.org/details/gybe2022-03-19.ecm",
         "title": "Godspeed You Black Emperor! Live at Thalia Hall on 2022-03-19"
       }
-    ],
-    "note": "thanks to bob and nei"
+    ]
   },
   {
     "date": "2022-03-20",
@@ -12967,8 +13436,8 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
-    "note": "thanks to bob and nei"
+    "note": "w/ natural information society\nthanks to bob and nei",
+    "recordings": []
   },
   {
     "date": "2022-04-15",
@@ -12981,6 +13450,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jennifer castle",
     "recordings": [
       {
         "id": "gybe2022-04-15",
@@ -13005,6 +13475,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ jennifer castle",
     "recordings": []
   },
   {
@@ -13018,6 +13489,7 @@
       "monheim",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jennifer castle\nthanks to frog",
     "recordings": [
       {
         "id": "gybe2022-04-17.frog",
@@ -13029,8 +13501,7 @@
         "url": "https://archive.org/details/gybe2022-04-17",
         "title": "Godspeed You! Black Emperor Live at Columbus Theatre, Providence, Rhode Island on 2022-04-17"
       }
-    ],
-    "note": "thanks to frog"
+    ]
   },
   {
     "date": "2022-04-18",
@@ -13043,6 +13514,7 @@
       "gathering storm",
       "albanian"
     ],
+    "note": "w/ jennifer castle",
     "recordings": []
   },
   {
@@ -13056,14 +13528,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ myriam gendron\nthanks to nick",
     "recordings": [
       {
         "id": "gybe2022-04-19.tascam",
         "url": "https://archive.org/details/gybe2022-04-19.tascam",
         "title": "Godspeed You! Black Emperor Live at Paradise Rock Club on 2022-04-19"
       }
-    ],
-    "note": "thanks to nick"
+    ]
   },
   {
     "date": "2022-04-21",
@@ -13076,14 +13548,14 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ myriam gendron\nthanks to nick, j.mart, and nihar",
     "recordings": [
       {
         "id": "gybe2022-04-21.dpa4061.flac24",
         "url": "https://archive.org/details/gybe2022-04-21.dpa4061.flac24",
         "title": "Godspeed You! Black Emperor Live at Webster Hall on 2022-04-21"
       }
-    ],
-    "note": "thanks to nick, j.mart, and nihar"
+    ]
   },
   {
     "date": "2022-04-22",
@@ -13096,14 +13568,14 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ myriam gendron\nthanks to j.mart",
     "recordings": [
       {
         "id": "gybe2022-04-22.dpa4061.flac24",
         "url": "https://archive.org/details/gybe2022-04-22.dpa4061.flac24",
         "title": "Godspeed You! Black Emperor Live at White Eagle Hall on 2022-04-22"
       }
-    ],
-    "note": "thanks to j.mart"
+    ]
   },
   {
     "date": "2022-04-23",
@@ -13116,6 +13588,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ myriam gendron\nthanks to \"big muff pi\"",
     "recordings": [
       {
         "id": "gybe2022-04-23.tascam16",
@@ -13127,8 +13600,7 @@
         "url": "https://archive.org/details/gybe2022-04-23.tascam24",
         "title": "Godspeed You! Black Emperor Live at Union Transfer on 2022-04-23"
       }
-    ],
-    "note": "thanks to \"big muff pi\""
+    ]
   },
   {
     "date": "2022-04-24",
@@ -13141,14 +13613,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ myriam gendron\nthanks to echtoplasm",
     "recordings": [
       {
         "id": "gybe2022-04-24.samsung",
         "url": "https://archive.org/details/gybe2022-04-24.samsung",
         "title": "Godspeed You! Black Emperor Live at 9.30 Club on 2022-04-24"
       }
-    ],
-    "note": "thanks to echtoplasm"
+    ]
   },
   {
     "date": "2022-04-25",
@@ -13161,6 +13633,7 @@
       "monheim",
       "albanian"
     ],
+    "note": "w/ nguyen/joachim",
     "recordings": [
       {
         "id": "gybe2022-04-25.tracked",
@@ -13185,14 +13658,14 @@
       "monheim",
       "albanian"
     ],
+    "note": "w/ nguyen/joachim\nthanks to hazel and subsume",
     "recordings": [
       {
         "id": "gybe2022-04-26.h1n",
         "url": "https://archive.org/details/gybe2022-04-26.h1n",
         "title": "Godspeed You! Black Emperor Live at Cat's Cradle on 2022-04-26"
       }
-    ],
-    "note": "thanks to hazel and subsume"
+    ]
   },
   {
     "date": "2022-04-28",
@@ -13205,6 +13678,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ nguyen/joachim",
     "recordings": [
       {
         "id": "gybe2022-04-28",
@@ -13222,6 +13696,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "shaky knees festival",
     "recordings": []
   },
   {
@@ -13235,14 +13710,14 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ nguyen/joachim, tashi dorji\nthanks to subsume",
     "recordings": [
       {
         "id": "gybe2022-04-30",
         "url": "https://archive.org/details/gybe2022-04-30",
         "title": "Godspeed You! Black Emperor Live at Caverns, Pelham Tennessee on 2022-04-30"
       }
-    ],
-    "note": "thanks to subsume"
+    ]
   },
   {
     "date": "2022-05-01",
@@ -13255,6 +13730,7 @@
       "monheim",
       "blaise bailey finnegan II"
     ],
+    "note": "w/ manas",
     "recordings": []
   },
   {
@@ -13268,6 +13744,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas",
     "recordings": []
   },
   {
@@ -13281,6 +13758,7 @@
       "monheim",
       "sad mafioso"
     ],
+    "note": "w/ manas",
     "recordings": []
   },
   {
@@ -13294,14 +13772,14 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ jennifer castle\nthanks to ren",
     "recordings": [
       {
         "id": "gybe2022-05-05.ecm",
         "url": "https://archive.org/details/gybe2022-05-05.ecm",
         "title": "Godspeed You! Black Emperor Live at Phoenix Concert Theatre on 2022-05-05"
       }
-    ],
-    "note": "thanks to ren"
+    ]
   },
   {
     "date": "2022-05-06",
@@ -13314,6 +13792,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jennifer castle",
     "recordings": [
       {
         "id": "gybe2022-05-06",
@@ -13333,6 +13812,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jennifer castle\nnote : first performance in ottawa since 1999",
     "recordings": [
       {
         "id": "gybe2022-05-07.aud.flac24",
@@ -13352,6 +13832,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "note : second time that the band played in turkey. thanks to efe\nthanks to efe",
     "recordings": []
   },
   {
@@ -13365,14 +13846,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "thanks to vomvos",
     "recordings": [
       {
         "id": "gybe2022-07-15",
         "url": "https://archive.org/details/gybe2022-07-15",
         "title": "Godspeed You! Black Emperor Live at Odeon of Herodes Atticus on 2022-07-15"
       }
-    ],
-    "note": "thanks to vomvos"
+    ]
   },
   {
     "date": "2022-08-28",
@@ -13382,6 +13863,7 @@
       "cliff",
       "blaise bailey finnegan III"
     ],
+    "note": "this ain't no picnic\nnote : the show starts with a tape from the new album",
     "recordings": [
       {
         "id": "gybe2022-08-28.flac24",
@@ -13401,6 +13883,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ haress\nnote : first performance of 'world police' since 2016. 'chart #3' is not played. thanks to emmanuel and emily\nthanks to emmanuel and emily",
     "recordings": [
       {
         "id": "gybe2022-09-17.emmanuel",
@@ -13420,6 +13903,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ humming amps\nnote : There is a pause during the show because of problems with two amp on the stage. thanks to emily\nthanks to emily",
     "recordings": []
   },
   {
@@ -13434,6 +13918,7 @@
       "tazer floyd",
       "world police"
     ],
+    "note": "w/ humming amps\nnote : The first performance of Tazer Floyd since April 2015. thanks to emmanuel and emily\nthanks to emmanuel and emily",
     "recordings": [
       {
         "id": "gybe2022-09-19.tascam",
@@ -13453,6 +13938,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ charles hayward\nthanks to emmanuel, emily, markus",
     "recordings": [
       {
         "id": "gybe2022-09-20.DPA4060",
@@ -13464,8 +13950,7 @@
         "url": "https://archive.org/details/gybe2022-09-20",
         "title": "Godspeed You! Black Emperor Live at Electric Ballroom on 2022-09-20"
       }
-    ],
-    "note": "thanks to emmanuel, emily, markus"
+    ]
   },
   {
     "date": "2022-09-21",
@@ -13478,6 +13963,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ humming amps\nthanks to emmanuel, emily, markus",
     "recordings": [
       {
         "id": "gybe2022-09-21.DPA4060",
@@ -13489,8 +13975,7 @@
         "url": "https://archive.org/details/gybe2022-09-21",
         "title": "Godspeed You! Black Emperor Live at Electric Ballroom on 2022-09-21"
       }
-    ],
-    "note": "thanks to emmanuel, emily, markus"
+    ]
   },
   {
     "date": "2022-09-22",
@@ -13503,6 +13988,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ charles hayward\nthanks to emmanuel, emily, markus",
     "recordings": [
       {
         "id": "gybe2022-09-22",
@@ -13514,8 +14000,7 @@
         "url": "https://archive.org/details/gybe2022-09-22.DPA4060",
         "title": "Godspeed You! Black Emperor Live at Electric Ballroom on 2022-09-22"
       }
-    ],
-    "note": "thanks to emmanuel, emily, markus"
+    ]
   },
   {
     "date": "2022-09-23",
@@ -13528,13 +14013,13 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ humming amps\nthanks to emmanuel, emily, oscar",
     "recordings": [
       {
         "id": "kdQ06DmIkw0",
         "url": "https://youtu.be/kdQ06DmIkw0"
       }
-    ],
-    "note": "thanks to emmanuel, emily, oscar"
+    ]
   },
   {
     "date": "2022-09-25",
@@ -13547,6 +14032,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13560,6 +14046,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji",
     "recordings": [
       {
         "id": "gybe2022-09-26.dpa4061",
@@ -13584,6 +14071,7 @@
       "tazer floyd",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": [
       {
         "id": "gybe2022-09-27.pcmm10",
@@ -13603,14 +14091,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji\nthanks to laura",
     "recordings": [
       {
         "id": "gybe2022-09-28.okm",
         "url": "https://archive.org/details/gybe2022-09-28.okm",
         "title": "Godspeed You! Black Emperor Live at Astra on 2022-09-28"
       }
-    ],
-    "note": "thanks to laura"
+    ]
   },
   {
     "date": "2022-09-29",
@@ -13623,6 +14111,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13637,6 +14126,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji\nnote : the first time that Fire at Static Valley was played. thanks to toucanite\nthanks to toucanite",
     "recordings": [
       {
         "id": "gybe2022-09-30",
@@ -13657,6 +14147,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13670,6 +14161,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13684,6 +14176,7 @@
       "fire at static valley",
       "world police"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13698,6 +14191,7 @@
       "fire at static valley",
       "world police"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13712,6 +14206,7 @@
       "fire at static valley",
       "world police"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13725,6 +14220,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13737,6 +14233,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "am fest",
     "recordings": []
   },
   {
@@ -13750,6 +14247,7 @@
       "anthem for no state",
       "blaise bailey finnegan III"
     ],
+    "note": "zaragoza fest\nnote : not confirmed",
     "recordings": []
   },
   {
@@ -13763,6 +14261,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13776,6 +14275,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13788,6 +14288,7 @@
       "tazer floyd",
       "(incomplete / out of order)"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -13801,6 +14302,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "amplifest",
     "recordings": []
   },
   {
@@ -13813,14 +14315,14 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "levitation festival\nthanks to will akers",
     "recordings": [
       {
         "id": "gybe2022-10-28",
         "url": "https://archive.org/details/gybe2022-10-28",
         "title": "Godspeed You! Black Emperor Live at Levitation Festival on 2022-10-28"
       }
-    ],
-    "note": "thanks to will akers"
+    ]
   },
   {
     "date": "2022-10-29",
@@ -13833,14 +14335,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson\nthanks to will akers",
     "recordings": [
       {
         "id": "gybe2022-10-29",
         "url": "https://archive.org/details/gybe2022-10-29",
         "title": "Godspeed You! Black Emperor Live at White Oak Music Hall on 2022-10-29"
       }
-    ],
-    "note": "thanks to will akers"
+    ]
   },
   {
     "date": "2022-10-30",
@@ -13853,6 +14355,7 @@
       "anthem for no state",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -13866,14 +14369,14 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson\nthanks to will akers, tollbooths, eve, and spnii",
     "recordings": [
       {
         "id": "gybe2022-10-31",
         "url": "https://archive.org/details/gybe2022-10-31",
         "title": "Godspeed You! Black Emperor Live at Texas Theatre on 2022-10-31"
       }
-    ],
-    "note": "thanks to will akers, tollbooths, eve, and spnii"
+    ]
   },
   {
     "date": "2022-11-01",
@@ -13887,6 +14390,7 @@
       "fire at static valley",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson\nthanks to coleson",
     "recordings": [
       {
         "id": "gybe2022-11-01",
@@ -13898,8 +14402,7 @@
         "url": "https://archive.org/details/gybe2022-11-01.mv88.remaster",
         "title": "Godspeed You! Black Emperor Live at Tower Theater on 2022-11-01"
       }
-    ],
-    "note": "thanks to coleson"
+    ]
   },
   {
     "date": "2022-11-03",
@@ -13913,6 +14416,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson\nthanks to nick and dave",
     "recordings": [
       {
         "id": "gybe2022-11-03.matrix",
@@ -13929,8 +14433,7 @@
         "url": "https://archive.org/details/gybe2022-11-03.DPA4061remaster",
         "title": "Godspeed You! Black Emperor Live at Delmar Hall on 2022-11-03"
       }
-    ],
-    "note": "thanks to nick and dave"
+    ]
   },
   {
     "date": "2022-11-04",
@@ -13944,6 +14447,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -13957,14 +14461,14 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson\nthanks to bob and jessica",
     "recordings": [
       {
         "id": "gybe2022-11-05",
         "url": "https://archive.org/details/gybe2022-11-05",
         "title": "Godspeed You! Black Emperor Live at Englert Theater on 2022-11-05"
       }
-    ],
-    "note": "thanks to bob and jessica"
+    ]
   },
   {
     "date": "2022-11-06",
@@ -13978,14 +14482,14 @@
       "fire at static valley",
       "world police"
     ],
+    "note": "w/ marisa anderson, manas\nthanks to neff and dave",
     "recordings": [
       {
         "id": "gybe2022-11-06.mtx",
         "url": "https://archive.org/details/gybe2022-11-06.mtx",
         "title": "Godspeed You! Black Emperor Live at Blue Note on 2022-11-06"
       }
-    ],
-    "note": "thanks to neff and dave"
+    ]
   },
   {
     "date": "2022-11-07",
@@ -13999,14 +14503,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ manas\nthanks to jessica",
     "recordings": [
       {
         "id": "gybe2022-11-07.MV88",
         "url": "https://archive.org/details/gybe2022-11-07.MV88",
         "title": "Godspeed You Black Emperor! Live at Pabst Theater on 2022-11-07"
       }
-    ],
-    "note": "thanks to jessica"
+    ]
   },
   {
     "date": "2022-11-08",
@@ -14019,6 +14523,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas",
     "recordings": []
   },
   {
@@ -14033,6 +14538,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ manas",
     "recordings": [
       {
         "id": "gybe2022-11-10",
@@ -14052,8 +14558,8 @@
       "albanian",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
-    "note": "thanks to hazel, gabe, and subsume"
+    "note": "w/ manas\nthanks to hazel, gabe, and subsume",
+    "recordings": []
   },
   {
     "date": "2022-11-12",
@@ -14066,6 +14572,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ nguyen/shahmir",
     "recordings": []
   },
   {
@@ -14079,6 +14586,7 @@
       "cliff",
       "albanian"
     ],
+    "note": "w/ nguyen/shahmir\nthanks to reid",
     "recordings": [
       {
         "id": "gybe2022-11-13.2024.remaster",
@@ -14090,8 +14598,7 @@
         "url": "https://archive.org/details/gybe2022-11-13",
         "title": "Godspeed You! Black Emperor Live at Roxian Theater on 2022-11-13"
       }
-    ],
-    "note": "thanks to reid"
+    ]
   },
   {
     "date": "2022-11-15",
@@ -14104,8 +14611,8 @@
       "cliff",
       "albanian"
     ],
-    "recordings": [],
-    "note": "thanks to klaypersonne"
+    "note": "w/ nguyen/shahmir\nthanks to klaypersonne",
+    "recordings": []
   },
   {
     "date": "2022-11-16",
@@ -14119,6 +14626,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ nguyen/shahmir",
     "recordings": []
   },
   {
@@ -14132,14 +14640,14 @@
       "cliff",
       "albanian"
     ],
+    "note": "w/ nguyen/shahmir\nthanks to simplicial",
     "recordings": [
       {
         "id": "gybe2022-11-17",
         "url": "https://archive.org/details/gybe2022-11-17",
         "title": "Godspeed You! Black Emperor Live at Elsewhere on 2022-11-17"
       }
-    ],
-    "note": "thanks to simplicial"
+    ]
   },
   {
     "date": "2022-11-18",
@@ -14153,6 +14661,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ rhubarb",
     "recordings": [
       {
         "id": "gybe2022-11-18.flac16",
@@ -14172,6 +14681,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ mat ball",
     "recordings": []
   },
   {
@@ -14186,8 +14696,8 @@
       "anthem for no state",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
-    "note": "thanks to luke"
+    "note": "w/ moor mother\nthanks to luke",
+    "recordings": []
   },
   {
     "date": "2023-03-09",
@@ -14201,8 +14711,8 @@
       "john hughes",
       "sad mafioso"
     ],
-    "recordings": [],
-    "note": "thanks to joel"
+    "note": "w/ moor mother\nthanks to joel",
+    "recordings": []
   },
   {
     "date": "2023-03-13",
@@ -14215,14 +14725,14 @@
       "anthem for no state",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss\nthanks to jessica, bowen, paras, andrew, ali, rion, jared, james, gino, cae",
     "recordings": [
       {
         "id": "gybe2023-02-13",
         "url": "https://archive.org/details/gybe2023-02-13",
         "title": "Godspeed You! Black Emperor Live at The Chapel on 2023-03-13"
       }
-    ],
-    "note": "thanks to jessica, bowen, paras, andrew, ali, rion, jared, james, gino, cae"
+    ]
   },
   {
     "date": "2023-03-14",
@@ -14235,6 +14745,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ jessica moss\nnote : some equipment failure during the show. thanks to jessica, bowen, paras, andrew, ali, rion, jared, james, gino, cae\nthanks to jessica, bowen, paras, andrew, ali, rion, jared, james, gino, cae",
     "recordings": [
       {
         "id": "gybe2023-03-14.dr40x_ux570",
@@ -14259,6 +14770,7 @@
       "monheim",
       "albanian"
     ],
+    "note": "w/ jessica moss\nthanks to jessica, bowen, paras, andrew, ali, rion, jared, james, gino, cae, sumerian",
     "recordings": [
       {
         "id": "gybe2023-03-15.DR40X",
@@ -14284,6 +14796,7 @@
       "fire at static valley",
       "world police"
     ],
+    "note": "w/ jessica moss\nthanks to jessica, bowen, paras, andrew, ali, rion, jared, james, sumerian",
     "recordings": [
       {
         "id": "gybe2023-03-16",
@@ -14295,8 +14808,7 @@
         "url": "https://archive.org/details/gybe2023-03-16.H6_UX570",
         "title": "Godspeed You! Black Emperor Live at The Chapel on 2023-03-16"
       }
-    ],
-    "note": "thanks to jessica, bowen, paras, andrew, ali, rion, jared, james, sumerian"
+    ]
   },
   {
     "date": "2023-03-17",
@@ -14309,6 +14821,7 @@
       "tazer floyd",
       "sad mafioso"
     ],
+    "note": "w/ jessica moss\nthanks to jessica, bowen, paras, andrew, ali, rion, jared, james, vixi, shannon",
     "recordings": [
       {
         "id": "gybe2023-03-17.MC59W",
@@ -14320,8 +14833,7 @@
         "url": "https://archive.org/details/gybe2023-03-17.cm4.flac16",
         "title": "Godspeed You! Black Emperor Live at The Chapel on 2023-03-17"
       }
-    ],
-    "note": "thanks to jessica, bowen, paras, andrew, ali, rion, jared, james, vixi, shannon"
+    ]
   },
   {
     "date": "2023-03-18",
@@ -14335,14 +14847,14 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss\nthanks to jessica, gus, woody",
     "recordings": [
       {
         "id": "gybe2023-03-18",
         "url": "https://archive.org/details/gybe2023-03-18",
         "title": "Godspeed You! Black Emperor Live at Pappy & Harriet's on 2023-03-18"
       }
-    ],
-    "note": "thanks to jessica, gus, woody"
+    ]
   },
   {
     "date": "2023-03-19",
@@ -14355,6 +14867,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ jessica moss\nnote : the setlist originally had \"dead metheny\", \"static valley\", and \"world police\" but this was changed. thanks to jessica\nthanks to jessica",
     "recordings": [
       {
         "id": "gybe2023-03-19",
@@ -14379,6 +14892,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ jessica moss",
     "recordings": [
       {
         "id": "gybe2023-03-21",
@@ -14399,6 +14913,7 @@
       "world police",
       "albanian"
     ],
+    "note": "w/ jessica moss",
     "recordings": []
   },
   {
@@ -14412,6 +14927,7 @@
       "gathering storm",
       "sad mafioso"
     ],
+    "note": "treefort",
     "recordings": []
   },
   {
@@ -14425,8 +14941,8 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
-    "note": "thanks to jan-willem"
+    "note": "rewire festival\nthanks to jan-willem",
+    "recordings": []
   },
   {
     "date": "2023-04-09",
@@ -14440,6 +14956,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -14454,6 +14971,7 @@
       "monheim",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -14468,14 +14986,14 @@
       "world police",
       "albanian"
     ],
+    "note": "w/ marisa anderson\nthanks to oscar",
     "recordings": [
       {
         "id": "gybe2023-04-11.H2n",
         "url": "https://archive.org/details/gybe2023-04-11.H2n",
         "title": "Godspeed You! Black Emperor Live at L'A\u00e9ronef on 2023-04-11"
       }
-    ],
-    "note": "thanks to oscar"
+    ]
   },
   {
     "date": "2023-04-12",
@@ -14488,8 +15006,8 @@
       "gathering storm",
       "sad mafioso"
     ],
-    "recordings": [],
-    "note": "thanks to brocco"
+    "note": "w/ marisa anderson\nthanks to brocco",
+    "recordings": []
   },
   {
     "date": "2023-04-14",
@@ -14502,6 +15020,7 @@
       "gathering storm",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -14515,6 +15034,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -14528,14 +15048,14 @@
       "monheim",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson\nthanks to lucas",
     "recordings": [
       {
         "id": "gybe2023-04-16.dpa",
         "url": "https://archive.org/details/gybe2023-04-16.dpa",
         "title": "Godspeed You! Black Emperor Live at PTR on 2023-04-16"
       }
-    ],
-    "note": "thanks to lucas"
+    ]
   },
   {
     "date": "2023-04-17",
@@ -14548,6 +15068,7 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": []
   },
   {
@@ -14562,6 +15083,7 @@
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": [
       {
         "id": "gybe2023-04-18.edirol",
@@ -14581,6 +15103,7 @@
       "gathering storm",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson",
     "recordings": [
       {
         "id": "gybe2023-04-19.ecm717",
@@ -14605,6 +15128,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ thom nguyen",
     "recordings": []
   },
   {
@@ -14618,6 +15142,7 @@
       "gathering storm",
       "sad mafioso"
     ],
+    "note": "w/ thom nguyen",
     "recordings": []
   },
   {
@@ -14632,6 +15157,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ thom nguyen",
     "recordings": []
   },
   {
@@ -14645,6 +15171,7 @@
       "monheim",
       "sad mafioso"
     ],
+    "note": "w/ manas",
     "recordings": []
   },
   {
@@ -14658,14 +15185,14 @@
       "dead metheny",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas\nthanks to markus",
     "recordings": [
       {
         "id": "gybe2023-04-25",
         "url": "https://archive.org/details/gybe2023-04-25",
         "title": "Godspeed You! Black Emperor Live at Sentrum Scene on 2023-04-25"
       }
-    ],
-    "note": "thanks to markus"
+    ]
   },
   {
     "date": "2023-04-27",
@@ -14678,14 +15205,14 @@
       "dead metheny",
       "sad mafioso"
     ],
+    "note": "w/ manas\nthanks to askil",
     "recordings": [
       {
         "id": "gybe2023-04-27",
         "url": "https://archive.org/details/gybe2023-04-27",
         "title": "Godspeed You! Black Emperor Live at USF Veftet on 2023-04-27"
       }
-    ],
-    "note": "thanks to askil"
+    ]
   },
   {
     "date": "2023-04-28",
@@ -14699,14 +15226,14 @@
       "world police",
       "albanian"
     ],
+    "note": "w/ manas\nthanks to nora",
     "recordings": [
       {
         "id": "gybe2023-04-28",
         "url": "https://archive.org/details/gybe2023-04-28",
         "title": "Godspeed You Black Emperor! Live at Folken on 2023-04-28"
       }
-    ],
-    "note": "thanks to nora"
+    ]
   },
   {
     "date": "2023-04-29",
@@ -14719,14 +15246,14 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ manas\nthanks to markus",
     "recordings": [
       {
         "id": "gybe2023-04-29",
         "url": "https://archive.org/details/gybe2023-04-29",
         "title": "Godspeed You! Black Emperor Live at Aladdin Scene on 2023-04-29"
       }
-    ],
-    "note": "thanks to markus"
+    ]
   },
   {
     "date": "2023-09-09",
@@ -14739,14 +15266,14 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ irreversible entanglements, hanif abdurraqib\nthanks to joel, nick, will akers",
     "recordings": [
       {
         "id": "gybe2023-09-09.dr-40",
         "url": "https://archive.org/details/gybe2023-09-09.dr-40",
         "title": "Godspeed You! Black Emperor Live at Basilica Hudson on 2023-09-09"
       }
-    ],
-    "note": "thanks to joel, nick, will akers"
+    ]
   },
   {
     "date": "2023-09-10",
@@ -14760,14 +15287,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ the album leaf\nthanks to will akers, maya, keenan",
     "recordings": [
       {
         "id": "gybe2023-09-10.ZoomH1n",
         "url": "https://archive.org/details/gybe2023-09-10.ZoomH1n",
         "title": "Godspeed You! Black Emperor Live at Palladium on 2023-09-10"
       }
-    ],
-    "note": "thanks to will akers, maya, keenan"
+    ]
   },
   {
     "date": "2023-09-11",
@@ -14781,14 +15308,14 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ the album leaf\nthanks to keenan",
     "recordings": [
       {
         "id": "gybe2023-09-11.Spire",
         "url": "https://archive.org/details/gybe2023-09-11.Spire",
         "title": "Godspeed You Black Emperor! Live at Music Hall on 2023-09-11"
       }
-    ],
-    "note": "thanks to keenan"
+    ]
   },
   {
     "date": "2023-09-13",
@@ -14801,6 +15328,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ the album leaf",
     "recordings": []
   },
   {
@@ -14815,8 +15343,8 @@
       "world police",
       "sad mafioso"
     ],
-    "recordings": [],
-    "note": "thanks to luke"
+    "note": "w/ the album leaf\nthanks to luke",
+    "recordings": []
   },
   {
     "date": "2023-09-15",
@@ -14829,8 +15357,8 @@
       "anthem for no state",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
-    "note": "thanks to luke"
+    "note": "w/ the album leaf\nthanks to luke",
+    "recordings": []
   },
   {
     "date": "2023-09-16",
@@ -14844,6 +15372,7 @@
       "world police",
       "blaise bailey finnegan III"
     ],
+    "note": "no opener\nnote : this was the late show, stage time was 23h00 thanks to luke, bob, will akers\nthanks to luke, bob, will akers",
     "recordings": [
       {
         "id": "gybe2023-09-16.H1n",
@@ -14865,6 +15394,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "riot fest\nnote : outdoor festival performance with The Cure headlining",
     "recordings": []
   },
   {
@@ -14879,14 +15409,14 @@
       "pale spectator takes photographs",
       "raindrops cast in lead"
     ],
+    "note": "w/ alan sparhawk, marina herlop, maria bc\nthanks to j.mart, will akers, and sam",
     "recordings": [
       {
         "id": "gybe2024-02-24.dpa4061.flac24",
         "url": "https://archive.org/details/gybe2024-02-24.dpa4061.flac24",
         "title": "Godspeed You! Black Emperor Live at Knockdown Center on 2024-02-24"
       }
-    ],
-    "note": "thanks to j.mart, will akers, and sam"
+    ]
   },
   {
     "date": "2024-02-25",
@@ -14901,8 +15431,8 @@
       "bosses hang",
       "raindrops cast in lead"
     ],
-    "recordings": [],
-    "note": "thanks to brandon and alex"
+    "note": "w/ mat ball\nthanks to brandon and alex",
+    "recordings": []
   },
   {
     "date": "2024-02-26",
@@ -14917,14 +15447,14 @@
       "bosses hang",
       "raindrops cast in lead"
     ],
+    "note": "w/ mat ball\nthanks to brett",
     "recordings": [
       {
         "id": "gybe2024-02-26.H1n",
         "url": "https://archive.org/details/gybe2024-02-26.H1n",
         "title": "Godspeed You! Black Emperor Live at Homer Center for the Arts on 2024-02-26"
       }
-    ],
-    "note": "thanks to brett"
+    ]
   },
   {
     "date": "2024-02-27",
@@ -14939,14 +15469,14 @@
       "bosses hang",
       "raindrops cast in lead"
     ],
+    "note": "w/ mat ball\nthanks to joel, tankhaus, simplicial, and sunny",
     "recordings": [
       {
         "id": "gybe2024-02-27.H1n",
         "url": "https://archive.org/details/gybe2024-02-27.H1n",
         "title": "Godspeed You! Black Emperor Live at Biltmore Theatre on 2024-02-27"
       }
-    ],
-    "note": "thanks to joel, tankhaus, simplicial, and sunny"
+    ]
   },
   {
     "date": "2024-02-28",
@@ -14961,14 +15491,14 @@
       "bosses hang",
       "raindrops cast in lead"
     ],
+    "note": "w/ mat ball\nthanks to joel and simplicial",
     "recordings": [
       {
         "id": "gybe2024-02-28.CA14_H4n",
         "url": "https://archive.org/details/gybe2024-02-28.CA14_H4n",
         "title": "Godspeed You! Black Emperor Live at Kingston Grand Theatre on 2024-02-28"
       }
-    ],
-    "note": "thanks to joel and simplicial"
+    ]
   },
   {
     "date": "2024-03-07",
@@ -14983,14 +15513,14 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "pitchfork festival\nthanks to jos&eacute;",
     "recordings": [
       {
         "id": "gybe2024-03-07.DR-05",
         "url": "https://archive.org/details/gybe2024-03-07.DR-05",
         "title": "Godspeed You! Black Emperor Live at Front\u00f3n Bucareli on 2024-03-07"
       }
-    ],
-    "note": "thanks to jos"
+    ]
   },
   {
     "date": "2024-04-10",
@@ -15005,14 +15535,14 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ islaja\nthanks to ciika, ele",
     "recordings": [
       {
         "id": "gybe2024-04-10.Spire",
         "url": "https://archive.org/details/gybe2024-04-10.Spire",
         "title": "Godspeed You! Black Emperor Live at Pakkahuone on 2024-04-10"
       }
-    ],
-    "note": "thanks to ciika, ele"
+    ]
   },
   {
     "date": "2024-04-11",
@@ -15027,6 +15557,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ dizlerim k\u00fcpsis",
     "recordings": []
   },
   {
@@ -15042,14 +15573,14 @@
       "raindrops cast in lead",
       "sad mafioso"
     ],
+    "note": "w/ edgars rubenis\nthanks to darren webb",
     "recordings": [
       {
         "id": "gybe2024-04-12.Xiaomi",
         "url": "https://archive.org/details/gybe2024-04-12.Xiaomi",
         "title": "Godspeed You! Black Emperor Live at Hanzas Perons on 2024-04-12"
       }
-    ],
-    "note": "thanks to darren webb"
+    ]
   },
   {
     "date": "2024-04-13",
@@ -15065,6 +15596,7 @@
       "raindrops cast in lead",
       "sad mafioso"
     ],
+    "note": "no opener\nthanks to gvid",
     "recordings": [
       {
         "id": "gybe2024-04-13.vilnius.flac16f",
@@ -15076,8 +15608,7 @@
         "url": "https://archive.org/details/gybe2024-04-13.vilnius.flac16f.remaster1",
         "title": "Godspeed You! Black Emperor Live at Loftas on 2024-04-13"
       }
-    ],
-    "note": "thanks to gvid"
+    ]
   },
   {
     "date": "2024-04-14",
@@ -15094,14 +15625,14 @@
       "sad mafioso",
       "moya"
     ],
+    "note": "no opener\nthanks to xpietrex",
     "recordings": [
       {
         "id": "gybe2024-04-14.H1n",
         "url": "https://archive.org/details/gybe2024-04-14.H1n",
         "title": "Godspeed You! Black Emperor Live at Progresja on 2024-04-14"
       }
-    ],
-    "note": "thanks to xpietrex"
+    ]
   },
   {
     "date": "2024-04-16",
@@ -15117,6 +15648,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "no opener",
     "recordings": []
   },
   {
@@ -15133,6 +15665,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "no opener",
     "recordings": []
   },
   {
@@ -15149,6 +15682,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "nu sound of...",
     "recordings": []
   },
   {
@@ -15165,6 +15699,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "no opener",
     "recordings": []
   },
   {
@@ -15180,6 +15715,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ martin brandlmayr, christof kurzmann\nthanks to fizzletree",
     "recordings": [
       {
         "id": "gybe2024-04-20.H1n",
@@ -15196,8 +15732,7 @@
         "url": "https://archive.org/details/gybe2024-04-20.cos11d",
         "title": "Godspeed You! Black Emperor Live at Arena on 2024-04-20"
       }
-    ],
-    "note": "thanks to fizzletree"
+    ]
   },
   {
     "date": "2024-04-21",
@@ -15213,14 +15748,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "no opener\nthanks to satordweller",
     "recordings": [
       {
         "id": "gybe2024-04-21.Vomvos",
         "url": "https://archive.org/details/gybe2024-04-21.Vomvos",
         "title": "Godspeed You! Black Emperor Live at Durer Kert on 2024-04-21"
       }
-    ],
-    "note": "thanks to satordweller"
+    ]
   },
   {
     "date": "2024-04-23",
@@ -15236,8 +15771,8 @@
       "moya",
       "albanian"
     ],
-    "recordings": [],
-    "note": "thanks to mata, tim"
+    "note": "no opener\nthanks to mata, tim",
+    "recordings": []
   },
   {
     "date": "2024-04-24",
@@ -15252,6 +15787,7 @@
       "glacier",
       "sad mafioso"
     ],
+    "note": "w/ maja osojnik",
     "recordings": [
       {
         "id": "F81K4eeAXGk",
@@ -15273,13 +15809,13 @@
       "moya",
       "albanian"
     ],
+    "note": "w/ x.u.l.\nthanks to alison",
     "recordings": [
       {
         "id": "el21VrooyW4",
         "url": "https://www.youtube.com/watch?v=el21VrooyW4"
       }
-    ],
-    "note": "thanks to alison"
+    ]
   },
   {
     "date": "2024-09-27",
@@ -15294,6 +15830,7 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": [
       {
         "id": "gybe2024-09-27.H2n",
@@ -15320,6 +15857,7 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji\nnote : some sound problems this set thanks to emmanuel, emily\nthanks to emmanuel, emily",
     "recordings": [
       {
         "id": "gybe2024-09-29.DPA4060s",
@@ -15341,6 +15879,7 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji",
     "recordings": []
   },
   {
@@ -15356,14 +15895,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji\nthanks to emily",
     "recordings": [
       {
         "id": "gybe2024-10-01.SP-CMC-8",
         "url": "https://archive.org/details/gybe2024-10-01.SP-CMC-8",
         "title": "Godspeed You! Black Emperor Live at O2 Ritz on 2024-10-01"
       }
-    ],
-    "note": "thanks to emily"
+    ]
   },
   {
     "date": "2024-10-02",
@@ -15378,14 +15917,14 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
+    "note": "w/ tashi dorji\nthanks to emmanuel",
     "recordings": [
       {
         "id": "gybe2024-10-02",
         "url": "https://archive.org/details/gybe2024-10-02",
         "title": "Godspeed You Black Emperor! Live at The Marble Factory on 2024-10-02"
       }
-    ],
-    "note": "thanks to emmanuel"
+    ]
   },
   {
     "date": "2024-10-03",
@@ -15400,14 +15939,14 @@
       "piss crowns are trebled",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ tashi dorji\nthanks to emmanuel",
     "recordings": [
       {
         "id": "gybe2024-10-04.DPA4060s",
         "url": "https://archive.org/details/gybe2024-10-04.DPA4060s",
         "title": "Godspeed You! Black Emperor Live at Empire on 2024-10-03"
       }
-    ],
-    "note": "thanks to emmanuel"
+    ]
   },
   {
     "date": "2024-10-04",
@@ -15423,6 +15962,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ tashi dorji\nnote : chart #3 is brought back as the intro to world police. thanks to bart\nthanks to bart",
     "recordings": [
       {
         "id": "gybe2024-10-04.mix",
@@ -15445,6 +15985,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ judasz & nahimana, tashi dorji",
     "recordings": [
       {
         "id": "gybe2024-10-05.2",
@@ -15472,14 +16013,14 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ tashi dorji\nthanks to abibeur",
     "recordings": [
       {
         "id": "gybe2024-10-06.Samsung",
         "url": "https://archive.org/details/gybe2024-10-06.Samsung",
         "title": "Godspeed You Black Emperor! Live at Le Trianon on 2024-10-06"
       }
-    ],
-    "note": "thanks to abibeur"
+    ]
   },
   {
     "date": "2024-10-08",
@@ -15494,6 +16035,7 @@
       "cliff",
       "piss crowns are trebled"
     ],
+    "note": "w/ ooOOoo\nthanks to abibeur, zmlopez",
     "recordings": [
       {
         "id": "gybe2024-10-08.H4n",
@@ -15505,8 +16047,7 @@
         "url": "https://archive.org/details/gybe2024-10-08.Samsung",
         "title": "Godspeed You! Black Emperor Live at Stereolux on 2024-10-08"
       }
-    ],
-    "note": "thanks to abibeur, zmlopez"
+    ]
   },
   {
     "date": "2024-10-09",
@@ -15522,8 +16063,8 @@
       "chart #3",
       "world police"
     ],
-    "recordings": [],
-    "note": "thanks to yannick"
+    "note": "jazz pulsation festival\nthanks to yannick",
+    "recordings": []
   },
   {
     "date": "2024-10-10",
@@ -15539,6 +16080,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ mat ball",
     "recordings": []
   },
   {
@@ -15554,14 +16096,14 @@
       "glacier",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to alison, lucas",
     "recordings": [
       {
         "id": "gybe2024-10-11.H4n",
         "url": "https://archive.org/details/gybe2024-10-11.H4n",
         "title": "Godspeed You! Black Emperor Live at Les Docks on 2024-10-11"
       }
-    ],
-    "note": "thanks to alison, lucas"
+    ]
   },
   {
     "date": "2024-10-12",
@@ -15576,14 +16118,14 @@
       "glacier",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to bart",
     "recordings": [
       {
         "id": "gybe2024-10-12.T",
         "url": "https://archive.org/details/gybe2024-10-12.T",
         "title": "Godspeed You! Black Emperor Live at Zoom on 2024-10-12"
       }
-    ],
-    "note": "thanks to bart"
+    ]
   },
   {
     "date": "2024-10-14",
@@ -15599,6 +16141,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ mat ball\nthanks to xpietrex",
     "recordings": [
       {
         "id": "gybe2024-10-14.dpa",
@@ -15610,8 +16153,7 @@
         "url": "https://archive.org/details/gybe2024-10-14.H1n",
         "title": "Godspeed You! Black Emperor Live at Huxleys Neue Welt on 2024-10-14"
       }
-    ],
-    "note": "thanks to xpietrex"
+    ]
   },
   {
     "date": "2024-10-15",
@@ -15626,6 +16168,7 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
+    "note": "w/ mat ball",
     "recordings": [
       {
         "id": "gybe2024-10-15.dpa",
@@ -15648,6 +16191,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ mat ball",
     "recordings": [
       {
         "id": "gybe2024-10-16.AT943",
@@ -15674,6 +16218,7 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nnote : there were chants of \"free palestine\" from some of the crowd after 'spectator' thanks to vomvos, fizzletrie\nthanks to vomvos, fizzletrie",
     "recordings": [
       {
         "id": "gybe2024-10-18.mixdown",
@@ -15700,6 +16245,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ kee avil",
     "recordings": [
       {
         "id": "gybe2024-11-03.mtx",
@@ -15722,6 +16268,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ kee avil",
     "recordings": [
       {
         "id": "gybe2024-11-04.mtx",
@@ -15743,6 +16290,7 @@
       "glacier",
       "piss crowns are trebled"
     ],
+    "note": "w/ kee avil",
     "recordings": [
       {
         "id": "gybe2024-11-05.mtx",
@@ -15764,6 +16312,7 @@
       "cliff",
       "albanian"
     ],
+    "note": "w/ kee avil",
     "recordings": [
       {
         "id": "gybe2024-11-06.mtx",
@@ -15786,6 +16335,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ kee avil",
     "recordings": []
   },
   {
@@ -15801,6 +16351,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ alan sparhawk",
     "recordings": [
       {
         "id": "gybe2024-11-08.ECM-DS70P",
@@ -15823,6 +16374,7 @@
       "world police",
       "piss crowns are trebled"
     ],
+    "note": "w/ alan sparhawk",
     "recordings": []
   },
   {
@@ -15838,6 +16390,7 @@
       "glacier",
       "sad mafioso"
     ],
+    "note": "w/ alan sparhawk",
     "recordings": [
       {
         "id": "gybe2024-11-11.mtx",
@@ -15864,6 +16417,7 @@
       "john hughes",
       "piss crowns are trebled"
     ],
+    "note": "w/ alan sparhawk",
     "recordings": [
       {
         "id": "gybe2024-11-12.H6",
@@ -15883,6 +16437,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ alan sparhawk",
     "recordings": [
       {
         "id": "gybe2024-11-16.H1n",
@@ -15905,6 +16460,7 @@
       "world police",
       "piss crowns are trebled"
     ],
+    "note": "w/ big brave",
     "recordings": [
       {
         "id": "gybe2024-11-25.mtx",
@@ -15927,6 +16483,7 @@
       "john hughes",
       "sad mafioso"
     ],
+    "note": "w/ big brave",
     "recordings": [
       {
         "id": "gybe2024-11-26.mtx",
@@ -15949,6 +16506,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to bart",
     "recordings": [
       {
         "id": "gybe2025-03-01.DPA4060",
@@ -15960,8 +16518,7 @@
         "url": "https://archive.org/details/gybe2025-03-01.dpa4060.remaster",
         "title": "Godspeed You! Black Emperor Live at Music Station on 2025-03-01"
       }
-    ],
-    "note": "thanks to bart"
+    ]
   },
   {
     "date": "2025-03-02",
@@ -15976,6 +16533,7 @@
       "(?)",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball",
     "recordings": []
   },
   {
@@ -15991,6 +16549,7 @@
       "pale spectator takes photographs",
       "sad mafioso"
     ],
+    "note": "w/ mat ball",
     "recordings": [
       {
         "id": "gybe2025-03-03",
@@ -16013,6 +16572,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ mat ball",
     "recordings": []
   },
   {
@@ -16028,6 +16588,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball",
     "recordings": []
   },
   {
@@ -16044,14 +16605,14 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ mat ball\nthanks to abibeur",
     "recordings": [
       {
         "id": "gybe2025-03-07.Samsung",
         "url": "https://archive.org/details/gybe2025-03-07.Samsung",
         "title": "Godspeed You Black Emperor! Live at L'Espace Julien on 2025-03-07"
       }
-    ],
-    "note": "thanks to abibeur"
+    ]
   },
   {
     "date": "2025-03-08",
@@ -16066,14 +16627,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball\nthanks to alison",
     "recordings": [
       {
         "id": "gybe2025-03-08.dr05x",
         "url": "https://archive.org/details/gybe2025-03-08.dr05x",
         "title": "Godspeed You! Black Emperor Live at OGR on 2025-03-08"
       }
-    ],
-    "note": "thanks to alison"
+    ]
   },
   {
     "date": "2025-03-10",
@@ -16088,14 +16649,14 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to alison and xpietrex",
     "recordings": [
       {
         "id": "gybe2025-03-10.mtx",
         "url": "https://archive.org/details/gybe2025-03-10.mtx",
         "title": "Godspeed You! Black Emperor Live at Teatro Comunale Citt\u00e0 di Vicenza on 2025-03-10"
       }
-    ],
-    "note": "thanks to alison and xpietrex"
+    ]
   },
   {
     "date": "2025-03-11",
@@ -16111,14 +16672,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to alison and xpietrex",
     "recordings": [
       {
         "id": "gybe2025-03-11.mtx",
         "url": "https://archive.org/details/gybe2025-03-11.mtx",
         "title": "Godspeed You! Black Emperor Live at Estragon on 2025-03-11"
       }
-    ],
-    "note": "thanks to alison and xpietrex"
+    ]
   },
   {
     "date": "2025-03-12",
@@ -16133,14 +16694,14 @@
       "cliff",
       "piss crowns are trebled"
     ],
+    "note": "w/ mat ball\nthanks to bestan",
     "recordings": [
       {
         "id": "gybe2025-03-12.phone",
         "url": "https://archive.org/details/gybe2025-03-12.phone",
         "title": "Godspeed You! Black Emperor Live at La Rayonne on 2025-03-12"
       }
-    ],
-    "note": "thanks to bestan"
+    ]
   },
   {
     "date": "2025-03-13",
@@ -16155,6 +16716,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to bart, bestan, abibeur",
     "recordings": [
       {
         "id": "gybe2025-03-13.dpa4061.nt45o",
@@ -16166,8 +16728,7 @@
         "url": "https://archive.org/details/gybe2025-03-13.samsung",
         "title": "Godspeed You! Black Emperor Live at Le 106 on 2025-03-13"
       }
-    ],
-    "note": "thanks to bart, bestan, abibeur"
+    ]
   },
   {
     "date": "2025-03-14",
@@ -16182,14 +16743,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball\nthanks to bart",
     "recordings": [
       {
         "id": "gybe2025-03-14.mtx",
         "url": "https://archive.org/details/gybe2025-03-14.mtx",
         "title": "Godspeed You! Black Emperor Live at Tollhaus on 2025-03-14"
       }
-    ],
-    "note": "thanks to bart"
+    ]
   },
   {
     "date": "2025-03-16",
@@ -16204,14 +16765,14 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to bart",
     "recordings": [
       {
         "id": "gybe2025-03-16.mtx",
         "url": "https://archive.org/details/gybe2025-03-16.mtx",
         "title": "Godspeed You! Black Emperor Live at Vooruit on 2025-03-16"
       }
-    ],
-    "note": "thanks to bart"
+    ]
   },
   {
     "date": "2025-03-17",
@@ -16226,14 +16787,14 @@
       "glacier",
       "piss crowns are trebled"
     ],
+    "note": "w/ mat ball\nthanks to bart",
     "recordings": [
       {
         "id": "gybe2025-03-17.dpa4061",
         "url": "https://archive.org/details/gybe2025-03-17.dpa4061",
         "title": "Godspeed You! Black Emperor Live at 't Paard on 2025-03-17"
       }
-    ],
-    "note": "thanks to bart"
+    ]
   },
   {
     "date": "2025-03-18",
@@ -16249,14 +16810,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to zand",
     "recordings": [
       {
         "id": "gybe2025-03-18.at853.flac24",
         "url": "https://archive.org/details/gybe2025-03-18.at853.flac24",
         "title": "Godspeed You! Black Emperor Live at Vega on 2025-03-18"
       }
-    ],
-    "note": "thanks to zand"
+    ]
   },
   {
     "date": "2025-03-19",
@@ -16271,8 +16832,8 @@
       "bosses hang",
       "piss crowns are trebled"
     ],
-    "recordings": [],
-    "note": "thanks to rolfe"
+    "note": "w/ mat ball\nthanks to rolfe",
+    "recordings": []
   },
   {
     "date": "2025-03-20",
@@ -16287,8 +16848,8 @@
       "moya",
       "sad mafioso"
     ],
-    "recordings": [],
-    "note": "thanks to rolfe"
+    "note": "w/ mat ball\nthanks to rolfe",
+    "recordings": []
   },
   {
     "date": "2025-03-21",
@@ -16304,14 +16865,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to gvid",
     "recordings": [
       {
         "id": "gybe2025-03-21.diy",
         "url": "https://archive.org/details/gybe2025-03-21.diy",
         "title": "Godspeed You! Black Emperor Live at Sentrum Scene on 2025-03-21"
       }
-    ],
-    "note": "thanks to gvid"
+    ]
   },
   {
     "date": "2025-04-25",
@@ -16323,6 +16884,7 @@
       "raindrops cast in lead",
       "pale spectator takes photographs"
     ],
+    "note": "austin psych fest",
     "recordings": []
   },
   {
@@ -16338,14 +16900,14 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ d.h. phillips\nthanks to coleson",
     "recordings": [
       {
         "id": "gybe2025-04-26.mv88",
         "url": "https://archive.org/details/gybe2025-04-26.mv88",
         "title": "Godspeed You! Black Emperor Live at Granada Theater on 2025-04-26"
       }
-    ],
-    "note": "thanks to coleson"
+    ]
   },
   {
     "date": "2025-04-28",
@@ -16361,6 +16923,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ spiritual poison",
     "recordings": [
       {
         "id": "gybe2025-04-28",
@@ -16383,14 +16946,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to trowftd",
     "recordings": [
       {
         "id": "gybe2025-04-30.dpa",
         "url": "https://archive.org/details/gybe2025-04-30.dpa",
         "title": "Godspeed You! Black Emperor Live at Bellwether on 2025-04-30"
       }
-    ],
-    "note": "thanks to trowftd"
+    ]
   },
   {
     "date": "2025-05-01",
@@ -16405,6 +16968,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball\nthanks to trowftd",
     "recordings": [
       {
         "id": "gybe2025-05-01.ambeo",
@@ -16416,8 +16980,7 @@
         "url": "https://archive.org/details/gybe2025-05-01.dpa4081",
         "title": "Godspeed You! Black Emperor Live at Observatory on 2025-05-01"
       }
-    ],
-    "note": "thanks to trowftd"
+    ]
   },
   {
     "date": "2025-05-02",
@@ -16432,6 +16995,7 @@
       "bosses hang",
       "sad mafioso"
     ],
+    "note": "w/ mat ball",
     "recordings": []
   },
   {
@@ -16447,6 +17011,7 @@
       "albanian",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to trowftd",
     "recordings": [
       {
         "id": "gybe2025-05-03.mp3",
@@ -16458,8 +17023,7 @@
         "url": "https://archive.org/details/gybe2025-05-03.H1n",
         "title": "Godspeed You! Black Emperor Live at Ventura Music Hall on 2025-05-03"
       }
-    ],
-    "note": "thanks to trowftd"
+    ]
   },
   {
     "date": "2025-05-04",
@@ -16474,6 +17038,7 @@
       "piss crowns are trebled",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball\nthanks to trowftd, zb",
     "recordings": [
       {
         "id": "gybe2025-05-04.flac16",
@@ -16485,8 +17050,7 @@
         "url": "https://archive.org/details/gybe2025-05-04.4ch-mix",
         "title": "Godspeed You! Black Emperor Live at The Fox Theater on 2025-05-04"
       }
-    ],
-    "note": "thanks to trowftd, zb"
+    ]
   },
   {
     "date": "2025-05-06",
@@ -16501,6 +17065,7 @@
       "piss crowns are trebled",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball\nthanks to trowftd, sage",
     "recordings": [
       {
         "id": "gybe2025-05-06.H1n",
@@ -16512,8 +17077,7 @@
         "url": "https://archive.org/details/gybe2025-05-06",
         "title": "Godspeed You! Black Emperor Live at Wonder Ballroom on 2025-05-06"
       }
-    ],
-    "note": "thanks to trowftd, sage"
+    ]
   },
   {
     "date": "2025-05-07",
@@ -16528,6 +17092,7 @@
       "cliff",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to trowftd, sage",
     "recordings": [
       {
         "id": "gybe2025-05-07.H1n",
@@ -16539,8 +17104,7 @@
         "url": "https://archive.org/details/gybe2025-05-07",
         "title": "Godspeed You! Black Emperor Live at Wonder Ballroom on 2025-05-07"
       }
-    ],
-    "note": "thanks to trowftd, sage"
+    ]
   },
   {
     "date": "2025-05-08",
@@ -16556,6 +17120,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ mat ball\nthanks to j.mart",
     "recordings": [
       {
         "id": "gybe2025-05-08.dpa4061.flac24",
@@ -16567,8 +17132,7 @@
         "url": "https://archive.org/details/gybe2025-05-08",
         "title": "Godspeed You! Black Emperor Live at Neptune Theater on 2025-05-08"
       }
-    ],
-    "note": "thanks to j.mart"
+    ]
   },
   {
     "date": "2025-05-09",
@@ -16583,6 +17147,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball\nthanks to j.mart",
     "recordings": [
       {
         "id": "gybe2025-05-09",
@@ -16594,8 +17159,7 @@
         "url": "https://archive.org/details/gybe2025-05-09.dpa4061.flac24",
         "title": "Godspeed You! Black Emperor Live at Neptune Theatre on 2025-05-09"
       }
-    ],
-    "note": "thanks to j.mart"
+    ]
   },
   {
     "date": "2025-05-10",
@@ -16610,14 +17174,14 @@
       "cliff",
       "albanian"
     ],
+    "note": "w/ mat ball\nthanks to joel, ryan",
     "recordings": [
       {
         "id": "gybe2025-05-10.mtx",
         "url": "https://archive.org/details/gybe2025-05-10.mtx",
         "title": "Godspeed You Black Emperor! Live at Vogue Theatre on 2025-05-10"
       }
-    ],
-    "note": "thanks to joel, ryan"
+    ]
   },
   {
     "date": "2025-05-11",
@@ -16633,14 +17197,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to joel",
     "recordings": [
       {
         "id": "gybe2025-05-11.mtx",
         "url": "https://archive.org/details/gybe2025-05-11.mtx",
         "title": "Godspeed You! Black Emperor Live at Vogue Theatre on 2025-05-11"
       }
-    ],
-    "note": "thanks to joel"
+    ]
   },
   {
     "date": "2025-05-12",
@@ -16655,14 +17219,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball\nthanks to joel",
     "recordings": [
       {
         "id": "gybe2025-05-12.mtx",
         "url": "https://archive.org/details/gybe2025-05-12.mtx",
         "title": "Godspeed You! Black Emperor Live at Revelry on 2025-05-12"
       }
-    ],
-    "note": "thanks to joel"
+    ]
   },
   {
     "date": "2025-05-13",
@@ -16677,14 +17241,14 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
+    "note": "w/ mat ball\nthanks to pr0leyyc",
     "recordings": [
       {
         "id": "gybe2025-05-13",
         "url": "https://archive.org/details/gybe2025-05-13",
         "title": "Godspeed You! Black Emperor Live at The Palace Theatre, Calgary, Alberta, Canada on 2025-05-13"
       }
-    ],
-    "note": "thanks to pr0leyyc"
+    ]
   },
   {
     "date": "2025-05-14",
@@ -16699,14 +17263,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ mat ball\nthanks to pr0leyyc",
     "recordings": [
       {
         "id": "gybe2025-05-14",
         "url": "https://archive.org/details/gybe2025-05-14",
         "title": "Godspeed You! Black Emperor Live at Midway Music Hall, Edmonton, Alberta, Canada on 2025-05-14"
       }
-    ],
-    "note": "thanks to pr0leyyc"
+    ]
   },
   {
     "date": "2025-06-21",
@@ -16721,14 +17285,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ krystal v\nthanks to jayden and \"192 kHz\"",
     "recordings": [
       {
         "id": "gybe2025-06-21.h4n",
         "url": "https://archive.org/details/gybe2025-06-21.h4n",
         "title": "Godspeed You! Black Emperor Live at Heaven @ Masquerade on 2025-06-21"
       }
-    ],
-    "note": "thanks to jayden and \"192 kHz\""
+    ]
   },
   {
     "date": "2025-06-22",
@@ -16741,6 +17305,7 @@
       "pale spectator takes photographs",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson\nnote : show was delayed due to transportation issues thanks to subsume\nthanks to subsume",
     "recordings": []
   },
   {
@@ -16757,14 +17322,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson\nthanks to DB and TF",
     "recordings": [
       {
         "id": "gybe2025-06-23.diy",
         "url": "https://archive.org/details/gybe2025-06-23.diy",
         "title": "Godspeed You! Black Emperor Live at 9:30 Club on 2025-06-23"
       }
-    ],
-    "note": "thanks to DB and TF"
+    ]
   },
   {
     "date": "2025-06-24",
@@ -16779,14 +17344,14 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson\nthanks to kalki",
     "recordings": [
       {
         "id": "gybe2025-06-24.mtx",
         "url": "https://archive.org/details/gybe2025-06-24.mtx",
         "title": "Godspeed You! Black Emperor Live at Union Transfer on 2025-06-24"
       }
-    ],
-    "note": "thanks to kalki"
+    ]
   },
   {
     "date": "2025-06-25",
@@ -16801,23 +17366,24 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson\nthanks to kalki",
     "recordings": [
       {
         "id": "gybe2025-06-25.mtx",
         "url": "https://archive.org/details/gybe2025-06-25.mtx",
         "title": "Godspeed You! Black Emperor Live at Pioneer Works on 2025-06-25"
       }
-    ],
-    "note": "thanks to kalki"
+    ]
   },
   {
     "date": "2025-06-26",
     "venue": "pioneer works, brooklyn, ny",
     "songs": [
-      "babys in a thundercloud (soundcheck)",
-      "sun is a hole sun is vapors (soundcheck)",
-      "glacier (soundcheck)",
-      "monheim (soundcheck)",
+      "soundcheck:",
+      "babys in a thundercloud",
+      "sun is a hole sun is vapors",
+      "glacier",
+      "monheim",
       "intro",
       "sun is a hole sun is vapors",
       "babys in a thundercloud",
@@ -16828,14 +17394,14 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ marisa anderson\nthanks to kalki",
     "recordings": [
       {
         "id": "gybe2025-06-26",
         "url": "https://archive.org/details/gybe2025-06-26",
         "title": "Godspeed You! Black Emperor Live at Pioneer Works on 2025-06-26"
       }
-    ],
-    "note": "thanks to kalki"
+    ]
   },
   {
     "date": "2025-06-27",
@@ -16850,8 +17416,8 @@
       "piss crowns are trebled",
       "sad mafioso"
     ],
-    "recordings": [],
-    "note": "thanks to rnvt33"
+    "note": "w/ marisa anderson\nthanks to rnvt33",
+    "recordings": []
   },
   {
     "date": "2025-06-28",
@@ -16866,6 +17432,7 @@
       "bosses hang",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ marisa anderson",
     "recordings": [
       {
         "id": "gybe2025-06-58",
@@ -16886,6 +17453,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "arctangent 2025\nthanks to bart, emmanuel",
     "recordings": [
       {
         "id": "gybe2025-08-14.mtx",
@@ -16897,8 +17465,7 @@
         "url": "https://archive.org/details/gybe2025-08-14.DPA",
         "title": "Godspeed You! Black Emperor Live at Fernhill Farm on 2025-08-14"
       }
-    ],
-    "note": "thanks to bart, emmanuel"
+    ]
   },
   {
     "date": "2025-09-05",
@@ -16913,6 +17480,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "hopscotch festival",
     "recordings": []
   },
   {
@@ -16928,6 +17496,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ manas",
     "recordings": [
       {
         "id": "gybe2025-09-06.dpa4061",
@@ -16948,6 +17517,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ manas",
     "recordings": []
   },
   {
@@ -16961,6 +17531,7 @@
       "pale spectator takes photographs",
       "sad mafioso"
     ],
+    "note": "supercrawl festival",
     "recordings": [
       {
         "id": "gybe2025-09-12.H1e",
@@ -16983,6 +17554,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ infinity ring",
     "recordings": [
       {
         "id": "gybe2025-09-13",
@@ -17004,6 +17576,7 @@
       "(?)",
       "sad mafioso"
     ],
+    "note": "w/ jonathan downs",
     "recordings": []
   },
   {
@@ -17018,6 +17591,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ infinity ring",
     "recordings": [
       {
         "id": "gybe2025-09-15.H1",
@@ -17040,6 +17614,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ dry cleaning\nnote : with Dry Cleaning opening",
     "recordings": [
       {
         "id": "gybe2025-09-26.A10",
@@ -17062,6 +17637,7 @@
       "chart #3",
       "world police"
     ],
+    "note": "w/ dry cleaning\nnote : with Dry Cleaning opening",
     "recordings": [
       {
         "id": "gybe2025-09-27.ecm-ds70p",
@@ -17083,6 +17659,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ r.a. washington",
     "recordings": []
   },
   {
@@ -17137,6 +17714,7 @@
       "world police",
       "gathering storm"
     ],
+    "note": "clockenflap festival",
     "recordings": [
       {
         "id": "gybe2025-12-07.H4e",
@@ -17322,6 +17900,7 @@
       "world police",
       "gathering storm"
     ],
+    "note": "w/ estrella del sol",
     "recordings": [
       {
         "id": "gybe2026-01-23",
@@ -17358,6 +17937,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ la bruja de texcoco",
     "recordings": []
   },
   {
@@ -17373,6 +17953,7 @@
       "bosses hang",
       "gathering storm"
     ],
+    "note": "w/ la bruja de texcoco",
     "recordings": []
   },
   {
@@ -17388,6 +17969,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ juan cicerol",
     "recordings": []
   },
   {
@@ -17404,6 +17986,7 @@
       "world police",
       "gathering storm"
     ],
+    "note": "w/ one leg one eye",
     "recordings": [
       {
         "id": "gybe2026-03-01.H4n",
@@ -17430,6 +18013,7 @@
       "moya",
       "sad mafioso"
     ],
+    "note": "w/ one leg one eye",
     "recordings": [
       {
         "id": "gybe2026-03-02",
@@ -17451,6 +18035,7 @@
       "bosses hang",
       "albanian"
     ],
+    "note": "w/ one leg one eye",
     "recordings": [
       {
         "id": "gybe2026-03-03.diy",
@@ -17461,7 +18046,7 @@
   },
   {
     "date": "2026-03-04",
-    "venue": "loftas, vilnius, lt",
+    "venue": "men\u0173 fabrikas loftas, vilnius, lt",
     "songs": [
       "intro",
       "sun is a hole sun is vapors",
@@ -17472,6 +18057,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ one leg one eye",
     "recordings": [
       {
         "id": "gybe2026-03-04.diy",
@@ -17493,6 +18079,7 @@
       "bosses hang",
       "gathering storm"
     ],
+    "note": "w/ one leg one eye",
     "recordings": [
       {
         "id": "gybe2026-03-05.H1n.",
@@ -17515,6 +18102,7 @@
       "world police",
       "sad mafioso"
     ],
+    "note": "w/ one leg one eye",
     "recordings": []
   },
   {
@@ -17530,6 +18118,7 @@
       "moya",
       "blaise bailey finnegan III"
     ],
+    "note": "w/ kristof hahn",
     "recordings": [
       {
         "id": "gybe2026-03-08.H1n.",
@@ -17551,6 +18140,7 @@
       "piss crowns are trebled",
       "gathering storm"
     ],
+    "note": "w/ kristof hahn",
     "recordings": []
   },
   {
@@ -17566,8 +18156,8 @@
       "bosses hang",
       "albanian"
     ],
-    "recordings": [],
-    "note": "w/ kristof hahn"
+    "note": "w/ kristof hahn",
+    "recordings": []
   },
   {
     "date": "2026-03-11",
@@ -17583,8 +18173,8 @@
       "world police",
       "sad mafioso"
     ],
-    "recordings": [],
-    "note": "w/ kristof hahn"
+    "note": "w/ kristof hahn",
+    "recordings": []
   },
   {
     "date": "2026-03-12",
@@ -17599,14 +18189,14 @@
       "bosses hang",
       "gathering storm"
     ],
+    "note": "w/ kristof hahn",
     "recordings": [
       {
         "id": "gybe2026-03-12",
         "url": "https://archive.org/details/gybe2026-03-12",
         "title": "Godspeed You! Black Emperor Live at Archa+ on 2026-03-12"
       }
-    ],
-    "note": "w/ kristof hahn"
+    ]
   },
   {
     "date": "2026-03-13",
@@ -17621,8 +18211,8 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
-    "note": "w/ kristof hahn"
+    "note": "w/ kristof hahn",
+    "recordings": []
   },
   {
     "date": "2026-03-15",
@@ -17638,8 +18228,8 @@
       "world police",
       "gathering storm"
     ],
-    "recordings": [],
-    "note": "w/ kristof hahn"
+    "note": "w/ kristof hahn",
+    "recordings": []
   },
   {
     "date": "2026-03-16",
@@ -17654,8 +18244,8 @@
       "albanian",
       "gathering storm"
     ],
-    "recordings": [],
-    "note": "w/ kristof hahn"
+    "note": "w/ kristof hahn",
+    "recordings": []
   },
   {
     "date": "2026-03-17",
@@ -17670,8 +18260,8 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
-    "note": "w/ kristof hahn"
+    "note": "w/ kristof hahn",
+    "recordings": []
   },
   {
     "date": "2026-03-18",
