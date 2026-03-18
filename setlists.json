@@ -12309,7 +12309,13 @@
       "blaise bailey finnegan III"
     ],
     "note": "III points festival",
-    "recordings": []
+    "recordings": [
+      {
+        "id": "GYBELiveAtIiiPoints",
+        "url": "https://archive.org/details/GYBELiveAtIiiPoints",
+        "title": "Godspeed You! Black Emperor Live at III Points on 2019-02-17"
+      }
+    ]
   },
   {
     "date": "2019-08-08",
@@ -12385,7 +12391,13 @@
       "blaise bailey finnegan III"
     ],
     "note": "w/ devin brahja waldman",
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2019-08-13",
+        "url": "https://archive.org/details/gybe2019-08-13",
+        "title": "Godspeed You! Black Emperor Live at Mohawk on 2019-08-13"
+      }
+    ]
   },
   {
     "date": "2019-08-14",
