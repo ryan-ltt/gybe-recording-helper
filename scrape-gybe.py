@@ -239,14 +239,16 @@ def parse_note(html):
     if m:
         text = re.sub(r'<[^>]+>', '', m.group(1))
         text = re.sub(r'\s+', ' ', text).strip().rstrip('.')
+        # Strip trailing "thanks to ..." — captured separately below
+        text = re.sub(r'\s*thanks\s+to\b.*$', '', text, flags=re.I).strip().rstrip('.')
         if text:
             parts.append('note : ' + text)
     m = re.search(r'thanks\s+to\s+([\s\S]*?)(?=</(?:font|i|td|p|li)\b)', html, re.I)
     if m:
-        text = re.sub(r'<[^>]+>', '', m.group(0))
-        text = re.sub(r'\s+', ' ', text).strip().rstrip('.')
-        if text:
-            parts.append(text)
+        recipients = re.sub(r'<[^>]+>', '', m.group(1))
+        recipients = re.sub(r'\s+', ' ', recipients).strip().rstrip('.')
+        if recipients:
+            parts.append('thanks to ' + recipients)
     return '\n'.join(parts)
 
 
