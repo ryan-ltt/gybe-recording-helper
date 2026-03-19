@@ -194,5 +194,28 @@
         "title": "Godspeed You! Black Emperor Live at Archa+ on 2026-03-12"
       }
     ]
+  },
+  {
+    "timestamp": "2026-03-19 09:05:47",
+    "new_shows": [
+      {
+        "date": "2026-03-18",
+        "venue": "reithalle, dresden, ger"
+      }
+    ],
+    "new_recordings": [
+      {
+        "show_date": "2026-03-16",
+        "venue": "festsaal kreuzberg, berlin, ger",
+        "id": "gybe2026-03-16.cs10em",
+        "title": "Godspeed You! Black Emperor Live at Festsaal Kreuzberg on 2026-03-16"
+      },
+      {
+        "show_date": "2026-03-15",
+        "venue": "schlachthof, wiesbaden, ger",
+        "id": "gybe2026-03-15",
+        "title": "Godspeed You! Black Emperor Live at Schlachthof on 2026-03-15"
+      }
+    ]
   }
 ]
