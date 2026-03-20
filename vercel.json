@@ -1,4 +1,8 @@
 {
   "buildCommand": "echo \"const SUPABASE_URL='$SUPABASE_URL'; const SUPABASE_ANON_KEY='$SUPABASE_ANON_KEY';\" > config.js",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/changelog.html", "destination": "/changelog/", "permanent": true }
+  ]
 }

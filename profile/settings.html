@@ -139,7 +139,7 @@
     </header>
 
     <div class="page-content">
-        <a class="back-link" href="index.html">← profile</a>
+        <a class="back-link" href="/profile/">← profile</a>
         <div id="profileContent"></div>
     </div>
 
@@ -161,22 +161,22 @@
             const div = document.getElementById('headerAuth');
             const toggleBtn = `<button class="header-btn" onclick="toggleTheme()" title="toggle dark mode">◑</button>`;
             if (currentUser && currentUsername) {
-                div.innerHTML = `<a href="index.html" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
+                div.innerHTML = `<a href="/profile/" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
             } else {
-                div.innerHTML = `<a class="header-btn" href="../index.html">back to site</a> ${toggleBtn}`;
+                div.innerHTML = `<a class="header-btn" href="/">back to site</a> ${toggleBtn}`;
             }
         }
 
         async function doLogout() {
             if (!sbClient) return;
             await sbClient.auth.signOut();
-            window.location.href = '../index.html';
+            window.location.href = '/';
         }
 
         function renderSettings() {
             const el = document.getElementById('profileContent');
             if (!currentUser) {
-                el.innerHTML = `<p class="not-logged-in">you need to be logged in to view settings. <a href="../index.html">go back</a></p>`;
+                el.innerHTML = `<p class="not-logged-in">you need to be logged in to view settings. <a href="/">go back</a></p>`;
                 return;
             }
             const displayEmail = (currentUser.email && !currentUser.email.endsWith('@no-email.local'))

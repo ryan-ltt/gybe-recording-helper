@@ -258,7 +258,7 @@
     </header>
 
     <div class="page-content">
-        <a class="back-link" href="../index.html">← back</a>
+        <a class="back-link" href="/">← back</a>
         <div id="profileContent"></div>
     </div>
 
@@ -290,20 +290,20 @@
             if (currentUser && currentUsername) {
                 div.innerHTML = `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;">${currentUsername}</span> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
             } else {
-                div.innerHTML = `<a class="header-btn" href="../index.html">back to site</a> ${toggleBtn}`;
+                div.innerHTML = `<a class="header-btn" href="/">back to site</a> ${toggleBtn}`;
             }
         }
 
         async function doLogout() {
             if (!sbClient) return;
             await sbClient.auth.signOut();
-            window.location.href = '../index.html';
+            window.location.href = '/';
         }
 
         function renderProfile() {
             const el = document.getElementById('profileContent');
             if (!currentUser) {
-                el.innerHTML = `<p class="not-logged-in">you need to be logged in to view your profile. <a href="../index.html">go back</a></p>`;
+                el.innerHTML = `<p class="not-logged-in">you need to be logged in to view your profile. <a href="/">go back</a></p>`;
                 return;
             }
 
@@ -382,7 +382,7 @@
                 .sort((a, b) => a.date.localeCompare(b.date));
 
             if (shows.length === 0) {
-                listEl.innerHTML = `<p class="empty-state">no shows marked as ${activeTab} yet. <a href="../index.html#eras">head to the shows tab</a> to track shows.</p>`;
+                listEl.innerHTML = `<p class="empty-state">no shows marked as ${activeTab} yet. <a href="/#eras">head to the shows tab</a> to track shows.</p>`;
                 return;
             }
 
@@ -466,7 +466,7 @@
             const listEl = document.getElementById('showList');
             if (!listEl) return;
             if (votesData.length === 0) {
-                listEl.innerHTML = `<p class="empty-state">no votes yet. <a href="../index.html#versions">head to the versions tab</a> to vote on performances.</p>`;
+                listEl.innerHTML = `<p class="empty-state">no votes yet. <a href="/#versions">head to the versions tab</a> to vote on performances.</p>`;
                 return;
             }
 

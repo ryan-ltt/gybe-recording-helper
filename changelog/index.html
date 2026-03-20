@@ -7,7 +7,7 @@
   <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="/index.css">
   <style>
     .header-btn {
       padding: 4px 10px;
@@ -70,7 +70,7 @@
   <header>
     <h1>changelog</h1>
     <div class="nav-buttons">
-      <a class="header-btn" href="index.html">← back</a>
+      <a class="header-btn" href="/">← back</a>
       <button class="header-btn" onclick="toggleTheme()" title="toggle dark mode">◑</button>
     </div>
   </header>
@@ -86,7 +86,7 @@
       localStorage.setItem('theme', dark ? 'dark' : 'light');
     }
 
-    fetch('changelog.json')
+    fetch('/changelog.json')
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then(entries => {
         const el = document.getElementById('changelog-list');
