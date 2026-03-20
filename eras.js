@@ -30,7 +30,7 @@ function buildEras() {
                 <input type="text" placeholder="filter by date, city, venue..." oninput="filterAllShows(this.value)">
             </div>
             <div class="era-shows" id="shows-yall">
-                ${renderEraShowList(allShows, '')}
+                ${renderEraShowList(allShows, '', 'yall-')}
             </div>
         </div>`;
     container.appendChild(allBlock);
@@ -52,14 +52,14 @@ function buildEras() {
                     <input type="text" placeholder="filter by date, city, venue..." oninput="filterEraShows('y${year}', this.value)">
                 </div>
                 <div class="era-shows" id="shows-y${year}">
-                    ${renderEraShowList(yearShows, '')}
+                    ${renderEraShowList(yearShows, '', 'y${year}-')}
                 </div>
             </div>`;
         container.appendChild(block);
     }
 }
 
-function renderEraShowList(eraShows, filter) {
+function renderEraShowList(eraShows, filter, prefix = '') {
     const f = (filter || '').toLowerCase().trim();
     const filtered = f ? eraShows.filter(s => s.date.includes(f) || s.venue.toLowerCase().includes(f)) : eraShows;
     if (filtered.length === 0) return '<p style="font-family:Monaco, \'JetBrains Mono\', monospace;font-size:12px;color:inherit;">no shows match.</p>';
@@ -79,7 +79,7 @@ function renderEraShowList(eraShows, filter) {
         }
         setlistText += mainSongs.join('<br>');
         if (s.note) setlistText += `<br><span class="muted" style="padding-left:16px;font-size:11px;white-space:pre-line;">${s.note}</span>`;
-        const id = 'sl-' + s.date.replace(/\W/g, '-');
+        const id = 'sl-' + prefix + s.date.replace(/\W/g, '-');
         const td = trackingData[s.date] || { attended: false, listened: false };
         const isPast = s.date.replace(/[a-z]$/, '') <= new Date().toISOString().slice(0, 10);
         const listenedBtn = s.recordings.length > 0 ? `<button class="track-btn${td.listened ? ' active' : ''}" id="tbtn-${s.date}-listened" onclick="toggleTracking('${s.date}','listened')">listened</button>` : '';
@@ -152,7 +152,7 @@ function filterAllShows(value) {
     const showsDiv = document.getElementById('shows-yall');
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
     const allShows = shows.filter(s => !recordingsOnly || s.recordings.length > 0);
-    showsDiv.innerHTML = renderEraShowList(allShows, value);
+    showsDiv.innerHTML = renderEraShowList(allShows, value, 'yall-');
 }
 
 function filterEraShows(id, value) {
@@ -160,7 +160,7 @@ function filterEraShows(id, value) {
     const year = id.slice(1); // strip leading 'y'
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
     const yearShows = shows.filter(s => s.date.startsWith(year) && (!recordingsOnly || s.recordings.length > 0));
-    showsDiv.innerHTML = renderEraShowList(yearShows, value);
+    showsDiv.innerHTML = renderEraShowList(yearShows, value, id + '-');
 }
 
 
