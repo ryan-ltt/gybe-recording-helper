@@ -33,13 +33,21 @@ function seedMyPicksDraft() {
 function renderPicksTopShows() {
   const el = document.getElementById('picksTopShows');
   if (!el) return;
-  const counts = {};
-  for (const u of picksData) for (const p of u.picks) counts[p.show_date] = (counts[p.show_date] || 0) + 1;
-  const top = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+  const pickCounts = {}, rankSums = {};
+  for (const u of picksData) {
+    for (const p of u.picks) {
+      pickCounts[p.show_date] = (pickCounts[p.show_date] || 0) + 1;
+      rankSums[p.show_date] = (rankSums[p.show_date] || 0) + p.rank;
+    }
+  }
+  const top = Object.entries(pickCounts)
+    .map(([date, count]) => [date, count, rankSums[date] / count])
+    .sort((a, b) => (b[1] * (10 - b[2])) - (a[1] * (10 - a[2])))
+    .slice(0, 10);
   if (top.length === 0) { el.innerHTML = ''; return; }
   const showMap = {};
   if (typeof shows !== 'undefined') for (const s of shows) showMap[s.date] = s;
-  el.innerHTML = `<div class="era-block picks-aggregate"><div class="era-header" onclick="toggleTopShows()"><div style="display:flex;align-items:baseline;gap:10px;"><div class="era-title" style="font-style:italic;">most picked shows</div><span class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;">community</span></div><div style="display:flex;align-items:center;gap:16px;"><div class="era-meta">top ${top.length}</div><div class="era-toggle" id="topShowsToggle">−</div></div></div><div class="era-body open" id="topShowsBody"><ol style="list-style:none;padding:0;margin:0;">${top.map(([date, count], i) => { const show = showMap[date]; const venue = show ? show.venue : ''; const bestRecId = (typeof BEST_RECORDINGS !== 'undefined' && BEST_RECORDINGS[date]) ? BEST_RECORDINGS[date] : null; const recs = show && show.recordings ? show.recordings : []; const recsHtml = recs.length > 0 ? `<div class="recordings" style="padding-left:26px;">${recs.map((r, ri) => `<a href="${r.url}" target="_blank"${bestRecId === r.id ? ' style="font-weight:bold"' : ''}>[${ri + 1}]</a>`).join('')}</div>` : ''; return `<li style="padding:8px 16px;border-bottom:1px solid #eee;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted" style="display:inline-block;width:20px;text-align:right;">${i + 1}.</span> <strong>${date}</strong>${venue ? ` <span class="muted">- ${venue}</span>` : ''} <span class="muted" style="font-size:11px;">(${count} pick${count !== 1 ? 's' : ''})</span>${recsHtml}</li>`; }).join('')}</ol></div></div>`;
+  el.innerHTML = `<div class="era-block picks-aggregate"><div class="era-header" onclick="toggleTopShows()"><div style="display:flex;align-items:baseline;gap:10px;"><div class="era-title" style="font-style:italic;">most picked shows</div><span class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;">community</span></div><div style="display:flex;align-items:center;gap:16px;"><div class="era-meta">top ${top.length}</div><div class="era-toggle" id="topShowsToggle">−</div></div></div><div class="era-body open" id="topShowsBody"><ol style="list-style:none;padding:0;margin:0;">${top.map(([date, count, avgPos], i) => { const show = showMap[date]; const venue = show ? show.venue : ''; const bestRecId = (typeof BEST_RECORDINGS !== 'undefined' && BEST_RECORDINGS[date]) ? BEST_RECORDINGS[date] : null; const recs = show && show.recordings ? show.recordings : []; const recsHtml = recs.length > 0 ? `<div class="recordings" style="padding-left:26px;">${recs.map((r, ri) => `<a href="${r.url}" target="_blank"${bestRecId === r.id ? ' style="font-weight:bold"' : ''}>[${ri + 1}]</a>`).join('')}</div>` : ''; const avgStr = Number.isInteger(avgPos) ? avgPos : avgPos.toFixed(1); return `<li style="padding:8px 16px;border-bottom:1px solid #eee;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted" style="display:inline-block;width:20px;text-align:right;">${i + 1}.</span> <strong>${date}</strong>${venue ? ` <span class="muted">- ${venue}</span>` : ''} <span class="muted" style="font-size:11px;">(${count} pick${count !== 1 ? 's' : ''}, avg #${avgStr})</span>${recsHtml}</li>`; }).join('')}</ol></div></div>`;
 }
 
 
@@ -230,6 +238,8 @@ async function saveMyPicks(uid) {
   else { picksData.unshift({ user_id: currentUser.id, username: currentUsername || currentUser.id, picks: rows.map(r => ({ ...r })) }); }
   myPicksDirty = false;
   myPicksSaved = rows.map(r => ({ ...r }));
-  if (btn) { btn.textContent = 'saved!'; setTimeout(() => { if (btn) { btn.textContent = 'save order'; btn.disabled = false; } }, 1500); }
+  renderPicksCardBody(uid);
+  const newBtn = document.querySelector('#pbody-' + uid + ' .find-btn');
+  if (newBtn) { newBtn.textContent = 'saved!'; newBtn.disabled = true; setTimeout(() => { if (newBtn) { newBtn.textContent = 'save order'; newBtn.disabled = false; } }, 1500); }
 }
 
