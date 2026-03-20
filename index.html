@@ -727,7 +727,10 @@
         html.dark .upload-btn:hover, html.dark .download-btn:hover { background: #253545; }
         html.dark .listened-count { color: #eaf2f5; }
         html.dark #discoverGraph { border-color: #2c3e50; background: #0e1824; }
+        html.dark #discoverGraph svg text { fill: #eaf2f5; }
         html.dark .graph-tooltip { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
+        .avg-setlist-bar-track { background: #e0e0e0; }
+        html.dark .avg-setlist-bar-track { background: #2c3e50; }
         html.dark .era-block { border-color: #2c3e50; background: #1e2a38; }
         .picks-aggregate { background: #f9f9f9; }
         .picks-aggregate .era-header:hover { background: #f0f0f0; }
@@ -905,20 +908,17 @@
             </div>
             <div style="margin:8px 0 0 0;" id="seedDisplay"></div>
 
-            <details class="track-import" style="margin-top:16px;">
-                <summary style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;cursor:pointer;user-select:none;">listened list <span class="listened-count" id="listenedCount"></span></summary>
-                <div style="margin-top:10px;">
-                    <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:inherit;margin:0 0 8px 0;">shows to exclude from recommendations. paste one date per line (YYYY-MM-DD)</p>
-                    <textarea id="listenedPaste" rows="6" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;"></textarea>
-                    <div class="error" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin:4px 0;" id="listenedPasteError"></div>
-                    <div style="margin-top:6px;display:flex;align-items:center;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
-                        <button class="find-btn" onclick="addListenedDates()">add dates</button>
-                        <button class="upload-btn" style="font-size:12px;padding:4px 14px;" onclick="document.getElementById('listenedFile').click()">upload file</button>
-                        <input type="file" id="listenedFile" accept=".txt,.json" style="display:none" onchange="loadListened(this)">
-                        <button class="download-btn" onclick="downloadListened()" id="downloadBtn" style="display:none;font-size:12px;padding:4px 14px;">download list</button>
-                    </div>
-                </div>
-            </details>
+            <h2>listened list <span class="listened-count" id="listenedCount"></span></h2>
+            <div id="discoverAccountListened" style="display:none;margin-bottom:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+                <label><input type="checkbox" id="discoverUseAccount" onchange="toggleAccountListened()"> use my listened shows from my account</label>
+            </div>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;color:inherit;margin:0 0 8px 0;">shows to exclude from recommendations. paste one date per line (YYYY-MM-DD)</p>
+            <textarea id="listenedPaste" rows="6" placeholder="2003-07-15&#10;2005-09-10&#10;2010-03-14" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;width:100%;box-sizing:border-box;border:1px solid #ccc;padding:6px;" oninput="updateListenedCount()"></textarea>
+            <div style="margin-top:6px;display:flex;align-items:center;gap:8px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+                <button class="upload-btn" style="font-size:12px;padding:4px 14px;" onclick="document.getElementById('listenedFile').click()">upload file</button>
+                <input type="file" id="listenedFile" accept=".txt,.json" style="display:none" onchange="loadListened(this)">
+                <button class="download-btn" onclick="downloadListened()" id="downloadBtn" style="display:none;font-size:12px;padding:4px 14px;">download list</button>
+            </div>
 
             <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px;font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;">
                 <label><input type="checkbox" id="discoverRecordingsOnly"> recordings only</label>
@@ -933,6 +933,7 @@
             </div>
             <div>
                 <button class="find-btn" onclick="discoverShows()">recommend</button>
+                <button class="find-btn" onclick="randomShow()" style="margin-left:6px;">random</button>
                 <button class="clear-btn" onclick="clearDiscover()">clear</button>
             </div>
             <div class="results" id="discoverResults"></div>

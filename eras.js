@@ -143,6 +143,10 @@ async function loadTrackingThenBuild() {
     trackingLoaded = true;
     buildEras();
     updateErasTrackSection();
+    if (localStorage.getItem('discoverUseAccount') === '1') {
+        const cb = document.getElementById('discoverUseAccount');
+        if (cb) { cb.checked = true; toggleAccountListened(); }
+    }
 }
 
 function updateErasTrackSection() {

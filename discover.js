@@ -1,6 +1,6 @@
 // ─── DISCOVER ─────────────────────────────────────────────────────────────
 let seedIdx = null;            // single seed show index
-let listenedDates = new Set(); // dates from uploaded list
+let accountListenedDates = new Set(); // dates pulled from user's account
 
 function showLabel(show) {
     return `${show.date} - ${show.venue}`;
@@ -51,6 +51,21 @@ function renderSeedDisplay() {
     div.innerHTML = `<div class="seed-tag">${showLabel(shows[seedIdx])}<span class="remove" onclick="clearSeed()">×</span></div>`;
 }
 
+function getTextareaDates(text) {
+    const dates = new Set();
+    for (const line of text.split(/\r?\n/)) {
+        const m = line.trim().match(/(\d{4}-\d{2}-\d{2}[a-z]?)/);
+        if (m) dates.add(m[1]);
+    }
+    return dates;
+}
+
+function updateListenedCount() {
+    const count = getTextareaDates(document.getElementById('listenedPaste').value).size;
+    document.getElementById('listenedCount').textContent = count > 0 ? `${count} shows` : '';
+    document.getElementById('downloadBtn').style.display = count > 0 ? 'inline-block' : 'none';
+}
+
 function loadListened(input) {
     const file = input.files[0];
     if (!file) return;
@@ -64,32 +79,42 @@ function loadListened(input) {
         } catch {
             dates = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
         }
-        dates.forEach(d => listenedDates.add(d));
-        document.getElementById('listenedCount').textContent = `${listenedDates.size} shows`;
-        document.getElementById('downloadBtn').style.display = 'inline-block';
+        const textarea = document.getElementById('listenedPaste');
+        const existing = textarea.value.trim();
+        textarea.value = existing ? existing + '\n' + dates.join('\n') : dates.join('\n');
+        updateListenedCount();
     };
     reader.readAsText(file);
     input.value = '';
 }
 
-function addListenedDates() {
-    const raw = document.getElementById('listenedPaste').value;
-    const errEl = document.getElementById('listenedPasteError');
-    const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-    const notFound = [];
-    for (const line of lines) {
-        const m = line.match(/(\d{4}-\d{2}-\d{2})/);
-        if (!m) { notFound.push(line); continue; }
-        listenedDates.add(m[1]);
+function toggleAccountListened() {
+    const cb = document.getElementById('discoverUseAccount');
+    const checked = cb.checked;
+    localStorage.setItem('discoverUseAccount', checked ? '1' : '0');
+    const textarea = document.getElementById('listenedPaste');
+    if (checked && typeof trackingData !== 'undefined') {
+        accountListenedDates = new Set(
+            Object.entries(trackingData).filter(([, td]) => td.listened).map(([date]) => date)
+        );
+        const existing = getTextareaDates(textarea.value);
+        const toAdd = [...accountListenedDates].filter(d => !existing.has(d));
+        const existingText = textarea.value.trim();
+        textarea.value = existingText ? existingText + '\n' + toAdd.join('\n') : toAdd.join('\n');
+    } else {
+        const lines = textarea.value.split(/\r?\n/).filter(line => {
+            const m = line.trim().match(/(\d{4}-\d{2}-\d{2}[a-z]?)/);
+            return !m || !accountListenedDates.has(m[1]);
+        });
+        textarea.value = lines.join('\n').trim();
+        accountListenedDates.clear();
     }
-    document.getElementById('listenedPaste').value = '';
-    document.getElementById('listenedCount').textContent = `${listenedDates.size} shows`;
-    document.getElementById('downloadBtn').style.display = 'inline-block';
-    errEl.textContent = notFound.length ? `not found: ${notFound.join(', ')}` : '';
+    updateListenedCount();
 }
 
 function downloadListened() {
-    const blob = new Blob([JSON.stringify([...listenedDates], null, 2)], { type: 'application/json' });
+    const dates = [...getTextareaDates(document.getElementById('listenedPaste').value)];
+    const blob = new Blob([JSON.stringify(dates, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = 'gybe-listened.json';
@@ -99,13 +124,14 @@ function downloadListened() {
 
 function clearDiscover() {
     seedIdx = null;
-    listenedDates.clear();
+    accountListenedDates.clear();
     renderSeedDisplay();
     document.getElementById('showSearch').value = '';
     document.getElementById('listenedPaste').value = '';
+    const useAccountCb = document.getElementById('discoverUseAccount');
+    if (useAccountCb) useAccountCb.checked = false;
     document.getElementById('listenedPasteError').textContent = '';
-    document.getElementById('listenedCount').textContent = '';
-    document.getElementById('downloadBtn').style.display = 'none';
+    updateListenedCount();
     document.getElementById('discoverResults').innerHTML = '';
     const gd = document.getElementById('discoverGraph');
     gd.innerHTML = '';
@@ -116,6 +142,67 @@ function clearDiscover() {
     document.getElementById('discoverGraphControls').style.display = 'none';
 }
 
+function renderAvgSetlist(avgSetlist) {
+    const sorted = [...avgSetlist.weights.entries()].sort((a, b) => b[1] - a[1]);
+    const rows = sorted.map(([song, w]) => {
+        const pct = Math.round(w * 100);
+        const barWidth = Math.round(w * 80);
+        return `<div style="display:flex;align-items:center;gap:8px;padding:2px 0;">
+            <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${song}</span>
+            <div class="avg-setlist-bar-track" style="width:80px;height:6px;border-radius:3px;flex-shrink:0;">
+                <div style="width:${barWidth}px;height:100%;background:currentColor;border-radius:3px;opacity:0.6;"></div>
+            </div>
+            <span style="width:3ch;text-align:right;flex-shrink:0;">${pct}%</span>
+        </div>`;
+    }).join('');
+    return `<details style="margin-bottom:16px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+        <summary style="cursor:pointer;user-select:none;margin-bottom:8px;">average setlist (${avgSetlist.total} shows, ${sorted.length} songs)</summary>
+        <div style="max-height:300px;overflow-y:auto;padding-right:4px;">${rows}</div>
+    </details>`;
+}
+
+function randomShow() {
+    const resultsDiv = document.getElementById('discoverResults');
+    const graphDiv = document.getElementById('discoverGraph');
+    const recordingsOnly = document.getElementById('discoverRecordingsOnly').checked;
+    const excludeDates = getTextareaDates(document.getElementById('listenedPaste').value);
+
+    graphDiv.style.display = 'none';
+    document.getElementById('discoverGraphControls').style.display = 'none';
+    document.getElementById('discoverGraphCard').style.display = 'none';
+
+    const pool = shows.filter(s =>
+        !excludeDates.has(s.date) && (!recordingsOnly || s.recordings.length > 0)
+    );
+
+    if (pool.length === 0) {
+        resultsDiv.innerHTML = '<p class="no-results">no shows to pick from.</p>';
+        return;
+    }
+
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    resultsDiv.innerHTML = `<h2>random pick</h2>${renderShowCard(pick, '', null)}`;
+}
+
+function buildAvgSetlist(excludeDates) {
+    const songCounts = new Map();
+    let total = 0;
+    for (let i = 0; i < shows.length; i++) {
+        if (!excludeDates.has(shows[i].date)) continue;
+        total++;
+        for (const s of showSongSets[i]) songCounts.set(s, (songCounts.get(s) || 0) + 1);
+    }
+    if (total === 0) return null;
+    const weights = new Map();
+    let totalWeight = 0;
+    for (const [song, count] of songCounts) {
+        const w = count / total;
+        weights.set(song, w);
+        totalWeight += w;
+    }
+    return { weights, totalWeight, total };
+}
+
 function discoverShows() {
     const resultsDiv = document.getElementById('discoverResults');
     const graphDiv = document.getElementById('discoverGraph');
@@ -123,15 +210,28 @@ function discoverShows() {
     const discoverMode = document.querySelector('input[name="discoverMode"]:checked').value;
     const discoverView = document.querySelector('input[name="discoverView"]:checked').value;
 
-    if (seedIdx === null && listenedDates.size === 0) {
-        resultsDiv.innerHTML = '<p class="no-results">pick a seed show or upload a listened list.</p>';
+    const excludeDates = getTextareaDates(document.getElementById('listenedPaste').value);
+    if (seedIdx !== null) excludeDates.add(shows[seedIdx].date);
+
+    if (seedIdx === null && excludeDates.size === 0) {
+        resultsDiv.innerHTML = '<p class="no-results">pick a seed show or add shows to your listened list.</p>';
         return;
     }
 
-    const seedSongs = seedIdx !== null ? showSongSets[seedIdx] : new Set();
+    // Determine seed: real show or average setlist from listened shows
+    let seedSongs = null;       // Set for real seed
+    let avgSetlist = null;      // { weights, totalWeight, total } for virtual seed
+    const isVirtualSeed = seedIdx === null;
 
-    const excludeDates = new Set(listenedDates);
-    if (seedIdx !== null) excludeDates.add(shows[seedIdx].date);
+    if (!isVirtualSeed) {
+        seedSongs = showSongSets[seedIdx];
+    } else {
+        avgSetlist = buildAvgSetlist(excludeDates);
+        if (!avgSetlist) {
+            resultsDiv.innerHTML = '<p class="no-results">no shows found.</p>';
+            return;
+        }
+    }
 
     const candidates = [];
     for (let i = 0; i < shows.length; i++) {
@@ -139,21 +239,23 @@ function discoverShows() {
         if (excludeDates.has(show.date)) continue;
         if (recordingsOnly && show.recordings.length === 0) continue;
 
-        if (seedSongs.size === 0) {
-            candidates.push({ idx: i, jaccard: 0, shared: 0 });
-            continue;
-        }
-
         const candidateSongs = showSongSets[i];
-        if (candidateSongs.size === 0) {
-            candidates.push({ idx: i, jaccard: 0, shared: 0 });
-            continue;
-        }
 
-        let intersection = 0;
-        for (const s of candidateSongs) { if (seedSongs.has(s)) intersection++; }
-        const overlap = intersection / Math.sqrt(seedSongs.size * candidateSongs.size);
-        candidates.push({ idx: i, jaccard: overlap, shared: intersection });
+        if (isVirtualSeed) {
+            if (candidateSongs.size === 0) { candidates.push({ idx: i, jaccard: 0, shared: 0 }); continue; }
+            let weightedIntersection = 0, shared = 0;
+            for (const s of candidateSongs) {
+                if (avgSetlist.weights.has(s)) { weightedIntersection += avgSetlist.weights.get(s); shared++; }
+            }
+            const overlap = weightedIntersection / Math.sqrt(avgSetlist.totalWeight * candidateSongs.size);
+            candidates.push({ idx: i, jaccard: overlap, shared });
+        } else {
+            if (candidateSongs.size === 0) { candidates.push({ idx: i, jaccard: 0, shared: 0 }); continue; }
+            let intersection = 0;
+            for (const s of candidateSongs) { if (seedSongs.has(s)) intersection++; }
+            const overlap = intersection / Math.sqrt(seedSongs.size * candidateSongs.size);
+            candidates.push({ idx: i, jaccard: overlap, shared: intersection });
+        }
     }
 
     if (discoverMode === 'similar') {
@@ -170,27 +272,28 @@ function discoverShows() {
     }
 
     if (discoverView === 'graph') {
-        resultsDiv.innerHTML = '';
-        renderDiscoverGraph(candidates, discoverMode);
+        resultsDiv.innerHTML = isVirtualSeed ? renderAvgSetlist(avgSetlist) : '';
+        renderDiscoverGraph(candidates, discoverMode, isVirtualSeed ? avgSetlist.total : null);
         return;
     }
 
     graphDiv.style.display = 'none';
     document.getElementById('discoverGraphControls').style.display = 'none';
-    const prefix = seedSongs.size === 0
-        ? 'shows not in your listened list'
-        : discoverMode === 'similar' ? 'most similar to your seed' : 'most different from your seed';
-    let html = `<h2>${prefix} (${candidates.length} found)</h2>`;
+
+    const prefix = isVirtualSeed
+        ? (discoverMode === 'similar' ? 'most similar to your average setlist' : 'most different from your average setlist')
+        : (discoverMode === 'similar' ? 'most similar to your seed' : 'most different from your seed');
+    const avgSetlistHtml = isVirtualSeed ? renderAvgSetlist(avgSetlist) : '';
+    let html = `<h2>${prefix} (${candidates.length} found)</h2>${avgSetlistHtml}`;
+
     for (const { idx, jaccard, shared } of candidates) {
         let label = '';
-        if (seedSongs.size > 0) {
-            if (discoverMode === 'similar') {
-                const pct = Math.round(jaccard * 100);
-                label = `${pct}% similar · ${shared} song${shared !== 1 ? 's' : ''} in common`;
-            } else {
-                const pct = Math.round((1 - jaccard) * 100);
-                label = `${pct}% different${shared > 0 ? ` · ${shared} song${shared > 1 ? 's' : ''} in common` : ''}`;
-            }
+        if (discoverMode === 'similar') {
+            const pct = Math.round(jaccard * 100);
+            label = `${pct}% similar · ${shared} song${shared !== 1 ? 's' : ''} in common`;
+        } else {
+            const pct = Math.round((1 - jaccard) * 100);
+            label = `${pct}% different${shared > 0 ? ` · ${shared} song${shared > 1 ? 's' : ''} in common` : ''}`;
         }
         html += renderShowCard(shows[idx], label, null);
     }
@@ -209,7 +312,7 @@ function eraColor(date) {
     return '#8e44ad';                // purple
 }
 
-function renderDiscoverGraph(candidates, discoverMode) {
+function renderDiscoverGraph(candidates, discoverMode, virtualSeedCount = null) {
     const graphDiv = document.getElementById('discoverGraph');
     graphDiv.innerHTML = '';
     graphDiv.style.display = 'block';
@@ -217,32 +320,20 @@ function renderDiscoverGraph(candidates, discoverMode) {
     const W = graphDiv.clientWidth || 700;
     const H = 600;
 
-    // Build node list: seed + candidates
+    // Build node list: seed (real or virtual) + candidates
     const nodeShows = [];
-    if (seedIdx !== null) nodeShows.push({ idx: seedIdx, jaccard: 1, shared: showSongSets[seedIdx].size, isSeed: true });
-    for (const c of candidates) nodeShows.push({ ...c, isSeed: false });
+    if (seedIdx !== null) {
+        nodeShows.push({ idx: seedIdx, jaccard: 1, shared: showSongSets[seedIdx].size, isSeed: true, isVirtual: false });
+    } else if (virtualSeedCount !== null) {
+        nodeShows.push({ idx: null, jaccard: 1, shared: 0, isSeed: true, isVirtual: true, virtualSeedCount });
+    }
+    for (const c of candidates) nodeShows.push({ ...c, isSeed: false, isVirtual: false });
 
-    // All candidates become nodes. Compute one edge per candidate: seed → candidate.
-    // The slider controls visibility; no threshold is applied here.
+    // One edge per candidate connecting to the seed node
     const filteredNodes = nodeShows;
     const edges = [];
-    if (seedIdx !== null) {
-        for (let i = 1; i < filteredNodes.length; i++) {
-            edges.push({ source: 0, target: i, weight: filteredNodes[i].jaccard });
-        }
-    } else {
-        // No seed: compute edges between all pairs, keep only those with overlap >= 0.5
-        for (let i = 0; i < filteredNodes.length; i++) {
-            for (let j = i + 1; j < filteredNodes.length; j++) {
-                const a = showSongSets[filteredNodes[i].idx];
-                const b = showSongSets[filteredNodes[j].idx];
-                if (a.size === 0 || b.size === 0) continue;
-                let intersection = 0;
-                for (const s of a) { if (b.has(s)) intersection++; }
-                const w = intersection / Math.sqrt(a.size * b.size);
-                if (w >= 0.5) edges.push({ source: i, target: j, weight: w });
-            }
-        }
+    for (let i = 1; i < filteredNodes.length; i++) {
+        edges.push({ source: 0, target: i, weight: filteredNodes[i].jaccard });
     }
 
     const svg = d3.select(graphDiv).append('svg')
@@ -264,19 +355,20 @@ function renderDiscoverGraph(candidates, discoverMode) {
     // Nodes
     const node = g.append('g').selectAll('circle').data(filteredNodes).join('circle')
         .attr('r', d => d.isSeed ? 12 : 8)
-        .attr('fill', d => eraColor(shows[d.idx].date))
+        .attr('fill', d => d.isVirtual ? '#aaa' : eraColor(shows[d.idx].date))
         .attr('stroke', d => d.isSeed ? 'black' : '#fff')
         .attr('stroke-width', d => d.isSeed ? 2.5 : 1.5)
         .attr('visibility', d => (d.isSeed || d.jaccard >= INITIAL_THRESHOLD) ? 'visible' : 'hidden')
-        .style('cursor', 'pointer')
+        .style('cursor', d => d.isVirtual ? 'default' : 'pointer');
 
     // Tooltip
     const tooltip = d3.select(graphDiv).append('div').attr('class', 'graph-tooltip').style('display', 'none');
 
     node.on('mouseover', (event, d) => {
-        const show = shows[d.idx];
-        tooltip.style('display', 'block')
-            .html(`<strong>${show.date}</strong>${show.venue ? '<br>' + show.venue : ''}`);
+        const html = d.isVirtual
+            ? `<strong>avg. setlist</strong><br>${d.virtualSeedCount} listened shows`
+            : `<strong>${shows[d.idx].date}</strong>${shows[d.idx].venue ? '<br>' + shows[d.idx].venue : ''}`;
+        tooltip.style('display', 'block').html(html);
     }).on('mousemove', (event) => {
         const rect = graphDiv.getBoundingClientRect();
         let tx = event.clientX - rect.left + 12;
@@ -287,13 +379,14 @@ function renderDiscoverGraph(candidates, discoverMode) {
         tooltip.style('display', 'none');
     });
 
-    // Click → show card overlay
+    // Click → show card overlay (not for virtual seed)
     node.on('click', (event, d) => {
+        if (d.isVirtual) return;
         event.stopPropagation();
         const show = shows[d.idx];
         const cardDiv = document.getElementById('discoverGraphCard');
         let label = '';
-        if (!d.isSeed && seedIdx !== null) {
+        if (!d.isSeed) {
             if (discoverMode === 'similar') {
                 const pct = Math.round(d.jaccard * 100);
                 label = `${pct}% similar · ${d.shared} song${d.shared !== 1 ? 's' : ''} in common`;

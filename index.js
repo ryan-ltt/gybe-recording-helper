@@ -258,6 +258,7 @@ if (sbClient) {
             currentUsername = null;
             trackingData = {};
             trackingLoaded = false;
+            localStorage.removeItem('discoverUseAccount');
             updateHeaderAuth();
             updateErasTrackSection();
             buildEras();
@@ -280,6 +281,8 @@ function updateHeaderAuth() {
     } else {
         div.innerHTML = `<button class="header-btn" onclick="showAuthModal()">log in</button> ${toggleBtn}`;
     }
+    const discoverAccountDiv = document.getElementById('discoverAccountListened');
+    if (discoverAccountDiv) discoverAccountDiv.style.display = currentUser ? 'block' : 'none';
 }
 
 function toggleTheme() {
