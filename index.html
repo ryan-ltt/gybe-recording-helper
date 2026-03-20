@@ -184,6 +184,80 @@
             box-sizing: border-box;
         }
         .search-box:focus { outline: none; background: #f5f5ff; }
+        .opt-tabs { display: inline-flex; }
+        .opt-tab {
+            padding: 4px 12px;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            background: white;
+            border: 2px solid black;
+            cursor: pointer;
+            margin-right: -2px;
+            color: #555;
+            transition: all 0.1s;
+            user-select: none;
+        }
+        .opt-tab.active { background: black; color: white; position: relative; z-index: 1; }
+        .opt-tab:hover:not(.active) { background: #eee; color: black; }
+        .year-slider-track {
+            position: relative;
+            width: 260px;
+            height: 20px;
+        }
+        .year-range {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            pointer-events: none;
+            appearance: none;
+            -webkit-appearance: none;
+            background: transparent;
+            height: 4px;
+            top: 8px;
+            outline: none;
+        }
+        .year-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            background: black;
+            border: 2px solid black;
+            cursor: pointer;
+            pointer-events: all;
+            border-radius: 0;
+        }
+        .year-range::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            background: black;
+            border: 2px solid black;
+            cursor: pointer;
+            pointer-events: all;
+            border-radius: 0;
+        }
+        .year-range::-webkit-slider-runnable-track { background: transparent; height: 4px; }
+        .year-range::-moz-range-track { background: transparent; height: 4px; }
+        .year-slider-bg { position: absolute; left: 0; right: 0; height: 4px; top: 8px; background: #ccc; pointer-events: none; }
+        html.dark .year-slider-bg { background: #555; }
+        html.dark .year-range::-webkit-slider-thumb { background: white; border-color: white; }
+        html.dark .year-range::-moz-range-thumb { background: white; border-color: white; }
+        .pos-btn {
+            display: inline-block;
+            font-size: 9px;
+            padding: 1px 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            color: rgba(255,255,255,0.45);
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            vertical-align: middle;
+            line-height: 1.4;
+            user-select: none;
+        }
+        .pos-btn:hover { border-color: rgba(255,255,255,0.7); color: rgba(255,255,255,0.8); }
+        .pos-btn.pos-active { background: white; color: black; border-color: white; }
         .opts-row {
             margin: 10px 0 4px 0;
             font-family: Monaco, 'JetBrains Mono', monospace;
@@ -759,6 +833,12 @@
         html.dark .album-btn { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
         html.dark .album-btn:hover { background: #253545; }
         html.dark .album-btn-active { background: #aaa; color: #0e1824; border-color: #aaa; }
+        html.dark .opt-tab { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
+        html.dark .opt-tab.active { background: #eaf2f5; color: #0e1824; border-color: #eaf2f5; }
+        html.dark .opt-tab:hover:not(.active) { background: #253545; color: #eaf2f5; }
+        html.dark .pos-btn { border-color: rgba(234,242,245,0.35); color: rgba(234,242,245,0.45); }
+        html.dark .pos-btn:hover { border-color: rgba(234,242,245,0.7); color: rgba(234,242,245,0.8); }
+        html.dark .pos-btn.pos-active { background: #eaf2f5; color: #0e1824; border-color: #eaf2f5; }
         html.dark .header-btn { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
         html.dark .header-btn:hover { background: #253545; }
         html.dark .auth-modal { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
@@ -873,21 +953,38 @@
             <input type="text" class="search-box" id="songSearch" placeholder="filter songs..." oninput="filterSongs()" style="margin-top:16px;">
             <div class="song-grid" id="songGrid"></div>
             <div class="selected-list" id="selectedList"></div>
-            <div class="opts-row" style="flex-direction:column;align-items:flex-start;gap:6px;">
-                <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
-                    <span>mode:
-                        <label style="margin-left:8px;"><input type="radio" name="mode" value="any" checked> any</label>
-                        <label style="margin-left:12px;"><input type="radio" name="mode" value="all"> all</label>
-                    </span>
-                    <label><input type="checkbox" id="recordingsOnly"> recordings only</label>
+            <div class="opts-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <label class="toggle-switch"><input type="checkbox" id="recordingsOnly" onchange="finderOpts.recordingsOnly=this.checked"><span class="toggle-slider"></span></label>
+                    <span>recordings only</span>
                 </div>
-                <div style="display:flex;align-items:center;">
-                    <span>order:
-                        <label style="margin-left:8px;"><input type="radio" name="order" value="unordered" checked onchange="renderSelectedList()"> unordered</label>
-                        <label style="margin-left:12px;"><input type="radio" name="order" value="ordered" onchange="renderSelectedList()"> ordered</label>
-                        <label style="margin-left:12px;"><input type="radio" name="order" value="back-to-back" onchange="renderSelectedList()"> back-to-back</label>
-                    </span>
+                <div style="display:flex;align-items:center;gap:8px;"><span>mode:</span>
+                    <div class="opt-tabs">
+                        <button class="opt-tab active" onclick="setOptTab(this,'mode','any')">any</button>
+                        <button class="opt-tab" onclick="setOptTab(this,'mode','all')">all</button>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;"><span>order:</span>
+                    <div class="opt-tabs">
+                        <button class="opt-tab active" onclick="setOptTab(this,'order','unordered');renderSelectedList()">unordered</button>
+                        <button class="opt-tab" onclick="setOptTab(this,'order','ordered');renderSelectedList()">ordered</button>
+                        <button class="opt-tab" onclick="setOptTab(this,'order','back-to-back');renderSelectedList()">back-to-back</button>
+                    </div>
                     <span class="help-icon" tabindex="0">?<span class="help-tooltip"><b>ordered:</b> your songs must appear in the setlist in the order you selected them, but other songs can appear between them.<br><br><b>back-to-back:</b> your songs must appear consecutively in the setlist, with nothing between them.</span></span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;"><span>sort:</span>
+                    <div class="opt-tabs">
+                        <button class="opt-tab active" onclick="setOptTab(this,'sort','desc')">newest first</button>
+                        <button class="opt-tab" onclick="setOptTab(this,'sort','asc')">oldest first</button>
+                    </div>
+                </div>
+                <div id="yearRangeWrap" style="display:none;align-items:center;gap:10px;">
+                    <span>years: <span id="yearRangeLabel"></span></span>
+                    <div class="year-slider-track" id="yearSliderTrack">
+                        <div class="year-slider-bg"></div>
+                        <input type="range" id="yearMin" class="year-range" oninput="onYearSlider()">
+                        <input type="range" id="yearMax" class="year-range" oninput="onYearSlider()">
+                    </div>
                 </div>
             </div>
             <div>

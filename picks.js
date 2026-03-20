@@ -42,7 +42,7 @@ function renderPicksTopShows() {
   }
   const top = Object.entries(pickCounts)
     .map(([date, count]) => [date, count, rankSums[date] / count])
-    .sort((a, b) => (b[1] * (10 - b[2])) - (a[1] * (10 - a[2])))
+    .sort((a, b) => (b[1] * (15 - b[2])) - (a[1] * (15 - a[2])))
     .slice(0, 10);
   if (top.length === 0) { el.innerHTML = ''; return; }
   const showMap = {};

@@ -6,6 +6,32 @@ function buildAlbumSections() {
         return `<button class="album-btn" onclick='toggleAlbum(${JSON.stringify(validSongs)}, this)'>${album.name} <span class="muted" style="font-size:11px;">(${album.year})</span></button>`;
     }).join('');
     container.innerHTML = `<div class="song-grid" style="margin-bottom:0;">${btns}</div>`;
+    initYearSlider();
+}
+
+function initYearSlider() {
+    if (!shows.length) return;
+    const years = shows.map(s => parseInt(s.date.slice(0, 4)));
+    const minY = Math.min(...years);
+    const maxY = Math.max(...years);
+    const minEl = document.getElementById('yearMin');
+    const maxEl = document.getElementById('yearMax');
+    minEl.min = minY; minEl.max = maxY; minEl.value = minY;
+    maxEl.min = minY; maxEl.max = maxY; maxEl.value = maxY;
+    document.getElementById('yearRangeLabel').textContent = `${minY} – ${maxY}`;
+    document.getElementById('yearRangeWrap').style.display = 'flex';
+    minEl.addEventListener('pointerdown', () => { minEl.style.zIndex = 2; maxEl.style.zIndex = 1; });
+    maxEl.addEventListener('pointerdown', () => { maxEl.style.zIndex = 2; minEl.style.zIndex = 1; });
+}
+
+function onYearSlider() {
+    const minEl = document.getElementById('yearMin');
+    const maxEl = document.getElementById('yearMax');
+    let minVal = parseInt(minEl.value);
+    let maxVal = parseInt(maxEl.value);
+    if (minVal > maxVal) { minEl.value = maxVal; minVal = maxVal; }
+    if (maxVal < minVal) { maxEl.value = minVal; maxVal = minVal; }
+    document.getElementById('yearRangeLabel').textContent = minVal === maxVal ? String(minVal) : `${minVal} – ${maxVal}`;
 }
 
 function toggleAlbum(songs, btn) {
@@ -33,6 +59,15 @@ function toggleAlbum(songs, btn) {
 let selected = new Set();
 let selectedOrder = []; // drag-reorderable ordered list
 let dragSrcIdx = null;
+let songPositions = {}; // song → 'first' | 'last'
+const finderOpts = { mode: 'any', order: 'unordered', sort: 'desc', recordingsOnly: false };
+
+function setOptTab(btn, key, value) {
+    finderOpts[key] = value;
+    btn.closest('.opt-tabs').querySelectorAll('.opt-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
 
 function renderSongGrid(filter) {
     const grid = document.getElementById('songGrid');
@@ -58,6 +93,7 @@ function toggleSong(song, el) {
     if (selected.has(song)) {
         selected.delete(song);
         selectedOrder.splice(selectedOrder.indexOf(song), 1);
+        delete songPositions[song];
         el.classList.remove('selected');
     } else {
         selected.add(song);
@@ -67,16 +103,34 @@ function toggleSong(song, el) {
     renderSelectedList();
 }
 
+function togglePosition(song, pos) {
+    if (songPositions[song] === pos) {
+        delete songPositions[song];
+    } else {
+        songPositions[song] = pos;
+    }
+    renderSelectedList();
+}
+
 function renderSelectedList() {
     const div = document.getElementById('selectedList');
     if (selectedOrder.length === 0) { div.innerHTML = ''; return; }
-    const orderMode = document.querySelector('input[name="order"]:checked')?.value;
+    const orderMode = finderOpts.order;
     const numbered = orderMode === 'ordered' || orderMode === 'back-to-back';
     const dragHint = (numbered && selectedOrder.length > 1) ? '<div class="muted" style="font-size:11px;font-family:Monaco,\'JetBrains Mono\',monospace;margin-bottom:4px;">drag to reorder</div>' : '';
     div.innerHTML = dragHint + 'selected: ' + selectedOrder.map((s, i) => {
         const label = numbered ? `${i + 1}. ${s}` : s;
-        return `<span draggable="true" data-idx="${i}" style="cursor:grab;">${label}</span>`;
+        const pos = songPositions[s];
+        const posBtns = `<button class="pos-btn${pos === 'first' ? ' pos-active' : ''}" data-idx="${i}" data-pos="first" title="must open the setlist">first</button><button class="pos-btn${pos === 'last' ? ' pos-active' : ''}" data-idx="${i}" data-pos="last" title="must close the setlist">last</button>`;
+        return `<span draggable="true" data-idx="${i}" style="cursor:grab;">${label}${posBtns}</span>`;
     }).join('');
+    div.querySelectorAll('.pos-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.stopPropagation();
+            const song = selectedOrder[parseInt(btn.dataset.idx)];
+            togglePosition(song, btn.dataset.pos);
+        });
+    });
     div.querySelectorAll('span[draggable]').forEach(el => {
         el.addEventListener('dragstart', e => {
             dragSrcIdx = parseInt(el.dataset.idx);
@@ -106,9 +160,27 @@ function renderSelectedList() {
 function clearAll() {
     selected.clear();
     selectedOrder = [];
+    songPositions = {};
     renderSongGrid(document.getElementById('songSearch').value);
     renderSelectedList();
     document.getElementById('finderResults').innerHTML = '';
+}
+
+function matchesPositions(show) {
+    const entries = Object.entries(songPositions);
+    if (entries.length === 0) return true;
+    if (show.songs.length === 0) return false;
+    const firstCanon = normalizeSong(show.songs[0]);
+    const lastCanon = normalizeSong(show.songs[show.songs.length - 1]);
+    for (const [song, pos] of entries) {
+        const lookupSongs = PART_OF[song] ? [song, PART_OF[song]] : [song];
+        if (pos === 'first') {
+            if (!lookupSongs.includes(firstCanon)) return false;
+        } else {
+            if (!lookupSongs.includes(lastCanon)) return false;
+        }
+    }
+    return true;
 }
 
 function findShows() {
@@ -118,9 +190,10 @@ function findShows() {
         return;
     }
     const query = [...selectedOrder];
-    const mode = document.querySelector('input[name="mode"]:checked').value;
-    const orderMode = document.querySelector('input[name="order"]:checked').value;
-    const recordingsOnly = document.getElementById('recordingsOnly').checked;
+    const { mode, order: orderMode, sort: sortDir, recordingsOnly } = finderOpts;
+    const minYear = parseInt(document.getElementById('yearMin').value);
+    const maxYear = parseInt(document.getElementById('yearMax').value);
+    const inYearRange = show => { const y = parseInt(show.date.slice(0, 4)); return y >= minYear && y <= maxYear; };
 
     // Build highlight set: include parent songs so they highlight in results too
     const highlightSet = new Set(selected);
@@ -132,6 +205,7 @@ function findShows() {
         const results = [];
         for (let i = 0; i < shows.length; i++) {
             if (recordingsOnly && !shows[i].recordings.length) continue;
+            if (!inYearRange(shows[i])) continue;
             const canonSongs = shows[i].songs.map(normalizeSong);
             let matches = false;
             if (orderMode === 'ordered') {
@@ -154,13 +228,15 @@ function findShows() {
             if (matches) results.push(i);
         }
 
-        if (results.length === 0) {
-            resultsDiv.innerHTML = `<p class="no-results">no shows found with those songs ${orderMode === 'back-to-back' ? 'back-to-back' : 'in that order'}.</p>`;
+        const posFiltered = results.filter(idx => matchesPositions(shows[idx]));
+        posFiltered.sort((a, b) => sortDir === 'asc' ? a - b : b - a);
+        if (posFiltered.length === 0) {
+            resultsDiv.innerHTML = `<p class="no-results">no shows found with those songs ${orderMode === 'back-to-back' ? 'back-to-back' : 'in that order'}${Object.keys(songPositions).length ? ' matching position constraints' : ''}.</p>`;
             return;
         }
         const label = orderMode === 'back-to-back' ? 'songs back-to-back' : 'songs in order';
-        let html = `<h2>shows with ${label} (${results.length} found)</h2>`;
-        for (const idx of results) {
+        let html = `<h2>shows with ${label} (${posFiltered.length} found)</h2>`;
+        for (const idx of posFiltered) {
             html += renderShowCard(shows[idx], label, highlightSet);
         }
         resultsDiv.innerHTML = html;
@@ -182,10 +258,11 @@ function findShows() {
         }
     }
 
+    const dateSort = sortDir === 'asc' ? (a, b) => +a[0] - +b[0] : (a, b) => +b[0] - +a[0];
     const minScore = mode === 'all' ? query.length : 1;
     const ranked = Object.entries(scores)
-        .sort((a, b) => b[1] - a[1] || b[0] - a[0])
-        .filter(([idx, score]) => score >= minScore && (!recordingsOnly || shows[idx].recordings.length > 0));
+        .sort((a, b) => b[1] - a[1] || dateSort(a, b))
+        .filter(([idx, score]) => score >= minScore && (!recordingsOnly || shows[idx].recordings.length > 0) && matchesPositions(shows[idx]) && inYearRange(shows[idx]));
 
     if (ranked.length === 0) {
         resultsDiv.innerHTML = `<p class="no-results">${mode === 'all' ? 'no shows found containing all selected songs.' : 'no shows found with these songs.'}</p>`;
