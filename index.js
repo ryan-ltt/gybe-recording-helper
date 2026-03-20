@@ -14,14 +14,14 @@ const CANONICAL_SONGS = [
 
 // ─── Albums ────────────────────────────────────────────────────────────────
 const ALBUMS = [
-    { name: 'f#a#∞',                        year: '1997', songs: ['the dead flag blues', 'the dead flag blues (outro)', 'the cowboy', 'nothings alrite in our lives', 'sad mafioso', 'divorce & fever', 'dead metheny', 'kicking horse on broken hill', 'j.l.h. outro'] },
+    { name: 'f#a#∞',                        year: '1997', songs: ['the dead flag blues', 'the cowboy', 'the dead flag blues (outro)', 'nothings alrite in our lives', 'sad mafioso', 'divorce & fever', 'dead metheny', 'kicking horse on broken hill', 'j.l.h. outro'] },
     { name: 'slow riot for new zerø kanada', year: '1999', songs: ['moya', 'blaise bailey finnegan III'] },
     { name: 'lift your skinny fists',        year: '2000', songs: ['gathering storm', 'chart #3', 'world police', 'monheim', '3rd part', 'john hughes'] },
-    { name: 'yanqui u.x.o.',                 year: '2002', songs: ['12-28-99', 'tazer floyd', 'motherfucker = redeemer'] },
+    { name: 'yanqui u.x.o.',                 year: '2002', songs: ['12-28-99', '12-28-99 (outro)', 'tazer floyd', 'motherfucker = redeemer'] },
     { name: "allelujah! don't bend! ascend!",year: '2012', songs: ['albanian', 'gamelan'] },
-    { name: 'asunder, sweet and other distress', year: '2015', songs: ['behemoth'] },
-    { name: 'luciferian towers',             year: '2017', songs: ['bosses hang', 'anthem for no state', '2 nouveau tower'] },
-    { name: "g_d's pee at state's end!",     year: '2021', songs: ['glacier', 'cliff', 'fire at static valley'] },
+    { name: 'asunder, sweet and other distress', year: '2015', songs: ['behemoth', 'piss crowns are trebled'] },
+    { name: 'luciferian towers',             year: '2017', songs: ['bosses hang', '2 nouveau tower', 'anthem for no state' ] },
+    { name: "g_d's pee at state's end!",     year: '2021', songs: ['glacier', 'fire at static valley', 'cliff' ] },
     { name: 'no title as of 13 february 2024 28,340 dead', year: '2024', songs: ['sun is a hole sun is vapors', 'babys in a thundercloud', 'raindrops cast in lead', 'broken spires at dead kapital', 'pale spectator takes photographs'] },
 ];
 
@@ -224,7 +224,6 @@ fetch('setlists.json').then(r => r.json()).then(data => {
     shows = data;
     buildIndex();
     buildAlbumSections();
-    renderSongGrid();
     buildEras();
     updateErasTrackSection();
 });

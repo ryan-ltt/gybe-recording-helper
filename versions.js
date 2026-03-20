@@ -14,15 +14,54 @@ function renderVersionsTab() {
     if (currentVersionSong) return;
     const content = document.getElementById('versionsContent');
     const f = (document.getElementById('versionsSearchInput')?.value || '').toLowerCase().trim();
-    const tags = CANONICAL_SONGS.filter(song => {
-        if ((showIndex[song] || []).length === 0) return false;
-        return !f || song.toLowerCase().includes(f);
-    }).map(song => {
+
+    const makeTag = song => {
         const count = songVoteCounts[song];
         const badge = count ? ` <span style="font-size:10px;color:inherit;">(${count})</span>` : '';
-        return `<div class="song-tag" onclick='openVersionSong(${JSON.stringify(song)})'>${song}${badge}</div>`;
-    }).join('');
-    content.innerHTML = tags ? `<div class="song-grid">${tags}</div>` : '<p class="no-results">no songs match.</p>';
+        const idx = CANONICAL_SONGS.indexOf(song);
+        return `<div class="song-tag" onclick="openVersionSong(CANONICAL_SONGS[${idx}])">${song}${badge}</div>`;
+    };
+
+    let html = '';
+
+    if (songSortMode === 'alpha') {
+        const tags = CANONICAL_SONGS.filter(song => {
+            if ((showIndex[song] || []).length === 0) return false;
+            return !f || song.toLowerCase().includes(f);
+        }).map(makeTag).join('');
+        html = tags ? `<div class="song-grid">${tags}</div>` : '';
+    } else {
+        const songsInAlbums = new Set();
+
+        for (const album of ALBUMS) {
+            const validSongs = album.songs.filter(s => {
+                if (!CANONICAL_SONGS.includes(s)) return false;
+                if ((showIndex[s] || []).length === 0) return false;
+                return !f || s.toLowerCase().includes(f);
+            });
+            validSongs.forEach(s => songsInAlbums.add(s));
+            if (validSongs.length === 0) continue;
+
+            html += `<div class="album-section">
+                <div class="versions-album-header">${album.name} <span class="muted" style="font-size:11px;">(${album.year})</span></div>
+                <div class="song-grid" style="margin:6px 0 16px 0;">${validSongs.map(makeTag).join('')}</div>
+            </div>`;
+        }
+
+        const otherSongs = CANONICAL_SONGS.filter(s => {
+            if (songsInAlbums.has(s)) return false;
+            if ((showIndex[s] || []).length === 0) return false;
+            return !f || s.toLowerCase().includes(f);
+        });
+        if (otherSongs.length > 0) {
+            html += `<div class="album-section">
+                <div class="versions-album-header">other / live only</div>
+                <div class="song-grid" style="margin:6px 0 16px 0;">${otherSongs.map(makeTag).join('')}</div>
+            </div>`;
+        }
+    }
+
+    content.innerHTML = html || '<p class="no-results">no songs match.</p>';
 }
 
 async function openVersionSong(song) {

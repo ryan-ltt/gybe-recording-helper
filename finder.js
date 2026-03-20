@@ -1,11 +1,79 @@
+let songSortMode = localStorage.getItem('songSortMode') || 'alpha';
+
+function setSongSortMode(mode) {
+    songSortMode = mode;
+    localStorage.setItem('songSortMode', mode);
+    _syncSortToggles();
+    buildAlbumSections();
+    if (document.getElementById('tab-versions').classList.contains('active')) {
+        renderVersionsTab();
+    }
+}
+
+function _syncSortToggles() {
+    ['sortToggle', 'sortToggleVersions'].forEach(id => {
+        const chk = document.getElementById(id);
+        if (chk) chk.checked = songSortMode === 'album';
+    });
+}
+
+function toggleSongSort() {
+    setSongSortMode(songSortMode === 'album' ? 'alpha' : 'album');
+}
+
+function _makeSongTag(song) {
+    const idx = CANONICAL_SONGS.indexOf(song);
+    const cls = 'song-tag' + (selected.has(song) ? ' selected' : '');
+    return `<div class="${cls}" data-song-idx="${idx}" onclick="toggleSongByIdx(${idx}, this)">${song}</div>`;
+}
+
 function buildAlbumSections() {
     const container = document.getElementById('albumSections');
-    const btns = ALBUMS.map(album => {
-        const validSongs = album.songs.filter(s => CANONICAL_SONGS.includes(s));
-        if (validSongs.length === 0) return '';
-        return `<button class="album-btn" onclick='toggleAlbum(${JSON.stringify(validSongs)}, this)'>${album.name} <span class="muted" style="font-size:11px;">(${album.year})</span></button>`;
-    }).join('');
-    container.innerHTML = `<div class="song-grid" style="margin-bottom:0;">${btns}</div>`;
+    let html = '';
+
+    const alphaGrid = document.getElementById('alphaSongGrid');
+    if (songSortMode === 'alpha') {
+        const albumBtns = ALBUMS.map((album, albumIdx) => {
+            const validSongs = album.songs.filter(s => CANONICAL_SONGS.includes(s));
+            if (validSongs.length === 0) return '';
+            const allSelected = validSongs.every(s => selected.has(s));
+            const btnCls = 'album-btn' + (allSelected ? ' album-btn-active' : '');
+            return `<button class="${btnCls}" data-album-idx="${albumIdx}" onclick="toggleAlbumByIdx(this)">${album.name} <span class="muted" style="font-size:11px;">(${album.year})</span></button>`;
+        }).join('');
+        html = `<div class="song-grid" style="margin-bottom:0;">${albumBtns}</div>`;
+        const songTags = CANONICAL_SONGS.map(_makeSongTag).join('');
+        if (alphaGrid) alphaGrid.innerHTML = `<div class="song-grid">${songTags}</div>`;
+    } else {
+        if (alphaGrid) alphaGrid.innerHTML = '';
+        const songsInAlbums = new Set();
+
+        ALBUMS.forEach((album, albumIdx) => {
+            const validSongs = album.songs.filter(s => CANONICAL_SONGS.includes(s));
+            if (validSongs.length === 0) return;
+            validSongs.forEach(s => songsInAlbums.add(s));
+
+            const allSelected = validSongs.length > 0 && validSongs.every(s => selected.has(s));
+            const btnCls = 'album-btn' + (allSelected ? ' album-btn-active' : '');
+            const songTags = validSongs.map(_makeSongTag).join('');
+
+            html += `<div class="album-section">
+                <button class="${btnCls}" data-album-idx="${albumIdx}" onclick="toggleAlbumByIdx(this)">${album.name} <span class="muted" style="font-size:11px;">(${album.year})</span></button>
+                <div class="song-grid" style="margin:6px 0 16px 0;">${songTags}</div>
+            </div>`;
+        });
+
+        const otherSongs = CANONICAL_SONGS.filter(s => !songsInAlbums.has(s));
+        if (otherSongs.length > 0) {
+            const songTags = otherSongs.map(_makeSongTag).join('');
+            html += `<div class="album-section">
+                <div class="album-section-label">other / live only</div>
+                <div class="song-grid" style="margin:6px 0 16px 0;">${songTags}</div>
+            </div>`;
+        }
+    }
+
+    container.innerHTML = html;
+    _syncSortToggles();
     initYearSlider();
 }
 
@@ -34,7 +102,9 @@ function onYearSlider() {
     document.getElementById('yearRangeLabel').textContent = minVal === maxVal ? String(minVal) : `${minVal} – ${maxVal}`;
 }
 
-function toggleAlbum(songs, btn) {
+function toggleAlbumByIdx(btn) {
+    const albumIdx = parseInt(btn.dataset.albumIdx);
+    const songs = ALBUMS[albumIdx].songs.filter(s => CANONICAL_SONGS.includes(s));
     const allSelected = songs.every(s => selected.has(s));
     if (allSelected) {
         for (const song of songs) {
@@ -51,7 +121,11 @@ function toggleAlbum(songs, btn) {
         }
         btn.classList.add('album-btn-active');
     }
-    renderSongGrid(document.getElementById('songSearch').value);
+    songs.forEach(song => {
+        const idx = CANONICAL_SONGS.indexOf(song);
+        const tag = document.querySelector(`#albumSections .song-tag[data-song-idx="${idx}"], #alphaSongGrid .song-tag[data-song-idx="${idx}"]`);
+        if (tag) tag.classList.toggle('selected', selected.has(song));
+    });
     renderSelectedList();
 }
 
@@ -69,27 +143,35 @@ function setOptTab(btn, key, value) {
 }
 
 
-function renderSongGrid(filter) {
-    const grid = document.getElementById('songGrid');
-    grid.innerHTML = '';
-    const f = (filter || '').toLowerCase().trim();
-    for (const song of CANONICAL_SONGS) {
-        const matchesCanon = song.toLowerCase().includes(f);
-        const matchesAlias = f && (ALIAS_MAP[song] || []).some(a => a.includes(f));
-        if (f && !matchesCanon && !matchesAlias) continue;
-        const tag = document.createElement('div');
-        tag.className = 'song-tag' + (selected.has(song) ? ' selected' : '');
-        tag.textContent = song;
-        tag.onclick = () => toggleSong(song, tag);
-        grid.appendChild(tag);
+function filterSongs() {
+    const f = document.getElementById('songSearch').value.toLowerCase().trim();
+    if (songSortMode === 'alpha') {
+        document.querySelectorAll('#alphaSongGrid .song-tag').forEach(tag => {
+            const idx = parseInt(tag.dataset.songIdx);
+            const song = CANONICAL_SONGS[idx];
+            const matchesCanon = song.toLowerCase().includes(f);
+            const matchesAlias = f && (ALIAS_MAP[song] || []).some(a => a.includes(f));
+            tag.style.display = (!f || matchesCanon || matchesAlias) ? '' : 'none';
+        });
+    } else {
+        document.querySelectorAll('#albumSections .album-section').forEach(section => {
+            let anyVisible = false;
+            section.querySelectorAll('.song-tag').forEach(tag => {
+                const idx = parseInt(tag.dataset.songIdx);
+                const song = CANONICAL_SONGS[idx];
+                const matchesCanon = song.toLowerCase().includes(f);
+                const matchesAlias = f && (ALIAS_MAP[song] || []).some(a => a.includes(f));
+                const visible = !f || matchesCanon || matchesAlias;
+                tag.style.display = visible ? '' : 'none';
+                if (visible) anyVisible = true;
+            });
+            section.style.display = anyVisible ? '' : 'none';
+        });
     }
 }
 
-function filterSongs() {
-    renderSongGrid(document.getElementById('songSearch').value);
-}
-
-function toggleSong(song, el) {
+function toggleSongByIdx(idx, el) {
+    const song = CANONICAL_SONGS[idx];
     if (selected.has(song)) {
         selected.delete(song);
         selectedOrder.splice(selectedOrder.indexOf(song), 1);
@@ -100,6 +182,11 @@ function toggleSong(song, el) {
         selectedOrder.push(song);
         el.classList.add('selected');
     }
+    document.querySelectorAll('.album-btn[data-album-idx]').forEach(btn => {
+        const aIdx = parseInt(btn.dataset.albumIdx);
+        const albumSongs = ALBUMS[aIdx].songs.filter(s => CANONICAL_SONGS.includes(s));
+        btn.classList.toggle('album-btn-active', albumSongs.length > 0 && albumSongs.every(s => selected.has(s)));
+    });
     renderSelectedList();
 }
 
@@ -161,7 +248,8 @@ function clearAll() {
     selected.clear();
     selectedOrder = [];
     songPositions = {};
-    renderSongGrid(document.getElementById('songSearch').value);
+    document.querySelectorAll('#albumSections .song-tag.selected, #alphaSongGrid .song-tag.selected').forEach(tag => tag.classList.remove('selected'));
+    document.querySelectorAll('.album-btn-active').forEach(btn => btn.classList.remove('album-btn-active'));
     renderSelectedList();
     document.getElementById('finderResults').innerHTML = '';
 }

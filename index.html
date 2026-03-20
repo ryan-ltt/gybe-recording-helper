@@ -552,6 +552,22 @@
         .album-btn:hover { background: #eee; }
         .album-btn-active { background: #333; color: #fff; border-color: #333; }
         .album-btn-active:hover { background: #444; }
+        .album-section { margin-bottom: 4px; }
+        .album-section-label {
+            display: inline-block;
+            padding: 4px 12px;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            border: 2px solid #aaa;
+            color: #aaa;
+        }
+        .versions-album-header {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 0;
+            margin-bottom: 2px;
+        }
 
         /* Auth header button */
         header { position: relative; }
@@ -833,6 +849,8 @@
         html.dark .album-btn { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
         html.dark .album-btn:hover { background: #253545; }
         html.dark .album-btn-active { background: #aaa; color: #0e1824; border-color: #aaa; }
+        html.dark .album-section-label { border-color: #3a4a5a; color: #4a6070; }
+        html.dark .versions-album-header { color: #eaf2f5; }
         html.dark .opt-tab { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
         html.dark .opt-tab.active { background: #eaf2f5; color: #0e1824; border-color: #eaf2f5; }
         html.dark .opt-tab:hover:not(.active) { background: #253545; color: #eaf2f5; }
@@ -945,13 +963,19 @@
             <button class="tab-btn" onclick="switchTab('versions')">vote</button>
             <button class="tab-btn" onclick="switchTab('users')">users</button>
         </div>
-
         <!-- SONG FINDER TAB -->
         <div class="tab-panel active" id="tab-finder">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 12px 0;">select songs you want to hear, find which shows contain them.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin:0 0 12px 0;">
+                <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0;">select songs you want to hear, find which shows contain them.</p>
+                <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+                    <span id="sortLabelAlpha">a–z</span>
+                    <label class="toggle-switch"><input type="checkbox" id="sortToggle" onchange="toggleSongSort()"><span class="toggle-slider"></span></label>
+                    <span id="sortLabelAlbum">by album</span>
+                </div>
+            </div>
             <div id="albumSections"></div>
-            <input type="text" class="search-box" id="songSearch" placeholder="filter songs..." oninput="filterSongs()" style="margin-top:16px;">
-            <div class="song-grid" id="songGrid"></div>
+            <input type="text" class="search-box" id="songSearch" placeholder="filter songs..." oninput="filterSongs()" style="margin:16px 0 0 0;">
+            <div id="alphaSongGrid"></div>
             <div class="selected-list" id="selectedList"></div>
             <div class="opts-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
                 <div style="display:flex;align-items:center;gap:10px;">
@@ -1052,7 +1076,14 @@
 
         <!-- VERSIONS TAB -->
         <div class="tab-panel" id="tab-versions">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 12px 0;">community-voted best performances of each song. click a song to see all versions ranked by votes.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin:0 0 12px 0;">
+                <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0;">community-voted best performances of each song. click a song to see all versions ranked by votes.</p>
+                <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+                    <span>a–z</span>
+                    <label class="toggle-switch"><input type="checkbox" id="sortToggleVersions" onchange="toggleSongSort()"><span class="toggle-slider"></span></label>
+                    <span>by album</span>
+                </div>
+            </div>
             <div id="versionsSongSearch" style="margin-bottom:10px;">
                 <input type="text" class="search-box" id="versionsSearchInput" placeholder="filter songs..." oninput="renderVersionsTab()" style="margin-bottom:0;">
             </div>
