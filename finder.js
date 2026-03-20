@@ -66,7 +66,7 @@ function buildAlbumSections() {
         if (otherSongs.length > 0) {
             const songTags = otherSongs.map(_makeSongTag).join('');
             html += `<div class="album-section">
-                <div class="album-section-label">other / live only</div>
+                <div class="album-btn" style="cursor:default;">other / live only</div>
                 <div class="song-grid" style="margin:6px 0 16px 0;">${songTags}</div>
             </div>`;
         }
