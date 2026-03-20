@@ -5,16 +5,18 @@ function buildEras() {
 
     // Group shows by year
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
+    const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
+    const showFilter = s => (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0);
     const byYear = {};
     for (const show of shows) {
-        if (recordingsOnly && show.recordings.length === 0) continue;
+        if (!showFilter(show)) continue;
         const y = show.date.slice(0, 4);
         if (!byYear[y]) byYear[y] = [];
         byYear[y].push(show);
     }
 
     // "All" card — shows every show regardless of year
-    const allShows = shows.filter(s => !recordingsOnly || s.recordings.length > 0);
+    const allShows = shows.filter(showFilter);
     const allBlock = document.createElement('div');
     allBlock.className = 'era-block';
     allBlock.innerHTML = `
@@ -151,7 +153,8 @@ function toggleEra(id) {
 function filterAllShows(value) {
     const showsDiv = document.getElementById('shows-yall');
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
-    const allShows = shows.filter(s => !recordingsOnly || s.recordings.length > 0);
+    const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
+    const allShows = shows.filter(s => (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0));
     showsDiv.innerHTML = renderEraShowList(allShows, value, 'yall-');
 }
 
@@ -159,7 +162,8 @@ function filterEraShows(id, value) {
     const showsDiv = document.getElementById('shows-' + id);
     const year = id.slice(1); // strip leading 'y'
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
-    const yearShows = shows.filter(s => s.date.startsWith(year) && (!recordingsOnly || s.recordings.length > 0));
+    const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
+    const yearShows = shows.filter(s => s.date.startsWith(year) && (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0));
     showsDiv.innerHTML = renderEraShowList(yearShows, value, id + '-');
 }
 
