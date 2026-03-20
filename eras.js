@@ -13,6 +13,28 @@ function buildEras() {
         byYear[y].push(show);
     }
 
+    // "All" card — shows every show regardless of year
+    const allShows = shows.filter(s => !recordingsOnly || s.recordings.length > 0);
+    const allBlock = document.createElement('div');
+    allBlock.className = 'era-block';
+    allBlock.innerHTML = `
+        <div class="era-header" onclick="toggleEra('yall')">
+            <div><div class="era-title">all</div></div>
+            <div style="display:flex;align-items:center;gap:16px;">
+                <div class="era-meta">${allShows.length} show${allShows.length !== 1 ? 's' : ''}</div>
+                <div class="era-toggle" id="toggle-yall">+</div>
+            </div>
+        </div>
+        <div class="era-body" id="body-yall">
+            <div class="era-filter">
+                <input type="text" placeholder="filter by date, city, venue..." oninput="filterAllShows(this.value)">
+            </div>
+            <div class="era-shows" id="shows-yall">
+                ${renderEraShowList(allShows, '')}
+            </div>
+        </div>`;
+    container.appendChild(allBlock);
+
     for (const year of Object.keys(byYear).sort()) {
         const yearShows = byYear[year];
         const block = document.createElement('div');
@@ -27,7 +49,7 @@ function buildEras() {
             </div>
             <div class="era-body" id="body-y${year}">
                 <div class="era-filter">
-                    <input type="text" placeholder="filter shows..." oninput="filterEraShows('y${year}', this.value)">
+                    <input type="text" placeholder="filter by date, city, venue..." oninput="filterEraShows('y${year}', this.value)">
                 </div>
                 <div class="era-shows" id="shows-y${year}">
                     ${renderEraShowList(yearShows, '')}
@@ -124,6 +146,13 @@ function toggleEra(id) {
     const toggle = document.getElementById('toggle-' + id);
     const isOpen = body.classList.toggle('open');
     toggle.textContent = isOpen ? '−' : '+';
+}
+
+function filterAllShows(value) {
+    const showsDiv = document.getElementById('shows-yall');
+    const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
+    const allShows = shows.filter(s => !recordingsOnly || s.recordings.length > 0);
+    showsDiv.innerHTML = renderEraShowList(allShows, value);
 }
 
 function filterEraShows(id, value) {
