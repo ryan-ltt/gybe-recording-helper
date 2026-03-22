@@ -235,5 +235,22 @@
         "venue": "die kantine, k\u00fcln, ger"
       }
     ]
+  },
+  {
+    "timestamp": "2026-03-22 08:53:47",
+    "new_recordings": [
+      {
+        "show_date": "2026-03-19",
+        "venue": "technikum, m\u00fcnchen, ger",
+        "id": "gybe2026-03-19.diy",
+        "title": "Godspeed You! Black Emperor Live at Technikum on 2026-03-19"
+      },
+      {
+        "show_date": "2026-03-20",
+        "venue": "die kantine, k\u00fcln, ger",
+        "id": "gybe2026-03-20.ca14",
+        "title": "Godspeed You! Black Emperor Live at Kantine on 2026-03-20"
+      }
+    ]
   }
 ]
