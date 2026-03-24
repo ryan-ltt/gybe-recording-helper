@@ -263,5 +263,16 @@
         "title": "Godspeed You! Black Emperor Live at Kantine on 2026-03-20"
       }
     ]
+  },
+  {
+    "timestamp": "2026-03-24 09:11:51",
+    "new_recordings": [
+      {
+        "show_date": "2011-03-27",
+        "venue": "metro, chicago, il",
+        "id": "gybe2011-03-27.aud",
+        "title": "Godspeed You! Black Emperor Live at Cabaret Metro on 2011-03-27"
+      }
+    ]
   }
 ]
