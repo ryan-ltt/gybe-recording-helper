@@ -84,8 +84,8 @@ function renderEraShowList(eraShows, filter, prefix = '') {
         const id = 'sl-' + prefix + s.date.replace(/\W/g, '-');
         const td = trackingData[s.date] || { attended: false, listened: false };
         const isPast = s.date.replace(/[a-z]$/, '') <= new Date().toISOString().slice(0, 10);
-        const listenedBtn = s.recordings.length > 0 ? `<button class="track-btn${td.listened ? ' active' : ''}" id="tbtn-${s.date}-listened" onclick="toggleTracking('${s.date}','listened')">listened</button>` : '';
-        const attendedBtn = isPast ? `<button class="track-btn${td.attended ? ' active' : ''}" id="tbtn-${s.date}-attended" onclick="toggleTracking('${s.date}','attended')">attended</button>` : '';
+        const listenedBtn = s.recordings.length > 0 ? `<button class="track-btn${td.listened ? ' active' : ''}" data-tbtn="${s.date}-listened" onclick="toggleTracking('${s.date}','listened')">listened</button>` : '';
+        const attendedBtn = isPast ? `<button class="track-btn${td.attended ? ' active' : ''}" data-tbtn="${s.date}-attended" onclick="toggleTracking('${s.date}','attended')">attended</button>` : '';
         const trackBtns = currentUser ? `
             <span class="track-btns" onclick="event.stopPropagation()">
                 ${listenedBtn}
@@ -204,8 +204,7 @@ async function toggleTracking(date, field) {
     if (!currentUser) return;
     if (!trackingData[date]) trackingData[date] = { attended: false, listened: false };
     trackingData[date][field] = !trackingData[date][field];
-    const btn = document.getElementById(`tbtn-${date}-${field}`);
-    if (btn) btn.classList.toggle('active', trackingData[date][field]);
+    document.querySelectorAll(`[data-tbtn="${date}-${field}"]`).forEach(btn => btn.classList.toggle('active', trackingData[date][field]));
     renderTrackStats();
     const td2 = trackingData[date];
     await sbClient.from('show_tracking').upsert({
