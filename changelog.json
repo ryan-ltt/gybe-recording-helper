@@ -280,5 +280,22 @@
         "title": "Godspeed You! Black Emperor Live at Cabaret Metro on 2000-10-17"
       }
     ]
+  },
+  {
+    "timestamp": "2026-03-25 09:12:02",
+    "new_recordings": [
+      {
+        "show_date": "2026-03-20",
+        "venue": "die kantine, k\u00f6ln, ger",
+        "id": "gybe2026-03-20.mix",
+        "title": "Godspeed You! Black Emperor Live at Kantine on 2026-03-20"
+      },
+      {
+        "show_date": "2002-03-26",
+        "venue": "st-george hall, bradford, uk",
+        "id": "gybe2002-03-26.flacf",
+        "title": "Godspeed You! Black Emperor Live at St. George Hall on 2002-03-26"
+      }
+    ]
   }
 ]
