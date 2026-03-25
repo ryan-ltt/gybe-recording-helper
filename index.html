@@ -777,6 +777,33 @@
         .disabled-label { color: #999; }
         .secondary-btn { background: white; color: black; }
 
+        .oddities-reasons {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #777;
+            padding: 4px 12px 8px;
+            line-height: 1.6;
+        }
+        .oddities-reasons summary {
+            cursor: pointer;
+            user-select: none;
+        }
+        .oddities-slider-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 6px 12px;
+            align-items: center;
+            margin-top: 10px;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: inherit;
+            max-width: 420px;
+        }
+        .oddities-slider-grid input[type="range"] {
+            width: 100%;
+            accent-color: black;
+        }
+
         /* Dark mode */
         html.dark .muted { color: #cfe0e8; }
         html.dark .dim { color: #c8dce6; }
@@ -900,6 +927,8 @@
         html.dark .toggle-slider:before { background: #aaa; }
         html.dark .toggle-switch input:checked + .toggle-slider { background: #eaf2f5; border-color: #eaf2f5; }
         html.dark .toggle-switch input:checked + .toggle-slider:before { background: #0e1824; }
+        html.dark .oddities-reasons { color: #b8ccd6; }
+        html.dark .oddities-slider-grid input[type="range"] { accent-color: #eaf2f5; }
 
     </style>
 </head>
@@ -962,6 +991,7 @@
             <button class="tab-btn" onclick="switchTab('picks')">picks</button>
             <button class="tab-btn" onclick="switchTab('versions')">vote</button>
             <button class="tab-btn" onclick="switchTab('users')">users</button>
+            <button class="tab-btn" onclick="switchTab('oddities')">oddities</button>
         </div>
         <!-- SONG FINDER TAB -->
         <div class="tab-panel active" id="tab-finder">
@@ -1156,6 +1186,49 @@
             </div>
             <div id="erasContainer"></div>
         </div>
+
+        <!-- ODDITIES TAB -->
+        <div class="tab-panel" id="tab-oddities">
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 8px 0;">shows ranked by how unusual their setlist is for their era. higher score = weirder.</p>
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
+                <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="odditiesRecordingsOnly" onchange="computeOddities()">
+                        <span class="toggle-slider"></span>
+                    </div>
+                    recordings only
+                </label>
+                <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="odditiesExcludeMonumental" checked onchange="computeOddities()">
+                        <span class="toggle-slider"></span>
+                    </div>
+                    exclude monumental dance shows
+                </label>
+            </div>
+            <div id="oddYearWrap" style="display:none;align-items:center;gap:10px;margin-bottom:12px;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;">
+                <span>years: <span id="oddYearLabel"></span></span>
+                <div class="year-slider-track">
+                    <div class="year-slider-bg"></div>
+                    <input type="range" id="oddYearMin" class="year-range" oninput="onOddYearSlider()" onchange="computeOddities()">
+                    <input type="range" id="oddYearMax" class="year-range" oninput="onOddYearSlider()" onchange="computeOddities()">
+                </div>
+            </div>
+            <details class="oddities-sliders" style="margin-bottom:12px;">
+                <summary style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;cursor:pointer;user-select:none;">scoring parameters</summary>
+                <div class="oddities-slider-grid">
+                    <label for="oddWindow">window size <span class="muted" id="oddWindowVal">40</span></label>
+                    <input type="range" id="oddWindow" min="10" max="100" step="10" value="40" oninput="updateSliderLabel('oddWindow')" onchange="computeOddities()">
+                    <label for="oddRareBonus">rare song bonus <span class="muted" id="oddRareBonusVal">0.5</span></label>
+                    <input type="range" id="oddRareBonus" min="0" max="2" step="0.1" value="0.5" oninput="updateSliderLabel('oddRareBonus')" onchange="computeOddities()">
+                    <label for="oddPositionBonus">opener/closer bonus <span class="muted" id="oddPositionBonusVal">1</span></label>
+                    <input type="range" id="oddPositionBonus" min="0" max="3" step="0.1" value="1" oninput="updateSliderLabel('oddPositionBonus')" onchange="computeOddities()">
+                    <label for="oddLengthBonus">length deviation bonus <span class="muted" id="oddLengthBonusVal">0.3</span></label>
+                    <input type="range" id="oddLengthBonus" min="0" max="2" step="0.1" value="0.3" oninput="updateSliderLabel('oddLengthBonus')" onchange="computeOddities()">
+                </div>
+            </details>
+            <div id="odditiesResults"></div>
+        </div>
     </main>
 
     <script src="best-recordings.js"></script>
@@ -1166,5 +1239,6 @@
     <script src="versions.js"></script>
     <script src="picks.js"></script>
     <script src="users.js"></script>
+    <script src="oddities.js"></script>
 </body>
 </html>

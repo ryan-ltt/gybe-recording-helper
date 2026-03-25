@@ -165,7 +165,7 @@ function renderShowCard(show, labelHtml, highlightSet) {
 }
 
 // ─── Tab switching ─────────────────────────────────────────────────────────
-const TABS = ['finder','discover','eras','picks','versions','users'];
+const TABS = ['finder','discover','eras','picks','versions','users','oddities'];
 function switchTab(name) {
     if (!TABS.includes(name)) name = 'finder';
     document.querySelectorAll('.tab-btn').forEach((b, i) => {
@@ -179,6 +179,7 @@ function switchTab(name) {
     if (name === 'eras' && currentUser && !trackingLoaded) loadTrackingThenBuild();
     if (name === 'users' && !usersLoaded) loadUsers();
     if (name === 'picks' && !picksLoaded) loadPicks();
+    if (name === 'oddities' && typeof computeOddities === 'function') computeOddities();
 }
 
 
