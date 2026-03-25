@@ -241,6 +241,34 @@ function renderSelectedList() {
             dragSrcIdx = null;
             renderSelectedList();
         });
+
+        el.addEventListener('touchstart', e => {
+            if (e.target.classList.contains('pos-btn')) return;
+            dragSrcIdx = parseInt(el.dataset.idx);
+            el.style.opacity = '0.4';
+        }, { passive: true });
+        el.addEventListener('touchend', e => {
+            el.style.opacity = '';
+            div.querySelectorAll('span[draggable]').forEach(t => { t.style.outline = ''; });
+            if (dragSrcIdx === null) return;
+            const touch = e.changedTouches[0];
+            const target = document.elementFromPoint(touch.clientX, touch.clientY)?.closest('span[draggable]');
+            if (target && target !== el) {
+                const targetIdx = parseInt(target.dataset.idx);
+                const moved = selectedOrder.splice(dragSrcIdx, 1)[0];
+                selectedOrder.splice(targetIdx, 0, moved);
+                renderSelectedList();
+            }
+            dragSrcIdx = null;
+        });
+        el.addEventListener('touchmove', e => {
+            if (e.target.classList.contains('pos-btn')) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            const target = document.elementFromPoint(touch.clientX, touch.clientY)?.closest('span[draggable]');
+            div.querySelectorAll('span[draggable]').forEach(t => { t.style.outline = ''; });
+            if (target && target !== el) target.style.outline = '2px solid white';
+        }, { passive: false });
     });
 }
 
