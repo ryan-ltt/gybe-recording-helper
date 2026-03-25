@@ -87,21 +87,29 @@ function computeOddities() {
             else wStart = Math.max(0, wEnd - WINDOW);
         }
 
-        // Compute song frequency in window
+        // Compute song frequency in window (raw count + recency-weighted)
         const freq = {};
+        const recencyFreq = {};
         let totalLengths = 0;
         let windowCount = 0;
+        let totalRecencyWeight = 0;
         for (let wi = wStart; wi < wEnd; wi++) {
             if (wi === pi) continue; // exclude self
             const wShow = shows[pool[wi]];
             windowCount++;
             totalLengths += wShow.songs.length;
+            // Recency weight: 1.0 for adjacent shows, decaying toward 0 for distant ones
+            const dist = Math.abs(wi - pi);
+            const maxDist = Math.max(pi - wStart, wEnd - 1 - pi, 1);
+            const recencyWeight = 1 - (dist / (maxDist + 1)) * 0.8; // range: 0.2 to 1.0
+            totalRecencyWeight += recencyWeight;
             const seen = new Set();
             for (const raw of wShow.songs) {
                 const c = normalizeSong(raw);
                 if (c && !seen.has(c)) {
                     seen.add(c);
                     freq[c] = (freq[c] || 0) + 1;
+                    recencyFreq[c] = (recencyFreq[c] || 0) + recencyWeight;
                 }
             }
         }
@@ -112,7 +120,7 @@ function computeOddities() {
         // Score this show
         let score = 0;
         const reasons = [];
-        const songBreakdown = []; // [{name, freq, rarity, bonus}]
+        const songBreakdown = []; // [{name, count, total, rarity, bonus}]
         const rareSongs = new Set();
         const canonSongs = [];
 
@@ -121,8 +129,9 @@ function computeOddities() {
             if (!c) continue;
             canonSongs.push(c);
             const count = freq[c] || 0;
-            const f = count / windowCount;
-            const rarity = 1 - f;
+            // Use recency-weighted frequency for rarity calculation
+            const recencyF = (recencyFreq[c] || 0) / totalRecencyWeight;
+            const rarity = 1 - recencyF;
             let songScore = rarity;
             let bonus = false;
 
@@ -132,7 +141,8 @@ function computeOddities() {
             }
             score += songScore;
             if (rarity > 0.7) rareSongs.add(c);
-            songBreakdown.push({ name: c, count, total: windowCount, rarity: Math.round(rarity * 100), bonus });
+            const rawRarity = Math.round((1 - count / windowCount) * 100);
+            songBreakdown.push({ name: c, count, total: windowCount, rarity: Math.round(rarity * 100), rawRarity, bonus });
         }
 
         if (canonSongs.length === 0) continue;
@@ -183,9 +193,10 @@ function renderOddities() {
     container.innerHTML = top.map((r, rank) => {
         const show = shows[r.showIdx];
         const label = `#${rank + 1} · weirdness: ${r.score.toFixed(1)}`;
-        const breakdownHtml = r.songBreakdown.map(s =>
-            `<div>· ${s.name}: ${s.count}/${s.total} nearby shows (${s.rarity}% rare)${s.bonus ? ' +bonus' : ''}</div>`
-        ).join('');
+        const breakdownHtml = r.songBreakdown.map(s => {
+            const recencyNote = s.rarity !== s.rawRarity ? ` → ${s.rarity}% after recency` : '';
+            return `<div>· ${s.name}: ${s.count}/${s.total} nearby shows (${s.rawRarity}% rare${recencyNote})${s.bonus ? ' +bonus' : ''}</div>`;
+        }).join('');
         const bonusHtml = r.reasons.map(s => `<div>· ${s}</div>`).join('');
         const reasonsHtml = '<details class="oddities-reasons"><summary>score breakdown</summary>' + breakdownHtml + bonusHtml + '</details>';
         return renderShowCard(show, label, r.rareSongs) + reasonsHtml;
