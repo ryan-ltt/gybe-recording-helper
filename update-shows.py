@@ -27,6 +27,10 @@ MONTHS = {
     'september': '09', 'october': '10', 'november': '11', 'december': '12',
 }
 ARCHIVE_SEARCH = 'https://archive.org/advancedsearch.php'
+# Blacklisted archive.org identifiers — these will never be added as recordings
+BLACKLISTED_IDS = {
+    'gybe-asaod-cdrip-flac',
+}
 ARCHIVE_META = 'https://archive.org/metadata/'
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 JSON_PATH = os.path.join(SCRIPT_DIR, 'setlists.json')
@@ -438,7 +442,7 @@ def main():
         date = rec['concert_date']
         if not date:
             continue
-        if rec['id'] in all_known_ids:
+        if rec['id'] in all_known_ids or rec['id'] in BLACKLISTED_IDS:
             continue
         entry = {'id': rec['id'], 'url': rec['url'], 'title': rec['title']}
 
