@@ -8828,6 +8828,27 @@
     "recordings": []
   },
   {
+    "date": "2015-03-31",
+    "venue": "",
+    "songs": [
+      "This album contains four tracks as listed on the CD. These are;",
+      "(i) PEASANTRY or 'LIGHT! INSIDE OF LIGHT! [10:28]",
+      "(ii) LAMBS' BREATH [9:52]",
+      "(3) ASUNDER, SWEET [6:13]",
+      "(iv) PISS CROWNS ARE TREBLED [13:50]",
+      "Text from the front of the inner CD sleeve;",
+      "O! HOW WE SALLIED 'ROUND THE ROSES:"
+    ],
+    "recordings": [
+      {
+        "id": "gybe-asaod-cdrip-flac",
+        "url": "https://archive.org/details/gybe-asaod-cdrip-flac",
+        "title": "Asunder, Sweet and Other Distress [CD RIP]"
+      }
+    ],
+    "setlist_pending": true
+  },
+  {
     "date": "2015-04-07",
     "venue": "markthalle, hamburg, ger",
     "songs": [
