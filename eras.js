@@ -67,7 +67,7 @@ function renderEraShowList(eraShows, filter, prefix = '') {
     if (filtered.length === 0) return '<p style="font-family:Monaco, \'JetBrains Mono\', monospace;font-size:12px;color:inherit;">no shows match.</p>';
     return filtered.map(s => {
         const bestId = BEST_RECORDINGS[s.date];
-        const recsHtml = s.recordings.map((r, i) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${i+1}]</a>`).join('');
+        const recsHtml = s.recordings.map((r, i) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' class="best-rec"' : ''}>[${i+1}]</a>`).join('');
         const mainSongs = [], soundcheckSongs = [];
         for (const song of s.songs) {
             if (/\(soundcheck\)/i.test(song)) soundcheckSongs.push(song);
@@ -96,7 +96,7 @@ function renderEraShowList(eraShows, filter, prefix = '') {
         if (currentUser) {
             const esc = t => (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
             const noteStyle = 'flex:1;border:none;padding:2px 0;font-family:Monaco,\'JetBrains Mono\',monospace;font-size:11px;color:inherit;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;';
-            const btnStyle = 'font-family:Monaco,\'JetBrains Mono\',monospace;font-size:10px;padding:2px 8px;border:1px solid #ccc;background:white;cursor:pointer;color:inherit;flex-shrink:0;';
+            const btnStyle = 'font-family:Monaco,\'JetBrains Mono\',monospace;font-size:10px;padding:2px 8px;border:1px solid currentColor;background:transparent;cursor:pointer;color:inherit;flex-shrink:0;';
             const parts = [];
             if (td.attended) parts.push(`<div style="margin-top:${hasSetlist?'8px':'0'};padding-top:${hasSetlist?'6px':'0'};border-top:${hasSetlist?'1px solid #eee':'none'};" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">attended note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="anote-${prefix}${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.attended_notes)}</textarea><button onclick="saveEraNote('${s.date}','attended_notes',document.getElementById('anote-${prefix}${s.date}').value)" style="${btnStyle}">save</button></div></div>`);
             if (td.listened) parts.push(`<div style="margin-top:8px;padding-top:6px;border-top:1px solid #eee;" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">listened note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="lnote-${prefix}${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.listened_notes)}</textarea><button onclick="saveEraNote('${s.date}','listened_notes',document.getElementById('lnote-${prefix}${s.date}').value)" style="${btnStyle}">save</button></div></div>`);

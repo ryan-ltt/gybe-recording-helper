@@ -512,6 +512,7 @@
         .era-show-recs { white-space: nowrap; }
         .era-show-recs a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; margin-left: 6px; }
         .era-show-recs a:hover { color: #004499; }
+        .era-show-recs a.best-rec { background: #fff3a0; border-radius: 2px; padding: 0 3px; border-bottom: none; }
         .era-show-toggle { cursor: pointer; color: #999; font-size: 14px; padding: 0 4px; user-select: none; }
         .era-show-toggle:hover { color: black; }
         .era-show-setlist {
@@ -869,6 +870,7 @@
         html.dark .era-show-venue { color: #eaf2f5; }
         html.dark .era-show-recs a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .era-show-recs a:hover { color: #8fc4ff; }
+        html.dark .era-show-recs a.best-rec { background: #7c5cbf; color: #f0e8ff; border-bottom: none; }
         html.dark .era-show-toggle { color: #b8ccd6; }
         html.dark .era-show-toggle:hover { color: #eaf2f5; }
         html.dark .era-show-setlist { color: #eaf2f5; border-bottom-color: #2c3e50; }
@@ -1142,7 +1144,7 @@
         <!-- TRACK TAB -->
         <!-- ERAS TAB -->
         <div class="tab-panel" id="tab-eras">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 8px 0;">shows grouped by year. recordings that are bolded are highest quality.</p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 8px 0;">shows grouped by year. recordings that are highlighted are highest quality.</p>
             <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
                 <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;">
                     <div class="toggle-switch">
