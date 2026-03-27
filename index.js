@@ -275,11 +275,12 @@ async function fetchUsername(userId) {
 
 function updateHeaderAuth() {
     const div = document.getElementById('headerAuth');
+    const coffeeBtn = `<a class="header-btn" href="https://buymeacoffee.com/ayycap" target="_blank" rel="noopener noreferrer" title="buy me a coffee" style="text-decoration:none;display:inline-flex;align-items:center;">☕</a>`;
     const toggleBtn = `<button class="header-btn" id="themeToggle" onclick="toggleTheme()" title="toggle dark mode">◑</button>`;
     if (currentUser && currentUsername) {
-        div.innerHTML = `<a href="profile/index.html" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
+        div.innerHTML = `<a href="profile/index.html" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;text-decoration:underline;">${currentUsername}</a> <button class="header-btn" onclick="doLogout()">log out</button> ${coffeeBtn} ${toggleBtn}`;
     } else {
-        div.innerHTML = `<button class="header-btn" onclick="showAuthModal()">log in</button> ${toggleBtn}`;
+        div.innerHTML = `<button class="header-btn" onclick="showAuthModal()">log in</button> ${coffeeBtn} ${toggleBtn}`;
     }
     const discoverAccountDiv = document.getElementById('discoverAccountListened');
     if (discoverAccountDiv) discoverAccountDiv.style.display = currentUser ? 'block' : 'none';

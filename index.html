@@ -592,6 +592,7 @@
             transition: all 0.1s;
         }
         .header-btn:hover { background: #eee; }
+        a.header-btn { text-decoration: none; display: inline-flex; align-items: center; }
 
         /* Auth modal */
         .auth-overlay {
@@ -937,6 +938,7 @@
         <h1>gybe recording helper</h1>
         <div class="header-auth" id="headerAuth">
             <button class="header-btn" onclick="showAuthModal()">log in</button>
+            <a class="header-btn" href="https://buymeacoffee.com/ayycap" target="_blank" rel="noopener noreferrer" title="buy me a coffee">☕</a>
             <button class="header-btn" id="themeToggle" onclick="toggleTheme()" title="toggle dark mode">◑</button>
         </div>
     </header>
