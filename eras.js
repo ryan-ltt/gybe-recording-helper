@@ -1,4 +1,11 @@
 // ─── SHOWS (by year) ───────────────────────────────────────────────────────
+function restoreErasToggles() {
+    ['erasRecordingsOnly', 'erasSetlistsOnly', 'erasShowLineage'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.checked = localStorage.getItem(id) === '1';
+    });
+}
+
 function buildEras() {
     const container = document.getElementById('erasContainer');
     container.innerHTML = '';
@@ -6,6 +13,7 @@ function buildEras() {
     // Group shows by year
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
     const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
+    const showLineage = document.getElementById('erasShowLineage').checked;
     const showFilter = s => (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0);
     const byYear = {};
     for (const show of shows) {
@@ -32,7 +40,7 @@ function buildEras() {
                 <input type="text" placeholder="filter by date, city, venue..." oninput="filterAllShows(this.value)">
             </div>
             <div class="era-shows" id="shows-yall">
-                ${renderEraShowList(allShows, '', 'yall-')}
+                ${renderEraShowList(allShows, '', 'yall-', showLineage)}
             </div>
         </div>`;
     container.appendChild(allBlock);
@@ -54,20 +62,37 @@ function buildEras() {
                     <input type="text" placeholder="filter by date, city, venue..." oninput="filterEraShows('y${year}', this.value)">
                 </div>
                 <div class="era-shows" id="shows-y${year}">
-                    ${renderEraShowList(yearShows, '', 'y${year}-')}
+                    ${renderEraShowList(yearShows, '', 'y${year}-', showLineage)}
                 </div>
             </div>`;
         container.appendChild(block);
     }
 }
 
-function renderEraShowList(eraShows, filter, prefix = '') {
+function renderEraShowList(eraShows, filter, prefix = '', showLineage = false) {
     const f = (filter || '').toLowerCase().trim();
     const filtered = f ? eraShows.filter(s => s.date.includes(f) || s.venue.toLowerCase().includes(f)) : eraShows;
     if (filtered.length === 0) return '<p style="font-family:Monaco, \'JetBrains Mono\', monospace;font-size:12px;color:inherit;">no shows match.</p>';
     return filtered.map(s => {
         const bestId = BEST_RECORDINGS[s.date];
-        const recsHtml = s.recordings.map((r, i) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' class="best-rec"' : ''}>[${i+1}]</a>`).join('');
+        const recsHtml = showLineage ? '' : s.recordings.map((r, i) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' class="best-rec"' : ''}>[${i+1}]</a>`).join('');
+        const lineageHtml = showLineage && s.recordings.length > 0
+            ? `<div class="rec-lineage-list" onclick="event.stopPropagation()">${[...s.recordings]
+                .sort((a, b) => {
+                    const isBest = r => r.id === bestId ? 1 : 0;
+                    const hasInfo = r => (r.source && r.source !== 'unknown') || (r.lineage && r.lineage !== 'unknown') ? 1 : 0;
+                    return (isBest(b) - isBest(a)) || (hasInfo(b) - hasInfo(a));
+                })
+                .map((r, i) => {
+                const lineage = r.lineage && r.lineage !== 'unknown' ? r.lineage : '';
+                const source  = r.source  && r.source  !== 'unknown' ? r.source  : '';
+                const infoLines = [];
+                if (source)  infoLines.push(`<span class="muted">source:</span> ${source}`);
+                if (lineage && (lineage.length <= 80 || !source)) infoLines.push(`<span class="muted">lineage:</span> ${lineage}`);
+                const info = infoLines.length ? infoLines.join('<br>') : '<span class="muted">unknown</span>';
+                return `<div class="rec-lineage-row"><a href="${r.url}" target="_blank"${bestId === r.id ? ' class="best-rec"' : ''}>[${i+1}]</a><span class="rec-lineage">${info}</span></div>`;
+              }).join('')}</div>`
+            : '';
         const mainSongs = [], soundcheckSongs = [];
         for (const song of s.songs) {
             if (/\(soundcheck\)/i.test(song)) soundcheckSongs.push(song);
@@ -110,6 +135,7 @@ function renderEraShowList(eraShows, filter, prefix = '') {
             ${trackBtns}
             <span class="era-show-toggle"${hasExpandable ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
         </div>
+        ${lineageHtml}
         ${hasExpandable ? `<div class="era-show-setlist" id="${id}">${hasSetlist ? setlistText : ''}${noteSection}</div>` : ''}`;
     }).join('');
 }
@@ -154,8 +180,9 @@ function filterAllShows(value) {
     const showsDiv = document.getElementById('shows-yall');
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
     const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
+    const showLineage = document.getElementById('erasShowLineage').checked;
     const allShows = shows.filter(s => (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0));
-    showsDiv.innerHTML = renderEraShowList(allShows, value, 'yall-');
+    showsDiv.innerHTML = renderEraShowList(allShows, value, 'yall-', showLineage);
 }
 
 function filterEraShows(id, value) {
@@ -163,8 +190,9 @@ function filterEraShows(id, value) {
     const year = id.slice(1); // strip leading 'y'
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
     const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
+    const showLineage = document.getElementById('erasShowLineage').checked;
     const yearShows = shows.filter(s => s.date.startsWith(year) && (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0));
-    showsDiv.innerHTML = renderEraShowList(yearShows, value, id + '-');
+    showsDiv.innerHTML = renderEraShowList(yearShows, value, id + '-', showLineage);
 }
 
 

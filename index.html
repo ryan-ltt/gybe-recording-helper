@@ -513,6 +513,13 @@
         .era-show-recs a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; margin-left: 6px; }
         .era-show-recs a:hover { color: #004499; }
         .era-show-recs a.best-rec { background: #fff3a0; border-radius: 2px; padding: 0 3px; border-bottom: none; }
+        .rec-lineage-list { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 0 2px 0; border-bottom: 1px solid #eee; }
+        .rec-lineage-row { display: flex; align-items: baseline; gap: 12px; padding: 3px 0; border-top: 1px solid #eee; }
+        .rec-lineage-row:first-child { border-top: none; }
+        .rec-lineage-row a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; white-space: nowrap; }
+        .rec-lineage-row a:hover { color: #004499; }
+        .rec-lineage-row a.best-rec { background: #fff3a0; border-radius: 2px; padding: 0 3px; margin-left: -3px; border-bottom: none; }
+        .rec-lineage { font-size: 11px; color: #555; }
         .era-show-toggle { cursor: pointer; color: #999; font-size: 14px; padding: 0 4px; user-select: none; }
         .era-show-toggle:hover { color: black; }
         .era-show-setlist {
@@ -871,6 +878,12 @@
         html.dark .era-show-recs a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .era-show-recs a:hover { color: #8fc4ff; }
         html.dark .era-show-recs a.best-rec { background: #7c5cbf; color: #f0e8ff; border-bottom: none; }
+        html.dark .rec-lineage-list { border-bottom-color: #2c3e50; }
+        html.dark .rec-lineage-row { border-top-color: #2c3e50; }
+        html.dark .rec-lineage-row a { color: #6aadff; border-bottom-color: #6aadff; }
+        html.dark .rec-lineage-row a:hover { color: #8fc4ff; }
+        html.dark .rec-lineage-row a.best-rec { background: #7c5cbf; color: #f0e8ff; border-bottom: none; }
+        html.dark .rec-lineage { color: #b8ccd6; }
         html.dark .era-show-toggle { color: #b8ccd6; }
         html.dark .era-show-toggle:hover { color: #eaf2f5; }
         html.dark .era-show-setlist { color: #eaf2f5; border-bottom-color: #2c3e50; }
@@ -1144,21 +1157,28 @@
         <!-- TRACK TAB -->
         <!-- ERAS TAB -->
         <div class="tab-panel" id="tab-eras">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 8px 0;">shows grouped by year. recordings that are highlighted are highest quality.</p>
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 8px 0;">shows grouped by year. highlighted recordings are highest quality. click here to learn how to read source/lineage </p>
             <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
                 <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;">
                     <div class="toggle-switch">
-                        <input type="checkbox" id="erasRecordingsOnly" onchange="buildEras()">
+                        <input type="checkbox" id="erasRecordingsOnly" onchange="localStorage.setItem('erasRecordingsOnly', this.checked ? '1' : '0'); buildEras()">
                         <span class="toggle-slider"></span>
                     </div>
                     recordings only
                 </label>
                 <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;">
                     <div class="toggle-switch">
-                        <input type="checkbox" id="erasSetlistsOnly" onchange="buildEras()">
+                        <input type="checkbox" id="erasSetlistsOnly" onchange="localStorage.setItem('erasSetlistsOnly', this.checked ? '1' : '0'); buildEras()">
                         <span class="toggle-slider"></span>
                     </div>
                     setlists only
+                </label>
+                <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="erasShowLineage" onchange="localStorage.setItem('erasShowLineage', this.checked ? '1' : '0'); buildEras()">
+                        <span class="toggle-slider"></span>
+                    </div>
+                    show lineage
                 </label>
             </div>
             <p id="erasTrackLoggedOut" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin:0 0 12px 0;" class="muted">log in to track shows you've attended or listened to.</p>

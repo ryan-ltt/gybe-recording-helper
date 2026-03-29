@@ -225,6 +225,7 @@ fetch('setlists.json').then(r => r.json()).then(data => {
     shows = data;
     buildIndex();
     buildAlbumSections();
+    restoreErasToggles();
     buildEras();
     updateErasTrackSection();
 });
