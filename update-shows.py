@@ -8,7 +8,9 @@
 #   python update-shows.py              # check current year + last year; recordings from last run
 #   python update-shows.py 25 26        # check specific year suffixes for new shows
 #   python update-shows.py --dry-run    # report changes without writing files
-#   python update-shows.py --all-recordings  # fetch all known GYBE recordings from archive.org
+#   python update-shows.py --all-recordings      # fetch all known GYBE recordings from archive.org
+#   python update-shows.py --backfill-lineage    # add lineage/source to existing recordings that lack the fields
+#   python update-shows.py --retry-unknown       # re-attempt lineage/source for recordings marked as unknown
 
 import urllib.request
 import urllib.parse
@@ -42,6 +44,8 @@ CHANGELOG_PATH = os.path.join(SCRIPT_DIR, 'changelog.json')
 args = sys.argv[1:]
 dry_run = '--dry-run' in args
 all_recordings = '--all-recordings' in args
+backfill_lineage = '--backfill-lineage' in args
+retry_unknown = '--retry-unknown' in args
 year_args = [a for a in args if re.match(r'^\d{2}$', a)]
 
 def default_years():
@@ -276,16 +280,100 @@ def fetch_archive_recordings(extra_filter='', rows=500):
         print(f'  archive.org fetch error: {e}')
         return []
 
-def fetch_archive_setlist(identifier):
-    """Extract a setlist from an archive.org item's track metadata."""
+def fetch_archive_metadata(identifier):
+    """Fetch and return raw metadata dict for an archive.org item."""
     try:
         data = fetch(ARCHIVE_META + identifier)
-        meta = json.loads(data)
+        return json.loads(data)
     except Exception as e:
         print(f'    metadata fetch error: {e}')
-        return []
+        return {}
 
-    # Prefer original audio files that have a title field, sorted by track number
+def _parse_info_txt(txt, lineage='', source=''):
+    """Parse a .txt info file for Lineage/Source fields, including multi-line chain continuations."""
+    lines = txt.splitlines()
+    collecting = None  # 'lineage' or 'source'
+    collected = []
+
+    for line in lines:
+        stripped = line.strip()
+        m = re.match(r'^(lineage|source(?:\s+info)?)\s*:\s*(.*)', stripped, re.IGNORECASE)
+        if m:
+            field = 'source' if 'source' in m.group(1).lower() else 'lineage'
+            value = m.group(2).strip()
+            if field == 'lineage' and not lineage:
+                collecting = 'lineage'
+                collected = [value] if value else []
+            elif field == 'source' and not source:
+                collecting = 'source'
+                collected = [value] if value else []
+            else:
+                collecting = None
+        elif collecting:
+            # Continuation: chain segment like "> CDr" or a bare value on the next line
+            if stripped == '' or re.match(r'^-{4,}', stripped):
+                # Blank line or separator — end of block
+                result = ' '.join(collected).strip()
+                if collecting == 'lineage':
+                    lineage = result
+                else:
+                    source = result
+                collecting = None
+                collected = []
+            elif stripped:
+                collected.append(stripped)
+
+    # Flush any trailing collected block
+    if collecting and collected:
+        result = ' '.join(collected).strip()
+        if collecting == 'lineage':
+            lineage = result
+        else:
+            source = result
+
+    return lineage, source
+
+def fetch_archive_details(identifier):
+    """Fetch metadata once and return {'lineage': str, 'source': str, 'songs': list}."""
+    meta = fetch_archive_metadata(identifier)
+
+    def extract_str(key):
+        val = meta.get('metadata', {}).get(key, '')
+        if isinstance(val, list):
+            val = ' '.join(val)
+        return val.strip()
+
+    lineage = extract_str('lineage')
+    source = extract_str('source')
+
+    # Fallback: scan description lines for "Source: ..." or "Lineage: ..."
+    if not lineage or not source:
+        desc = meta.get('metadata', {}).get('description', '')
+        if isinstance(desc, list):
+            desc = '\n'.join(desc)
+        for line in re.split(r'[\n\r]+|<br\s*/?>', desc):
+            line_clean = html_mod.unescape(re.sub(r'<[^>]+>', '', line)).strip()
+            m = re.match(r'^(lineage|source(?:\s+info)?)\s*:\s*(.*)', line_clean, re.IGNORECASE)
+            if m:
+                field = 'source' if 'source' in m.group(1).lower() else 'lineage'
+                value = m.group(2).strip()
+                if field == 'lineage' and not lineage:
+                    lineage = value
+                elif field == 'source' and not source:
+                    source = value
+
+    # Fallback: fetch and parse the text file attached to the item
+    if not lineage or not source:
+        txt_file = next((f['name'] for f in meta.get('files', []) if f.get('format') == 'Text'), None)
+        if txt_file:
+            try:
+                txt_url = f'https://archive.org/download/{identifier}/{urllib.parse.quote(txt_file)}'
+                txt = fetch(txt_url)
+                lineage, source = _parse_info_txt(txt, lineage, source)
+            except Exception:
+                pass
+
+    songs = []
     audio_formats = {'flac', 'shorten', 'vbr mp3', 'ogg vorbis', '24bit flac', 'mp3', 'wav'}
     tracks = []
     for f in meta.get('files', []):
@@ -304,23 +392,20 @@ def fetch_archive_setlist(identifier):
 
     if tracks:
         tracks.sort()
-        return [t[1] for t in tracks]
+        songs = [t[1] for t in tracks]
+    else:
+        # Fallback: parse setlist from description field
+        desc = meta.get('metadata', {}).get('description', '')
+        if isinstance(desc, list):
+            desc = '\n'.join(desc)
+        if desc:
+            for line in re.split(r'[\n\r]+|<br\s*/?>', desc):
+                line = re.sub(r'<[^>]+>', '', line)
+                line = re.sub(r'^\d+[\.\)]\s*', '', line).strip()
+                if line and 2 < len(line) < 80:
+                    songs.append(line)
 
-    # Fallback: parse setlist from description field
-    desc = meta.get('metadata', {}).get('description', '')
-    if isinstance(desc, list):
-        desc = '\n'.join(desc)
-    if desc:
-        songs = []
-        for line in re.split(r'[\n\r]+|<br\s*/?>', desc):
-            line = re.sub(r'<[^>]+>', '', line)
-            line = re.sub(r'^\d+[\.\)]\s*', '', line).strip()
-            if line and 2 < len(line) < 80:
-                songs.append(line)
-        if songs:
-            return songs
-
-    return []
+    return {'lineage': lineage, 'source': source, 'songs': songs}
 
 # ─── Main ────────────────────────────────────────────────────────────────────
 def main():
@@ -444,21 +529,25 @@ def main():
             continue
         if rec['id'] in all_known_ids or rec['id'] in BLACKLISTED_IDS:
             continue
+
+        is_new_stub = date not in show_by_date and date not in {s['date'] for s in new_shows} and date not in new_stubs
+        label = 'not on gybecc — fetching track list' if is_new_stub else 'fetching details'
+        print(f'  {date}: {label} for [{rec["id"]}] ... ', end='', flush=True)
+        details = fetch_archive_details(rec['id'])
+        print(f'{len(details["songs"])} track(s)' if is_new_stub else 'done')
         entry = {'id': rec['id'], 'url': rec['url'], 'title': rec['title']}
+        entry['lineage'] = details['lineage'] or 'unknown'
+        entry['source'] = details['source'] or 'unknown'
 
         if date in show_by_date or date in {s['date'] for s in new_shows}:
             rec_updates.setdefault(date, []).append(entry)
         elif date in new_stubs:
             new_stubs[date]['recordings'].append(entry)
         else:
-            # Show not on gybecc yet — create a stub from the recording's track list
-            print(f'  {date}: not on gybecc — fetching track list from [{rec["id"]}] ... ', end='', flush=True)
-            songs = fetch_archive_setlist(rec['id'])
-            print(f'{len(songs)} track(s)')
             new_stubs[date] = {
                 'date': date,
                 'venue': '',
-                'songs': songs,
+                'songs': details['songs'],
                 'recordings': [entry],
                 'setlist_pending': True,
             }
@@ -572,5 +661,86 @@ def main():
     ]
     write_changelog(timestamp=now.strftime('%Y-%m-%d %H:%M:%S'), new_shows=new_shows, rec_updates=rec_updates_with_venue, pruned=pruned, resolved_shows=resolved_shows)
 
+def do_backfill_lineage():
+    with open(JSON_PATH) as f:
+        shows = json.load(f)
+
+    to_fill = [
+        (show, rec)
+        for show in shows
+        for rec in show.get('recordings', [])
+        if 'lineage' not in rec or 'source' not in rec
+    ]
+
+    print(f'Backfilling lineage/source for {len(to_fill)} recording(s) missing fields...\n')
+    updated = 0
+
+    for show, rec in to_fill:
+        print(f'  {show["date"]} [{rec["id"]}] ... ', end='', flush=True)
+        details = fetch_archive_details(rec['id'])
+        rec['lineage'] = details['lineage'] or 'unknown'
+        rec['source'] = details['source'] or 'unknown'
+        summary = f'lineage={rec["lineage"][:50]}  source={rec["source"]}'
+        print(summary)
+        updated += 1
+        time.sleep(0.1)
+
+    print(f'\n{updated} recording(s) updated.')
+
+    if dry_run:
+        print('[dry run] No files written.')
+        return
+
+    with open(JSON_PATH, 'w') as f:
+        json.dump(shows, f, indent=2)
+    print(f'Wrote setlists.json')
+
+def do_retry_unknown():
+    with open(JSON_PATH) as f:
+        shows = json.load(f)
+
+    to_retry = [
+        (show, rec)
+        for show in shows
+        for rec in show.get('recordings', [])
+        if rec.get('lineage') == 'unknown' or rec.get('source') == 'unknown'
+    ]
+
+    print(f'Retrying {len(to_retry)} recording(s) with unknown lineage/source...\n')
+    updated = 0
+
+    for show, rec in to_retry:
+        print(f'  {show["date"]} [{rec["id"]}] ... ', end='', flush=True)
+        details = fetch_archive_details(rec['id'])
+        changed = False
+        if rec.get('lineage') == 'unknown' and details['lineage']:
+            rec['lineage'] = details['lineage']
+            changed = True
+        if rec.get('source') == 'unknown' and details['source']:
+            rec['source'] = details['source']
+            changed = True
+        if changed:
+            summary = f'lineage={rec["lineage"][:50]}  source={rec["source"]}'
+            print(summary)
+            updated += 1
+        else:
+            print('still unknown')
+        time.sleep(0.1)
+
+    print(f'\n{updated} recording(s) updated.')
+
+    if dry_run:
+        print('[dry run] No files written.')
+        return
+
+    with open(JSON_PATH, 'w') as f:
+        json.dump(shows, f, indent=2)
+    print(f'Wrote setlists.json')
+
 if __name__ == '__main__':
-    main()
+    if backfill_lineage:
+        do_backfill_lineage()
+    elif retry_unknown:
+        do_retry_unknown()
+    else:
+        main()
