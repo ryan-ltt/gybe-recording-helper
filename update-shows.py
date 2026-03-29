@@ -252,7 +252,7 @@ def write_changelog(timestamp, new_shows, rec_updates, pruned, resolved_shows=No
 # ─── Archive.org helpers ──────────────────────────────────────────────────────
 def fetch_archive_recordings(extra_filter='', rows=500):
     """Fetch GYBE recordings from archive.org, optionally filtered (e.g. by addeddate)."""
-    q = 'creator:"Godspeed You! Black Emperor"'
+    q = 'creator:"Godspeed You! Black Emperor" collection:etree'
     if extra_filter:
         q += f' {extra_filter}'
     url = (f'{ARCHIVE_SEARCH}?q={urllib.parse.quote(q)}'

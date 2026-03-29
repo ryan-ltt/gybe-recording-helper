@@ -67,6 +67,8 @@ function computeOddities() {
         if (s.songs.length === 0) continue;
         if (recOnly && s.recordings.length === 0) continue;
         if (excludeMonumental && s.note && /monumental/i.test(s.note)) continue;
+        if (s.date === '1999-07-12') continue;
+        if ((s.note && /incomplete/i.test(s.note)) || s.songs.some(sg => /incomplete/i.test(sg))) continue;
         const y = parseInt(s.date.slice(0, 4));
         if (y < yearMin || y > yearMax) continue;
         pool.push(i);

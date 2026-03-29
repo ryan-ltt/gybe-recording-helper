@@ -286,11 +286,12 @@
 
         function updateHeaderAuth() {
             const div = document.getElementById('headerAuth');
+            const coffeeBtn = `<a class="header-btn" href="https://buymeacoffee.com/ayycap" target="_blank" rel="noopener noreferrer" title="buy me a coffee" style="text-decoration:none;display:inline-flex;align-items:center;">☕</a>`;
             const toggleBtn = `<button class="header-btn" onclick="toggleTheme()" title="toggle dark mode">◑</button>`;
             if (currentUser && currentUsername) {
-                div.innerHTML = `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;">${currentUsername}</span> <button class="header-btn" onclick="doLogout()">log out</button> ${toggleBtn}`;
+                div.innerHTML = `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;color:inherit;">${currentUsername}</span> <button class="header-btn" onclick="doLogout()">log out</button> ${coffeeBtn} ${toggleBtn}`;
             } else {
-                div.innerHTML = `<a class="header-btn" href="/">back to site</a> ${toggleBtn}`;
+                div.innerHTML = `<a class="header-btn" href="/">back to site</a> ${coffeeBtn} ${toggleBtn}`;
             }
         }
 
