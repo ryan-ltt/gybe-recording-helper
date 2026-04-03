@@ -19871,7 +19871,15 @@
       "blaise bailey finnegan III"
     ],
     "note": "w/ kristof hahn",
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-03-17.SP-CMC-8",
+        "url": "https://archive.org/details/gybe2026-03-17.SP-CMC-8",
+        "title": "Godspeed You! Black Emperor Live at Markthalle on 2026-03-17",
+        "lineage": "(44.1kHz/16bit) > SD-card > via USB card reader transfer onto PC > Audacity 2.1.0 (tracksplitting, FadeIn/Fadeout) > converted to flac8 (Trader's Little Helper 2.6.0)",
+        "source": "SP-CMC-8 (low sense modded) > SP-SPSB-11 bass roll of @ 16Hz  > Roland R-07 (44.1kHz/16bit)"
+      }
+    ]
   },
   {
     "date": "2026-03-18",
@@ -19947,6 +19955,13 @@
         "title": "Godspeed You! Black Emperor Live at Kantine on 2026-03-20",
         "lineage": "WAV/FLAC > Adobe Audition (mixing, EQ, compression) > WAV (44/16) > FLAC (level 8)",
         "source": "unknown"
+      },
+      {
+        "id": "gybe2026-03-20.DPA4060",
+        "url": "https://archive.org/details/gybe2026-03-20.DPA4060",
+        "title": "Godspeed You! Black Emperor Live at Die Kantine on 2026-03-20",
+        "lineage": "unknown",
+        "source": "Matched DPA4060s > Core Sound HEB BBox (flat) > Edirol R-09HR (WAV 16/44)"
       }
     ],
     "note": "w/ kristof hahn"
