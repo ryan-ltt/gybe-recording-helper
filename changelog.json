@@ -297,5 +297,31 @@
         "title": "Godspeed You! Black Emperor Live at St. George Hall on 2002-03-26"
       }
     ]
+  },
+  {
+    "timestamp": "2026-04-03 09:15:13",
+    "new_recordings": [
+      {
+        "show_date": "2026-03-20",
+        "venue": "die kantine, k\u00f6ln, ger",
+        "id": "gybe2026-03-20.DPA4060",
+        "title": "Godspeed You! Black Emperor Live at Die Kantine on 2026-03-20"
+      },
+      {
+        "show_date": "2026-03-17",
+        "venue": "markthalle, hamburg, ger",
+        "id": "gybe2026-03-17.SP-CMC-8",
+        "title": "Godspeed You! Black Emperor Live at Markthalle on 2026-03-17"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-04-10 09:30:01",
+    "new_shows": [
+      {
+        "date": "2026-04-09",
+        "venue": "o2 academy, leeds, uk"
+      }
+    ]
   }
 ]
