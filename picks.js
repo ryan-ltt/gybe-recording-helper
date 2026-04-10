@@ -5,14 +5,19 @@ async function loadPicks() {
   const container = document.getElementById('picksContainer');
   container.innerHTML = '<p style="font-family:Monaco,\'JetBrains Mono\',monospace;font-size:13px;color:#888;">loading...</p>';
   if (!sbClient) { container.innerHTML = '<p style="font-family:Monaco,\'JetBrains Mono\',monospace;font-size:13px;color:#888;">no database connection.</p>'; return; }
-  const { data: rows, error } = await sbClient.from('user_picks').select('user_id,show_date,rank,note').order('rank', { ascending: true });
+  const { data: profiles } = await sbClient.from('profiles').select('user_id,username').eq('is_public', true);
+  const usernameMap = {};
+  const allowedIds = [];
+  if (profiles) for (const p of profiles) { usernameMap[p.user_id] = p.username; allowedIds.push(p.user_id); }
+  // Always include the current user so they can manage their own picks regardless of privacy setting
+  if (currentUser && !allowedIds.includes(currentUser.id)) allowedIds.push(currentUser.id);
+  const { data: rows, error } = allowedIds.length > 0
+    ? await sbClient.from('user_picks').select('user_id,show_date,rank,note').in('user_id', allowedIds).order('rank', { ascending: true })
+    : { data: [], error: null };
   if (error || !rows || rows.length === 0) { container.innerHTML = '<p style="font-family:Monaco,\'JetBrains Mono\',monospace;font-size:13px;color:#888;">no picks yet.</p>'; return; }
   const byUser = {};
   for (const row of rows) { if (!byUser[row.user_id]) byUser[row.user_id] = []; byUser[row.user_id].push(row); }
   const userIds = Object.keys(byUser);
-  const { data: profiles } = await sbClient.from('profiles').select('user_id,username').in('user_id', userIds);
-  const usernameMap = {};
-  if (profiles) for (const p of profiles) usernameMap[p.user_id] = p.username;
   picksData = userIds.map(uid => ({ user_id: uid, username: usernameMap[uid] || uid, picks: byUser[uid].sort((a, b) => a.rank - b.rank) }));
   picksData.sort((a, b) => {
     if (currentUser && a.user_id === currentUser.id) return -1;
