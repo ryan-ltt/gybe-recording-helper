@@ -1954,6 +1954,13 @@
         "title": "Godspeed You! Black Emperor Live at Troubadour on 1999-09-24",
         "lineage": "unknown",
         "source": "VHS rip"
+      },
+      {
+        "id": "gybe1999-09-24.ECM-909",
+        "url": "https://archive.org/details/gybe1999-09-24.ECM-909",
+        "title": "Godspeed You! Black Emperor Live at Troubadour on 1999-09-24",
+        "lineage": "master > TEAC W-1200 USB (no Dolby) > Sony PCM-100 (line-in) > DSD > foobar2000 > WAV (32 bit fixed point, 44.1 kHz) > Audacity (mixing, amplify) > WeTransfer to mthrfckrrdmr > Adobe Audition > track split > dither > FLAC 16/44",
+        "source": "Sony ECM-909 > Sony WM-D6C (CrO2, Dolby B NR) >"
       }
     ]
   },
@@ -19980,12 +19987,43 @@
       "world police",
       "sad mafioso"
     ],
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-04-09.mtx",
+        "url": "https://archive.org/details/gybe2026-04-09.mtx",
+        "title": "Godspeed You! Black Emperor Live at Town & Country Club on 2026-04-09",
+        "lineage": "unknown",
+        "source": "Matrix"
+      },
+      {
+        "id": "gybe2026-04-09.a10",
+        "url": "https://archive.org/details/gybe2026-04-09.a10",
+        "title": "Godspeed You! Black Emperor Live at O2 Academy Leeds on 2026-04-09",
+        "lineage": "WAV > Adobe Audition (light MB compression, EQ) > WAV (44/16) > FLAC",
+        "source": "Sony PCM-A10 > WAV (96/24)"
+      },
+      {
+        "id": "gybe2026-04-09",
+        "url": "https://archive.org/details/gybe2026-04-09",
+        "title": "Godspeed You! Black Emperor Live at Town & Country Club on 2026-04-09",
+        "lineage": "unknown",
+        "source": "2x DPA 4061 > 2x DAD-6001 > DR-40X > SD [FLAC 16/44.1]"
+      }
+    ]
   },
   {
     "date": "2026-04-10",
     "venue": "troxy, london, uk",
-    "songs": [],
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "monheim",
+      "pale spectator takes photographs",
+      "bosses hang",
+      "gathering storm"
+    ],
     "recordings": [],
     "note": "w/ one leg one eye"
   },

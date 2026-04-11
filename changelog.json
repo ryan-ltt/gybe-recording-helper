@@ -323,5 +323,40 @@
         "venue": "o2 academy, leeds, uk"
       }
     ]
+  },
+  {
+    "timestamp": "2026-04-11 09:05:59",
+    "new_shows": [
+      {
+        "date": "2026-04-10",
+        "venue": "troxy, london, uk"
+      }
+    ],
+    "new_recordings": [
+      {
+        "show_date": "2026-04-09",
+        "venue": "o2 academy, leeds, uk",
+        "id": "gybe2026-04-09.mtx",
+        "title": "Godspeed You! Black Emperor Live at Town & Country Club on 2026-04-09"
+      },
+      {
+        "show_date": "2026-04-09",
+        "venue": "o2 academy, leeds, uk",
+        "id": "gybe2026-04-09.a10",
+        "title": "Godspeed You! Black Emperor Live at O2 Academy Leeds on 2026-04-09"
+      },
+      {
+        "show_date": "2026-04-09",
+        "venue": "o2 academy, leeds, uk",
+        "id": "gybe2026-04-09",
+        "title": "Godspeed You! Black Emperor Live at Town & Country Club on 2026-04-09"
+      },
+      {
+        "show_date": "1999-09-24",
+        "venue": "troubadour, west hollywood, los angeles, ca",
+        "id": "gybe1999-09-24.ECM-909",
+        "title": "Godspeed You! Black Emperor Live at Troubadour on 1999-09-24"
+      }
+    ]
   }
 ]
