@@ -20024,13 +20024,31 @@
       "bosses hang",
       "gathering storm"
     ],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "gybe2026-04-10.h4e",
+        "url": "https://archive.org/details/gybe2026-04-10.h4e",
+        "title": "Godspeed You! Black Emperor Live at Troxy on 2026-04-10",
+        "lineage": "WAV > Adobe Audition (EQ, compression) > WAV (44/16) > FLAC (level 8)",
+        "source": "(AUD, near front, dfc) Zoom H4e > WAV (96/32)"
+      }
+    ],
     "note": "w/ one leg one eye"
   },
   {
     "date": "2026-04-11",
     "venue": "trix, antwerpen, bel",
-    "songs": [],
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "fire at static valley",
+      "pale spectator takes photographs",
+      "chart #3",
+      "world police",
+      "sad mafioso"
+    ],
     "recordings": [],
     "note": "w/ one leg one eye"
   },

@@ -358,5 +358,22 @@
         "title": "Godspeed You! Black Emperor Live at Troubadour on 1999-09-24"
       }
     ]
+  },
+  {
+    "timestamp": "2026-04-12 09:09:31",
+    "new_shows": [
+      {
+        "date": "2026-04-11",
+        "venue": "trix, antwerpen, bel"
+      }
+    ],
+    "new_recordings": [
+      {
+        "show_date": "2026-04-10",
+        "venue": "troxy, london, uk",
+        "id": "gybe2026-04-10.h4e",
+        "title": "Godspeed You! Black Emperor Live at Troxy on 2026-04-10"
+      }
+    ]
   }
 ]
