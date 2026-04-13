@@ -375,5 +375,28 @@
         "title": "Godspeed You! Black Emperor Live at Troxy on 2026-04-10"
       }
     ]
+  },
+  {
+    "timestamp": "2026-04-13 10:14:31",
+    "new_shows": [
+      {
+        "date": "2026-04-12",
+        "venue": "effenaar, eindhoven, hol"
+      }
+    ],
+    "new_recordings": [
+      {
+        "show_date": "2026-04-11",
+        "venue": "trix, antwerpen, bel",
+        "id": "gybe2026-04-11.mtx",
+        "title": "Godspeed You! Black Emperor Live at Trix on 2026-04-11"
+      },
+      {
+        "show_date": "2026-04-10",
+        "venue": "troxy, london, uk",
+        "id": "gybe2026-04-10.m4",
+        "title": "Godspeed You! Black Emperor Live at Troxy on 2026-04-10"
+      }
+    ]
   }
 ]
