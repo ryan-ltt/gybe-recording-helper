@@ -19773,7 +19773,15 @@
       "sad mafioso"
     ],
     "note": "w/ kristof hahn",
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-03-11.diy",
+        "url": "https://archive.org/details/gybe2026-03-11.diy",
+        "title": "Godspeed You! Black Emperor Live at Posthof on 2026-03-11",
+        "lineage": "Adobe Audition (EQ, compression, normalization) > FLAC (16/44)",
+        "source": "(AUD) Homemade Omni Mics (modded POM 2739) > Homemade 9V Battery Box > Edirol R-09 > WAV (24/48)"
+      }
+    ]
   },
   {
     "date": "2026-03-12",
@@ -19813,7 +19821,15 @@
       "blaise bailey finnegan III"
     ],
     "note": "w/ kristof hahn",
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-03-13.diy",
+        "url": "https://archive.org/details/gybe2026-03-13.diy",
+        "title": "Godspeed You! Black Emperor Live at Arena on 2026-03-13",
+        "lineage": ".WAV > Adobe Audition (stereo balancing, some MB compression, EQ) > .WAV (44/16) > FLAC 1.5.0 > .FLAC (level 8)",
+        "source": "DIY omni mics (POM-2739L) > 9v battery box > Roland R-05 > .WAV (48/24)"
+      }
+    ]
   },
   {
     "date": "2026-03-15",
@@ -20086,7 +20102,16 @@
   {
     "date": "2026-04-13",
     "venue": "trix, antwerpen, bel",
-    "songs": [],
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "monheim",
+      "pale spectator takes photographs",
+      "bosses hang",
+      "gathering storm"
+    ],
     "recordings": [],
     "note": "w/ one leg one eye"
   },
