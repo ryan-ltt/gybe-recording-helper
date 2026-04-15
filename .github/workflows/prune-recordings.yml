@@ -1,12 +1,12 @@
-name: Update shows
+name: Prune dead recordings
 
 on:
   schedule:
-    - cron: '0 8 * * *'   # daily at 8am UTC
+    - cron: '0 8 * * 1'   # weekly on Monday at 8am UTC
   workflow_dispatch:       # allow manual trigger from the Actions tab
 
 jobs:
-  update:
+  prune:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -18,14 +18,14 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Check for new shows and recordings
-        run: python update-shows.py --skip-prune
+      - name: Check for dead recordings
+        run: python update-shows.py --prune-only
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add setlists.json .last-update last-update.js changelog.json
+          git add setlists.json changelog.json
           git diff --staged --quiet && echo "Nothing to commit." || \
-            git commit -m "chore: update shows and recordings [skip ci]"
+            git commit -m "chore: prune dead recordings [skip ci]"
           git push

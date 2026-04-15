@@ -11,6 +11,8 @@
 #   python update-shows.py --all-recordings      # fetch all known GYBE recordings from archive.org
 #   python update-shows.py --backfill-lineage    # add lineage/source to existing recordings that lack the fields
 #   python update-shows.py --retry-unknown       # re-attempt lineage/source for recordings marked as unknown
+#   python update-shows.py --skip-prune          # skip dead-recording check (used in daily CI)
+#   python update-shows.py --prune-only          # only check for dead recordings (used in weekly CI)
 
 import urllib.request
 import urllib.parse
@@ -46,6 +48,8 @@ dry_run = '--dry-run' in args
 all_recordings = '--all-recordings' in args
 backfill_lineage = '--backfill-lineage' in args
 retry_unknown = '--retry-unknown' in args
+skip_prune = '--skip-prune' in args
+prune_only = '--prune-only' in args
 year_args = [a for a in args if re.match(r'^\d{2}$', a)]
 
 def default_years():
@@ -570,6 +574,9 @@ def main():
     total_new_recs = sum(len(v) for v in rec_updates.values())
 
     if not new_shows and not new_stubs and not rec_updates and not resolved:
+        if skip_prune:
+            print('Nothing new to add. (Skipping dead-recording check — run prune-recordings workflow.)')
+            return
         print('Nothing new to add. Checking for dead recordings...')
         merged = sorted(existing, key=lambda s: s['date'])
         if year_args:
@@ -624,19 +631,23 @@ def main():
     merged = sorted(existing + new_shows + list(new_stubs.values()), key=lambda s: s['date'])
 
     # ── Step 4: Prune dead recordings ─────────────────────────────────────────
-    print('Checking for dead recordings on archive.org...')
-    if year_args:
-        full_years = {('19' if int(y) >= 90 else '20') + y for y in year_args}
-        prune_targets = [s for s in merged if s['date'][:4] in full_years]
-        rest = [s for s in merged if s['date'][:4] not in full_years]
-        prune_targets, pruned = prune_dead_recordings(prune_targets)
-        merged = sorted(rest + prune_targets, key=lambda s: s['date'])
+    pruned = []
+    if skip_prune:
+        print('Skipping dead-recording check (--skip-prune).')
     else:
-        merged, pruned = prune_dead_recordings(merged)
-    if pruned:
-        print(f'  Removed {len(pruned)} dead recording(s)')
-    else:
-        print('  All recordings live.')
+        print('Checking for dead recordings on archive.org...')
+        if year_args:
+            full_years = {('19' if int(y) >= 90 else '20') + y for y in year_args}
+            prune_targets = [s for s in merged if s['date'][:4] in full_years]
+            rest = [s for s in merged if s['date'][:4] not in full_years]
+            prune_targets, pruned = prune_dead_recordings(prune_targets)
+            merged = sorted(rest + prune_targets, key=lambda s: s['date'])
+        else:
+            merged, pruned = prune_dead_recordings(merged)
+        if pruned:
+            print(f'  Removed {len(pruned)} dead recording(s)')
+        else:
+            print('  All recordings live.')
     print()
 
     with open(JSON_PATH, 'w') as f:
@@ -737,10 +748,34 @@ def do_retry_unknown():
         json.dump(shows, f, indent=2)
     print(f'Wrote setlists.json')
 
+def do_prune_only():
+    with open(JSON_PATH) as f:
+        shows = json.load(f)
+
+    print(f'Checking {sum(len(s.get("recordings", [])) for s in shows)} recording(s) across {len(shows)} shows for dead links...\n')
+    shows, pruned = prune_dead_recordings(shows)
+
+    if not pruned:
+        print('All recordings live. Nothing to remove.')
+        return
+
+    print(f'\nRemoved {len(pruned)} dead recording(s).')
+
+    if dry_run:
+        print('[dry run] No files written.')
+        return
+
+    with open(JSON_PATH, 'w') as f:
+        json.dump(shows, f, indent=2)
+    print(f'Wrote setlists.json ({len(shows)} shows)')
+    write_changelog(timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), new_shows=[], rec_updates={}, pruned=pruned)
+
 if __name__ == '__main__':
     if backfill_lineage:
         do_backfill_lineage()
     elif retry_unknown:
         do_retry_unknown()
+    elif prune_only:
+        do_prune_only()
     else:
         main()
