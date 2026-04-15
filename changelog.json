@@ -421,5 +421,21 @@
         "title": "Godspeed You! Black Emperor Live at Posthof on 2026-03-11"
       }
     ]
+  },
+  {
+    "timestamp": "2026-04-15 09:39:52",
+    "new_shows": [
+      {
+        "date": "2026-04-14",
+        "venue": "la cartonnerie, reims, fr"
+      }
+    ],
+    "removed_recordings": [
+      {
+        "date": "2013-08-07",
+        "venue": "tivolis koncertsal, copenhagen, den",
+        "id": "gybe2013-08-07.copenhagen.ca-11.flac24"
+      }
+    ]
   }
 ]

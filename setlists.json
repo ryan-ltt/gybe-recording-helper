@@ -9035,13 +9035,6 @@
         "source": "DPA4061 > CA9100 > R05"
       },
       {
-        "id": "gybe2013-08-07.copenhagen.ca-11.flac24",
-        "url": "https://archive.org/details/gybe2013-08-07.copenhagen.ca-11.flac24",
-        "title": "Godspeed You! Black Emperor Live at Tivolis koncertsal on 2013-08-07",
-        "lineage": "Sony PCM M-10 (24/96) > Audacity [de-amplify a few plops] > Har-Bal v2.3 Revision 3 [EQ & extra dBs] > Wavelab 6.10 build 340 [plugins: Magneto 1.5, D82 Sonic Maximizer and Waves L3 Ultramaximizer] > Audacity [fade in/fade out] > CD Wave Editor v1.98 > Trader's Little Helper > Mp3Tag > Flac [24bps/96kHz]",
-        "source": "CA-11 Omni's > CA-9100 Preamp > Sony PCM M-10 (24/96)"
-      },
-      {
         "id": "gybe2013-08-07.copenhagen.ca-11.flac16",
         "url": "https://archive.org/details/gybe2013-08-07.copenhagen.ca-11.flac16",
         "title": "Godspeed You! Black Emperor Live at Tivolis koncertsal on 2013-08-07",
@@ -20118,7 +20111,16 @@
   {
     "date": "2026-04-14",
     "venue": "la cartonnerie, reims, fr",
-    "songs": [],
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "monheim",
+      "pale spectator takes photographs",
+      "albanian",
+      "sad mafioso"
+    ],
     "recordings": [],
     "note": "w/ one leg one eye"
   },
