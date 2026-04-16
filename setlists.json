@@ -20096,7 +20096,15 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "gybe2026-04-12.mtx",
+        "url": "https://archive.org/details/gybe2026-04-12.mtx",
+        "title": "Godspeed You! Black Emperor Live at Effenaar on 2026-04-12",
+        "lineage": "Lineage: WAV > Adobe Audition (source mixdown, EQ, etc) > WAV (16/44) > FLAC (level 8)",
+        "source": "Source 1: DPA 4061 x2 > Tascam X8 > WAV (32/48) Source 2: AT831b x2 > Tascam X8 > WAV (32/48)"
+      }
+    ],
     "note": "w/ one leg one eye"
   },
   {
@@ -20112,7 +20120,15 @@
       "bosses hang",
       "gathering storm"
     ],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "gybe2026-04-13.mtx",
+        "url": "https://archive.org/details/gybe2026-04-13.mtx",
+        "title": "Godspeed You! Black Emperor Live at Trix on 2026-04-13",
+        "lineage": "WAV > Adobe Audition (source mixdown, EQ, etc) > WAV (16/44) > FLAC (level 8)",
+        "source": "Source 1: DPA 4061 x2 > Tascam X8 > WAV (32/48) Source 2: AT831b x2 > Tascam X8 > WAV (32/48)"
+      }
+    ],
     "note": "w/ one leg one eye"
   },
   {

@@ -430,5 +430,22 @@
         "venue": "la cartonnerie, reims, fr"
       }
     ]
+  },
+  {
+    "timestamp": "2026-04-16 09:25:05",
+    "new_recordings": [
+      {
+        "show_date": "2026-04-12",
+        "venue": "effenaar, eindhoven, hol",
+        "id": "gybe2026-04-12.mtx",
+        "title": "Godspeed You! Black Emperor Live at Effenaar on 2026-04-12"
+      },
+      {
+        "show_date": "2026-04-13",
+        "venue": "trix, antwerpen, bel",
+        "id": "gybe2026-04-13.mtx",
+        "title": "Godspeed You! Black Emperor Live at Trix on 2026-04-13"
+      }
+    ]
   }
 ]
