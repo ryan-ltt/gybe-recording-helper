@@ -456,5 +456,22 @@
         "venue": "floyd, athens, gr"
       }
     ]
+  },
+  {
+    "timestamp": "2026-04-18 08:57:07",
+    "new_recordings": [
+      {
+        "show_date": "2026-04-14",
+        "venue": "la cartonnerie, reims, fr",
+        "id": "gybe2026-04-14.mtx",
+        "title": "Godspeed You! Black Emperor Live at La Cartonnerie on 2026-04-14"
+      },
+      {
+        "show_date": "2026-04-10",
+        "venue": "troxy, london, uk",
+        "id": "gybe2026-04-10.DPA",
+        "title": "Godspeed You! Black Emperor Live at Troxy on 2026-04-10"
+      }
+    ]
   }
 ]

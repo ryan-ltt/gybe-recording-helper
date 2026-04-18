@@ -20054,6 +20054,13 @@
         "title": "Godspeed You! Black Emperor Live at Troxy on 2026-04-10",
         "lineage": "WAV > Adobe Audition (EQ, stereo balancing) > WAV (44/16) > FLAC (level 8)",
         "source": "Zoom M4 > WAV (48/32)"
+      },
+      {
+        "id": "gybe2026-04-10.DPA",
+        "url": "https://archive.org/details/gybe2026-04-10.DPA",
+        "title": "Godspeed You! Black Emperor Live at Troxy on 2026-04-10",
+        "lineage": "unknown",
+        "source": "Matched DPA4060s > SP-SPSB-8-MKII > Roland R-07 (WAV 16/44)"
       }
     ],
     "note": "w/ one leg one eye"
@@ -20144,7 +20151,15 @@
       "albanian",
       "sad mafioso"
     ],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "gybe2026-04-14.mtx",
+        "url": "https://archive.org/details/gybe2026-04-14.mtx",
+        "title": "Godspeed You! Black Emperor Live at La Cartonnerie on 2026-04-14",
+        "lineage": "WAV/FLAC > Adobe Audition (mixing, EQ, compression) > WAV (44/16) > FLAC (level 8)",
+        "source": "Source 1: (AUD, centre of the room) DPA 4061 x2 > Tascam X8 > WAV (48/32) Source 2: (AUD, centre of the room) AT831b x2 > Tascam X8 > WAV (48/32) Source 3: (AUD, at the stage) Zoom H2n X/Y mics > WAV (48/24)"
+      }
+    ],
     "note": "w/ one leg one eye"
   },
   {
