@@ -482,5 +482,16 @@
         "venue": "paribu art, istanbul, tur"
       }
     ]
+  },
+  {
+    "timestamp": "2026-04-20 10:02:59",
+    "new_recordings": [
+      {
+        "show_date": "2026-04-16",
+        "venue": "floyd, athens, gr",
+        "id": "gybe2026-04-16.diy",
+        "title": "Godspeed You! Black Emperor Live at Floyd on 2026-04-16"
+      }
+    ]
   }
 ]

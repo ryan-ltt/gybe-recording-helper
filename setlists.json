@@ -20184,7 +20184,15 @@
       "world police",
       "gathering storm"
     ],
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-04-16.diy",
+        "url": "https://archive.org/details/gybe2026-04-16.diy",
+        "title": "Godspeed You! Black Emperor Live at Floyd on 2026-04-16",
+        "lineage": "WAV > Adobe Audition (stereo balancing, some MB compression, EQ) > WAV (44/16) > FLAC 1.5.0 > FLAC (level 8)",
+        "source": "DIY omni mics (POM-2739L) > 9v battery box > Roland R-05 > WAV (48/24)"
+      }
+    ]
   },
   {
     "date": "2026-04-18",
