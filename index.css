@@ -17,6 +17,15 @@ header
 	max-width: 900px;
 	margin: 0 auto;
 }
+.header-title { display: flex; flex-direction: column; gap: 2px; }
+.header-subtitle {
+	margin: 0;
+	font-family: Monaco;
+	font-size: 11px;
+	color: #555;
+	line-height: 1.2;
+}
+html.dark .header-subtitle { color: #8ea7b6; }
 h1
 {
 	color: black;

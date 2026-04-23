@@ -1,0 +1,20 @@
+{
+  "bands": [
+    {
+      "slug": "gybe",
+      "name": "Godspeed You! Black Emperor",
+      "setlistfm_url": null,
+      "archive_creator_query": "creator:\"Godspeed You! Black Emperor\" collection:etree",
+      "data_file": "setlists.json",
+      "managed_by": "legacy"
+    },
+    {
+      "slug": "a-silver-mt-zion",
+      "name": "A Silver Mt. Zion",
+      "setlistfm_url": "https://www.setlist.fm/setlists/a-silver-mt-zion-6bd69a72.html",
+      "archive_creator_query": "creator:\"A Silver Mt. Zion\" collection:etree",
+      "data_file": "a-silver-mt-zion_setlists.json",
+      "managed_by": "setlistfm"
+    }
+  ]
+}
