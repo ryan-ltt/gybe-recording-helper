@@ -15,6 +15,14 @@
       "archive_creator_query": "creator:\"A Silver Mt. Zion\" collection:etree",
       "data_file": "a-silver-mt-zion_setlists.json",
       "managed_by": "setlistfm"
+    },
+    {
+      "slug": "esmerine",
+      "name": "Esmerine",
+      "setlistfm_url": "https://www.setlist.fm/setlists/esmerine-6bd69ace.html",
+      "archive_creator_query": "creator:\"Esmerine\" collection:etree",
+      "data_file": "esmerine_setlists.json",
+      "managed_by": "setlistfm"
     }
   ]
 }
