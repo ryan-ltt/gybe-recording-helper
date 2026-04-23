@@ -20207,6 +20207,14 @@
       "gathering storm",
       "sad mafioso"
     ],
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-04-18.diy",
+        "url": "https://archive.org/details/gybe2026-04-18.diy",
+        "title": "Godspeed You! Black Emperor Live at Paribu Art on 2026-04-18",
+        "lineage": "WAV > Adobe Audition (stereo balancing, some MB compression, EQ) > WAV (44/16) > FLAC 1.5.0 > FLAC (level 8)",
+        "source": "DIY omni mics (POM-2739L) > 9v battery box > Roland R-05 > WAV (48/24)"
+      }
+    ]
   }
 ]
