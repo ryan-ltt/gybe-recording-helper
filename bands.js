@@ -104,7 +104,7 @@ function buildBandEras() {
         </div>`;
     container.appendChild(allBlock);
 
-    for (const year of Object.keys(byYear).sort().reverse()) {
+    for (const year of Object.keys(byYear).sort()) {
         const yearShows = byYear[year];
         const block = document.createElement('div');
         block.className = 'era-block';
