@@ -436,11 +436,56 @@
     "setlistfm_url": "https://www.setlist.fm/setlist/esmerine/2022/la-sala-rossa-montreal-qc-canada-33b1dc89.html"
   },
   {
+    "date": "2023-09-08",
+    "venue": "la fabrique du docteur faton, vend\u00f4me, france",
+    "songs": [
+      "learning to crawl",
+      "blackout",
+      "la p\u00e9nombre",
+      "a dog river",
+      "walking through mist",
+      "little streams make big rivers",
+      "au cr\u00e9puscule, sans laisse",
+      "fractals for any tonality",
+      "my mamma pinned a rose on me",
+      "red fire farm",
+      "foxtails & fireflies",
+      "why she swallows bullets and stones",
+      "barn board fire",
+      "wakesleep"
+    ],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/esmerine/2023/la-fabrique-du-docteur-faton-vendome-france-377e5d3.html"
+  },
+  {
     "date": "2023-09-24",
     "venue": "willem de zwijgerkerk, amsterdam, netherlands",
     "songs": [],
     "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/esmerine/2023/willem-de-zwijgerkerk-amsterdam-netherlands-3ba3903c.html"
+  },
+  {
+    "date": "2023-11-19",
+    "venue": "magasin g\u00e9n\u00e9ral la p\u00eache, la p\u00eache, qc, canada",
+    "songs": [
+      "learning to crawl",
+      "the space in between",
+      "la p\u00e9nombre",
+      "a dog river",
+      "walking through mist",
+      "little streams make big rivers",
+      "au cr\u00e9puscule, sans laisse",
+      "fractals for any tonality",
+      "the neighbourhoods rise",
+      "entropy",
+      "barn board fire",
+      "lost river blues",
+      "wakesleep",
+      "foxtails & fireflies",
+      "why she swallows bullets and stones"
+    ],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/esmerine/2023/magasin-general-la-peche-la-peche-qc-canada-b77e5b2.html"
   },
   {
     "date": "2024-06-08",
