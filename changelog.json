@@ -504,5 +504,16 @@
         "title": "Godspeed You! Black Emperor Live at Paribu Art on 2026-04-18"
       }
     ]
+  },
+  {
+    "timestamp": "2026-04-29 10:10:23",
+    "new_recordings": [
+      {
+        "show_date": "2025-12-10",
+        "venue": "bandai namco, shanghai, chi",
+        "id": "gybe2025-12-10.x8",
+        "title": "Godspeed You! Black Emperor Live at Bandai Namco Dream Hall on 2025-12-10"
+      }
+    ]
   }
 ]

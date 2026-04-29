@@ -19337,6 +19337,13 @@
         "title": "Godspeed You! Black Emperor Live at Bandai Namco on 2025-12-10",
         "lineage": "unknown",
         "source": "unknown"
+      },
+      {
+        "id": "gybe2025-12-10.x8",
+        "url": "https://archive.org/details/gybe2025-12-10.x8",
+        "title": "Godspeed You! Black Emperor Live at Bandai Namco Dream Hall on 2025-12-10",
+        "lineage": "WAV > Adobe Audition (EQ, compression) > WAV (44/16) > FLAC",
+        "source": "Tascam X8 > WAV (48/32)"
       }
     ]
   },
