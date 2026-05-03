@@ -515,5 +515,22 @@
         "title": "Godspeed You! Black Emperor Live at Bandai Namco Dream Hall on 2025-12-10"
       }
     ]
+  },
+  {
+    "timestamp": "2026-05-03 09:24:30",
+    "new_recordings": [
+      {
+        "show_date": "2025-12-13",
+        "venue": "fullof livehouse, beijing, chi",
+        "id": "gybe2025-12-13.d50",
+        "title": "Godspeed You! Black Emperor Live at Fullof Livehouse on 2025-12-13"
+      },
+      {
+        "show_date": "2025-12-09",
+        "venue": "bandai namco, shanghai, chi",
+        "id": "gybe2025-12-09.d50",
+        "title": "Godspeed You! Black Emperor Live at Bandai Namco Dream Hall on 2025-12-09"
+      }
+    ]
   }
 ]

@@ -19308,7 +19308,15 @@
       "gathering storm",
       "moya"
     ],
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2025-12-09.d50",
+        "url": "https://archive.org/details/gybe2025-12-09.d50",
+        "title": "Godspeed You! Black Emperor Live at Bandai Namco Dream Hall on 2025-12-09",
+        "lineage": "WAV > Adobe Audition (EQ, compression) > WAV (44/16) > FLAC",
+        "source": "Sony PCM-D50 > WAV (44/16)"
+      }
+    ]
   },
   {
     "date": "2025-12-10",
@@ -19413,6 +19421,13 @@
         "title": "Godspeed You Black Emperor! Live at Fullof Livehouse on 2025-12-13",
         "lineage": "all 3 sources > REAPER (Source 1 unpanned, Source 2 panned 40% right for cowboy / 20% right for others, Source 3 panned 25% left, EQ, adjust volume, fades out, splits) > FLAC (44/16, level 8) > foobar2000 (tagging) Matrix by wuming_shi",
         "source": "Source 1 by wuming_shi:      HONOR x60 > WAV (48/16)     Location: Middle of third row Source 2 by Woozie: Cell phone > MP3 (320kbps) Source 3 by \u7259\u5237community: Cell phone > AAC (128kbps, does not contain The Cowboy)"
+      },
+      {
+        "id": "gybe2025-12-13.d50",
+        "url": "https://archive.org/details/gybe2025-12-13.d50",
+        "title": "Godspeed You! Black Emperor Live at Fullof Livehouse on 2025-12-13",
+        "lineage": "WAV > Adobe Audition (EQ, compression) > WAV (44/16) > FLAC",
+        "source": "Sony PCM-D50 > WAV (44/16)"
       }
     ]
   },
