@@ -23,6 +23,14 @@
       "archive_creator_query": "creator:\"Esmerine\" collection:etree",
       "data_file": "esmerine_setlists.json",
       "managed_by": "setlistfm"
+    },
+    {
+      "slug": "built-to-spill",
+      "name": "Built to Spill",
+      "setlistfm_url": "https://www.setlist.fm/setlists/built-to-spill-73d6ae4d.html",
+      "archive_creator_query": "creator:\"Built to Spill\" collection:etree",
+      "data_file": "built-to-spill_setlists.json",
+      "managed_by": "setlistfm"
     }
   ]
 }
