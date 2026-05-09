@@ -39475,7 +39475,15 @@
       "made-up dreams",
       "conventional wisdom"
     ],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "BTS2026-05-06",
+        "url": "https://archive.org/details/BTS2026-05-06",
+        "title": "Built to Spill Live at The Music Farm on 2026-05-06",
+        "lineage": "SD Card > Audacity > FLAC",
+        "source": "AUD > CA-14 Cardioids > ZOOM H1 (48kHz 24bit WAV) > SD Card"
+      }
+    ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/music-farm-charleston-sc-334804b5.html"
   },
   {
