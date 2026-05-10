@@ -140,8 +140,11 @@ function renderBandShowList(eraShows, filter, prefix) {
         return '<p style="font-family:Monaco,monospace;font-size:12px;color:inherit;">no shows match.</p>';
     }
 
+    const dateCounts = {};
     return filtered.map(s => {
-        const id = 'bsl-' + prefix + s.date.replace(/\W/g, '-');
+        dateCounts[s.date] = (dateCounts[s.date] || 0) + 1;
+        const suffix = dateCounts[s.date] > 1 ? '-' + dateCounts[s.date] : '';
+        const id = 'bsl-' + prefix + s.date.replace(/\W/g, '-') + suffix;
         const recs = s.recordings || [];
         const recsHtml = recs.map((r, i) => `<a href="${r.url}" target="_blank" rel="noopener">[${i + 1}]</a>`).join('');
         const songs = s.songs || [];
