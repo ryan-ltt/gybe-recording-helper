@@ -39504,7 +39504,15 @@
     "date": "2026-05-09",
     "venue": "variety playhouse, atlanta, ga, usa",
     "songs": [],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "BTS2026-05-09",
+        "url": "https://archive.org/details/BTS2026-05-09",
+        "title": "Built to Spill Live at Variety Playhouse on 2026-05-09",
+        "lineage": "WAV [24 bit/48 kHz] > Audacity [legacy compressor, peak-based] > Audacity [legacy limiter, soft limit set to -3dB] > WAV [24 bit/48 kHz] > CD Wave Editor > 24 bit FLAC8",
+        "source": "DSBD > Zoom H4n Pro"
+      }
+    ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/variety-playhouse-atlanta-ga-33480485.html"
   }
 ]
