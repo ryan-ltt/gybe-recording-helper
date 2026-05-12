@@ -39489,21 +39489,73 @@
   {
     "date": "2026-05-07",
     "venue": "the senate, columbia, sc, usa",
-    "songs": [],
+    "songs": [
+      "time trap",
+      "stab",
+      "three years ago today",
+      "kicked it in the sun",
+      "some other song",
+      "strange",
+      "fire to dust",
+      "gonna lose",
+      "hindsight",
+      "bad light",
+      "i would hurt a fly",
+      "so",
+      "never be the same",
+      "goin' against your mind",
+      "randy described eternity",
+      "carry the zero"
+    ],
     "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/the-senate-columbia-sc-334804a5.html"
   },
   {
     "date": "2026-05-08",
     "venue": "neighborhood theatre, charlotte, nc, usa",
-    "songs": [],
+    "songs": [
+      "the plan",
+      "three years ago today",
+      "stop the show",
+      "time trap",
+      "tomorrow",
+      "hindsight",
+      "the weather",
+      "conventional wisdom",
+      "fire to dust",
+      "the mountain",
+      "spiderweb",
+      "i would hurt a fly",
+      "mess with time",
+      "carry the zero",
+      "made-up dreams",
+      "randy described eternity",
+      "broken chairs"
+    ],
     "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/neighborhood-theatre-charlotte-nc-3b480490.html"
   },
   {
     "date": "2026-05-09",
     "venue": "variety playhouse, atlanta, ga, usa",
-    "songs": [],
+    "songs": [
+      "strange",
+      "living zoo",
+      "stab",
+      "gonna lose",
+      "kicked it in the sun",
+      "get a life",
+      "fire to dust",
+      "the mountain",
+      "distopian dream girl",
+      "i would hurt a fly",
+      "so",
+      "bad light",
+      "liar",
+      "when i'm blind",
+      "virginia reel around the fountain",
+      "carry the zero"
+    ],
     "recordings": [
       {
         "id": "BTS2026-05-09",
@@ -39514,5 +39566,50 @@
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/variety-playhouse-atlanta-ga-33480485.html"
+  },
+  {
+    "date": "2026-05-10",
+    "venue": "soundstage",
+    "songs": [
+      "made-up dreams",
+      "the plan",
+      "reasons",
+      "fool's gold",
+      "hindsight",
+      "fire to dust",
+      "gonna lose",
+      "the mountain",
+      "twin falls",
+      "mess with time",
+      "when i'm blind",
+      "bad light",
+      "big dipper",
+      "time trap",
+      "i would hurt a fly",
+      "carry the zero"
+    ],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/workplay-soundstage-birmingham-al-53480769.html"
+  },
+  {
+    "date": "2026-05-12",
+    "venue": "delmar hall, st. louis, mo, usa",
+    "songs": [],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/delmar-hall-st-louis-mo-43480763.html"
+  },
+  {
+    "date": "2026-05-13",
+    "venue": "codfish hollow barnstormers, maquoketa, ia, usa",
+    "songs": [],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/codfish-hollow-barnstormers-maquoketa-ia-5b480764.html"
+  },
+  {
+    "date": "2026-05-14",
+    "venue": "first avenue, minneapolis, mn, usa",
+    "songs": [],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/first-avenue-minneapolis-mn-43480757.html"
   }
 ]

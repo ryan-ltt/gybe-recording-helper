@@ -772,13 +772,6 @@
     ],
     "recordings": [
       {
-        "id": "asmz2005-06-16.flacf",
-        "url": "https://archive.org/details/asmz2005-06-16.flacf",
-        "title": "A Silver Mt Zion Live at La Sala Rossa on 2005-06-16",
-        "lineage": "unknown",
-        "source": "CSB (w/ bass roll off) > MZ-N10"
-      },
-      {
         "id": "asmz2005-06-16.mic.flac16",
         "url": "https://archive.org/details/asmz2005-06-16.mic.flac16",
         "title": "A Silver Mt Zion Live at La Sala Rossa on 2005-06-16",
@@ -1551,13 +1544,6 @@
       "blindblindblind"
     ],
     "recordings": [
-      {
-        "id": "asmz2006-08-21.m300.flacf",
-        "url": "https://archive.org/details/asmz2006-08-21.m300.flacf",
-        "title": "A Silver Mt Zion Live at Great American Music Hall on 2006-08-21",
-        "lineage": "DAT -> Sony R500 -> Mac (Peak/Waves) -> xAct -> FLAC",
-        "source": "AUD (MG M300s -> Lunatec V2 -> Tascam DA-P1) -> DAT"
-      },
       {
         "id": "smz2006-08-21",
         "url": "https://archive.org/details/smz2006-08-21",
