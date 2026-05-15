@@ -19770,7 +19770,15 @@
       "gathering storm"
     ],
     "note": "w/ kristof hahn",
-    "recordings": []
+    "recordings": [
+      {
+        "id": "gybe2026-03-09.m4a",
+        "url": "https://archive.org/details/gybe2026-03-09.m4a",
+        "title": "Godspeed You! Black Emperor Live at Fléda on 2026-03-09",
+        "lineage": "phone > 128 kbps AAC > losslesscut > foobar2000 (tagging) > m4a",
+        "source": "phone"
+      }
+    ]
   },
   {
     "date": "2026-03-10",
