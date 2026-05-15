@@ -39594,14 +39594,50 @@
   {
     "date": "2026-05-12",
     "venue": "delmar hall, st. louis, mo, usa",
-    "songs": [],
+    "songs": [
+      "gonna lose",
+      "living zoo",
+      "three years ago today",
+      "kicked it in the sun",
+      "center of the universe",
+      "so",
+      "spiderweb",
+      "some other song",
+      "reasons",
+      "liar",
+      "made-up dreams",
+      "laughing",
+      "life's a dream",
+      "fire to dust",
+      "twin falls",
+      "get a life",
+      "carry the zero"
+    ],
     "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/delmar-hall-st-louis-mo-43480763.html"
   },
   {
     "date": "2026-05-13",
     "venue": "codfish hollow barnstormers, maquoketa, ia, usa",
-    "songs": [],
+    "songs": [
+      "distopian dream girl",
+      "get a life",
+      "on the way",
+      "the plan",
+      "hindsight",
+      "so",
+      "spiderweb",
+      "laughing",
+      "else",
+      "bad light",
+      "fire to dust",
+      "twin falls",
+      "stab",
+      "i would hurt a fly",
+      "virginia reel around the fountain",
+      "time trap",
+      "when i'm blind"
+    ],
     "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/codfish-hollow-barnstormers-maquoketa-ia-5b480764.html"
   },
@@ -39611,5 +39647,26 @@
     "songs": [],
     "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/first-avenue-minneapolis-mn-43480757.html"
+  },
+  {
+    "date": "2026-05-15",
+    "venue": "turner hall ballroom, milwaukee, wi, usa",
+    "songs": [],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/turner-hall-ballroom-milwaukee-wi-5b480748.html"
+  },
+  {
+    "date": "2026-05-16",
+    "venue": "hi-fi annex",
+    "songs": [],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/hi-fi-indy-hi-fi-annex-indianapolis-in-53480741.html"
+  },
+  {
+    "date": "2026-05-17",
+    "venue": "ludlow garage cincinnati, cincinnati, oh, usa",
+    "songs": [],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/ludlow-garage-cincinnati-cincinnati-oh-43480747.html"
   }
 ]
