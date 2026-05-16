@@ -3941,15 +3941,7 @@
       "blindblindblind",
       "horses in the sky"
     ],
-    "recordings": [
-      {
-        "id": "asmz2012-02-10",
-        "url": "https://archive.org/details/asmz2012-02-10",
-        "title": "A Silver Mt Zion Live at Club Congress on 2012-02-10",
-        "lineage": "Edirol RO9 USB out>Dell Inspiron 530S HD>AUDACITY to 16bit/44.1 khz>TLH>FLAC",
-        "source": "Sonic Studio DSM-6S Mics>Sonic Studios PA-6LC2 LoCut>Edirol RO9 @24bit/44.1 khz"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2012/club-congress-tucson-az-63dea2fb.html"
   },
   {
