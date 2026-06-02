@@ -39738,7 +39738,15 @@
     "date": "2026-06-01",
     "venue": "9:30 club, washington, dc, usa",
     "songs": [],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "BTS2026-06-01.vwmule",
+        "url": "https://archive.org/details/BTS2026-06-01.vwmule",
+        "title": "Built to Spill Live at 9:30 Club on 2026-06-01",
+        "lineage": "MP6 > iMac. Tracked via Sound Studio, FLAC via xACT",
+        "source": "Microtech Gefell MV400L/M41 > Sound Devices MixPre-6 (24/48)"
+      }
+    ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/930-club-washington-dc-5b480730.html"
   },
   {
