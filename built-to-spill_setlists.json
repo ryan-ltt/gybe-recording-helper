@@ -39737,7 +39737,25 @@
   {
     "date": "2026-06-01",
     "venue": "9:30 club, washington, dc, usa",
-    "songs": [],
+    "songs": [
+      "the plan",
+      "living zoo",
+      "distopian dream girl",
+      "fool's gold",
+      "stop the show",
+      "liar",
+      "bad light",
+      "so",
+      "fire to dust",
+      "gonna lose",
+      "virginia reel around the fountain",
+      "i would hurt a fly",
+      "trimmed and burning",
+      "big dipper",
+      "randy described eternity",
+      "time trap",
+      "carry the zero"
+    ],
     "recordings": [
       {
         "id": "BTS2026-06-01.vwmule",
@@ -39752,15 +39770,90 @@
   {
     "date": "2026-06-02",
     "venue": "mr. smalls theatre",
-    "songs": [],
+    "songs": [
+      "strange",
+      "reasons",
+      "get a life",
+      "kicked it in the sun",
+      "conventional wisdom",
+      "hindsight",
+      "gonna lose",
+      "fire to dust",
+      "wherever you go",
+      "stab",
+      "car",
+      "life's a dream",
+      "else",
+      "when i'm blind",
+      "made-up dreams",
+      "carry the zero",
+      "you were right"
+    ],
     "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/mr-smalls-mr-smalls-theatre-millvale-pa-5b480734.html"
   },
   {
     "date": "2026-06-03",
     "venue": "asbury lanes, asbury park, nj, usa",
-    "songs": [],
+    "songs": [
+      "some other song",
+      "spiderweb",
+      "the plan",
+      "the wait",
+      "mess with time",
+      "center of the universe",
+      "three years ago today",
+      "tomorrow",
+      "fire to dust",
+      "distopian dream girl",
+      "i would hurt a fly",
+      "gonna lose",
+      "laughing",
+      "car",
+      "virginia reel around the fountain",
+      "carry the zero",
+      "broken chairs",
+      "goin' against your mind"
+    ],
     "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/asbury-lanes-asbury-park-nj-4b48072a.html"
+  },
+  {
+    "date": "2026-06-04",
+    "venue": "musicfest cafe, bethlehem, pa, usa",
+    "songs": [
+      "c.r.e.b.",
+      "reasons",
+      "stab",
+      "understood",
+      "the plan",
+      "hindsight",
+      "fire to dust",
+      "gonna lose",
+      "bad light",
+      "wherever you go",
+      "broken chairs",
+      "else",
+      "i would hurt a fly",
+      "made-up dreams",
+      "randy described eternity",
+      "car"
+    ],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/musicfest-cafe-bethlehem-pa-53480729.html"
+  },
+  {
+    "date": "2026-06-05",
+    "venue": "the queen, wilmington, de, usa",
+    "songs": [],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/the-queen-wilmington-de-4b48072e.html"
+  },
+  {
+    "date": "2026-06-06",
+    "venue": "forest hills stadium, queens, ny, usa",
+    "songs": [],
+    "recordings": [],
+    "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/forest-hills-stadium-queens-ny-7b4c7628.html"
   }
 ]
