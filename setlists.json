@@ -12082,7 +12082,14 @@
       "blaise bailey finnegan III"
     ],
     "note": "w/ jessica moss",
-    "recordings": []
+    "recordings": [
+      {
+        "id": "youtube-PLWqcrYEYH9CP9unsIrvZHuWFHdg--RUeN",
+        "url": "https://www.youtube.com/playlist?list=PLWqcrYEYH9CP9unsIrvZHuWFHdg--RUeN",
+        "lineage": "unknown",
+        "source": "unknown"
+      }
+    ]
   },
   {
     "date": "2017-11-05",
