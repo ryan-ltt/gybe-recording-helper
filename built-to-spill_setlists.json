@@ -24046,7 +24046,15 @@
       "made-up dreams",
       "velvet waltz"
     ],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "BTS2015-10-03.vwmule",
+        "url": "https://archive.org/details/BTS2015-10-03.vwmule",
+        "title": "Built to Spill Live at 9:30 Club on 2015-10-03",
+        "lineage": "744 > iMac. Tracked via Sound Studio, FLAC via xACT",
+        "source": "DPA 4023 > Sound Devices 744 (24/48)"
+      }
+    ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2015/930-club-washington-dc-73f42681.html"
   },
   {
@@ -25903,6 +25911,13 @@
       {
         "id": "BtS2016-09-18",
         "url": "https://archive.org/details/BtS2016-09-18",
+        "title": "Built to Spill Live at 9:30 Club on 2016-09-18",
+        "lineage": "F8 > iMac. Tracked via Sound Studio, FLAC via xACT",
+        "source": "DPA 4023 > Zoom F8 (24/48)"
+      },
+      {
+        "id": "BTS2016-09-18.vwmule",
+        "url": "https://archive.org/details/BTS2016-09-18.vwmule",
         "title": "Built to Spill Live at 9:30 Club on 2016-09-18",
         "lineage": "F8 > iMac. Tracked via Sound Studio, FLAC via xACT",
         "source": "DPA 4023 > Zoom F8 (24/48)"
