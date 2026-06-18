@@ -19781,7 +19781,7 @@
       {
         "id": "gybe2026-03-09.m4a",
         "url": "https://archive.org/details/gybe2026-03-09.m4a",
-        "title": "Godspeed You! Black Emperor Live at Fléda on 2026-03-09",
+        "title": "Godspeed You! Black Emperor Live at Fl\u00e9da on 2026-03-09",
         "lineage": "phone > 128 kbps AAC > losslesscut > foobar2000 (tagging) > m4a",
         "source": "phone"
       }
@@ -20253,5 +20253,11 @@
         "source": "DIY omni mics (POM-2739L) > 9v battery box > Roland R-05 > WAV (48/24)"
       }
     ]
+  },
+  {
+    "date": "2026-11-21",
+    "venue": "c art media, buenos aires, ar",
+    "songs": [],
+    "recordings": []
   }
 ]
