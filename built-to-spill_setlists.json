@@ -14815,6 +14815,13 @@
         "title": "Built to Spill Live at Webster Hall on 2009-10-12",
         "lineage": "unknown",
         "source": "unknown"
+      },
+      {
+        "id": "BTS2009-10-12.akg.acidjack",
+        "url": "https://archive.org/details/BTS2009-10-12.akg.acidjack",
+        "title": "Built to Spill Live at Webster Hall on 2009-10-12",
+        "lineage": "WAV>Audacity (tracking, downsample, set fades)",
+        "source": "AKG ck91 carded capsules (Busman Active Mod)>custom battery box>R-09HR (24/48)"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2009/webster-hall-new-york-ny-bc7b526.html"
