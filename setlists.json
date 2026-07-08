@@ -16762,6 +16762,13 @@
         "title": "Godspeed You Black Emperor! Live at Bottom Lounge on 2023-09-16",
         "lineage": "unknown",
         "source": "Sony ECM-DS70P > Zoom H4n > WAV (16/48)"
+      },
+      {
+        "id": "gybe2023-09-16.mtx",
+        "url": "https://archive.org/details/gybe2023-09-16.mtx",
+        "title": "Godspeed You! Black Emperor Live at Bottom Lounge on 2023-09-16",
+        "lineage": "Source 1&2 > REAPER v7.76 (align using stretch markers, invert polarity of source 2, EQ, stereo balance, compression, mid-side processing  /  normalize to -1.0 dBTP, dither) > WAV (16/44.1) > CD Wave (track split) > FLAC (16/44.1, level 8) > foobar2000 (tagging)",
+        "source": "Zoom H1n (WAV 24/48) > Adobe Audition CC 2023 (mastering, dither to WAV 16/44) > CD Wave > FLAC  /  Sony ECM-DS70P > Zoom H4n > WAV (16/48)"
       }
     ]
   },
