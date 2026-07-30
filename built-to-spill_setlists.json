@@ -15984,6 +15984,13 @@
         "title": "Built to Spill Live at Irving Plaza on 2010-07-28",
         "lineage": "unknown",
         "source": "unknown"
+      },
+      {
+        "id": "BTS2010-07-28.acidjack.nyctaper",
+        "url": "https://archive.org/details/BTS2010-07-28.acidjack.nyctaper",
+        "title": "Built to Spill Live at Irving Plaza on 2010-07-28",
+        "lineage": "2x24bit/44.1kHz WAV>Audacity (EQ, mixdown, set fades, tracking, amplify and balance channels, smooth peaks, downsample to 16bit)>FLAC (level 8 )",
+        "source": "Neumann KM150+Schoeps CMC641>Edirol R-44 (Oade Concert Mod) (24/44.1) Position: FOB, DFC, mics at 8', both pointed at stacks"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2010/irving-plaza-new-york-ny-2bd44cea.html"
