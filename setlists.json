@@ -10616,6 +10616,13 @@
         "title": "Godspeed You! Black Emperor Live at Warwick Arts Centre on 2015-10-22",
         "lineage": "Matched DPA4060s > Core Sound HEB BBox (flat) > Edirol R-09HR > FLAC",
         "source": "Matched DPA4060s"
+      },
+      {
+        "id": "gybe2015-10-22.DPA",
+        "url": "https://archive.org/details/gybe2015-10-22.DPA",
+        "title": "Godspeed You! Black Emperor Live at Warwick Arts Centre on 2015-10-22",
+        "lineage": "unknown",
+        "source": "Matched DPA4060s > Core Sound HEB BBox (flat) > Edirol R-09HR"
       }
     ]
   },
