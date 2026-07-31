@@ -576,5 +576,22 @@
         "title": "Godspeed You! Black Emperor Live at Warwick Arts Centre on 2015-10-22"
       }
     ]
+  },
+  {
+    "timestamp": "2026-07-31 10:43:37",
+    "new_recordings": [
+      {
+        "show_date": "2003-04-14",
+        "venue": "th\u00e9\u00e2tre rialto, montr\u00e9al, qc",
+        "id": "gybe2003-04-14.CSB",
+        "title": "Godspeed You! Black Emperor Live at Th\u00e9\u00e2tre Rialto on 2003-04-14"
+      },
+      {
+        "show_date": "2003-04-15",
+        "venue": "th\u00e9\u00e2tre rialto, montr\u00e9al, qc",
+        "id": "gybe2003-04-15.gybe2003-04-15.ECM",
+        "title": "Godspeed You! Black Emperor Live at Th\u00e9\u00e2tre Rialto on 2003-04-15"
+      }
+    ]
   }
 ]
