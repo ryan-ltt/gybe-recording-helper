@@ -16321,6 +16321,13 @@
         "title": "Built to Spill Live at Rocks Off Concert Cruise on 2010-09-02",
         "lineage": "unknown",
         "source": "unknown"
+      },
+      {
+        "id": "BTS2010-09-02.nyctaper",
+        "url": "https://archive.org/details/BTS2010-09-02.nyctaper",
+        "title": "Built to Spill Live at Rocks Off Concert Cruise on 2010-09-02",
+        "lineage": "2x 24bit 48kHz wav files > Soundforge (level adjustments, mixdown, set fades) > CDWave 1.95 (tracking) > Flac Frontend (level 7, align sector  boundaries) > flac",
+        "source": "Soundboard + Neumann KM-150s > Edirol R-44 (Oade Concert Mod) >  2x 24bit 48kHz wav files"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2010/rocks-off-boat-cruise-new-york-ny-3bd5f074.html"
