@@ -16717,6 +16717,13 @@
         "title": "Built to Spill Live at Music Hall of Williamsburg on 2010-10-05",
         "lineage": "R-44 > USB > PC > Adobe Audition (mixdown, adjust levels, downsample, dither, tracking) > WAV (16-bit/44.1kHz) > Trader's Little Helper (check/fix SBE's, FLAC conversion) > FLAC (level 8)",
         "source": "AUD > AKG C 414 B-XLS's + DPA 4021's > Edirol R-44 (WAV @ 24-bit/48kHz)"
+      },
+      {
+        "id": "BTS2010-10-05.jfcb.nyctaper",
+        "url": "https://archive.org/details/BTS2010-10-05.jfcb.nyctaper",
+        "title": "Built to Spill Live at Music Hall of Williamsburg on 2010-10-05",
+        "lineage": "R-44 > USB > PC > Adobe Audition (mixdown, adjust levels, downsample, dither, tracking) > WAV (16-bit/44.1kHz) > Trader's Little Helper (check/fix SBE's, FLAC conversion) > FLAC (level 8)",
+        "source": "AUD > AKG C 414 B-XLS's + DPA 4021's > Edirol R-44 (WAV @ 24-bit/48kHz)"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2010/music-hall-of-williamsburg-brooklyn-ny-7bd52e34.html"
