@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .DS_Store
 .claude/settings.local.json
+sample-tracking/
+sample-tracking-plan.md

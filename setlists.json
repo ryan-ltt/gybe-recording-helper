@@ -1622,7 +1622,15 @@
   {
     "date": "1999-09-07",
     "venue": "maxwell's, hoboken, nj",
-    "songs": [],
+    "songs": [
+      "the dead flag blues",
+      "3rd part",
+      "gathering storm",
+      "dead metheny",
+      "world police",
+      "blaise bailey finnegan III",
+      "j.l.h outro"
+    ],
     "recordings": [],
     "note": "w/ labradford"
   },
