@@ -1180,15 +1180,7 @@
       "carry the zero",
       "lie for a lie"
     ],
-    "recordings": [
-      {
-        "id": "BTS1997-04-13",
-        "url": "https://archive.org/details/BTS1997-04-13",
-        "title": "Built to Spill Live at Neurolux on 1997-04-13",
-        "lineage": "DAT master",
-        "source": "Matrix Mix (SBD + AUD)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/1997/neurolux-boise-id-7bf63e48.html"
   },
   {
@@ -1692,13 +1684,6 @@
     ],
     "recordings": [
       {
-        "id": "Builttospill1997-10-13",
-        "url": "https://archive.org/details/Builttospill1997-10-13",
-        "title": "Built to Spill Live at First Avenue - Late Show on 1997-10-13",
-        "lineage": "unknown",
-        "source": "Matrix Mix (SBD + AUD)"
-      },
-      {
         "id": "BTS1997-10-13",
         "url": "https://archive.org/details/BTS1997-10-13",
         "title": "Built to Spill Live at First Avenue - Early Show on 1997-10-13",
@@ -2022,15 +2007,7 @@
       "distopian dream girl",
       "nowhere nothin' fuckup"
     ],
-    "recordings": [
-      {
-        "id": "BTS1998-10-14",
-        "url": "https://archive.org/details/BTS1998-10-14",
-        "title": "Built to Spill Live at Copper Commons on 1998-10-14",
-        "lineage": "SBD > ANA(x) > Nakamichi cassette deck > WAV > EQ > FLAC(8)",
-        "source": "SBD > ANA(x)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/1998/copper-commons-university-of-montana-missoula-mt-53f63bb5.html"
   },
   {
@@ -2877,15 +2854,7 @@
       "scarin'",
       "broken chairs"
     ],
-    "recordings": [
-      {
-        "id": "BTS1999-04-06.flacf",
-        "url": "https://archive.org/details/BTS1999-04-06.flacf",
-        "title": "Built to Spill Live at Amoeba Records on 1999-04-06",
-        "lineage": "cassette (master) > CD-R (master) > CD-R (1) > CD-R (2) > EAC v0.95b4 (secure) > FLAC Frontend 1.7.1 (level 8)",
-        "source": "Audience > Aiwa HS-JS475 > cassette (master)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/1999/slims-san-francisco-ca-5bc3f36c.html"
   },
   {
@@ -2901,15 +2870,7 @@
       "you were right",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS1999-04-06.flacf",
-        "url": "https://archive.org/details/BTS1999-04-06.flacf",
-        "title": "Built to Spill Live at Amoeba Records on 1999-04-06",
-        "lineage": "cassette (master) > CD-R (master) > CD-R (1) > CD-R (2) > EAC v0.95b4 (secure) > FLAC Frontend 1.7.1 (level 8)",
-        "source": "Audience > Aiwa HS-JS475 > cassette (master)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/1999/amoeba-records-san-francisco-ca-4bc3f36e.html"
   },
   {
@@ -2956,13 +2917,6 @@
         "title": "Built to Spill Live at The Roxy on 1999-04-09",
         "lineage": "DATclone",
         "source": "SBD > DAT"
-      },
-      {
-        "id": "BTS1999-04-09",
-        "url": "https://archive.org/details/BTS1999-04-09",
-        "title": "Built to Spill Live at KCRW FM Studios on 1999-04-09",
-        "lineage": "DATclone",
-        "source": "FM DAT"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/1999/kcrw-studios-santa-monica-ca-33f634a5.html"
@@ -2993,13 +2947,6 @@
         "title": "Built to Spill Live at The Roxy on 1999-04-09",
         "lineage": "DATclone",
         "source": "SBD > DAT"
-      },
-      {
-        "id": "BTS1999-04-09",
-        "url": "https://archive.org/details/BTS1999-04-09",
-        "title": "Built to Spill Live at KCRW FM Studios on 1999-04-09",
-        "lineage": "DATclone",
-        "source": "FM DAT"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/1999/the-roxy-west-hollywood-ca-2bf634a6.html"
@@ -4197,15 +4144,7 @@
       "built to spill",
       "girl"
     ],
-    "recordings": [
-      {
-        "id": "BTS1999-12-15",
-        "url": "https://archive.org/details/BTS1999-12-15",
-        "title": "Built to Spill Live at Doubletree Hotel Ballroom on 1999-12-15",
-        "lineage": "DATmaster",
-        "source": "AUD DAT"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/1999/doubletree-ballroom-boise-id-5bf637d0.html"
   },
   {
@@ -6085,15 +6024,7 @@
       "car",
       "the plan"
     ],
-    "recordings": [
-      {
-        "id": "BTS2001-11-01",
-        "url": "https://archive.org/details/BTS2001-11-01",
-        "title": "Built to Spill Live at Xscape on 2001-11-01",
-        "lineage": "unknown",
-        "source": "AUD DAT"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2001/dv8-salt-lake-city-ut-53e877bd.html"
   },
   {
@@ -6490,15 +6421,7 @@
       "Built to SpillApril 20th, 2002Julia Davis Park, Boise ID USA",
       "Doug Martsch solo"
     ],
-    "recordings": [
-      {
-        "id": "BTS2002-04-20",
-        "url": "https://archive.org/details/BTS2002-04-20",
-        "title": "Built to Spill Live at Julia Davis Park, Boise State University Spring Fling on 2002-04-20",
-        "lineage": "unknown",
-        "source": "AUD Minidisc"
-      }
-    ],
+    "recordings": [],
     "setlist_pending": true
   },
   {
@@ -6791,15 +6714,7 @@
       "Built to SpillDoug Martsch solo acoustic2002-10-23Dallas, Trees",
       "source:\u00a0 Soundboardtaper:\u00a0 ?"
     ],
-    "recordings": [
-      {
-        "id": "BTS2002-10-23",
-        "url": "https://archive.org/details/BTS2002-10-23",
-        "title": "Built to Spill Live at Trees on 2002-10-23",
-        "lineage": "unknown",
-        "source": "SBD"
-      }
-    ],
+    "recordings": [],
     "setlist_pending": true
   },
   {
@@ -6840,15 +6755,7 @@
       "Built to SpillDoug Martsch solo acoustic",
       "10/28/2002\t\u00a0 \u00a0 \t\u00a0 \tSalt Lake City, UT- X-Scape"
     ],
-    "recordings": [
-      {
-        "id": "BTS2002-10-28",
-        "url": "https://archive.org/details/BTS2002-10-28",
-        "title": "Built to Spill Live at Xscape on 2002-10-28",
-        "lineage": "unknown",
-        "source": "AUD MD"
-      }
-    ],
+    "recordings": [],
     "setlist_pending": true
   },
   {
@@ -6890,15 +6797,7 @@
       "cleo",
       "cortez the killer"
     ],
-    "recordings": [
-      {
-        "id": "BTS2003-04-03",
-        "url": "https://archive.org/details/BTS2003-04-03",
-        "title": "Built to Spill Live at Neurolux on 2003-04-03",
-        "lineage": "DATmaster",
-        "source": "AUD DAT"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2003/neurolux-boise-id-7bea26c0.html"
   },
   {
@@ -8185,15 +8084,7 @@
       "cortez the killer",
       "(white man) in hammersmith palais"
     ],
-    "recordings": [
-      {
-        "id": "BTS2003-11-18.flacf",
-        "url": "https://archive.org/details/BTS2003-11-18.flacf",
-        "title": "Built to Spill Live at Pyramid Alehouse on 2003-11-18",
-        "lineage": "DAP-1 > cd master > eac > flac",
-        "source": "AKG 480's, Lunatech V2, ADC 20, DAP-1"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2003/pyramid-breweries-seattle-wa-3b9fd894.html"
   },
   {
@@ -8848,15 +8739,7 @@
       "carry the zero",
       "stop the show"
     ],
-    "recordings": [
-      {
-        "id": "BTS2005-05-16",
-        "url": "https://archive.org/details/BTS2005-05-16",
-        "title": "Built to Spill Live at 9:30 Club on 2005-05-16",
-        "lineage": "unknown",
-        "source": "AUD"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2005/930-club-washington-dc-3eaed23.html"
   },
   {
@@ -9047,15 +8930,7 @@
       "carry the zero",
       "stop the show"
     ],
-    "recordings": [
-      {
-        "id": "BTS2005-05-25.flacf",
-        "url": "https://archive.org/details/BTS2005-05-25.flacf",
-        "title": "Built to Spill Live at Madrid Theater on 2005-05-25",
-        "lineage": "M1 > waveterminal 2496 > CEP 2.0 (48k to 44.1k) > flac",
-        "source": "DSM-6S>PA-6LC3>M1 (48k)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2005/madrid-theatre-kansas-city-mo-1beaed34.html"
   },
   {
@@ -9188,13 +9063,6 @@
       "stop the show"
     ],
     "recordings": [
-      {
-        "id": "BTS2005-06-10.source2",
-        "url": "https://archive.org/details/BTS2005-06-10.source2",
-        "title": "Built to Spill Live at Crystal Ballroom on 2005-06-10",
-        "lineage": "Tascam DA-20 MkII>Emagic Audiowerk2>CD Wave Editor>FLAC Frontend 1.7.1",
-        "source": "Schoeps MK4s (DINA on 7' stand)>Nbox>Oade line mod SBM-1@44.1 kHz>Sony PCM-M1"
-      },
       {
         "id": "BTS2005-06-10",
         "url": "https://archive.org/details/BTS2005-06-10",
@@ -10470,13 +10338,6 @@
     ],
     "recordings": [
       {
-        "id": "BTS2006-09-16.akg483",
-        "url": "https://archive.org/details/BTS2006-09-16.akg483",
-        "title": "Built to Spill Live at The Metro on 2006-09-16",
-        "lineage": "Microtrack 2496>Maxtor External>CEP2 (normalize to 99%)>CDWave (tracks)>FLAC",
-        "source": "AKG483>V3>MT24/96 (16/44.1)"
-      },
-      {
         "id": "BTS2006-09-16.sonicstudios",
         "url": "https://archive.org/details/BTS2006-09-16.sonicstudios",
         "title": "Built to Spill Live at The Metro on 2006-09-16",
@@ -10586,15 +10447,7 @@
       "carry the zero",
       "broken chairs"
     ],
-    "recordings": [
-      {
-        "id": "BTS2006-09-25.flacf",
-        "url": "https://archive.org/details/BTS2006-09-25.flacf",
-        "title": "Built to Spill Live at Copper Dragon on 2006-09-25",
-        "lineage": "ONKYO DT-9000>optical>Digital Performer 4.5>Audacity>.wav>.flac",
-        "source": "Sonic Studios dsm-6s>Sony PCM-M1"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2006/copper-dragon-carbondale-il-53e3aba9.html"
   },
   {
@@ -10638,13 +10491,6 @@
         "title": "Built to Spill Live at St. Andrew's Hall on 2006-09-28",
         "lineage": "Microtrack 24/96 > G4 Powerbook (via usb 2.0) > Spark XL > xAct > Flac",
         "source": "AKG 483s > Bumblebee MiAGi-II Silver Cables > Lunatec V3 > Kind Kable (Coax) > Microtrack 24/96"
-      },
-      {
-        "id": "BTS2006-09-28.matrix.flac16",
-        "url": "https://archive.org/details/BTS2006-09-28.matrix.flac16",
-        "title": "Built to Spill Live at St. Andrew's Hall on 2006-09-28",
-        "lineage": "unknown",
-        "source": "SBD + AKG483 matrix"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2006/saint-andrews-hall-detroit-mi-6bfd7aee.html"
@@ -10774,13 +10620,6 @@
         "title": "Built to Spill Live at Irving Plaza on 2006-10-05",
         "lineage": "unknown",
         "source": "AUD"
-      },
-      {
-        "id": "BTS2006-10-05.flacf",
-        "url": "https://archive.org/details/BTS2006-10-05.flacf",
-        "title": "Built to Spill Live at Irving Plaza on 2006-10-05",
-        "lineage": "M-Audio Microtrack > 16bit 44.1kHz wav file > Soundforge  (set fades, no other editing) > CD Wave 1.95 (tracking) >  Flac Frontend  (level 7, align sector boundaries) > flac",
-        "source": "Neumann KM-150's (AK-50 Hypercardiod Capsules) > Apogee Minime >  digital coaxial > M-Audio Microtrack"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2006/irving-plaza-new-york-ny-53ea8359.html"
@@ -10986,15 +10825,7 @@
       "carry the zero",
       "randy described eternity"
     ],
-    "recordings": [
-      {
-        "id": "BTS2006-10-20.flacf",
-        "url": "https://archive.org/details/BTS2006-10-20.flacf",
-        "title": "Built to Spill Live at Stubbs BBQ on 2006-10-20",
-        "lineage": "Cool Edit 2000 (reduced frequencies below 110 Hz by 3 dB; added fades) > wav > CD Wave (tracking) > wav",
-        "source": "Core Sound High-End Binaural microphones (DPA 4051) > Battery Box (Bass filter off) > iRiver iHP-120 (44.1 KHz, 16 bit wav files) > USB 2.0 > Hitachi SATA HD"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2006/stubbs-bar-b-q-austin-tx-33eaf0dd.html"
   },
   {
@@ -11664,15 +11495,7 @@
       "carry the zero",
       "randy described eternity"
     ],
-    "recordings": [
-      {
-        "id": "BTS2007-07-06",
-        "url": "https://archive.org/details/BTS2007-07-06",
-        "title": "Built to Spill Live at TLA on 2007-07-06",
-        "lineage": "CDR > WAV > TLH > FLAC",
-        "source": "Peluso CEMC > Oade Wmod UA5"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2007/the-fillmore-at-the-tla-philadelphia-pa-53df534d.html"
   },
   {
@@ -12176,15 +11999,7 @@
       "car",
       "conventional wisdom"
     ],
-    "recordings": [
-      {
-        "id": "BTS2007-09-16.flacf",
-        "url": "https://archive.org/details/BTS2007-09-16.flacf",
-        "title": "Built to Spill Live at Treasure Island Music Festival on 2007-09-16",
-        "lineage": "source > Total Recorder (16-bit, 44.1khz) > TLH FLAC16 (Level 6 encoding, verification, sector alignment)",
-        "source": "Sony ECM MS907 (120-degree setting) > Sony MZ-R37 MD Recorder"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2007/treasure-island-san-francisco-ca-2bd8bcba.html"
   },
   {
@@ -12530,13 +12345,6 @@
         "title": "Built to Spill Live at The Zoo on 2008-01-02",
         "lineage": "unknown",
         "source": "unknown"
-      },
-      {
-        "id": "BTS2008-01-02.aud2",
-        "url": "https://archive.org/details/BTS2008-01-02.aud2",
-        "title": "Built to Spill Live at The Zoo on 2008-01-02",
-        "lineage": "unknown audience",
-        "source": "unknown audience"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2008/the-zoo-brisbane-australia-3d74d3b.html"
@@ -13330,15 +13138,7 @@
       "stab",
       "car"
     ],
-    "recordings": [
-      {
-        "id": "BTS2008-09-19",
-        "url": "https://archive.org/details/BTS2008-09-19",
-        "title": "Built to Spill Live at All Tomorrow's Parties on 2008-09-19",
-        "lineage": "Matched DPA4060s > Core Sound HEB BBox (flat) > H320 (w/ rockbox, WAV 16/44) > FLAC",
-        "source": "Matched DPA4060s > Core Sound HEB BBox (flat)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2008/kutshers-hotel-and-country-club-monticello-ny-5bd38748.html"
   },
   {
@@ -15332,15 +15132,7 @@
     "date": "2009-11-19",
     "venue": "showbox at the market, seattle, wa, usa",
     "songs": [],
-    "recordings": [
-      {
-        "id": "BTS2009-11-19",
-        "url": "https://archive.org/details/BTS2009-11-19",
-        "title": "Built to Spill Live at KEXP Session on 2009-11-19",
-        "lineage": "KEXP's Uncompressed Stream (WMA Lossless codec at 1411.2 kb/s) --> CDWave (Recording) --> Soundforge (Normalising) --> CDWave (Tracking) --> FLAC Frontend",
-        "source": "FM"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2009/showbox-at-the-market-seattle-wa-33c47001.html"
   },
   {
@@ -15353,15 +15145,7 @@
       "hindsight",
       "instrumental jam"
     ],
-    "recordings": [
-      {
-        "id": "BTS2009-11-19",
-        "url": "https://archive.org/details/BTS2009-11-19",
-        "title": "Built to Spill Live at KEXP Session on 2009-11-19",
-        "lineage": "KEXP's Uncompressed Stream (WMA Lossless codec at 1411.2 kb/s) --> CDWave (Recording) --> Soundforge (Normalising) --> CDWave (Tracking) --> FLAC Frontend",
-        "source": "FM"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2009/kexp-studios-seattle-wa-23eaa8a3.html"
   },
   {
@@ -16316,13 +16100,6 @@
     ],
     "recordings": [
       {
-        "id": "BTS2010-09-02",
-        "url": "https://archive.org/details/BTS2010-09-02",
-        "title": "Built to Spill Live at Rocks Off Concert Cruise on 2010-09-02",
-        "lineage": "unknown",
-        "source": "unknown"
-      },
-      {
         "id": "BTS2010-09-02.nyctaper",
         "url": "https://archive.org/details/BTS2010-09-02.nyctaper",
         "title": "Built to Spill Live at Rocks Off Concert Cruise on 2010-09-02",
@@ -17196,15 +16973,7 @@
       "liar",
       "broken chairs"
     ],
-    "recordings": [
-      {
-        "id": "BTS2010-10-26",
-        "url": "https://archive.org/details/BTS2010-10-26",
-        "title": "Built to Spill Live at Marquee Theater on 2010-10-26",
-        "lineage": "unknown",
-        "source": "AKG ck3|a60m|c460b > Fostex FR-2LE (24bit/44.1khz)Transfer:\u00a0 CF Card > Audacity (gain/fades/dither) > CDWav > .wav > .flac"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2010/marquee-theatre-tempe-az-7bd57e28.html"
   },
   {
@@ -18031,15 +17800,7 @@
       "untrustable/part 2 (about someone else)",
       "broken chairs"
     ],
-    "recordings": [
-      {
-        "id": "BTS2012-03-24",
-        "url": "https://archive.org/details/BTS2012-03-24",
-        "title": "Built to Spill Live at Owhyee Plaza Main Stage, Treefort Festival on 2012-03-24",
-        "lineage": "unknown",
-        "source": "SBD"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2012/shrine-social-club-ballroom-boise-id-13932d39.html"
   },
   {
@@ -19072,15 +18833,7 @@
       "hazy",
       "built too long, parts 1, 2 & 3"
     ],
-    "recordings": [
-      {
-        "id": "BTS2013-03-22",
-        "url": "https://archive.org/details/BTS2013-03-22",
-        "title": "Built to Spill Live at El Korah Shrine on 2013-03-22",
-        "lineage": "unknown",
-        "source": "SBD"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2013/shrine-social-club-ballroom-boise-id-33d89461.html"
   },
   {
@@ -19140,13 +18893,6 @@
         "title": "Built to Spill Live at El Korah Shrine on 2013-03-24",
         "lineage": "unknown",
         "source": "SBD"
-      },
-      {
-        "id": "BTS2013-03-24.mk4.flac24",
-        "url": "https://archive.org/details/BTS2013-03-24.mk4.flac24",
-        "title": "Built to Spill Live at Treefort Music Fest on 2013-03-24",
-        "lineage": "SDHC > Adobe Audition CS6 > CDWave > Flac24",
-        "source": "Schoeps MK4\u2019s (DINa) > Vark KCY > VST 62 IUg > Oade Mod Edirol R44 @ 24/48"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2013/shrine-social-club-ballroom-boise-id-23d8942f.html"
@@ -20748,15 +20494,7 @@
       "how soon is now?",
       "car"
     ],
-    "recordings": [
-      {
-        "id": "BTS2013-11-08",
-        "url": "https://archive.org/details/BTS2013-11-08",
-        "title": "Built to Spill Live at Paradise Rock Club on 2013-11-08",
-        "lineage": "Edirol R-09 (built-in mics @ 24bit/48KHz) > Adobe Audition 3.0 (stereo expansion > multiband compression > eq > limiting > resample to 16bit/44.1KHz > fades) > Audacity (track splits and FLAC)",
-        "source": "unknown"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2013/paradise-rock-club-boston-ma-43c49fe3.html"
   },
   {
@@ -21549,15 +21287,7 @@
       "big dipper",
       "genius of love"
     ],
-    "recordings": [
-      {
-        "id": "BTS2014-05-20",
-        "url": "https://archive.org/details/BTS2014-05-20",
-        "title": "Built to Spill Live at Music Hall of Williamsburg on 2014-05-20",
-        "lineage": "unknown",
-        "source": "unknown"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2014/music-hall-of-williamsburg-brooklyn-ny-5bc0a3d4.html"
   },
   {
@@ -21928,15 +21658,7 @@
       "stop the show",
       "car"
     ],
-    "recordings": [
-      {
-        "id": "BTS2014-09-11",
-        "url": "https://archive.org/details/BTS2014-09-11",
-        "title": "Built to Spill Live at Neurolux on 2014-09-11",
-        "lineage": "unknown",
-        "source": "CA14 cardiods > Sony M10 (24/48) > r8brain (downsample to 44/16) > CD Wave > TLH flac8"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2014/neurolux-boise-id-4bcb4f76.html"
   },
   {
@@ -22888,15 +22610,7 @@
       "liar",
       "goin' against your mind"
     ],
-    "recordings": [
-      {
-        "id": "BTS2015-05-30",
-        "url": "https://archive.org/details/BTS2015-05-30",
-        "title": "Built to Spill Live at The Metro on 2015-05-30",
-        "lineage": "Shure MV88>iPhone",
-        "source": "Shure MV88>iPhone"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2015/metro-chicago-il-53c98775.html"
   },
   {
@@ -23018,15 +22732,7 @@
       "stab",
       "car"
     ],
-    "recordings": [
-      {
-        "id": "BTS2015-06-06",
-        "url": "https://archive.org/details/BTS2015-06-06",
-        "title": "Built to Spill Live at Neurolux on 2015-06-06",
-        "lineage": "unknown",
-        "source": "Matrix Mix (SBD + AUD)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2015/neurolux-boise-id-5bfd4f20.html"
   },
   {
@@ -23406,15 +23112,7 @@
       "big dipper",
       "stab"
     ],
-    "recordings": [
-      {
-        "id": "BTS2015-07-23",
-        "url": "https://archive.org/details/BTS2015-07-23",
-        "title": "Built to Spill Live at Wonder Ballroom on 2015-07-23",
-        "lineage": "WAV > EQ and tracksplit > FLAC [8]",
-        "source": "Sony PCM-M10 @ 16-bit 44.1 khz > internal microphones"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2015/wonder-ballroom-portland-or-13f60d21.html"
   },
   {
@@ -25451,13 +25149,6 @@
         "title": "Built to Spill Live at Panther Island Pavilion on 2016-06-11",
         "lineage": "Soundboard > rough live mix > mp3",
         "source": "SBD"
-      },
-      {
-        "id": "BTS2016-06-11.dsm6s.bgraves.flac24",
-        "url": "https://archive.org/details/BTS2016-06-11.dsm6s.bgraves.flac24",
-        "title": "Built to Spill Live at Panther Island Pavilion on 2016-06-11",
-        "lineage": "R-09HR > CEP 2.1 > flac",
-        "source": "Source:  DSM-6S > PA-6LC3 > R-09HR @ 24/48"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2016/panther-island-pavilion-fort-worth-tx-73fe0619.html"
@@ -25483,15 +25174,7 @@
       "big dipper",
       "i would hurt a fly"
     ],
-    "recordings": [
-      {
-        "id": "BTS2016-06-12",
-        "url": "https://archive.org/details/BTS2016-06-12",
-        "title": "Built to Spill Live at ACM Performance Lab on 2016-06-12",
-        "lineage": "Soundboard > rough live mix > mp3",
-        "source": "SBD"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2016/acmuco-performance-lab-oklahoma-city-ok-5bfe7ff0.html"
   },
   {
@@ -27857,13 +27540,6 @@
         "title": "Built to Spill Live at New Belgium Brewery on 2018-09-22",
         "lineage": "Audio-Technica AT2022 (10 feet up, facing right stack)>XLR to 3.5>Zoom H1>WAV (24/48 khz)>Adobe Audition (EQ and amplification)>FLAC (16/44 khz)",
         "source": "Audio-Technica AT2022 (10 feet up, facing right stack)>XLR to 3.5>Zoom H1"
-      },
-      {
-        "id": "BTS2018-09-22.at2022.DRC.flac16",
-        "url": "https://archive.org/details/BTS2018-09-22.at2022.DRC.flac16",
-        "title": "Built to Spill Live at New Belgium Brewery on 2018-09-22",
-        "lineage": "unknown",
-        "source": "Audio-Technica AT2022 (10 feet up, facing right stack, about 100 feet back from stage)>XLR to 3.5>Zoom H1>WAV (24/48 khz)>Adobe Audition (EQ and amplification)>FLAC (16/44 khz)"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2018/new-belgium-brewing-company-asheville-nc-6be9dafe.html"
@@ -28301,15 +27977,7 @@
       "randy described eternity",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS2019-05-03.flacf",
-        "url": "https://archive.org/details/BTS2019-05-03.flacf",
-        "title": "Built to Spill Live at Forum on 2019-05-03",
-        "lineage": "unknown",
-        "source": "DPA4061s > Core Sound HEB BBox (flat) > Edirol R-09HR (WAV 16/44)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2019/o2-forum-kentish-town-london-england-5b9087a0.html"
   },
   {
@@ -29645,15 +29313,7 @@
       "waterloo sunset",
       "strange"
     ],
-    "recordings": [
-      {
-        "id": "BTS2019-09-16.aud_24bit",
-        "url": "https://archive.org/details/BTS2019-09-16.aud_24bit",
-        "title": "Built to Spill Live at The Haunt on 2019-09-16",
-        "lineage": "24-bit, 48kHz wav files--MacBookPro-> Amadeus II for tracking, amplification-->xACT to convert to FLAC, Level 6",
-        "source": "Sony PCM-10 (built-in mics)--24-bit, 48kHz wav files"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2019/the-haunt-ithaca-ny-339cd859.html"
   },
   {
@@ -29982,15 +29642,7 @@
       "bennie and the jets",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS2019-10-04",
-        "url": "https://archive.org/details/BTS2019-10-04",
-        "title": "Built to Spill Live at 9:30 Club on 2019-10-04",
-        "lineage": "MP6 > iMac. Tracked via Sound Studio, FLAC via xACT",
-        "source": "Microtech Gefell M21 > nBob actives + SBD > Sound Devices MixPre-6 (24/48)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2019/930-club-washington-dc-339c60dd.html"
   },
   {
@@ -30044,15 +29696,7 @@
       "bennie and the jets",
       "waterloo sunset"
     ],
-    "recordings": [
-      {
-        "id": "BTS2019-10-09",
-        "url": "https://archive.org/details/BTS2019-10-09",
-        "title": "Built to Spill Live at Jack Rabbits on 2019-10-09",
-        "lineage": "Audio-Technica AT2022>Tascam PR-10>WAV[24 Bit]>CD Wave>Audacity>FLAC8",
-        "source": "Audio-Technica AT2022>Tascam PR-10"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2019/jack-rabbits-jacksonville-fl-139da9c9.html"
   },
   {
@@ -30107,15 +29751,7 @@
       "bennie and the jets",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS2019-10-11",
-        "url": "https://archive.org/details/BTS2019-10-11",
-        "title": "Built to Spill Live at The Orpheum on 2019-10-11",
-        "lineage": "Audio-Technica AT2022>Tascam PR-10>WAV[24 Bit]>CD Wave>Audacity[amplification]>FLAC8",
-        "source": "Audio-Technica AT2022>Tascam PR-10"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2019/the-orpheum-tampa-fl-3b9db04c.html"
   },
   {
@@ -30208,15 +29844,7 @@
       "temporarily blind",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS2019-10-27.ca11.leifh.flac16",
-        "url": "https://archive.org/details/BTS2019-10-27.ca11.leifh.flac16",
-        "title": "Built to Spill Live at Rickshaw Theatre on 2019-10-27",
-        "lineage": "unknown",
-        "source": "CA-11 (cardioid) > Bat2B > Sony PCM M10 @ 24/48"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2019/rickshaw-theatre-vancouver-bc-canada-7b9d2a64.html"
   },
   {
@@ -30309,15 +29937,7 @@
       "bennie and the jets",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS2019-11-03.MK012",
-        "url": "https://archive.org/details/BTS2019-11-03.MK012",
-        "title": "Built to Spill Live at The Doug Fir Lounge on 2019-11-03",
-        "lineage": "unknown",
-        "source": "oktava mk021"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2019/doug-fir-lounge-portland-or-4b9b0b1e.html"
   },
   {
@@ -30452,36 +30072,7 @@
       "bennie and the jets",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS2016-11-16.soundboard-16bit-flac",
-        "url": "https://archive.org/details/BTS2016-11-16.soundboard-16bit-flac",
-        "title": "Built to Spill Live at Crescent Ballroom on 2019-11-16",
-        "lineage": ".WAV (24 Bit) > Adobe Audition 2019 CC (normalize/amplify/tracking/dithering/downsampling) > .WAV (16 Bit) > Trader's Little Helper > FLAC (Level 8)",
-        "source": "Soundboard > Female XLR to 3.5mm cord > Sony PCM-M10 (line in) > Sandisk Mini-SD Card (32gb - Class 10)"
-      },
-      {
-        "id": "BTS2019-11-16.sbd-aud-matrix",
-        "url": "https://archive.org/details/BTS2019-11-16.sbd-aud-matrix",
-        "title": "Built to Spill Live at Crescent Ballroom on 2019-11-16",
-        "lineage": "unknown",
-        "source": "SBD+AUD"
-      },
-      {
-        "id": "BTS2019-11-16.soundboard-24bit-flac",
-        "url": "https://archive.org/details/BTS2019-11-16.soundboard-24bit-flac",
-        "title": "Built to Spill Live at Crescent Ballroom on 2019-11-16",
-        "lineage": ".WAV (24 Bit) > Adobe Audition 2019 CC (normalize/amplify/tracking) > Trader's Little Helper > FLAC (Level 8)",
-        "source": "Soundboard > Female XLR to 3.5mm cord > Sony PCM-M10 (line in) > Sandisk Mini-SD Card (32gb - Class 10)"
-      },
-      {
-        "id": "BTS2019-11-16.audience-24bit-flac",
-        "url": "https://archive.org/details/BTS2019-11-16.audience-24bit-flac",
-        "title": "Built to Spill Live at Crescent Ballroom on 2019-11-16",
-        "lineage": ".WAV (24 Bit) > Adobe Audition 2019 CC (normalize/amplify/tracking) > Trader's Little Helper > FLAC (Level 8)",
-        "source": "SP-CMC-8 (w/Mods) > Roland R-07 > Sandisk Mini-SD Card (32gb - Class 10)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2019/crescent-ballroom-phoenix-az-539a030d.html"
   },
   {
@@ -30564,15 +30155,7 @@
       "bad light",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS2019-11-22.matrix",
-        "url": "https://archive.org/details/BTS2019-11-22.matrix",
-        "title": "Built to Spill Live at Harlow's on 2019-11-22",
-        "lineage": "unknown",
-        "source": "unknown"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2019/harlows-restaurant-and-nightclub-sacramento-ca-7b9ace50.html"
   },
   {
@@ -30588,15 +30171,7 @@
     "songs": [
       "Twitch VOD rip"
     ],
-    "recordings": [
-      {
-        "id": "BTS2020-05-14",
-        "url": "https://archive.org/details/BTS2020-05-14",
-        "title": "Built to Spill Live at Noise Pop Twitch on 2020-05-14",
-        "lineage": "unknown",
-        "source": "unknown"
-      }
-    ],
+    "recordings": [],
     "setlist_pending": true
   },
   {
@@ -30670,15 +30245,7 @@
     "songs": [
       "recorded from a live Zoom stream"
     ],
-    "recordings": [
-      {
-        "id": "BTS2021-01-16",
-        "url": "https://archive.org/details/BTS2021-01-16",
-        "title": "Built to Spill Live at Boise, ID on 2021-01-16",
-        "lineage": "unknown",
-        "source": "unknown"
-      }
-    ],
+    "recordings": [],
     "setlist_pending": true
   },
   {
@@ -30792,15 +30359,7 @@
     "date": "2021-05-29",
     "venue": "",
     "songs": [],
-    "recordings": [
-      {
-        "id": "BTS2021-05-29",
-        "url": "https://archive.org/details/BTS2021-05-29",
-        "title": "Built to Spill Live at KIN Restaurant Patio on 2021-05-29",
-        "lineage": "SBD > live mix by Built to Spill sound tech > WAV (32 bit/48Hz) > Audacity > back to 32 bit WAV (no compression)",
-        "source": "SBD > live mix by Built to Spill sound tech > WAV (32 bit/48Hz)"
-      }
-    ],
+    "recordings": [],
     "setlist_pending": true
   },
   {
@@ -31086,15 +30645,7 @@
       "Here",
       "Kicked It In The Sun"
     ],
-    "recordings": [
-      {
-        "id": "BTS2021-10-06",
-        "url": "https://archive.org/details/BTS2021-10-06",
-        "title": "Built to Spill Live at Doug's House on 2021-10-06",
-        "lineage": "Live stream > MP3 > Audacity",
-        "source": "Live stream > MP3"
-      }
-    ],
+    "recordings": [],
     "setlist_pending": true
   },
   {
@@ -31316,15 +30867,7 @@
       "carry the zero",
       "conventional wisdom"
     ],
-    "recordings": [
-      {
-        "id": "BTS2022-02-02",
-        "url": "https://archive.org/details/BTS2022-02-02",
-        "title": "Built to Spill Live at Harlow's Restaurant & Nightclub on 2022-02-02",
-        "lineage": "Reaper >> Ozone 5 VST >> exciter, stereo image, compression >> WAV >> tracked in CD Wave >> FLAC conversion with TLH",
-        "source": "MK4 pair >> Nbob active cables >> PFA >> Mixpre-6 @ 24/48"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2022/harlows-restaurant-and-nightclub-sacramento-ca-3b88c464.html"
   },
   {
@@ -31349,15 +30892,7 @@
       "goin' against your mind",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS2022-02-04.ca14.flacf",
-        "url": "https://archive.org/details/BTS2022-02-04.ca14.flacf",
-        "title": "Built to Spill Live at Brooklyn Bowl on 2022-02-04",
-        "lineage": "WAV(M) [44.1] > FLAC",
-        "source": "Church Audio CA-14 > Edirol R-09HR"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2022/brooklyn-bowl-las-vegas-nv-4b88c332.html"
   },
   {
@@ -33420,15 +32955,7 @@
       "carry the zero",
       "broken chairs"
     ],
-    "recordings": [
-      {
-        "id": "BTS2022-09-24.CA14.cards.AUD",
-        "url": "https://archive.org/details/BTS2022-09-24.CA14.cards.AUD",
-        "title": "Built to Spill Live at The Bluebird Theater on 2022-09-24",
-        "lineage": "CA14 cards > CA9200 Preamp > Zoom H6 (SD) > WAV @ 24/48 > Audacity (edits, fades, levels) > FLAC 16bit",
-        "source": "Church Audio CA14s (cards)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2022/metro-music-hall-salt-lake-city-ut-73b04ef9.html"
   },
   {
@@ -34053,15 +33580,7 @@
       "you were right",
       "goin' against your mind"
     ],
-    "recordings": [
-      {
-        "id": "BTS2023-03-31.MC59W",
-        "url": "https://archive.org/details/BTS2023-03-31.MC59W",
-        "title": "Built to Spill Live at Cornerstone on 2023-03-31",
-        "lineage": "Sound Devices MixPre-3 II > SD > WAV (32/96) > Wavelab 11 (amplify, EQ, tracks) > FLAC (24-bit)",
-        "source": "Nevaton MC59/W > Sound Devices MixPre-3 II (32/96) (Balcony center, DIN, boom pole clamped to rail ~4ft out)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2023/cornerstone-berkeley-ca-43bb238f.html"
   },
   {
@@ -35445,15 +34964,7 @@
       "randy described eternity",
       "broken chairs"
     ],
-    "recordings": [
-      {
-        "id": "BTS2023-06-16.ca14",
-        "url": "https://archive.org/details/BTS2023-06-16.ca14",
-        "title": "Built to Spill Live at Loppen on 2023-06-16",
-        "lineage": "sony pcm-m10->hd->cep->cdwav (44,1 khz/16 bit)->flac",
-        "source": "ca14->ca9100->sony pcm-m10 -> wav (48 khz/24 bit)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2023/loppen-copenhagen-denmark-33a63431.html"
   },
   {
@@ -38702,15 +38213,7 @@
       "you were right",
       "randy described eternity"
     ],
-    "recordings": [
-      {
-        "id": "BTS2025-11-12.4ch-mix",
-        "url": "https://archive.org/details/BTS2025-11-12.4ch-mix",
-        "title": "Built to Spill Live at The Chapel on 2025-11-12",
-        "lineage": "MixPre-6 II > SD > WAV (32/96) > Wavelab 11 Pro (amplify, mastering, tracks) > FLAC (24-bit)",
-        "source": "Source1: Nevaton MC59W > MixPre-6 II (32/96) (recorded from balcony, ~20 feet from the stage, PAS)\t Source2: AKG C414 XLS (omni) > MixPre-6 II (32/96) (recorded from balcony, 8 feet apart, ~20 feet from the stage, PAS)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2025/the-chapel-san-francisco-ca-6b4682c2.html"
   },
   {
@@ -39226,15 +38729,7 @@
       "reasons",
       "so"
     ],
-    "recordings": [
-      {
-        "id": "bts2026-02-05",
-        "url": "https://archive.org/details/bts2026-02-05",
-        "title": "Built to Spill Live at Ice Cream Floats on 2026-02-05",
-        "lineage": "SD Card > Audacity > FLAC",
-        "source": "AUD > CA-14 Cardioids > ZOOM H1 (48kHz 24bit WAV) > SD Card"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/norwegian-pearl-stardust-theater-miami-fl-7b4ae638.html"
   },
   {
@@ -39449,15 +38944,7 @@
       "the wait",
       "carry the zero"
     ],
-    "recordings": [
-      {
-        "id": "BTS2026-05-04",
-        "url": "https://archive.org/details/BTS2026-05-04",
-        "title": "Built to Spill Live at The Grey Eagle - Asheville, NC on 2026-05-04",
-        "lineage": "SD > Audition (normalize) > Sound Studio (tracking) > xAct flac",
-        "source": "AKG CK63 > Naiant PFA > Zoom F8 (FOB DFC clamped to taper shelf)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/the-grey-eagle-asheville-nc-334804cd.html"
   },
   {

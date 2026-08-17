@@ -363,15 +363,7 @@
       "hang on to each other",
       "could've moved mountains..."
     ],
-    "recordings": [
-      {
-        "id": "asmz2004-02-01.flacf",
-        "url": "https://archive.org/details/asmz2004-02-01.flacf",
-        "title": "A Silver Mt Zion Live at La Sala Rossa on 2004-02-01",
-        "lineage": "ECM-DS70P > MZ-R55",
-        "source": "ECM-DS70P > MZ-R55"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2004/la-sala-rossa-montreal-qc-canada-4bd5773e.html"
   },
   {
@@ -435,15 +427,7 @@
       "could've moved mountains...",
       "there's a river in the valley made of melting snow"
     ],
-    "recordings": [
-      {
-        "id": "asmz2004-02-19.flacf",
-        "url": "https://archive.org/details/asmz2004-02-19.flacf",
-        "title": "A Silver Mt Zion Live at Magnet on 2004-02-19",
-        "lineage": "Unknown",
-        "source": "AUD DAT Sennheiser MKE2002 > Sony TCD-D8 (110')"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2004/magnet-club-berlin-germany-3c6f5e7.html"
   },
   {
@@ -1025,13 +1009,6 @@
         "title": "A Silver Mt Zion Live at Kulturfabrik on 2006-05-02",
         "lineage": "Audience > Sony ECM 719 > Sony MZ-N710 (PCM 16bits / 44,1kHz)> Analog > Audacity (no correction) > 16bits / 44,1kHz > flac 16bit",
         "source": "A Silver Mount Zion"
-      },
-      {
-        "id": "asmz_2006-05-02_aud2.flac16",
-        "url": "https://archive.org/details/asmz_2006-05-02_aud2.flac16",
-        "title": "A Silver Mt Zion Live at Kulturfabrik on 2006-05-02",
-        "lineage": "M-Audio Microtrack -> USB -> HD ->  Cubase SX 2.0 (using Waves: linMB & L2, UAD1 pack: Pultec, EX & Fairchild) -> Wave -> CdWave -> Flac -> You!",
-        "source": "Sony ECM-MS907 -> M-Audio Microtrack (16 bit, 44.1 khz *except* Tr.10 @ 192 bits, 44.1 kHz)"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2006/kulturfabrik-esch-sur-alzette-luxembourg-33842085.html"
@@ -1196,15 +1173,7 @@
       "teddy roosevelt's guns",
       "there's a river in the valley made of melting snow"
     ],
-    "recordings": [
-      {
-        "id": "smz2006-05-27",
-        "url": "https://archive.org/details/smz2006-05-27",
-        "title": "A Silver Mt Zion Live at Le Comfort Moderne on 2006-05-27",
-        "lineage": "HiMD> Nuendo> export 16b44,1> Flac 16B (level 8)",
-        "source": "Aud> mic ECM 719> Sony HiMD"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2006/le-confort-moderne-poitiers-france-2b842082.html"
   },
   {
@@ -1303,13 +1272,6 @@
         "title": "A Silver Mt Zion Live at La Sala Rossa on 2006-06-14",
         "lineage": "Mic (Sony ECM-DS70P) --> iriver H120 with rockbox (www.rockbox.org) - 16/44 uncompressed --> SoundForge (slight EQ, smooth compression, start/end fades)",
         "source": "Audience recording"
-      },
-      {
-        "id": "asmz2006-06-14.CSB",
-        "url": "https://archive.org/details/asmz2006-06-14.CSB",
-        "title": "A Silver Mt Zion Live at La Sala Rossa on 2006-06-14",
-        "lineage": "MD > CD > FLAC",
-        "source": "CSB (w/ bass roll off) > MZ-N10"
       }
     ],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2006/la-sala-rossa-montreal-qc-canada-6be1f6b2.html"
@@ -1416,15 +1378,7 @@
       "ring them bells (freedom has come and gone)",
       "1,000,000 died to make this sound"
     ],
-    "recordings": [
-      {
-        "id": "asmz2006-08-04",
-        "url": "https://archive.org/details/asmz2006-08-04",
-        "title": "A Silver Mt Zion Live at Empty Bottle on 2006-08-04",
-        "lineage": "JB3 -> Firewire (no DAE) -> Sound Forge -> CD-Wave -> CDR/FLAC",
-        "source": "Dynamic Audio Binaurals (omni) -> custom battery box (flat response) -> JB3"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2006/empty-bottle-chicago-il-33f0c011.html"
   },
   {
@@ -1780,15 +1734,7 @@
       "1,000,000 died to make this sound",
       "blindblindblind"
     ],
-    "recordings": [
-      {
-        "id": "asmz2007-04-17.aud-flac",
-        "url": "https://archive.org/details/asmz2007-04-17.aud-flac",
-        "title": "A Silver Mt Zion Live at Cabaret Sauvage on 2007-04-17",
-        "lineage": "HiMD > Sonic Stage 3 > Nuendo 3 > Wav > Flac 16",
-        "source": "Aud > Mic Sony ECM 719 > HiMD PCM mode"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2007/cabaret-sauvage-paris-france-4bd0af02.html"
   },
   {
@@ -1803,15 +1749,7 @@
       "1,000,000 died to make this sound",
       "blindblindblind"
     ],
-    "recordings": [
-      {
-        "id": "smz-2007-04-19",
-        "url": "https://archive.org/details/smz-2007-04-19",
-        "title": "A Silver Mt Zion Live at Lyon Grrrnd Zero on 2007-04-19",
-        "lineage": "Mic ecm-719 > player iAUDIO X5 > MP3gain > flac frontend",
-        "source": "unknown"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2007/grnd-zero-vaise-rail-theatre-lyon-france-3d195df.html"
   },
   {
@@ -2158,15 +2096,7 @@
       "microphones in the trees",
       "hang on to each other"
     ],
-    "recordings": [
-      {
-        "id": "asmz2008-04-13.aud.shoeps.flac16",
-        "url": "https://archive.org/details/asmz2008-04-13.aud.shoeps.flac16",
-        "title": "A Silver Mt Zion Live at La Maroquinerie on 2008-04-13",
-        "lineage": "Tascam HD-P2 > Digital transfert > Nuendo > Wave (44.1kHZ / 16bit) > FLAC 16bit",
-        "source": "Aud > Schoeps ORTF > Tascam HD-P2 (44.1kHz 24bit)"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2008/la-maroquinerie-paris-france-3d2ddef.html"
   },
   {
@@ -3004,15 +2934,7 @@
       "black waters blowed / engine broke blues",
       "'piphany rambler"
     ],
-    "recordings": [
-      {
-        "id": "asmz2010-03-16",
-        "url": "https://archive.org/details/asmz2010-03-16",
-        "title": "A Silver Mt Zion Live at The Fleece on 2010-03-16",
-        "lineage": "WireTap Studio >  Switch Plus > flac",
-        "source": "Zoom H2 > wav 44.1 kHz/16-bit"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2010/fleece-bristol-england-6bd4cee6.html"
   },
   {
@@ -3126,15 +3048,7 @@
       "1,000,000 died to make this sound",
       "hang on to each other"
     ],
-    "recordings": [
-      {
-        "id": "asmz2010-03-27",
-        "url": "https://archive.org/details/asmz2010-03-27",
-        "title": "A Silver Mt Zion Live at St. George's Church on 2010-03-27",
-        "lineage": "WireTap Studio >  Switch Plus > flac",
-        "source": "Zoom H2 > wav 44.1 kHz/16-bit"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2010/st-georges-church-brighton-england-33d49801.html"
   },
   {
@@ -4098,15 +4012,7 @@
       "god bless our dead marines",
       "psalms99"
     ],
-    "recordings": [
-      {
-        "id": "theesilvermtzionmemorialchestra2012-08-02.flac16",
-        "url": "https://archive.org/details/theesilvermtzionmemorialchestra2012-08-02.flac16",
-        "title": "A Silver Mt Zion Live at Space Gallery on 2012-08-02",
-        "lineage": "Audacity > Wav > CD Wav > FLAC",
-        "source": "ADK A-51 S LE's > Oade W-Mod Ua-5 > USB > Audacity"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2012/space-portland-me-33a42021.html"
   },
   {
@@ -4191,15 +4097,7 @@
       "13 blues for thirteen moons",
       "psalms99"
     ],
-    "recordings": [
-      {
-        "id": "asmz2012-11-19.tourcoing.flac16",
-        "url": "https://archive.org/details/asmz2012-11-19.tourcoing.flac16",
-        "title": "A Silver Mt Zion Live at Le Grand Mix on 2012-11-19",
-        "lineage": "iRiver H320 + Rockbox > Audacity [switch channels] > Har-Bal v2.3 Revision 3 [EQ & extra dBs] > Wavelab 6.10 build 340 [plugins: Magneto 1.5, D82 Sonic Maximizer and Waves L3 Ultramaximizer] > Audacity [fade in/out] > CD Wave Editor v1.98  > Trader's Little Helper > Mp3Tag > Flac",
-        "source": "CA-11 > CA-9100 Preamp > iRiver H320 + Rockbox"
-      }
-    ],
+    "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/a-silver-mt-zion/2012/le-grand-mix-tourcoing-france-7bdb62e8.html"
   },
   {
@@ -4487,13 +4385,6 @@
     ],
     "recordings": [
       {
-        "id": "asmz2014-02-27.brussel.ca-11.mono.flac16",
-        "url": "https://archive.org/details/asmz2014-02-27.brussel.ca-11.mono.flac16",
-        "title": "A Silver Mt Zion Live at Botanique on 2014-02-27",
-        "lineage": "Sony PCM-M10 (24/96) > Har-Bal v2.3 Revision 3 [EQ & extra dBs] > Wavelab 6.10 build 340 [plugins: Magneto 1.5, D82 Sonic Maximizer and Waves L3 Ultramaximizer] > Audacity [convert to 16/44.1 format, fade in/fade out] > CD Wave Editor v1.98 > Trader's Little Helper > Mp3Tag > Flac [16bps/44.1kHz]",
-        "source": "CA-11 Omni !MONO! > CA-9100 Preamp > Sony PCM-M10 (24/96)"
-      },
-      {
         "id": "asmz2014-02-27.brussel.ca-11.mono.flac24",
         "url": "https://archive.org/details/asmz2014-02-27.brussel.ca-11.mono.flac24",
         "title": "A Silver Mt Zion Live at Botanique on 2014-02-27",
@@ -4550,13 +4441,6 @@
       "blindblindblind"
     ],
     "recordings": [
-      {
-        "id": "asmz2014-03-02.ecm719",
-        "url": "https://archive.org/details/asmz2014-03-02.ecm719",
-        "title": "A Silver Mt Zion Live at brut im K\u00fcnstlerhaus on 2014-03-02",
-        "lineage": "unknown",
-        "source": "Sony ECM-719 --> Sony Hi-MD MZ-RH1 --> Sonic Stage --> HD --> tracked and flaced in CD Wave"
-      },
       {
         "id": "tsmzmo2014-03-02.cos11s.flac16",
         "url": "https://archive.org/details/tsmzmo2014-03-02.cos11s.flac16",
