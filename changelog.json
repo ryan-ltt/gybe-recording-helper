@@ -602,5 +602,16 @@
         "venue": "maxwell's, hoboken, nj"
       }
     ]
+  },
+  {
+    "timestamp": "2026-08-17 22:57:13",
+    "new_recordings": [
+      {
+        "show_date": "1999-09-07",
+        "venue": "maxwell's, hoboken, nj",
+        "id": "AgwvwcXCRvs",
+        "title": "Godspeed You! Black Emperor Live at Maxwell's on 1999-09-07"
+      }
+    ]
   }
 ]
