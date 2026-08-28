@@ -5,3 +5,5 @@ __pycache__/
 .claude/settings.local.json
 sample-tracking/
 sample-tracking-plan.md
+node_modules/
+package-lock.json

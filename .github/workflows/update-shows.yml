@@ -21,6 +21,23 @@ jobs:
       - name: Check for new shows and recordings
         run: python update-shows.py --skip-prune
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install prediction deps
+        continue-on-error: true
+        run: npm install --no-save @supabase/supabase-js
+
+      # never let a predictions failure stop the setlist commit below: the site's
+      # core data must land even if supabase is unreachable.
+      - name: Open and settle prediction markets
+        continue-on-error: true
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node sync-predictions.js
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
