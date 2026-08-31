@@ -1,6 +1,6 @@
 // ─── Predictions ───────────────────────────────────────────────────────────
 // gliffcoin markets on upcoming setlists. prices blend a decay-weighted
-// setlist prior with the live betting pool; payouts are pari-mutuel.
+// setlist prior with the live betting pool; payouts are fixed at bet time.
 
 const PRED_WINDOW      = 250;   // shows of history feeding the prior
 const PRED_HALFLIFE    = 25;    // shows; recent tour legs dominate
@@ -231,7 +231,7 @@ function predGenerateMarkets(today) {
 
         // ── slot markets: one per slot, out to the longest set that still
         // plausibly happens. the near-certain early slots stay on the board —
-        // pari-mutuel prices them at ~1x on its own, so they cost nothing to
+        // they price at ~1x on their own, so they cost nothing to
         // list. slots the show usually never reaches are priced mostly on
         // "(show ends before this slot)".
         for (let slot = 0; slot < maxSlot; slot++) {
@@ -294,7 +294,7 @@ function predGenerateMarkets(today) {
 // ─── Pricing ───────────────────────────────────────────────────────────────
 // displayed price blends the setlist prior with the live pool. with an empty
 // book you see the statistics; as gliffcoins arrive the crowd takes over.
-// payouts stay pari-mutuel, so the book can never owe more than it holds.
+// payouts are fixed odds: the price you bet at is the price you are paid at.
 
 function predPoolByOutcome(bets) {
     const pool = {};
@@ -325,20 +325,20 @@ function predPrices(market, bets) {
     return out;
 }
 
-// what 1 gliffcoin on `outcome` would return if it wins right now, pari-mutuel
-// against the pool plus the house seed. an estimate: it moves until lock.
+// what 1 gliffcoin on `outcome` returns if it wins: fixed at the price showing
+// when the bet is placed, and never revised afterwards. later money moves the
+// price for the next bettor, not the payout of one already taken.
 function predPayoutMultiple(market, bets, outcome) {
-    const pool = predPoolByOutcome(bets);
-    const seed = Number(market.seed || PRED_SEED);
-    const prior = market.prior || {};
-    // the seed sits in the pool distributed by the prior, so a market with no
-    // bets still has something to win and the prior still carries weight.
-    const seedOn = k => seed * (prior[k] || 0);
-    const winning = (pool[outcome] || 0) + seedOn(outcome);
-    let total = seed;
-    for (const k in pool) total += pool[k];
-    if (winning <= 0) return null;
-    return total / winning;
+    const price = predPrices(market, bets)[outcome];
+    if (!(price > 0)) return null;
+    return 1 / price;
+}
+
+// what an already-placed bet will actually pay, from the price it locked in.
+function predBetMultiple(bet) {
+    const p = Number(bet.prior_at_bet);
+    if (!(p > 0)) return null;
+    return 1 / p;
 }
 
 function predFormatMultiple(m) {
@@ -346,6 +346,16 @@ function predFormatMultiple(m) {
     if (m >= 100) return Math.round(m) + '×';
     if (m >= 10) return m.toFixed(1) + '×';
     return m.toFixed(2) + '×';
+}
+
+// a parlay of several bets can be astronomically unlikely, well past the range
+// predFormatPct is built for, so it gets its own formatting.
+function predFormatParlay(p) {
+    if (!(p > 0)) return '0%';
+    if (p >= 0.01) return (100 * p).toFixed(1) + '%';
+    if (p >= 0.0001) return (100 * p).toFixed(3) + '%';
+    if (p >= 1e-8) return (100 * p).toPrecision(2) + '%';
+    return '~1 in ' + Math.round(1 / p).toExponential(1).replace('e+', 'e');
 }
 
 function predFormatPct(p) {
@@ -425,8 +435,8 @@ function predSongsBefore(date) {
     return seen;
 }
 
-// pari-mutuel settlement. winners split the pool plus the seed in proportion to
-// stake; a market nobody won, or a void one, refunds every stake.
+// settlement. each winning bet pays out at the price it locked in; a void
+// market refunds every stake.
 function predSettle(market, bets, outcome) {
     const payouts = [];
     if (outcome === 'void') {
@@ -437,28 +447,27 @@ function predSettle(market, bets, outcome) {
         }
         return payouts;
     }
-    const seed = Number(market.seed || PRED_SEED);
-    const prior = market.prior || {};
-    let total = seed;
-    for (const b of bets) total += Number(b.stake);
-
     const winners = bets.filter(b => b.outcome === outcome);
-    const winStake = winners.reduce((t, b) => t + Number(b.stake), 0);
-    if (winStake <= 0) return payouts; // house keeps it; nothing to pay out
+    if (!winners.length) return payouts; // house keeps the stakes; nothing to pay
 
-    // the seed's share of the winning outcome stays with the house, so the
-    // seed subsidises the market without being handed to whoever shows up.
-    const houseShare = seed * (prior[outcome] || 0);
-    const pot = total - houseShare;
-
-    // one row per user, not per bet: someone who backed the same outcome twice
-    // is owed a single payout, and the ledger records one payout per market.
+    // fixed odds: every bet pays stake x the multiple it locked in, whatever the
+    // book looks like now. bets placed before the price moved keep their price.
+    // a bet with no recorded price falls back to the market's opening prior.
+    const prior = market.prior || {};
     const byUser = {};
-    for (const b of winners) byUser[b.user_id] = (byUser[b.user_id] || 0) + Number(b.stake);
+    for (const b of winners) {
+        let p = Number(b.prior_at_bet);
+        if (!(p > 0)) p = Number(prior[outcome]) || 0;
+        if (!(p > 0)) continue;                       // unpriceable, pay nothing
+        const amount = Number(b.stake) / p;
+        byUser[b.user_id] = (byUser[b.user_id] || 0) + amount;
+    }
+
+    // one row per user, not per bet: the ledger records one payout per market.
     for (const user_id in byUser) {
         payouts.push({
             user_id,
-            amount: Math.round((pot * byUser[user_id] / winStake) * 100) / 100,
+            amount: Math.round(byUser[user_id] * 100) / 100,
             reason: 'payout',
         });
     }
@@ -475,9 +484,23 @@ let predOpenShows = new Set();
 let predOpenGroups = new Set();
 let predBusy      = false;
 let predLoading   = false;
+let predNames     = {};      // user_id -> username
+let predBetsUser  = null;    // whose bets the card is showing
 
 function predBetsFor(marketId) {
     return predBets.filter(b => String(b.market_id) === String(marketId));
+}
+
+// what this user's bets on `outcome` pay if it wins, each at its locked price
+function predMyReturn(marketId, outcome) {
+    if (!currentUser) return 0;
+    let total = 0;
+    for (const b of predBetsFor(marketId)) {
+        if (b.user_id !== currentUser.id || b.outcome !== outcome) continue;
+        const m = predBetMultiple(b);
+        if (m !== null) total += Number(b.stake) * m;
+    }
+    return Math.round(total * 100) / 100;
 }
 
 function predMyStake(marketId, outcome) {
@@ -507,7 +530,7 @@ async function predLoadInner(container) {
 
     const [mRes, bRes] = await Promise.all([
         sbClient.from('pred_markets').select('*').order('show_date', { ascending: true }),
-        sbClient.from('pred_bets').select('market_id,user_id,outcome,stake'),
+        sbClient.from('pred_bets').select('market_id,user_id,outcome,stake,prior_at_bet'),
     ]);
 
     // an empty board and a failed query look identical once the data is gone,
@@ -543,6 +566,59 @@ function predNote(text) {
 const PRED_KIND_LABEL = {
     slot: 'slot', closer: 'closer', rare: 'rare', debut: 'debut',
 };
+
+// everyone who has actually placed a bet, most-staked first so the list is
+// ordered by involvement rather than by whatever order the rows arrived in.
+function predBettors() {
+    const staked = {};
+    for (const b of predBets) staked[b.user_id] = (staked[b.user_id] || 0) + Number(b.stake);
+    return Object.keys(staked)
+        .filter(u => predNames[u])
+        .sort((a, b) => staked[b] - staked[a]);
+}
+
+function predRenderBetsUserSelect(bettors) {
+    const sel = document.getElementById('predBetsUser');
+    if (!sel) return;
+    if (!bettors.length) { sel.innerHTML = ''; sel.style.display = 'none'; return; }
+    sel.style.display = '';
+    sel.innerHTML = bettors.map(u => {
+        const label = (currentUser && u === currentUser.id)
+            ? `${predNames[u]} (you)` : predNames[u];
+        return `<option value="${predEscape(u)}"${u === predBetsUser ? ' selected' : ''}>${predEscape(label)}</option>`;
+    }).join('');
+    sel.value = predBetsUser || '';
+}
+
+function predSelectBetsUser(userId) {
+    predBetsUser = userId || null;
+    predRenderMyBets();
+    // opened from a leaderboard name, the card may still be collapsed
+    const body = document.getElementById('body-predpanel-mybets');
+    const toggle = document.getElementById('toggle-predpanel-mybets');
+    if (body && toggle && !predOpenGroups.has('predpanel-mybets')) {
+        body.classList.toggle('open');
+        toggle.textContent = '−';
+        predOpenGroups.add('predpanel-mybets');
+    }
+}
+
+function predSetPanelTitle(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+}
+
+function predSetPanelMeta(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+}
+
+function predMarketTitle(market) {
+    if (market.kind === 'slot')   return `song ${Number(market.slot) + 1}`;
+    if (market.kind === 'closer') return 'closer';
+    if (market.kind === 'debut')  return 'any live debut';
+    return market.subject || PRED_KIND_LABEL[market.kind] || market.kind;
+}
 
 function predEscape(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -630,6 +706,17 @@ function predRenderGroup(date, key, label, list) {
     </div>`;
 }
 
+// the leaderboard and your-bets cards toggle like every other card on the site
+function predTogglePanel(key) {
+    const id = 'predpanel-' + key;
+    const body = document.getElementById('body-' + id);
+    const toggle = document.getElementById('toggle-' + id);
+    if (!body || !toggle) return;
+    const isOpen = body.classList.toggle('open');
+    toggle.textContent = isOpen ? '−' : '+';
+    if (isOpen) predOpenGroups.add(id); else predOpenGroups.delete(id);
+}
+
 function predToggleGroup(id) {
     const body = document.getElementById('body-' + id);
     const toggle = document.getElementById('toggle-' + id);
@@ -648,10 +735,7 @@ function predRenderMarket(market) {
 
     const entries = Object.entries(prices).sort((a, b) => b[1] - a[1]);
 
-    let title = market.subject || PRED_KIND_LABEL[market.kind] || market.kind;
-    if (market.kind === 'slot')    title = `song ${Number(market.slot) + 1}`;
-    if (market.kind === 'closer')  title = 'closer';
-    if (market.kind === 'debut')   title = 'any live debut';
+    const title = predMarketTitle(market);
 
     const resolved = market.status === 'resolved'
         ? `<span class="pred-resolved">resolved: ${predEscape(market.resolved_outcome)}</span>` : '';
@@ -660,6 +744,7 @@ function predRenderMarket(market) {
     const rows = entries.map(([outcome, p]) => {
         const mult  = predPayoutMultiple(market, bets, outcome);
         const mine  = predMyStake(market.id, outcome);
+        const myRet = predMyReturn(market.id, outcome);
         const won   = market.status === 'resolved' && market.resolved_outcome === outcome;
         const onPool = pool[outcome] || 0;
         return `<div class="pred-row${won ? ' pred-won' : ''}">
@@ -669,7 +754,7 @@ function predRenderMarket(market) {
                 <span class="pred-pct">${predFormatPct(p)}</span>
                 <span class="pred-mult">${predFormatMultiple(mult)}</span>
                 <span class="pred-pool">${onPool ? predFormatCoins(onPool) + 'g' : ''}</span>
-                <span class="pred-mine">${mine ? 'you: ' + predFormatCoins(mine) + 'g' : ''}</span>
+                <span class="pred-mine">${mine ? 'you: ' + predFormatCoins(mine) + 'g → ' + predFormatCoins(myRet) + 'g' : ''}</span>
                 ${locked ? '' : `<button class="pred-bet-btn" data-market="${market.id}" data-outcome="${predEscape(outcome)}" onclick="predBetFromButton(this)">bet</button>`}
             </div>
         </div>`;
@@ -822,6 +907,8 @@ async function predSubmitBet() {
     if (data && data.balance !== undefined) predBalance = Number(data.balance);
     predCloseBet();
     await loadPredictions();
+    await predLoadLeaderboard();
+    predRenderMyBets();
 }
 
 // ─── Leaderboard ───────────────────────────────────────────────────────────
@@ -836,30 +923,162 @@ async function predLoadLeaderboard() {
     ]);
     const names = {};
     for (const p of profRes.data || []) names[p.user_id] = p.username;
+    predNames = names;
 
     const rows = (balRes.data || []).filter(r => names[r.user_id]);
-    if (!rows.length) { el.innerHTML = predNote('nobody has placed a bet yet.'); return; }
+    if (!rows.length) {
+        predSetPanelMeta('predLeaderboardMeta', '');
+        el.innerHTML = predNote('nobody has placed a bet yet.');
+        return;
+    }
 
     // stakes on unsettled markets aren't in the balance, so show them alongside
     // it. a locked market is still unsettled: the show has happened but its
     // setlist hasn't landed yet, and that money is very much still at risk.
-    const atRisk = {};
+    const atRisk = {}, dream = {}, odds = {}, conflicted = {};
+    const perUserMarket = {};   // user -> market -> outcomes backed
     for (const b of predBets) {
         const m = predMarkets.find(x => String(x.id) === String(b.market_id));
-        if (m && (m.status === 'open' || m.status === 'locked')) {
-            atRisk[b.user_id] = (atRisk[b.user_id] || 0) + Number(b.stake);
+        if (!m || (m.status !== 'open' && m.status !== 'locked')) continue;
+        const u = b.user_id;
+        atRisk[u] = (atRisk[u] || 0) + Number(b.stake);
+
+        // payout if every open bet wins, each at the price it locked in
+        const mult = predBetMultiple(b);
+        if (mult !== null) dream[u] = (dream[u] || 0) + Number(b.stake) * mult;
+
+        // chance of that happening. bets on different markets multiply; two
+        // bets on different outcomes of the SAME market cannot both win, so
+        // that parlay is impossible rather than merely unlikely.
+        const seen = perUserMarket[u] || (perUserMarket[u] = {});
+        const key = String(b.market_id);
+        if (seen[key] === undefined) {
+            seen[key] = b.outcome;
+            const p = Number(b.prior_at_bet);
+            odds[u] = (odds[u] === undefined ? 1 : odds[u]) * (p > 0 ? p : 0);
+        } else if (seen[key] !== b.outcome) {
+            conflicted[u] = true;
         }
     }
 
-    el.innerHTML = `<table class="pred-table">
-        <tr><th>#</th><th>user</th><th>gliffcoins</th><th>at risk</th></tr>
-        ${rows.map((r, i) => `<tr${currentUser && r.user_id === currentUser.id ? ' class="pred-me"' : ''}>
+    const me = rows.findIndex(r => currentUser && r.user_id === currentUser.id);
+    predSetPanelMeta('predLeaderboardMeta',
+        `${rows.length} player${rows.length === 1 ? '' : 's'}` +
+        (me >= 0 ? ` · you are #${me + 1}` : ''));
+
+    el.innerHTML = `<div class="pred-scroll"><table class="pred-table">
+        <tr><th>#</th><th>user</th><th>gliffcoins</th><th>at risk</th>
+            <th>if all hit</th><th>chance</th></tr>
+        ${rows.map((r, i) => {
+            const u = r.user_id;
+            const win = dream[u];
+            const p = conflicted[u] ? 0 : odds[u];
+            return `<tr${currentUser && u === currentUser.id ? ' class="pred-me"' : ''}>
             <td>${i + 1}</td>
-            <td>${predEscape(names[r.user_id])}</td>
+            <td><span class="pred-leader-name" onclick="predSelectBetsUser('${predEscape(u)}')">${predEscape(names[u])}</span></td>
             <td>${predFormatCoins(r.balance)}</td>
-            <td>${atRisk[r.user_id] ? predFormatCoins(atRisk[r.user_id]) : '—'}</td>
+            <td>${atRisk[u] ? predFormatCoins(atRisk[u]) : '—'}</td>
+            <td>${win ? predFormatCoins(Math.round(win * 100) / 100) : '—'}</td>
+            <td>${p === undefined ? '—' : predFormatParlay(p)}</td>
+        </tr>`; }).join('')}
+    </table></div>`;
+}
+
+// ─── Your bets ─────────────────────────────────────────────────────────────
+
+// what the returns column says: a settled bet reports what happened, a live one
+// reports what it would pay. showing a would-pay figure on a lost bet reads as
+// though the money is still coming.
+function predBetReturnCell(r) {
+    if (r.state === 'lost') return '—';
+    if (r.state === 'void — refunded') return predFormatCoins(r.b.stake) + 'g';
+    if (r.ret === null) return '—';
+    const amt = predFormatCoins(Math.round(r.ret * 100) / 100) + 'g';
+    return r.state === 'won' ? amt : amt;
+}
+
+// every bet this user holds, by show date, with the price each locked in.
+function predRenderMyBets() {
+    const el = document.getElementById('predMyBets');
+    if (!el) return;
+    // whose bets to show: an explicit pick, else yourself, else the first bettor
+    const bettors = predBettors();
+    if (predBetsUser === null || !bettors.includes(predBetsUser)) {
+        predBetsUser = (currentUser && bettors.includes(currentUser.id))
+            ? currentUser.id
+            : (bettors[0] || null);
+    }
+    predRenderBetsUserSelect(bettors);
+
+    const isMe = currentUser && predBetsUser === currentUser.id;
+    const who = isMe ? 'you' : (predNames[predBetsUser] || 'this user');
+    predSetPanelTitle('predMyBetsTitle', isMe ? 'your bets' : `${who}'s bets`);
+
+    if (!predBetsUser) {
+        predSetPanelMeta('predMyBetsMeta', '');
+        el.innerHTML = predNote(currentUser
+            ? 'nobody has placed a bet yet.'
+            : 'log in or pick a user to see their bets.');
+        return;
+    }
+
+    const mine = predBets.filter(b => b.user_id === predBetsUser);
+    if (!mine.length) {
+        predSetPanelMeta('predMyBetsMeta', 'nothing riding yet');
+        el.innerHTML = predNote(isMe
+            ? 'you have not placed any bets yet.'
+            : `${who} has not placed any bets yet.`);
+        return;
+    }
+
+    const rows = mine.map(b => {
+        const m = predMarkets.find(x => String(x.id) === String(b.market_id));
+        const mult = predBetMultiple(b);
+        const ret = mult === null ? null : Number(b.stake) * mult;
+        let state = 'open', cls = '';
+        if (!m) state = '—';
+        else if (m.status === 'void') { state = 'void — refunded'; }
+        else if (m.status === 'resolved') {
+            const won = m.resolved_outcome === b.outcome;
+            state = won ? 'won' : 'lost';
+            cls = won ? ' class="pred-won-row"' : ' class="pred-lost-row"';
+        } else if (m.status === 'locked' || predShowStarted(m.show_date)) {
+            state = 'awaiting setlist';
+        }
+        return { b, m, mult, ret, state, cls };
+    }).sort((a, b) => {
+        const da = a.m ? a.m.show_date : '';
+        const db = b.m ? b.m.show_date : '';
+        return da.localeCompare(db);
+    });
+
+    const staked = mine.reduce((t, b) => t + Number(b.stake), 0);
+    const live = rows.filter(r => r.state === 'open' || r.state === 'awaiting setlist');
+    const couldWin = live.reduce((t, r) => t + (r.ret || 0), 0);
+
+    predSetPanelMeta('predMyBetsMeta',
+        `${mine.length} bet${mine.length === 1 ? '' : 's'} · ${predFormatCoins(staked)}g staked` +
+        (live.length ? ` · ${predFormatCoins(Math.round(couldWin * 100) / 100)}g if all win` : ''));
+
+    el.innerHTML = `<div class="pred-scroll"><table class="pred-table pred-bets-table">
+        <tr><th>show</th><th>market</th><th>pick</th><th>stake</th><th>at</th><th>returns</th><th></th></tr>
+        ${rows.map(r => `<tr${r.cls}>
+            <td>${r.m ? predEscape(r.m.show_date) : '—'}</td>
+            <td>${r.m ? predEscape(predMarketTitle(r.m)) : '—'}</td>
+            <td>${predEscape(r.b.outcome)}</td>
+            <td>${predFormatCoins(r.b.stake)}g</td>
+            <td>${r.b.prior_at_bet ? predFormatPct(Number(r.b.prior_at_bet)) : '—'}</td>
+            <td>${predBetReturnCell(r)}</td>
+            <td class="pred-bet-state">${predEscape(r.state)}</td>
         </tr>`).join('')}
-    </table>`;
+        <tr class="pred-bets-total">
+            <td colspan="3">${mine.length} bet${mine.length === 1 ? '' : 's'}, ${live.length} live</td>
+            <td>${predFormatCoins(staked)}g</td>
+            <td></td>
+            <td>${predFormatCoins(Math.round(couldWin * 100) / 100)}g</td>
+            <td class="pred-bet-state">if every live bet wins</td>
+        </tr>
+    </table></div>`;
 }
 
 // ─── Init ──────────────────────────────────────────────────────────────────
@@ -881,5 +1100,5 @@ function initPredictions() {
         return;
     }
     if (predLoading) return;   // a load is already in flight
-    loadPredictions().then(predLoadLeaderboard);
+    loadPredictions().then(() => predLoadLeaderboard()).then(predRenderMyBets);
 }

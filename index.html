@@ -790,7 +790,7 @@
         .pred-venue {
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 11px;
-            color: #777;
+            color: #56606a;
             margin-top: 2px;
         }
         .pred-market {
@@ -811,23 +811,23 @@
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border: 1px solid #ccc;
+            border: 1px solid #bbb;
             padding: 1px 5px;
-            color: #777;
+            color: #56606a;
         }
         .pred-title { font-weight: bold; }
-        .pred-total { margin-left: auto; color: #999; font-size: 11px; }
+        .pred-total { margin-left: auto; color: #5c6870; font-size: 11px; }
         .pred-resolved { color: #080; font-size: 11px; }
         .pred-row {
             position: relative;
-            border: 1px solid #eee;
+            border: 1px solid #dfe6ea;
             margin-bottom: 3px;
             overflow: hidden;
         }
         .pred-bar {
             position: absolute;
             left: 0; top: 0; bottom: 0;
-            background: #eef3f6;
+            background: #cfe0ea;
             pointer-events: none;
         }
         .pred-row-inner {
@@ -841,8 +841,8 @@
         }
         .pred-outcome { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .pred-pct  { flex: 0 0 46px; text-align: right; font-weight: bold; }
-        .pred-mult { flex: 0 0 52px; text-align: right; color: #666; }
-        .pred-pool { flex: 0 0 56px; text-align: right; color: #999; font-size: 11px; }
+        .pred-mult { flex: 0 0 52px; text-align: right; color: #4a5560; }
+        .pred-pool { flex: 0 0 56px; text-align: right; color: #5c6870; font-size: 11px; }
         .pred-mine { flex: 0 0 78px; text-align: right; color: #080; font-size: 11px; }
         .pred-won { border-color: #080; }
         .pred-bet-btn {
@@ -867,7 +867,7 @@
         .pred-group-head:hover { background: #f5f5f5; }
         .pred-group-toggle { width: 10px; color: #888; }
         .pred-group-label { font-weight: bold; }
-        .pred-group-meta { margin-left: auto; color: #999; font-size: 11px; }
+        .pred-group-meta { margin-left: auto; color: #5c6870; font-size: 11px; }
         .pred-group-body { display: none; }
         .pred-group-body.open { display: block; }
         .pred-group-body .pred-market { border-top: 1px solid #f4f4f4; }
@@ -877,6 +877,73 @@
         html.dark .pred-group-toggle { color: #a8bcc8; }
         html.dark .pred-group-meta { color: #8fa6b4; }
         html.dark .pred-group-body .pred-market { border-top-color: #24303f; }
+
+        .pred-bets-table td { white-space: nowrap; }
+        .pred-bets-table td:first-child, .pred-bets-table th:first-child { color: inherit; }
+        .pred-bets-table td:nth-child(2), .pred-bets-table th:nth-child(2),
+        .pred-bets-table td:nth-child(3), .pred-bets-table th:nth-child(3) { text-align: left; }
+        .pred-bets-table td:last-child, .pred-bets-table th:last-child { text-align: left; }
+        .pred-bet-state {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #5c6870;
+        }
+        .pred-bets-total td {
+            border-top: 2px solid #ddd;
+            border-bottom: none;
+            color: #777;
+            font-weight: bold;
+        }
+        .pred-bets-total:hover td { background: transparent; }
+        .pred-won-row td { color: #080; }
+        .pred-won-row .pred-bet-state { color: #080; }
+        .pred-lost-row td { color: #aaa; }
+        .pred-lost-row td:nth-child(2), .pred-lost-row td:nth-child(3) { text-decoration: line-through; }
+
+        html.dark .pred-bets-table .pred-bet-state { color: #8fa6b4; }
+        html.dark .pred-bets-total td { border-top-color: #2c3e50; color: #a8bcc8; }
+        html.dark .pred-won-row td { color: #6adb6a; }
+        html.dark .pred-lost-row td { color: #7d8f9c; }
+
+        /* separates the betting board above from the summary cards below */
+        .pred-section-break {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 30px 0 14px;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #56606a;
+        }
+        .pred-section-break:before, .pred-section-break:after {
+            content: '';
+            flex: 1;
+            border-top: 2px solid #ddd;
+        }
+        html.dark .pred-section-break { color: #a8bcc8; }
+        html.dark .pred-section-break:before, html.dark .pred-section-break:after {
+            border-top-color: #2c3e50;
+        }
+
+        .pred-user-select {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            padding: 3px 6px;
+            border: 1px solid #bbb;
+            background: white;
+            color: inherit;
+            cursor: pointer;
+            max-width: 180px;
+        }
+        html.dark .pred-user-select {
+            background: #16202c;
+            border-color: #2c3e50;
+            color: #eaf2f5;
+        }
+        .pred-leader-name { cursor: pointer; text-decoration: underline; }
 
         .pred-dialog {
             display: none;
@@ -919,15 +986,29 @@
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 12px;
             width: 100%;
-            max-width: 460px;
         }
         .pred-table th, .pred-table td {
             border-bottom: 1px solid #eee;
-            padding: 4px 8px;
+            padding: 7px 10px;
             text-align: left;
         }
-        .pred-table th { color: #777; font-weight: normal; font-size: 11px; }
-        .pred-me td { font-weight: bold; }
+        .pred-table tr:last-child td { border-bottom: none; }
+        .pred-table th {
+            color: #56606a;
+            font-weight: normal;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom-width: 2px;
+            border-bottom-color: #ddd;
+        }
+        .pred-table tbody tr:hover td, .pred-table tr:hover td { background: #fafafa; }
+        .pred-me td { font-weight: bold; background: #f4f8fa; }
+        .pred-me:hover td { background: #eef4f7; }
+        /* numeric columns read better right-aligned */
+        .pred-table td:nth-child(n+3), .pred-table th:nth-child(n+3) { text-align: right; }
+        .pred-table td:first-child, .pred-table th:first-child { color: #999; }
+        .pred-scroll { overflow-x: auto; }
 
         html.dark .pred-venue { color: #a8bcc8; }
         html.dark .pred-market { border-top-color: #2c3e50; }
@@ -943,8 +1024,13 @@
         html.dark .pred-dialog-sub { color: #b8ccd6; }
         html.dark .pred-dialog-cap { color: #e0a860; }
         html.dark .pred-dialog-note { color: #8fa6b4; }
-        html.dark .pred-table th { color: #a8bcc8; }
+        html.dark .pred-table th { color: #a8bcc8; border-bottom-color: #35506a; }
         html.dark .pred-table th, html.dark .pred-table td { border-bottom-color: #2c3e50; }
+        html.dark .pred-table tr:hover td { background: #24303f; }
+        html.dark .pred-me td { background: #24384a; }
+        html.dark .pred-me:hover td { background: #2a4054; }
+        html.dark .pred-table td:first-child { color: #8fa6b4; }
+        html.dark .pred-bets-total td { border-top-color: #35506a; }
 
         /* Dark mode */
         html.dark .muted { color: #cfe0e8; }
@@ -1355,10 +1441,42 @@
                 <div id="predBalance" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:inherit;flex-shrink:0;"></div>
             </div>
             <div id="predictionsResults"></div>
-            <details style="margin-top:16px;">
-                <summary style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:12px;cursor:pointer;user-select:none;">leaderboard</summary>
-                <div id="predLeaderboard" style="margin-top:8px;"></div>
-            </details>
+
+            <div class="pred-section-break">
+                <span>your standing</span>
+            </div>
+
+            <div class="era-block">
+                <div class="era-header" onclick="predTogglePanel('leaderboard')">
+                    <div>
+                        <div class="era-title">leaderboard</div>
+                        <div class="pred-venue" id="predLeaderboardMeta"></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:16px;">
+                        <div class="era-toggle" id="toggle-predpanel-leaderboard">+</div>
+                    </div>
+                </div>
+                <div class="era-body" id="body-predpanel-leaderboard">
+                    <div id="predLeaderboard"></div>
+                </div>
+            </div>
+            <div class="era-block">
+                <div class="era-header" onclick="predTogglePanel('mybets')">
+                    <div>
+                        <div class="era-title" id="predMyBetsTitle">your bets</div>
+                        <div class="pred-venue" id="predMyBetsMeta"></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <select id="predBetsUser" class="pred-user-select"
+                                onclick="event.stopPropagation()"
+                                onchange="predSelectBetsUser(this.value)"></select>
+                        <div class="era-toggle" id="toggle-predpanel-mybets">+</div>
+                    </div>
+                </div>
+                <div class="era-body" id="body-predpanel-mybets">
+                    <div id="predMyBets"></div>
+                </div>
+            </div>
             <div id="predBetDialog" class="pred-dialog"></div>
         </div>
     </main>

@@ -127,7 +127,7 @@ async function main() {
         }
 
         const { data: bets, error: bErr } = await sb.from('pred_bets')
-            .select('id,user_id,outcome,stake').eq('market_id', market.id);
+            .select('id,user_id,outcome,stake,prior_at_bet').eq('market_id', market.id);
         if (bErr) throw bErr;
 
         const payouts = ctx.predSettle(market, bets || [], outcome);
