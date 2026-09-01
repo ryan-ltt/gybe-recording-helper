@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="/config.js" onerror="void 0"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="/best-recordings.js"></script>
+    <script src="/best-recordings-loader.js"></script>
     <link rel="stylesheet" href="/index.css">
     <style>
         /* Header */
@@ -596,7 +596,10 @@
         }
 
         // Init
-        fetch('/setlists.json').then(r => r.json()).then(setlistsData => {
+        Promise.all([
+            fetch('/setlists.json').then(r => r.json()),
+            BEST_RECORDINGS_READY
+        ]).then(([setlistsData]) => {
             for (const s of setlistsData) {
                 showByDate[s.date] = s;
                 if (s.recordings && s.recordings.length > 0) {

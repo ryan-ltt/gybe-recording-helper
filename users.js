@@ -6,6 +6,7 @@ let userTabState = {}; // userId -> 'attended'|'listened'
 async function loadUsers() {
     usersLoaded = true;
     const container = document.getElementById('usersContainer');
+    await BEST_RECORDINGS_READY;
 
     const { data: profiles, error } = sbClient
         ? await sbClient.from('profiles').select('user_id, username, created_at').eq('is_public', true).order('created_at', { ascending: true })

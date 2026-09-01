@@ -5,6 +5,7 @@ async function loadPicks() {
   const container = document.getElementById('picksContainer');
   container.innerHTML = '<p style="font-family:Monaco,\'JetBrains Mono\',monospace;font-size:13px;color:#888;">loading...</p>';
   if (!sbClient) { container.innerHTML = '<p style="font-family:Monaco,\'JetBrains Mono\',monospace;font-size:13px;color:#888;">no database connection.</p>'; return; }
+  await BEST_RECORDINGS_READY;
   const { data: profiles } = await sbClient.from('profiles').select('user_id,username').eq('is_public', true);
   const usernameMap = {};
   const allowedIds = [];

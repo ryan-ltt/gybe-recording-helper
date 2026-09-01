@@ -221,7 +221,10 @@ let myPicksDirty = false;
 let myPicksSaved = []; // snapshot of last saved state for per-row dirty tracking
 let picksDragSrcIdx = null;
 
-fetch('setlists.json').then(r => r.json()).then(data => {
+Promise.all([
+    fetch('setlists.json').then(r => r.json()),
+    BEST_RECORDINGS_READY
+]).then(([data]) => {
     shows = data;
     buildIndex();
     buildAlbumSections();
