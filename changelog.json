@@ -613,5 +613,16 @@
         "title": "Godspeed You! Black Emperor Live at Maxwell's on 1999-09-07"
       }
     ]
+  },
+  {
+    "timestamp": "2026-09-03 12:42:15",
+    "new_recordings": [
+      {
+        "show_date": "2023-03-21",
+        "venue": "washington's, ft. collins, co",
+        "id": "gybe2023-03-21.remaster",
+        "title": "Godspeed You! Black Emperor Live at Washington's on 2023-03-21"
+      }
+    ]
   }
 ]

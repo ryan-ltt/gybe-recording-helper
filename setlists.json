@@ -16283,6 +16283,13 @@
         "title": "Godspeed You! Black Emperor Live at Washington's on 2023-03-21",
         "lineage": "CF>Soundforge->Audacity (source mixing)->CD wave->TLH->flac16",
         "source": "Neumann km 183 omnis + beyerdynamic mc 930 cards"
+      },
+      {
+        "id": "gybe2023-03-21.remaster",
+        "url": "https://archive.org/details/gybe2023-03-21.remaster",
+        "title": "Godspeed You! Black Emperor Live at Washington's on 2023-03-21",
+        "lineage": "WAV > Adobe Audition (phase matching, MB compression, EQ, light compression, mixdown) > WAV (48/24) > FLAC (level 8)",
+        "source": "km183 ORTF + mc830 ORTF > H8 > WAV (48/24)"
       }
     ]
   },
