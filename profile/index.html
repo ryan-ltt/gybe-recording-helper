@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="/config.js" onerror="void 0"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="/songs.js"></script>
     <script src="/best-recordings-loader.js"></script>
     <link rel="stylesheet" href="/index.css">
     <style>
@@ -96,6 +97,23 @@
             transition: all 0.15s;
         }
         .find-btn:hover { background: white; color: black; }
+
+        /* Song stats — reuses the .year-group card shell */
+        .song-stats-actions { margin-top: 10px; }
+        .copy-btn { padding: 2px 10px; font-size: 11px; border-width: 1px; }
+        .song-stat-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            padding: 4px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .song-stat-name { flex: 1; }
+        .song-stat-bar { flex: 0 0 90px; height: 6px; background: #eee; }
+        .song-stat-bar > div { height: 100%; background: black; }
+        .song-stat-count { font-weight: bold; white-space: nowrap; min-width: 34px; text-align: right; }
 
         /* Tab nav */
         .tab-nav {
@@ -248,6 +266,9 @@
         html.dark .empty-state { color: #eaf2f5; }
         html.dark .not-logged-in { color: #eaf2f5; }
         html.dark details summary { color: #eaf2f5; }
+        html.dark .song-stat-row { border-bottom-color: #2c3e50; color: #eaf2f5; }
+        html.dark .song-stat-bar { background: #2c3e50; }
+        html.dark .song-stat-bar > div { background: #eaf2f5; }
         html.dark textarea { background: transparent; color: #c8dce6; }
     </style>
 </head>
@@ -273,6 +294,8 @@
         let trackingData = {};
         let votesData = []; // [{ song, show_date }]
         let activeTab = 'attended';
+        let songStatsOpen = false; // keep the card expanded across tab switches
+        let songStatsText = ''; // plain-text tally, built alongside the rendered rows
 
         // Build a date→show lookup from setlists data
         const showByDate = {};
@@ -358,8 +381,10 @@
                     <button class="tab-btn${activeTab === 'listened' ? ' active' : ''}" onclick="switchTab('listened')">listened (${listenedCount})</button>
                     <button class="tab-btn${activeTab === 'votes' ? ' active' : ''}" onclick="switchTab('votes')">votes (${votesData.length})</button>
                 </div>
+                <div id="songStats"></div>
                 <div id="showList"></div>`;
 
+            renderSongStats();
             renderShowList();
         }
 
@@ -368,8 +393,98 @@
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.textContent.startsWith(tab));
             });
+            renderSongStats();
             if (tab === 'votes') renderVotesList();
             else renderShowList();
+        }
+
+        // Tally how many times each canonical song appears across the shows on the
+        // active tab. A song played twice in one night counts twice; junk setlist
+        // entries (normalizeSong returns null) are dropped.
+        // Plain "name count" lines, matching the format people paste into forums.
+        function copySongStats(btn) {
+            const text = songStatsText;
+            const done = ok => {
+                btn.textContent = ok ? 'copied' : 'copy failed';
+                setTimeout(() => { btn.textContent = 'copy'; }, 1500);
+            };
+            if (navigator.clipboard?.writeText) {
+                navigator.clipboard.writeText(text).then(() => done(true), () => done(fallbackCopy(text)));
+            } else {
+                done(fallbackCopy(text));
+            }
+        }
+
+        // clipboard API needs a secure context; fall back for plain http / older browsers
+        function fallbackCopy(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            let ok = false;
+            try { ok = document.execCommand('copy'); } catch { ok = false; }
+            document.body.removeChild(ta);
+            return ok;
+        }
+
+        function renderSongStats() {
+            const el = document.getElementById('songStats');
+            if (!el) return;
+
+            if (activeTab !== 'attended' && activeTab !== 'listened') {
+                el.innerHTML = '';
+                return;
+            }
+
+            const counts = {};
+            let showCount = 0;
+            for (const [date, td] of Object.entries(trackingData)) {
+                if (!td[activeTab]) continue;
+                const show = showByDate[date];
+                if (!show) continue;
+                showCount++;
+                for (const raw of show.songs) {
+                    const canon = typeof normalizeSong === 'function' ? normalizeSong(raw) : null;
+                    if (canon) counts[canon] = (counts[canon] || 0) + 1;
+                }
+            }
+
+            const rows = Object.entries(counts)
+                .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+            if (rows.length === 0) {
+                el.innerHTML = '';
+                return;
+            }
+
+            const max = rows[0][1];
+            const label = activeTab === 'attended' ? 'seen' : 'heard';
+            songStatsText = rows.map(([song, n]) => `${song} ${n}x`).join('\n');
+            const body = rows.map(([song, n]) =>
+                `<div class="song-stat-row">
+                    <span class="song-stat-name">${song}</span>
+                    <span class="song-stat-bar"><div style="width:${(n / max) * 100}%"></div></span>
+                    <span class="song-stat-count">${n}x</span>
+                </div>`
+            ).join('');
+
+            el.innerHTML = `<div class="year-group">
+                <div class="year-header" onclick="toggleYear('songstats')">
+                    <div class="year-label">song stats</div>
+                    <div class="year-meta">
+                        <span>${rows.length} song${rows.length !== 1 ? 's' : ''} ${label} across ${showCount} show${showCount !== 1 ? 's' : ''}</span>
+                        <span class="year-toggle" id="ytgl-songstats">${songStatsOpen ? '−' : '+'}</span>
+                    </div>
+                </div>
+                <div class="year-body${songStatsOpen ? ' open' : ''}" id="ybody-songstats">
+                    ${body}
+                    <div class="song-stats-actions">
+                        <button class="find-btn secondary-btn copy-btn" onclick="copySongStats(this)">copy</button>
+                    </div>
+                </div>
+            </div>`;
         }
 
         function renderShowList() {
@@ -512,6 +627,7 @@
             const tgl = document.getElementById('ytgl-' + id);
             const isOpen = body.classList.toggle('open');
             tgl.textContent = isOpen ? '−' : '+';
+            if (id === 'songstats') songStatsOpen = isOpen; // survives a tab switch re-render
             if (isOpen) {
                 body.querySelectorAll('textarea[id^="note-"]').forEach(ta => {
                     ta.style.height = 'auto';
