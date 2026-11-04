@@ -94,10 +94,11 @@ function renderEraShowList(eraShows, filter, prefix = '', showLineage = false) {
               }).join('')}</div>`
             : '';
         const mainSongs = [], soundcheckSongs = [];
-        for (const song of s.songs) {
+        const songLengths = s.song_lengths || [];
+        s.songs.forEach((song, i) => {
             if (/\(soundcheck\)/i.test(song)) soundcheckSongs.push(song);
-            else mainSongs.push(song);
-        }
+            else mainSongs.push(songLengths[i] ? `${song} <span class="song-len">${formatDuration(songLengths[i])}</span>` : song);
+        });
         let setlistText = '';
         if (soundcheckSongs.length > 0) {
             setlistText += `<span class="muted" style="font-size:10px;display:block;margin-bottom:2px;">soundcheck</span>` +
@@ -105,6 +106,7 @@ function renderEraShowList(eraShows, filter, prefix = '', showLineage = false) {
                 `<br><span class="muted" style="font-size:10px;display:block;margin-top:6px;margin-bottom:2px;">setlist</span>`;
         }
         setlistText += mainSongs.join('<br>');
+        if (s.length && s.songs.length) setlistText += `<br><span class="song-len" title="length of the preferred recording on archive.org">total ${formatDuration(s.length)}</span>`;
         if (s.note) setlistText += `<br><span class="muted" style="padding-left:16px;font-size:11px;white-space:pre-line;">${s.note}</span>`;
         const id = 'sl-' + prefix + s.date.replace(/\W/g, '-');
         const td = trackingData[s.date] || { attended: false, listened: false };
@@ -123,14 +125,14 @@ function renderEraShowList(eraShows, filter, prefix = '', showLineage = false) {
             const noteStyle = 'flex:1;border:none;padding:2px 0;font-family:Monaco,\'JetBrains Mono\',monospace;font-size:11px;color:inherit;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;';
             const btnStyle = 'font-family:Monaco,\'JetBrains Mono\',monospace;font-size:10px;padding:2px 8px;border:1px solid currentColor;background:transparent;cursor:pointer;color:inherit;flex-shrink:0;';
             const parts = [];
-            if (td.attended) parts.push(`<div style="margin-top:${hasSetlist?'8px':'0'};padding-top:${hasSetlist?'6px':'0'};border-top:${hasSetlist?'1px solid #eee':'none'};" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">attended note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="anote-${prefix}${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.attended_notes)}</textarea><button onclick="saveEraNote('${s.date}','attended_notes',document.getElementById('anote-${prefix}${s.date}').value)" style="${btnStyle}">save</button></div></div>`);
-            if (td.listened) parts.push(`<div style="margin-top:8px;padding-top:6px;border-top:1px solid #eee;" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">listened note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="lnote-${prefix}${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.listened_notes)}</textarea><button onclick="saveEraNote('${s.date}','listened_notes',document.getElementById('lnote-${prefix}${s.date}').value)" style="${btnStyle}">save</button></div></div>`);
+            if (td.attended) parts.push(`<div style="margin-top:${hasSetlist?'8px':'0'};padding-top:${hasSetlist?'6px':'0'};border-top:${hasSetlist?'1px solid #eee':'none'};" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">attended note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="anote-${prefix}${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.attended_notes)}</textarea><button onclick="saveEraNote('${s.date}','attended_notes',document.getElementById('anote-${prefix}${s.date}').value,this)" style="${btnStyle}">save</button></div></div>`);
+            if (td.listened) parts.push(`<div style="margin-top:8px;padding-top:6px;border-top:1px solid #eee;" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">listened note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="lnote-${prefix}${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.listened_notes)}</textarea><button onclick="saveEraNote('${s.date}','listened_notes',document.getElementById('lnote-${prefix}${s.date}').value,this)" style="${btnStyle}">save</button></div></div>`);
             noteSection = parts.join('');
         }
         const hasExpandable = hasSetlist || !!noteSection;
-        return `<div class="era-show-row"${hasExpandable ? ` onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
+        return `<div class="era-show-row" data-date="${s.date}"${hasExpandable ? ` data-setlist="${id}" onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
             <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
-            <span class="era-show-venue">${s.venue}</span>
+            <span class="era-show-venue">${s.venue}${s.length ? `<span class="song-len era-show-length">${formatDuration(s.length)}</span>` : ''}</span>
             <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
             ${trackBtns}
             <span class="era-show-toggle"${hasExpandable ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
@@ -153,20 +155,27 @@ function toggleShowSetlist(id) {
     }
 }
 
-async function saveEraNote(date, field, value) {
+async function saveEraNote(date, field, value, btn) {
     if (!currentUser || !sbClient) return;
     const note = value.trim() || null;
     if (!trackingData[date]) trackingData[date] = { attended: false, listened: false, listened_notes: '', attended_notes: '' };
+    const previous = trackingData[date][field];
     trackingData[date][field] = note || '';
     const td = trackingData[date];
-    await sbClient.from('show_tracking').upsert(
+    if (btn) { btn.disabled = true; btn.textContent = 'saving…'; }
+    const { error } = await sbClient.from('show_tracking').upsert(
         { user_id: currentUser.id, show_date: date, attended: td.attended, listened: td.listened, listened_notes: td.listened_notes || null, attended_notes: td.attended_notes || null },
         { onConflict: 'user_id,show_date' }
     );
-    const btn = event.target;
-    const orig = btn.textContent;
-    btn.textContent = 'saved';
-    setTimeout(() => { btn.textContent = orig; }, 1500);
+    if (error) {
+        trackingData[date][field] = previous;
+        notifyError(`couldn't save note: ${error.message}`);
+    }
+    if (btn) {
+        btn.disabled = false;
+        btn.textContent = error ? 'retry' : 'saved';
+        if (!error) setTimeout(() => { btn.textContent = 'save'; }, 1500);
+    }
 }
 
 function toggleEra(id) {
@@ -174,6 +183,29 @@ function toggleEra(id) {
     const toggle = document.getElementById('toggle-' + id);
     const isOpen = body.classList.toggle('open');
     toggle.textContent = isOpen ? '−' : '+';
+}
+
+// Jump to one show from elsewhere (e.g. the length tab): open its year, expand its
+// setlist, scroll to it and flash the row.
+function openShowInEras(date) {
+    switchTab('eras');
+    const year = date.slice(0, 4);
+    const body = document.getElementById('body-y' + year);
+    if (!body) return;
+    if (!body.classList.contains('open')) toggleEra('y' + year);
+    const filter = body.querySelector('.era-filter input');
+    if (filter && filter.value) {
+        filter.value = '';
+        filterEraShows('y' + year, '');
+    }
+    const row = body.querySelector(`.era-show-row[data-date="${date}"]`);
+    if (!row) return;   // hidden by the recordings-only / setlists-only toggles
+    const setlistId = row.dataset.setlist;
+    if (setlistId && !document.getElementById(setlistId).classList.contains('open')) toggleShowSetlist(setlistId);
+    row.scrollIntoView({ block: 'center' });
+    row.classList.remove('flash');
+    void row.offsetWidth;   // restart the animation if it's already running
+    row.classList.add('flash');
 }
 
 function filterAllShows(value) {
@@ -231,11 +263,15 @@ function renderTrackStats() {
 async function toggleTracking(date, field) {
     if (!currentUser) return;
     if (!trackingData[date]) trackingData[date] = { attended: false, listened: false };
-    trackingData[date][field] = !trackingData[date][field];
-    document.querySelectorAll(`[data-tbtn="${date}-${field}"]`).forEach(btn => btn.classList.toggle('active', trackingData[date][field]));
-    renderTrackStats();
+    const setState = value => {
+        trackingData[date][field] = value;
+        document.querySelectorAll(`[data-tbtn="${date}-${field}"]`).forEach(btn => btn.classList.toggle('active', value));
+        renderTrackStats();
+    };
+    const previous = !!trackingData[date][field];
+    setState(!previous);
     const td2 = trackingData[date];
-    await sbClient.from('show_tracking').upsert({
+    const { error } = await sbClient.from('show_tracking').upsert({
         user_id: currentUser.id,
         show_date: date,
         attended: td2.attended,
@@ -243,6 +279,10 @@ async function toggleTracking(date, field) {
         attended_notes: td2.attended_notes || null,
         listened_notes: td2.listened_notes || null,
     }, { onConflict: 'user_id,show_date' });
+    if (error) {
+        setState(previous);
+        notifyError(`couldn't update ${date}: ${error.message}`);
+    }
 }
 
 function loadTrackFile(input) {
@@ -281,16 +321,34 @@ async function bulkImportTracking() {
     }
     const rows = matched.map(date => {
         const existing = trackingData[date] || { attended: false, listened: false };
-        return { user_id: currentUser.id, show_date: date, attended: existing.attended, listened: existing.listened, [field]: true };
+        return {
+            user_id: currentUser.id, show_date: date,
+            attended: existing.attended, listened: existing.listened,
+            attended_notes: existing.attended_notes || null, listened_notes: existing.listened_notes || null,
+            [field]: true,
+        };
     });
+    const setButtons = (date, value) =>
+        document.querySelectorAll(`[data-tbtn="${date}-${field}"]`).forEach(btn => btn.classList.toggle('active', value));
+    const previous = {};
     for (const row of rows) {
         if (!trackingData[row.show_date]) trackingData[row.show_date] = { attended: false, listened: false };
+        previous[row.show_date] = !!trackingData[row.show_date][field];
         trackingData[row.show_date][field] = true;
-        const btn = document.getElementById(`tbtn-${row.show_date}-${field}`);
-        if (btn) btn.classList.add('active');
+        setButtons(row.show_date, true);
     }
     renderTrackStats();
-    await sbClient.from('show_tracking').upsert(rows, { onConflict: 'user_id,show_date' });
+    resultEl.textContent = 'importing…';
+    const { error } = await sbClient.from('show_tracking').upsert(rows, { onConflict: 'user_id,show_date' });
+    if (error) {
+        for (const [date, value] of Object.entries(previous)) {
+            trackingData[date][field] = value;
+            setButtons(date, value);
+        }
+        renderTrackStats();
+        resultEl.textContent = `import failed: ${error.message}`;
+        return;
+    }
     let msg = `imported ${matched.length} show${matched.length !== 1 ? 's' : ''}.`;
     if (unmatched.length > 0) msg += ` unrecognized: ${unmatched.join(', ')}`;
     resultEl.textContent = msg;

@@ -13,6 +13,9 @@
 #   python update-shows.py --retry-unknown       # re-attempt lineage/source for recordings marked as unknown
 #   python update-shows.py --skip-prune          # skip dead-recording check (used in daily CI)
 #   python update-shows.py --prune-only          # only check for dead recordings (used in weekly CI)
+#
+# New recordings get their length (archive.org file durations) stored, and show lengths
+# and human song timings are reapplied on every write — see track_lengths.py.
 
 import urllib.request
 import urllib.parse
@@ -23,6 +26,8 @@ import time
 import sys
 import os
 from datetime import datetime
+
+import track_lengths
 
 BASE = 'https://gybecc.neocities.org/gybecc/'
 MONTHS = {
@@ -338,7 +343,7 @@ def _parse_info_txt(txt, lineage='', source=''):
     return lineage, source
 
 def fetch_archive_details(identifier):
-    """Fetch metadata once and return {'lineage': str, 'source': str, 'songs': list}."""
+    """Fetch metadata once and return {'lineage', 'source', 'songs', 'length'}."""
     meta = fetch_archive_metadata(identifier)
 
     def extract_str(key):
@@ -409,7 +414,8 @@ def fetch_archive_details(identifier):
                 if line and 2 < len(line) < 80:
                     songs.append(line)
 
-    return {'lineage': lineage, 'source': source, 'songs': songs}
+    return {'lineage': lineage, 'source': source, 'songs': songs,
+            'length': track_lengths.recording_length(meta)}
 
 # ─── Main ────────────────────────────────────────────────────────────────────
 def main():
@@ -542,6 +548,8 @@ def main():
         entry = {'id': rec['id'], 'url': rec['url'], 'title': rec['title']}
         entry['lineage'] = details['lineage'] or 'unknown'
         entry['source'] = details['source'] or 'unknown'
+        if details['length']:
+            entry['length'] = details['length']
 
         if date in show_by_date or date in {s['date'] for s in new_shows}:
             rec_updates.setdefault(date, []).append(entry)
@@ -591,6 +599,7 @@ def main():
             print('All recordings live. Everything is up to date.')
             return
         print(f'Removed {len(pruned)} dead recording(s)')
+        track_lengths.finalize(merged)
         with open(JSON_PATH, 'w') as f:
             json.dump(merged, f, indent=2)
         print(f'Wrote setlists.json ({len(merged)} shows)')
@@ -650,6 +659,10 @@ def main():
             print('  All recordings live.')
     print()
 
+    # Show/song lengths depend on the setlist and on every recording of the show,
+    # so recompute after all of the above. Uses stored tracks only — no network.
+    track_lengths.finalize(merged)
+
     with open(JSON_PATH, 'w') as f:
         json.dump(merged, f, indent=2)
     print(f'\nWrote setlists.json ({len(merged)} shows)')
@@ -691,6 +704,8 @@ def do_backfill_lineage():
         details = fetch_archive_details(rec['id'])
         rec['lineage'] = details['lineage'] or 'unknown'
         rec['source'] = details['source'] or 'unknown'
+        if 'length' not in rec and details['length']:
+            rec['length'] = details['length']
         summary = f'lineage={rec["lineage"][:50]}  source={rec["source"]}'
         print(summary)
         updated += 1
@@ -702,6 +717,7 @@ def do_backfill_lineage():
         print('[dry run] No files written.')
         return
 
+    track_lengths.finalize(shows)
     with open(JSON_PATH, 'w') as f:
         json.dump(shows, f, indent=2)
     print(f'Wrote setlists.json')
@@ -765,6 +781,7 @@ def do_prune_only():
         print('[dry run] No files written.')
         return
 
+    track_lengths.finalize(shows)
     with open(JSON_PATH, 'w') as f:
         json.dump(shows, f, indent=2)
     print(f'Wrote setlists.json ({len(shows)} shows)')

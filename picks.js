@@ -120,8 +120,8 @@ function renderPicksCardBody(uid) {
       const rowDirty = isMe && (!savedEntry || savedEntry.rank !== i + 1 || savedEntry.note !== (pick.note || null));
       const dirtyBadge = rowDirty ? `<span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;color:#c0392b;margin-left:6px;">unsaved</span>` : '';
       const noteHtml = isMe
-        ? `<textarea placeholder="add a note..." oninput="updatePickNote('${pick.show_date}',this.value);this.style.height='auto';this.style.height=this.scrollHeight+'px'" draggable="false" onmousedown="this.closest('li').setAttribute('draggable','false')" onblur="this.closest('li').setAttribute('draggable','true')" style="margin-top:6px;margin-left:20px;width:calc(100% - 76px);font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;padding:4px 6px;border:1px solid #ccc;background:transparent;color:inherit;resize:none;overflow:hidden;display:block;box-sizing:border-box;">${(pick.note || '').replace(/</g,'&lt;')}</textarea>`
-        : (pick.note ? `<div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:3px;padding-left:20px;">${pick.note}</div>` : '');
+        ? `<textarea placeholder="add a note..." oninput="updatePickNote('${pick.show_date}',this.value);this.style.height='auto';this.style.height=this.scrollHeight+'px'" draggable="false" onmousedown="this.closest('li').setAttribute('draggable','false')" onblur="this.closest('li').setAttribute('draggable','true')" style="margin-top:6px;margin-left:20px;width:calc(100% - 76px);font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;padding:4px 6px;border:1px solid #ccc;background:transparent;color:inherit;resize:none;overflow:hidden;display:block;box-sizing:border-box;">${escapeHtml(pick.note)}</textarea>`
+        : (pick.note ? `<div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:3px;padding-left:20px;">${escapeHtml(pick.note)}</div>` : '');
       return `<li ${dragAttr} data-date="${pick.show_date}" style="position:relative;padding:8px 16px;${isMe ? 'padding-right:56px;' : ''}border-bottom:1px solid #eee;${isMe ? 'cursor:grab;' : ''}"><span style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted">${i + 1}.</span> <strong>${pick.show_date}</strong>${venue ? ` <span class="muted">- ${venue}</span>` : ''}${dirtyBadge}</span>${recsHtml}${noteHtml}${removeBtn}</li>`;
     }).join('');
     html += '</ol>';
@@ -237,8 +237,28 @@ async function saveMyPicks(uid) {
   const btn = document.querySelector('#pbody-' + uid + ' .find-btn');
   if (btn) { btn.textContent = 'saving...'; btn.disabled = true; }
   const rows = myPicksDraft.map((pick, i) => ({ user_id: currentUser.id, show_date: pick.show_date, rank: i + 1, note: pick.note || null }));
-  await sbClient.from('user_picks').delete().eq('user_id', currentUser.id);
-  if (rows.length > 0) await sbClient.from('user_picks').insert(rows);
+  // Save is delete-all then insert. Keep what's in the database so a failed
+  // insert can put it back instead of leaving the user with no picks.
+  const fail = (msg) => {
+    notifyError(`couldn't save picks: ${msg}`);
+    if (btn) { btn.textContent = 'save order'; btn.disabled = false; }
+  };
+  const { data: before, error: readError } = await sbClient.from('user_picks')
+    .select('user_id,show_date,rank,note').eq('user_id', currentUser.id);
+  if (readError) return fail(readError.message);
+  const { error: delError } = await sbClient.from('user_picks').delete().eq('user_id', currentUser.id);
+  if (delError) return fail(delError.message);
+  if (rows.length > 0) {
+    const { error: insError } = await sbClient.from('user_picks').insert(rows);
+    if (insError) {
+      const { error: restoreError } = before && before.length
+        ? await sbClient.from('user_picks').insert(before)
+        : { error: null };
+      return fail(restoreError
+        ? `${insError.message}. restoring your previous picks also failed, so your unsaved list is still shown below; try again.`
+        : `${insError.message}. your previous picks were kept.`);
+    }
+  }
   const me = picksData.find(u => u.user_id === currentUser.id);
   if (me) me.picks = rows.map((r, i) => ({ ...r }));
   else { picksData.unshift({ user_id: currentUser.id, username: currentUsername || currentUser.id, picks: rows.map(r => ({ ...r })) }); }

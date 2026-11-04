@@ -34,24 +34,51 @@ function buildIndex() {
 }
 
 // ─── Shared render helpers ─────────────────────────────────────────────────
+// Escape user-written text (comments, notes) before putting it in innerHTML.
+function escapeHtml(text) {
+    return String(text ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// Brief error banner for failed saves; replaces any banner already showing.
+function notifyError(msg) {
+    let el = document.getElementById('errorToast');
+    if (!el) {
+        el = document.createElement('div');
+        el.id = 'errorToast';
+        el.className = 'error-toast';
+        el.setAttribute('role', 'alert');
+        document.body.appendChild(el);
+    }
+    el.textContent = msg;
+    el.classList.add('open');
+    clearTimeout(notifyError._t);
+    notifyError._t = setTimeout(() => el.classList.remove('open'), 5000);
+}
+
 function renderShowCard(show, labelHtml, highlightSet) {
-    const setlistHtml = show.songs.map(rawSong => {
+    const songLengths = show.song_lengths || [];
+    const setlistHtml = show.songs.map((rawSong, i) => {
         const canon = normalizeSong(rawSong);
         const highlighted = canon && highlightSet && highlightSet.has(canon);
-        return highlighted ? `<span class="matched">${rawSong}</span>` : rawSong;
+        const len = songLengths[i] ? ` <span class="song-len">${formatDuration(songLengths[i])}</span>` : '';
+        return (highlighted ? `<span class="matched">${rawSong}</span>` : rawSong) + len;
     }).join(' &nbsp;·&nbsp; ');
+    const showLenHtml = show.length
+        ? `<span class="show-length" title="length of the preferred recording on archive.org">${formatDuration(show.length)}</span>`
+        : '';
     const thanksSuffix = show.note
         ? `<div class="muted" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:11px;margin-top:6px;white-space:pre-line;">${show.note}</div>`
         : '';
 
     const bestId = BEST_RECORDINGS[show.date];
     const recHtml = show.recordings && show.recordings.length > 0
-        ? `<div class="recordings"><span class="rec-label">recordings:</span>${show.recordings.map((r, i) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${i + 1}] archive.org</a>`).join('')}</div>`
+        ? `<div class="recordings"><span class="rec-label">recordings:</span>${show.recordings.map((r, i) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${i + 1}] archive.org</a>${r.length ? `<span class="rec-len">${formatDuration(r.length)}</span>` : ''}`).join('')}</div>`
         : '';
 
     return `<div class="result-show">
         <div class="show-header">
-            <div><span class="show-date">${show.date}</span><span class="show-venue">${show.venue}</span></div>
+            <div><span class="show-date">${show.date}</span><span class="show-venue">${show.venue}</span>${showLenHtml}</div>
             <span class="match-count">${labelHtml}</span>
         </div>
         <div class="setlist">${setlistHtml}</div>
@@ -61,7 +88,7 @@ function renderShowCard(show, labelHtml, highlightSet) {
 }
 
 // ─── Tab switching ─────────────────────────────────────────────────────────
-const TABS = ['finder','discover','eras','picks','versions','users','predictions'];
+const TABS = ['finder','length','discover','eras','picks','versions','users','predictions'];
 function switchTab(name) {
     if (!TABS.includes(name)) name = 'finder';
     document.querySelectorAll('.tab-btn').forEach((b, i) => {
@@ -71,6 +98,7 @@ function switchTab(name) {
         p.classList.toggle('active', p.id === 'tab-' + name);
     });
     history.replaceState(null, '', '#' + name);
+    if (name === 'length' && typeof renderStatsTab === 'function') renderStatsTab();
     if (name === 'versions' && !currentVersionSong) loadSongVoteCounts().then(renderVersionsTab);
     if (name === 'eras' && currentUser && !trackingLoaded) loadTrackingThenBuild();
     if (name === 'users' && !usersLoaded) loadUsers();
@@ -127,6 +155,8 @@ Promise.all([
     restoreErasToggles();
     buildEras();
     updateErasTrackSection();
+    // the page may have opened on #length before the data arrived
+    if (document.getElementById('tab-length').classList.contains('active')) renderStatsTab();
 });
 
 // ─── Supabase init ─────────────────────────────────────────────────────────

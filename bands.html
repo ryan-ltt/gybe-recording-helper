@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recording helper</title>
+    <script>if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark');</script>
     <link rel="stylesheet" href="index.css">
     <style>
         .era-block {
@@ -127,9 +128,6 @@
         function toggleTheme() {
             const dark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('theme', dark ? 'dark' : 'light');
-        }
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.classList.add('dark');
         }
     </script>
 </body>

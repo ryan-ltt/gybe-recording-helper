@@ -161,6 +161,68 @@
         }
         .recordings a:hover { color: #004499; border-bottom-color: #004499; }
         .rec-label { color: #555; margin-right: 4px; }
+        .recordings .rec-len { color: #888; font-size: 11px; margin: 0 14px 0 -5px; }
+        .song-len {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #888;
+        }
+        .result-show .show-length {
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #888;
+            margin-left: 10px;
+        }
+        /* Song stats */
+        .stats-table-wrap { overflow-x: auto; border: 2px solid black; background: white; }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+        }
+        .stats-table th {
+            text-align: left;
+            font-weight: normal;
+            color: #555;
+            padding: 8px 10px;
+            border-bottom: 2px solid black;
+            cursor: pointer;
+            white-space: nowrap;
+            user-select: none;
+        }
+        .stats-table td { padding: 6px 10px; border-bottom: 1px solid #eee; white-space: nowrap; }
+        .stats-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+        .stats-table tbody tr { cursor: pointer; }
+        .stats-table-static th, .stats-table-static tbody tr { cursor: default; }
+        .stats-table-static tbody tr:hover, html.dark .stats-table-static tbody tr:hover { background: none; }
+        .stats-table tbody tr:hover { background: #f5f5f5; }
+        .stats-table .stats-song { white-space: normal; min-width: 160px; }
+        .stats-note { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px; color: #888; margin: 10px 0 0 0; }
+        .stats-credit { margin-top: 18px; }
+        .stats-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 18px; }
+        .stats-tile { border: 2px solid black; background: white; padding: 10px 14px; font-family: Monaco, 'JetBrains Mono', monospace; }
+        .stats-tile-value { font-size: 18px; font-weight: bold; }
+        .stats-tile-label { font-size: 11px; color: #555; }
+        .stats-chart-title { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 12px; margin-bottom: 6px; }
+        .stats-chart { border: 2px solid black; background: white; margin-bottom: 18px; }
+        .stats-chart svg { display: block; width: 100%; height: auto; }
+        .stats-grid line { stroke: #eee; }
+        .stats-axis text { fill: #666; font-family: Monaco, 'JetBrains Mono', monospace; font-size: 10px; }
+        .stats-axis .domain, .stats-axis line { stroke: #ccc; }
+        .stats-dot { fill: #0066cc; stroke: white; stroke-width: 2px; }
+        .stats-dot.active { stroke: black; }
+        .stats-tooltip strong { font-size: 13px; }
+        .stats-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+        .stats-list-title { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 12px; font-weight: bold; margin-bottom: 4px; }
+        .stats-perfs { list-style: none; padding: 0; margin: 0; font-family: Monaco, 'JetBrains Mono', monospace; font-size: 12px; }
+        .stats-perfs li { padding: 4px 0; border-bottom: 1px solid #eee; display: flex; gap: 10px; cursor: pointer; }
+        .stats-perfs li:hover, .stats-perfs li:focus-visible { background: #f5f5f5; outline: none; }
+        html.dark .stats-perfs li:hover, html.dark .stats-perfs li:focus-visible { background: #1e2a38; }
+        .stats-tooltip-hint { font-size: 10px; color: #888; margin-top: 4px; }
+        .stats-perf-venue { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .stats-perf-date { white-space: nowrap; }
+        .stats-perf-len { font-weight: bold; min-width: 52px; font-variant-numeric: tabular-nums; }
         .no-results {
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 14px;
@@ -509,6 +571,7 @@
         }
         .era-show-date { font-weight: bold; white-space: nowrap; }
         .era-show-venue { color: #555; flex: 1; }
+        .era-show-venue .era-show-length { margin-left: 10px; font-size: 11px; }
         .era-show-recs { white-space: nowrap; }
         .era-show-recs a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; margin-left: 6px; }
         .era-show-recs a:hover { color: #004499; }
@@ -532,6 +595,10 @@
             border-bottom: 1px solid #eee;
         }
         .era-show-setlist.open { display: block; }
+        @keyframes era-flash { from { background: #fff3a0; } to { background: transparent; } }
+        .era-show-row.flash { animation: era-flash 2.5s ease-out; }
+        html.dark .era-show-row.flash { animation-name: era-flash-dark; }
+        @keyframes era-flash-dark { from { background: #2c4a6b; } to { background: transparent; } }
         .era-filter {
             margin-bottom: 10px;
         }
@@ -590,17 +657,6 @@
             align-items: center;
             gap: 8px;
         }
-        .header-btn {
-            padding: 4px 10px;
-            background: white;
-            border: 2px solid black;
-            font-family: Monaco, 'JetBrains Mono', monospace;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.1s;
-        }
-        .header-btn:hover { background: #eee; }
-        a.header-btn { text-decoration: none; display: inline-flex; align-items: center; }
 
         /* Auth modal */
         .auth-overlay {
@@ -1058,6 +1114,9 @@
         html.dark .recordings a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .recordings a:hover { color: #8fc4ff; border-bottom-color: #8fc4ff; }
         html.dark .rec-label { color: #eaf2f5; }
+        html.dark .song-len,
+        html.dark .recordings .rec-len,
+        html.dark .result-show .show-length { color: #8ea7b6; }
         html.dark .no-results { color: #eaf2f5; }
         html.dark .search-box { border-color: #2c3e50; background: #1e2a38; color: #eaf2f5; }
         html.dark .search-box:focus { background: #0e1824; }
@@ -1074,6 +1133,21 @@
         html.dark #discoverGraph { border-color: #2c3e50; background: #0e1824; }
         html.dark #discoverGraph svg text { fill: #eaf2f5; }
         html.dark .graph-tooltip { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
+        html.dark .versions-breadcrumb a { color: #eaf2f5; }
+        html.dark .stats-table-wrap,
+        html.dark .stats-tile,
+        html.dark .stats-chart { border-color: #2c3e50; background: #1e2a38; }
+        html.dark .stats-table th { color: #c8dce6; border-bottom-color: #2c3e50; }
+        html.dark .stats-table td,
+        html.dark .stats-perfs li { border-bottom-color: #2c3e50; }
+        html.dark .stats-table tbody tr:hover { background: #0e1824; }
+        html.dark .stats-tile-label { color: #c8dce6; }
+        html.dark .stats-note { color: #8ea7b6; }
+        html.dark .stats-grid line { stroke: #2c3e50; }
+        html.dark .stats-axis text { fill: #8ea7b6; }
+        html.dark .stats-axis .domain, html.dark .stats-axis line { stroke: #3d5166; }
+        html.dark .stats-dot { fill: #4a8fe0; stroke: #1e2a38; }
+        html.dark .stats-dot.active { stroke: #eaf2f5; }
         .avg-setlist-bar-track { background: #e0e0e0; }
         html.dark .avg-setlist-bar-track { background: #2c3e50; }
         html.dark .era-block { border-color: #2c3e50; background: #1e2a38; }
@@ -1119,8 +1193,6 @@
         html.dark .pos-btn { border-color: rgba(234,242,245,0.35); color: rgba(234,242,245,0.45); }
         html.dark .pos-btn:hover { border-color: rgba(234,242,245,0.7); color: rgba(234,242,245,0.8); }
         html.dark .pos-btn.pos-active { background: #eaf2f5; color: #0e1824; border-color: #eaf2f5; }
-        html.dark .header-btn { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
-        html.dark .header-btn:hover { background: #253545; }
         html.dark .auth-modal { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
         html.dark .auth-modal h3 { color: #eaf2f5; }
         html.dark .auth-field-label { color: #eaf2f5; }
@@ -1223,6 +1295,7 @@
 
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('finder')">song finder</button>
+            <button class="tab-btn" onclick="switchTab('length')">length</button>
             <button class="tab-btn" onclick="switchTab('discover')">discover</button>
             <button class="tab-btn" onclick="switchTab('eras')">shows</button>
             <button class="tab-btn" onclick="switchTab('picks')">picks</button>
@@ -1283,6 +1356,20 @@
                 <button class="clear-btn" onclick="clearAll()">clear</button>
             </div>
             <div class="results" id="finderResults"></div>
+        </div>
+
+        <!-- LENGTH TAB -->
+        <div class="tab-panel" id="tab-length">
+            <div class="opt-tabs" style="margin:0 0 14px 0;">
+                <button class="opt-tab active" onclick="setLengthView('songs', this)">songs</button>
+                <button class="opt-tab" onclick="setLengthView('shows', this)">shows</button>
+            </div>
+            <div id="statsFilterRow">
+                <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 12px 0;">how often each song is played and how long it runs. click a column to sort, a song for details.</p>
+                <input type="text" class="search-box" id="statsFilter" placeholder="filter songs..." oninput="renderStatsTable()" style="margin:0 0 12px 0;">
+            </div>
+            <div id="statsContent"></div>
+            <p class="stats-note stats-credit">Thanks to Alison for calculating song timings for shows between 2024 and 2026</p>
         </div>
 
         <!-- DISCOVER TAB -->
@@ -1485,6 +1572,7 @@
     <script src="songs.js"></script>
     <script src="index.js"></script>
     <script src="finder.js"></script>
+    <script src="stats.js"></script>
     <script src="discover.js"></script>
     <script src="eras.js"></script>
     <script src="versions.js"></script>

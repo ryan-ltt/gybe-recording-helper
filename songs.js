@@ -29,6 +29,17 @@ const ALBUMS = [
 ];
 
 
+// ─── Durations ─────────────────────────────────────────────────────────────
+// Lengths in setlists.json are whole seconds (see track_lengths.py). Recording and
+// show lengths are archive.org file durations; song_lengths[i] lines up with
+// songs[i] and holds human timings only, null where nobody has timed the song.
+function formatDuration(sec) {
+    if (!sec) return '';
+    const h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60;
+    const ss = String(s).padStart(2, '0');
+    return h ? `${h}:${String(m).padStart(2, '0')}:${ss}` : `${m}:${ss}`;
+}
+
 // ─── Normalization ─────────────────────────────────────────────────────────
 function normalizeSong(raw) {
     const s = raw.toLowerCase()

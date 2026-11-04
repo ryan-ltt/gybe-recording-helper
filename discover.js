@@ -130,7 +130,6 @@ function clearDiscover() {
     document.getElementById('listenedPaste').value = '';
     const useAccountCb = document.getElementById('discoverUseAccount');
     if (useAccountCb) useAccountCb.checked = false;
-    document.getElementById('listenedPasteError').textContent = '';
     updateListenedCount();
     document.getElementById('discoverResults').innerHTML = '';
     const gd = document.getElementById('discoverGraph');

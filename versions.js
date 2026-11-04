@@ -142,6 +142,9 @@ async function loadVersionsForSong(song) {
         const recHtml = show?.recordings?.length > 0
             ? `<div class="version-card-rec">recording: ${show.recordings.map((r, i) => `<a href="${r.url}" target="_blank">[${i + 1}] archive.org</a>`).join(' ')}</div>`
             : '';
+        const songIdx = show?.songs ? show.songs.findIndex(raw => normalizeSong(raw) === song) : -1;
+        const songLen = songIdx >= 0 && show.song_lengths ? show.song_lengths[songIdx] : null;
+        const lenHtml = songLen ? `<span class="song-len" style="margin-left:10px;">${formatDuration(songLen)}</span>` : '';
         const submitterId = submitterIdByDate[date];
         const submitterName = submitterId ? (usernameMap[submitterId] || 'user') : null;
         const submittedByHtml = submitterName ? `<div class="version-card-submitter">submitted by ${submitterName}</div>` : '';
@@ -154,7 +157,7 @@ async function loadVersionsForSong(song) {
             const deleteBtn = (currentUser && currentUser.id === c.user_id)
                 ? `<span class="comment-delete" onclick='deleteComment(${JSON.stringify(c.id)}, ${JSON.stringify(song)})'>delete</span>`
                 : '';
-            return `<div class="comment-row"><span class="comment-author">${username}</span><span class="comment-body">${c.body}</span><span class="comment-time">${time}</span>${deleteBtn}</div>`;
+            return `<div class="comment-row"><span class="comment-author">${username}</span><span class="comment-body">${escapeHtml(c.body)}</span><span class="comment-time">${time}</span>${deleteBtn}</div>`;
         }).join('');
 
         const commentInputHtml = currentUser
@@ -164,7 +167,7 @@ async function loadVersionsForSong(song) {
         html += `<div class="version-block">
             <div class="version-card">
                 <div class="version-card-info">
-                    <span class="version-card-date">${date}</span><span class="version-card-venue">${venue}</span>
+                    <span class="version-card-date">${date}</span><span class="version-card-venue">${venue}</span>${lenHtml}
                     ${recHtml}
                     ${submittedByHtml}
                 </div>
@@ -245,7 +248,8 @@ async function submitVersion(song) {
     if (!versionSubmitSelectedDate || !currentUser || !sbClient) return;
     const btn = document.getElementById('versionSubmitBtn');
     if (btn) { btn.disabled = true; btn.textContent = 'submitting...'; }
-    await castVote(song, versionSubmitSelectedDate, false);
+    const ok = await castVote(song, versionSubmitSelectedDate, false);
+    if (!ok && btn) { btn.disabled = false; btn.textContent = 'submit'; }
 }
 
 function toggleAddFavourite(song) {
@@ -262,27 +266,42 @@ async function postComment(song, showDate) {
     if (!body) return;
     textarea.disabled = true;
     const { error } = await sbClient.from('comments').insert({ user_id: currentUser.id, song, show_date: showDate, body });
-    if (error) { console.error('comment error:', error); textarea.disabled = false; return; }
+    if (error) {
+        textarea.disabled = false;
+        notifyError(`couldn't post comment: ${error.message}`);
+        return;
+    }
     await loadVersionsForSong(song);
 }
 
 async function deleteComment(commentId, song) {
     if (!sbClient || !currentUser) return;
-    await sbClient.from('comments').delete().eq('id', commentId).eq('user_id', currentUser.id);
+    const { error } = await sbClient.from('comments').delete().eq('id', commentId).eq('user_id', currentUser.id);
+    if (error) { notifyError(`couldn't delete comment: ${error.message}`); return; }
     await loadVersionsForSong(song);
 }
 
+// Returns true when the vote change was saved.
 async function castVote(song, showDate, isCurrentlyVoted) {
-    if (!sbClient) return;
-    if (!currentUser) { showAuthModal(); return; }
+    if (!sbClient) return false;
+    if (!currentUser) { showAuthModal(); return false; }
 
-    if (isCurrentlyVoted) {
-        await sbClient.from('votes').delete().eq('user_id', currentUser.id).eq('song', song);
-    } else {
-        await sbClient.from('votes').delete().eq('user_id', currentUser.id).eq('song', song);
+    // Moving a vote is delete + insert; remember the old vote so a failed
+    // insert doesn't leave the user with no vote at all.
+    const { data: prior } = await sbClient.from('votes').select('show_date')
+        .eq('user_id', currentUser.id).eq('song', song).maybeSingle();
+    const { error: delError } = await sbClient.from('votes').delete().eq('user_id', currentUser.id).eq('song', song);
+    if (delError) { notifyError(`couldn't update vote: ${delError.message}`); return false; }
+    if (!isCurrentlyVoted) {
         const { error } = await sbClient.from('votes').insert({ user_id: currentUser.id, song, show_date: showDate });
-        if (error) { console.error('vote error:', error); return; }
+        if (error) {
+            if (prior) await sbClient.from('votes').insert({ user_id: currentUser.id, song, show_date: prior.show_date });
+            notifyError(`couldn't save vote: ${error.message}`);
+            await loadVersionsForSong(song);
+            return false;
+        }
     }
     await loadVersionsForSong(song);
+    return true;
 }
 

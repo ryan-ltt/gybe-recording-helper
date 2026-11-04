@@ -1,6 +1,7 @@
 # Tooling scripts - not part of the site
 *.py
 scrape-gybe.js
+human-song-lengths.csv
 scrape-log.txt
 broken-venues.txt
 .github/

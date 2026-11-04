@@ -114,7 +114,41 @@ main
 	main { padding: 0 16px 40px; }
 }
 
+.error-toast {
+	display: none;
+	position: fixed;
+	left: 50%;
+	bottom: 20px;
+	transform: translateX(-50%);
+	max-width: calc(100% - 32px);
+	box-sizing: border-box;
+	padding: 8px 14px;
+	background: #fff0f0;
+	color: #a00;
+	border: 2px solid #c00;
+	font-family: Monaco, 'JetBrains Mono', monospace;
+	font-size: 12px;
+	z-index: 2000;
+}
+.error-toast.open { display: block; }
+
+/* Header buttons (shared by index.html and bands.html) */
+.header-btn {
+	padding: 4px 10px;
+	background: white;
+	border: 2px solid black;
+	font-family: Monaco, 'JetBrains Mono', monospace;
+	font-size: 12px;
+	cursor: pointer;
+	transition: all 0.1s;
+}
+.header-btn:hover { background: #eee; }
+a.header-btn { text-decoration: none; display: inline-flex; align-items: center; }
+
 /* Dark mode */
+html.dark .error-toast { background: #3a1a1a; color: #ff9b9b; border-color: #ff6b6b; }
+html.dark .header-btn { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
+html.dark .header-btn:hover { background: #253545; }
 html.dark { color-scheme: dark; }
 html.dark body { background-color: #0e1824; color: #eaf2f5; }
 html.dark header { background-color: #0e1824; }

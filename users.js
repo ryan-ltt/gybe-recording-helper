@@ -134,7 +134,7 @@ function renderUserBody(uid) {
                 const bestId = BEST_RECORDINGS[pick.show_date];
                 const recs = show && show.recordings ? show.recordings : [];
                 const recsHtml = recs.length > 0 ? `<div class="era-show-recs" style="padding-left:20px;">${recs.map((r, ri) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${ri + 1}]</a>`).join('')}</div>` : '';
-                const noteHtml = pick.note ? `<div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:3px;padding-left:20px;">${pick.note}</div>` : '';
+                const noteHtml = pick.note ? `<div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:3px;padding-left:20px;">${escapeHtml(pick.note)}</div>` : '';
                 return `<li style="padding:8px 0;border-bottom:1px solid #eee;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted" style="display:inline-block;width:20px;text-align:right;">${i + 1}.</span> <strong>${pick.show_date}</strong>${venue ? ` <span class="muted">— ${venue}</span>` : ''}${recsHtml}${noteHtml}</li>`;
             }).join('')}</ol>`;
         }

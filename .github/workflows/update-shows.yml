@@ -21,6 +21,10 @@ jobs:
       - name: Check for new shows and recordings
         run: python update-shows.py --skip-prune
 
+      # picks up edits to human-song-lengths.csv even on days with nothing new
+      - name: Apply human song timings
+        run: python track_lengths.py
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
