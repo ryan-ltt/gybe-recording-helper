@@ -624,5 +624,22 @@
         "title": "Godspeed You! Black Emperor Live at Washington's on 2023-03-21"
       }
     ]
+  },
+  {
+    "timestamp": "2026-11-04 16:26:27",
+    "new_recordings": [
+      {
+        "show_date": "1998-11-22",
+        "venue": "bbc studios, maida vale, london, uk",
+        "id": "GYBE1999-01-19",
+        "title": "Godspeed You! Black Emperor Live at Peel Session on 1999-01-19"
+      },
+      {
+        "show_date": "1998-11-22",
+        "venue": "bbc studios, maida vale, london, uk",
+        "id": "gybe1999-01-19.flac",
+        "title": "Godspeed You! Black Emperor Live at Bbc Studios on 1999-01-19"
+      }
+    ]
   }
 ]

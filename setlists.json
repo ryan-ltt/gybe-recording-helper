@@ -660,9 +660,25 @@
         "lineage": "unknown",
         "source": "FM",
         "length": 1102
+      },
+      {
+        "id": "GYBE1999-01-19",
+        "url": "https://archive.org/details/GYBE1999-01-19",
+        "title": "Godspeed You! Black Emperor Live at Peel Session on 1999-01-19",
+        "lineage": "FM/SBD > DAT > CDR > EAC > FLAC",
+        "source": "FM/SBD",
+        "length": 1131
+      },
+      {
+        "id": "gybe1999-01-19.flac",
+        "url": "https://archive.org/details/gybe1999-01-19.flac",
+        "title": "Godspeed You! Black Emperor Live at Bbc Studios on 1999-01-19",
+        "lineage": "unknown",
+        "source": "Fm",
+        "length": 1097
       }
     ],
-    "length": 1102
+    "length": 1131
   },
   {
     "date": "1998-11-23",
