@@ -286,4 +286,4 @@ function filterUsers(query) {
     });
 }
 
-switchTab(window.location.hash.slice(1) || 'finder');
+switchTab(window.location.hash.slice(1) || 'song-finder');

@@ -14,32 +14,84 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
     <link rel="stylesheet" href="index.css">
     <style>
-        .tabs {
-            display: flex;
-            gap: 0;
+        /* Two-level tabs. The selected group tab is white and opens, with no line
+           between them, into a white strip holding that group's sub-tabs, so the
+           shared background shows which sub-tabs belong to it. Group tabs are
+           boxed; sub-tabs are underlined, so the two levels never look alike.
+           The box is only as wide as its contents; the line under it runs the
+           full width of the page. */
+        .tabnav {
             margin: 20px 0 0 0;
             border-bottom: 2px solid black;
         }
+        .tabnav-inner {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            max-width: 100%;
+            position: relative;
+            margin-bottom: -2px;                 /* sit on the line so the active underline merges with it */
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid black;
+        }
         .tab-btn {
+            position: relative;
             padding: 8px 20px;
+            margin: 0 -2px -2px 0;               /* overlap neighbours and the row's line */
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 14px;
+            background: transparent;
+            border: 2px solid black;
+            border-bottom-color: transparent;
+            color: #444;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+        .tab-btn:hover:not(.active) { background: rgba(255,255,255,0.5); color: black; }
+        .tab-btn.active {
+            z-index: 1;
+            background: white;
+            color: black;
+            font-weight: bold;
+            border-bottom-color: white;          /* hides the row's line under it */
+        }
+        .subtabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 24px;
+            padding: 0 18px;
             background: white;
             border: 2px solid black;
-            border-bottom: none;
-            cursor: pointer;
-            margin-right: -2px;
+            border-top: none;
+            border-bottom: none;                 /* .tabnav's full-width line closes it */
+        }
+        .subtab-btn {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 9px 0 7px;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
             color: #555;
-            transition: all 0.1s;
+            cursor: pointer;
         }
-        .tab-btn.active {
-            background: black;
-            color: white;
+        /* reserve the bold width so selecting a sub-tab doesn't shift the row */
+        .subtab-btn::after {
+            content: attr(data-label);
+            font-weight: bold;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
         }
-        .tab-btn:hover:not(.active) {
-            background: #eee;
-            color: black;
-        }
+        .subtab-btn:hover:not(.active) { color: black; border-bottom-color: #bbb; }
+        .subtab-btn.active { color: black; font-weight: bold; border-bottom-color: black; }
+        .subtab-btn[hidden] { display: none; }
+        .tab-btn:focus-visible, .subtab-btn:focus-visible { outline: 2px solid #0066cc; outline-offset: 2px; }
         .tab-panel {
             display: none;
             padding-top: 20px;
@@ -799,8 +851,9 @@
             header { flex-wrap: wrap; gap: 6px; align-items: flex-start; }
             h1 { font-size: 22px; }
             .header-auth { position: static; transform: none; }
-            .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
-            .tab-btn { padding: 8px 12px; font-size: 12px; white-space: nowrap; flex-shrink: 0; }
+            .tab-btn { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+            .subtabs { gap: 0 16px; padding: 0 12px; }
+            .subtab-btn { font-size: 12px; white-space: nowrap; }
             .show-dropdown { width: 100%; }
             #discoverGraph { height: 360px; }
             .version-card { flex-direction: column; align-items: flex-start; }
@@ -1095,10 +1148,15 @@
         html.dark .success { color: #6adb6a; }
         html.dark .disabled-label { color: #a8bcc8; }
         html.dark .secondary-btn { background: #1e2a38; color: #eaf2f5; }
-        html.dark .tabs { border-bottom-color: #2c3e50; }
-        html.dark .tab-btn { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
-        html.dark .tab-btn.active { background: #eaf2f5; color: #0e1824; }
-        html.dark .tab-btn:hover:not(.active) { background: #253545; color: #eaf2f5; }
+        html.dark .tabs, html.dark .tabnav { border-bottom-color: #3d5166; }
+        html.dark .tab-btn { border-color: #3d5166; border-bottom-color: transparent; color: #a8bcc8; }
+        html.dark .tab-btn:hover:not(.active) { background: #16202c; color: #eaf2f5; }
+        html.dark .tab-btn.active { background: #1e2a38; color: #eaf2f5; border-bottom-color: #1e2a38; }
+        html.dark .subtabs { background: #1e2a38; border-color: #3d5166; }
+        html.dark .subtab-btn { color: #a8bcc8; }
+        html.dark .subtab-btn:hover:not(.active) { color: #eaf2f5; border-bottom-color: #5a7080; }
+        html.dark .subtab-btn.active { color: #eaf2f5; border-bottom-color: #eaf2f5; }
+        html.dark .tab-btn:focus-visible, html.dark .subtab-btn:focus-visible { outline-color: #6aadff; }
         html.dark .song-tag { border-color: #2c3e50; background: #1e2a38; color: #eaf2f5; }
         html.dark .song-tag:hover { background: #253545; }
         html.dark .song-tag.selected { background: #eaf2f5; color: #0e1824; }
@@ -1293,18 +1351,24 @@
         <span id="last-updated-label" style="display:none"> · <a href="/changelog/">last updated: <span id="last-updated-date"></span></a></span></p>
         <script>if (typeof LAST_UPDATED !== 'undefined') { document.getElementById('last-updated-date').textContent = LAST_UPDATED; document.getElementById('last-updated-label').style.display = ''; }</script>
 
+        <nav class="tabnav"><div class="tabnav-inner">
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('finder')">song finder</button>
-            <button class="tab-btn" onclick="switchTab('length')">length</button>
-            <button class="tab-btn" onclick="switchTab('discover')">discover</button>
-            <button class="tab-btn" onclick="switchTab('eras')">shows</button>
-            <button class="tab-btn" onclick="switchTab('picks')">picks</button>
-            <button class="tab-btn" onclick="switchTab('versions')">vote</button>
-            <button class="tab-btn" onclick="switchTab('users')">users</button>
-            <button class="tab-btn" onclick="switchTab('predictions')">predictions</button>
+            <button class="tab-btn active" data-group="explore" onclick="switchGroup('explore')">explore</button>
+            <button class="tab-btn" data-group="community" onclick="switchGroup('community')">community</button>
         </div>
+        <div class="subtabs" role="tablist" aria-label="sections">
+            <button class="subtab-btn active" role="tab" data-tab="song-finder" onclick="switchTab('song-finder')" data-label="song finder">song finder</button>
+            <button class="subtab-btn" role="tab" data-tab="shows" onclick="switchTab('shows')" data-label="shows">shows</button>
+            <button class="subtab-btn" role="tab" data-tab="discover" onclick="switchTab('discover')" data-label="discover">discover</button>
+            <button class="subtab-btn" role="tab" data-tab="lengths" onclick="switchTab('lengths')" data-label="lengths">lengths</button>
+            <button class="subtab-btn" role="tab" data-tab="picks" onclick="switchTab('picks')" hidden data-label="picks">picks</button>
+            <button class="subtab-btn" role="tab" data-tab="best-versions" onclick="switchTab('best-versions')" hidden data-label="best versions">best versions</button>
+            <button class="subtab-btn" role="tab" data-tab="users" onclick="switchTab('users')" hidden data-label="users">users</button>
+            <button class="subtab-btn" role="tab" data-tab="predictions" onclick="switchTab('predictions')" hidden data-label="predictions">predictions</button>
+        </div>
+        </div></nav>
         <!-- SONG FINDER TAB -->
-        <div class="tab-panel active" id="tab-finder">
+        <div class="tab-panel active" id="tab-song-finder">
             <div style="display:flex;justify-content:space-between;align-items:center;margin:0 0 12px 0;">
                 <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0;">select songs you want to hear, find which shows contain them.</p>
                 <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
@@ -1359,7 +1423,7 @@
         </div>
 
         <!-- LENGTH TAB -->
-        <div class="tab-panel" id="tab-length">
+        <div class="tab-panel" id="tab-lengths">
             <div class="opt-tabs" style="margin:0 0 14px 0;">
                 <button class="opt-tab active" onclick="setLengthView('songs', this)">songs</button>
                 <button class="opt-tab" onclick="setLengthView('shows', this)">shows</button>
@@ -1429,7 +1493,7 @@
         </div>
 
         <!-- VERSIONS TAB -->
-        <div class="tab-panel" id="tab-versions">
+        <div class="tab-panel" id="tab-best-versions">
             <div style="display:flex;justify-content:space-between;align-items:center;margin:0 0 12px 0;">
                 <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0;">community-voted best performances of each song. click a song to see all versions ranked by votes.</p>
                 <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
@@ -1463,7 +1527,7 @@
 
         <!-- TRACK TAB -->
         <!-- ERAS TAB -->
-        <div class="tab-panel" id="tab-eras">
+        <div class="tab-panel" id="tab-shows">
             <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 8px 0;">shows grouped by year. highlighted recordings are highest quality.</p>
             <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
                 <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;">

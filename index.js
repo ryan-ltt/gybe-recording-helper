@@ -88,19 +88,43 @@ function renderShowCard(show, labelHtml, highlightSet) {
 }
 
 // ─── Tab switching ─────────────────────────────────────────────────────────
-const TABS = ['finder','length','discover','eras','picks','versions','users','predictions'];
+// Top-level groups, each with its own row of sub-tabs. The URL hash is the
+// sub-tab's name, which matches its label (#shows, #best-versions…).
+const TAB_GROUPS = {
+    explore: ['song-finder', 'shows', 'discover', 'lengths'],
+    community: ['picks', 'best-versions', 'users', 'predictions'],
+};
+// Hashes the tabs used to have, so old links and bookmarks still land right.
+const OLD_TAB_NAMES = { finder: 'song-finder', eras: 'shows', length: 'lengths', versions: 'best-versions' };
+const TABS = Object.values(TAB_GROUPS).flat();
+const groupOfTab = name => Object.keys(TAB_GROUPS).find(g => TAB_GROUPS[g].includes(name));
+const lastTabInGroup = {};   // group → sub-tab last open, so returning to a group lands there
+
+function switchGroup(group) {
+    switchTab(lastTabInGroup[group] || TAB_GROUPS[group][0]);
+}
+
 function switchTab(name) {
-    if (!TABS.includes(name)) name = 'finder';
-    document.querySelectorAll('.tab-btn').forEach((b, i) => {
-        b.classList.toggle('active', TABS[i] === name);
+    name = OLD_TAB_NAMES[name] || name;
+    if (!TABS.includes(name)) name = 'song-finder';
+    const group = groupOfTab(name);
+    lastTabInGroup[group] = name;
+    document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.group === group);
+    });
+    document.querySelectorAll('.subtab-btn').forEach(b => {
+        const active = b.dataset.tab === name;
+        b.hidden = !TAB_GROUPS[group].includes(b.dataset.tab);
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
     });
     document.querySelectorAll('.tab-panel').forEach(p => {
         p.classList.toggle('active', p.id === 'tab-' + name);
     });
     history.replaceState(null, '', '#' + name);
-    if (name === 'length' && typeof renderStatsTab === 'function') renderStatsTab();
-    if (name === 'versions' && !currentVersionSong) loadSongVoteCounts().then(renderVersionsTab);
-    if (name === 'eras' && currentUser && !trackingLoaded) loadTrackingThenBuild();
+    if (name === 'lengths' && typeof renderStatsTab === 'function') renderStatsTab();
+    if (name === 'best-versions' && !currentVersionSong) loadSongVoteCounts().then(renderVersionsTab);
+    if (name === 'shows' && currentUser && !trackingLoaded) loadTrackingThenBuild();
     if (name === 'users' && !usersLoaded) loadUsers();
     if (name === 'picks' && !picksLoaded) loadPicks();
     if (name === 'predictions' && typeof initPredictions === 'function') initPredictions();
@@ -155,8 +179,8 @@ Promise.all([
     restoreErasToggles();
     buildEras();
     updateErasTrackSection();
-    // the page may have opened on #length before the data arrived
-    if (document.getElementById('tab-length').classList.contains('active')) renderStatsTab();
+    // the page may have opened on #lengths before the data arrived
+    if (document.getElementById('tab-lengths').classList.contains('active')) renderStatsTab();
 });
 
 // ─── Supabase init ─────────────────────────────────────────────────────────

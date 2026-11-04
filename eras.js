@@ -188,7 +188,7 @@ function toggleEra(id) {
 // Jump to one show from elsewhere (e.g. the length tab): open its year, expand its
 // setlist, scroll to it and flash the row.
 function openShowInEras(date) {
-    switchTab('eras');
+    switchTab('shows');
     const year = date.slice(0, 4);
     const body = document.getElementById('body-y' + year);
     if (!body) return;

@@ -498,7 +498,7 @@
                 .sort((a, b) => a.date.localeCompare(b.date));
 
             if (shows.length === 0) {
-                listEl.innerHTML = `<p class="empty-state">no shows marked as ${activeTab} yet. <a href="/#eras">head to the shows tab</a> to track shows.</p>`;
+                listEl.innerHTML = `<p class="empty-state">no shows marked as ${activeTab} yet. <a href="/#shows">head to the shows tab</a> to track shows.</p>`;
                 return;
             }
 
@@ -582,7 +582,7 @@
             const listEl = document.getElementById('showList');
             if (!listEl) return;
             if (votesData.length === 0) {
-                listEl.innerHTML = `<p class="empty-state">no votes yet. <a href="/#versions">head to the versions tab</a> to vote on performances.</p>`;
+                listEl.innerHTML = `<p class="empty-state">no votes yet. <a href="/#best-versions">head to the best versions tab</a> to vote on performances.</p>`;
                 return;
             }
 

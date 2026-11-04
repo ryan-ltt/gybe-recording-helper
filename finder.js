@@ -5,7 +5,7 @@ function setSongSortMode(mode) {
     localStorage.setItem('songSortMode', mode);
     _syncSortToggles();
     buildAlbumSections();
-    if (document.getElementById('tab-versions').classList.contains('active')) {
+    if (document.getElementById('tab-best-versions').classList.contains('active')) {
         renderVersionsTab();
     }
 }

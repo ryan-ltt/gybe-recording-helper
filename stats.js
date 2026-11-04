@@ -142,7 +142,7 @@ function sortStats(key) {
 function openStatsSong(song) {
     statsOpenSong = song;
     renderStatsTab();
-    document.getElementById('tab-length').scrollIntoView({ block: 'start' });
+    document.getElementById('tab-lengths').scrollIntoView({ block: 'start' });
 }
 
 function closeStatsSong() {
@@ -310,7 +310,7 @@ function drawStatsChart(container, points) {
 
 window.addEventListener('resize', () => {
     const el = document.getElementById('statsChart');
-    if (el && statsChartPoints && document.getElementById('tab-length').classList.contains('active')) {
+    if (el && statsChartPoints && document.getElementById('tab-lengths').classList.contains('active')) {
         el.replaceChildren();
         drawStatsChart(el, statsChartPoints);
     }
