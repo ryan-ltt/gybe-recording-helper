@@ -188,10 +188,12 @@ function toggleEra(id) {
 // Jump to one show from elsewhere (e.g. the length tab): open its year, expand its
 // setlist, scroll to it and flash the row.
 function openShowInEras(date) {
+    setTabQuery('shows', new URLSearchParams({ show: date }));
     switchTab('shows');
+    if (!showByDate[date]) { notifyError(`no show on ${date} in the list.`); return; }
     const year = date.slice(0, 4);
     const body = document.getElementById('body-y' + year);
-    if (!body) return;
+    if (!body) { notifyError(`${date} is hidden by the recordings-only / setlists-only switches.`); return; }
     if (!body.classList.contains('open')) toggleEra('y' + year);
     const filter = body.querySelector('.era-filter input');
     if (filter && filter.value) {
@@ -199,7 +201,7 @@ function openShowInEras(date) {
         filterEraShows('y' + year, '');
     }
     const row = body.querySelector(`.era-show-row[data-date="${date}"]`);
-    if (!row) return;   // hidden by the recordings-only / setlists-only toggles
+    if (!row) { notifyError(`${date} is hidden by the recordings-only / setlists-only switches.`); return; }
     const setlistId = row.dataset.setlist;
     if (setlistId && !document.getElementById(setlistId).classList.contains('open')) toggleShowSetlist(setlistId);
     row.scrollIntoView({ block: 'center' });

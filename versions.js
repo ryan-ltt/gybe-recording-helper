@@ -167,7 +167,7 @@ async function loadVersionsForSong(song) {
         html += `<div class="version-block">
             <div class="version-card">
                 <div class="version-card-info">
-                    <span class="version-card-date">${date}</span><span class="version-card-venue">${venue}</span>${lenHtml}
+                    <span class="version-card-date">${showLink(date)}</span><span class="version-card-venue">${venue}</span>${lenHtml}
                     ${recHtml}
                     ${submittedByHtml}
                 </div>

@@ -56,6 +56,21 @@ function notifyError(msg) {
     notifyError._t = setTimeout(() => el.classList.remove('open'), 5000);
 }
 
+// A show's date as a link that opens it on the shows tab. The href is a real
+// deep link (#shows?show=…), so ctrl/cmd-click opens it in a new browser tab.
+function showLink(date, text = date) {
+    const d = escapeHtml(date);
+    return `<a class="show-link" href="#shows?show=${encodeURIComponent(date)}" title="open in shows" onclick="return onShowLinkClick(event, '${d}')">${escapeHtml(text)}</a>`;
+}
+
+function onShowLinkClick(e, date) {
+    e.stopPropagation();                 // links sit inside clickable rows and cards
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return true;   // let the browser open it
+    e.preventDefault();
+    openShowInEras(date);
+    return false;
+}
+
 function renderShowCard(show, labelHtml, highlightSet) {
     const songLengths = show.song_lengths || [];
     const setlistHtml = show.songs.map((rawSong, i) => {
@@ -78,7 +93,7 @@ function renderShowCard(show, labelHtml, highlightSet) {
 
     return `<div class="result-show">
         <div class="show-header">
-            <div><span class="show-date">${show.date}</span><span class="show-venue">${show.venue}</span>${showLenHtml}</div>
+            <div><span class="show-date">${showLink(show.date)}</span><span class="show-venue">${show.venue}</span>${showLenHtml}</div>
             <span class="match-count">${labelHtml}</span>
         </div>
         <div class="setlist">${setlistHtml}</div>
@@ -89,7 +104,9 @@ function renderShowCard(show, labelHtml, highlightSet) {
 
 // ─── Tab switching ─────────────────────────────────────────────────────────
 // Top-level groups, each with its own row of sub-tabs. The URL hash is the
-// sub-tab's name, which matches its label (#shows, #best-versions…).
+// sub-tab's name, which matches its label (#shows, #best-versions…), plus an
+// optional query holding that tab's state: #song-finder?songs=moya,glacier or
+// #shows?show=2003-07-15. Each tab keeps its own query while you're elsewhere.
 const TAB_GROUPS = {
     explore: ['song-finder', 'shows', 'discover', 'lengths'],
     community: ['picks', 'best-versions', 'users', 'predictions'],
@@ -99,6 +116,43 @@ const OLD_TAB_NAMES = { finder: 'song-finder', eras: 'shows', length: 'lengths',
 const TABS = Object.values(TAB_GROUPS).flat();
 const groupOfTab = name => Object.keys(TAB_GROUPS).find(g => TAB_GROUPS[g].includes(name));
 const lastTabInGroup = {};   // group → sub-tab last open, so returning to a group lands there
+const tabQuery = {};         // tab → its state as a query string ('' or absent: none)
+let currentTab = null;
+
+function parseHash(hash = location.hash) {
+    const [tab, query = ''] = hash.replace(/^#/, '').split('?');
+    return { tab: OLD_TAB_NAMES[tab] || tab, params: new URLSearchParams(query) };
+}
+
+function tabUrl(tab) {
+    return '#' + tab + (tabQuery[tab] ? '?' + tabQuery[tab] : '');
+}
+
+// Record a tab's state (URLSearchParams, or null to clear) and show it in the
+// address bar if that tab is open.
+function setTabQuery(tab, params) {
+    // commas are safe in a hash; keep them readable in shared links
+    const q = params ? params.toString().replace(/%2C/gi, ',') : '';
+    if (q) tabQuery[tab] = q; else delete tabQuery[tab];
+    if (currentTab === tab) history.replaceState(null, '', tabUrl(tab));
+}
+
+// Rebuild a tab's state from its query. Needs setlists.json loaded.
+function restoreTabState(tab, params) {
+    if (tab === 'song-finder' && params.has('songs')) restoreFinderFromParams(params);
+    if (tab === 'shows' && params.get('show')) openShowInEras(params.get('show'));
+}
+
+// Open whatever the current URL describes: on first load and when the hash is
+// edited or a deep link is followed within the page.
+function applyHash() {
+    const { tab, params } = parseHash();
+    const q = params.toString();
+    if (q && TABS.includes(tab)) tabQuery[tab] = q;
+    switchTab(tab || 'song-finder');
+    if (shows.length) restoreTabState(currentTab, params);   // else the data load does it
+}
+window.addEventListener('hashchange', applyHash);
 
 function switchGroup(group) {
     switchTab(lastTabInGroup[group] || TAB_GROUPS[group][0]);
@@ -109,6 +163,7 @@ function switchTab(name) {
     if (!TABS.includes(name)) name = 'song-finder';
     const group = groupOfTab(name);
     lastTabInGroup[group] = name;
+    currentTab = name;
     document.querySelectorAll('.tab-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.group === group);
     });
@@ -121,7 +176,7 @@ function switchTab(name) {
     document.querySelectorAll('.tab-panel').forEach(p => {
         p.classList.toggle('active', p.id === 'tab-' + name);
     });
-    history.replaceState(null, '', '#' + name);
+    history.replaceState(null, '', tabUrl(name));
     if (name === 'lengths' && typeof renderStatsTab === 'function') renderStatsTab();
     if (name === 'best-versions' && !currentVersionSong) loadSongVoteCounts().then(renderVersionsTab);
     if (name === 'shows' && currentUser && !trackingLoaded) loadTrackingThenBuild();
@@ -181,6 +236,8 @@ Promise.all([
     updateErasTrackSection();
     // the page may have opened on #lengths before the data arrived
     if (document.getElementById('tab-lengths').classList.contains('active')) renderStatsTab();
+    // …or on a deep link (#song-finder?songs=…, #shows?show=…)
+    restoreTabState(currentTab, parseHash().params);
 });
 
 // ─── Supabase init ─────────────────────────────────────────────────────────

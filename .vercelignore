@@ -6,3 +6,6 @@ scrape-log.txt
 broken-venues.txt
 .github/
 .claude/
+
+# Working notes - not part of the site
+UX-RECOMMENDATIONS.md

@@ -280,6 +280,67 @@ function clearAll() {
     document.querySelectorAll('.album-btn-active').forEach(btn => btn.classList.remove('album-btn-active'));
     renderSelectedList();
     document.getElementById('finderResults').innerHTML = '';
+    setTabQuery('song-finder', null);
+}
+
+// ─── Search in the URL ────────────────────────────────────────────────────
+// Each search is written to the hash (#song-finder?songs=moya,glacier&mode=all)
+// so it can be shared or bookmarked; defaults are left out to keep links short.
+const FINDER_OPT_VALUES = {
+    mode: ['any', 'all'],
+    order: ['unordered', 'ordered', 'back-to-back'],
+    sort: ['desc', 'asc'],
+};
+
+function yearSliderBounds() {
+    const el = document.getElementById('yearMin');
+    return [parseInt(el.min), parseInt(el.max)];
+}
+
+function finderParams() {
+    const p = new URLSearchParams();
+    if (!selectedOrder.length) return p;
+    p.set('songs', selectedOrder.join(','));
+    for (const key of Object.keys(FINDER_OPT_VALUES)) {
+        if (finderOpts[key] !== FINDER_OPT_VALUES[key][0]) p.set(key, finderOpts[key]);
+    }
+    if (finderOpts.recordingsOnly) p.set('recordings', '1');
+    for (const [song, pos] of Object.entries(songPositions)) p.append(pos, song);
+    const [lo, hi] = yearSliderBounds();
+    const min = parseInt(document.getElementById('yearMin').value);
+    const max = parseInt(document.getElementById('yearMax').value);
+    if (min !== lo || max !== hi) p.set('years', `${min}-${max}`);
+    return p;
+}
+
+function restoreFinderFromParams(params) {
+    const songs = (params.get('songs') || '').split(',').filter(s => CANONICAL_SONGS.includes(s));
+    if (!songs.length) return;
+    selected = new Set(songs);
+    selectedOrder = [...selected];
+    songPositions = {};
+    for (const pos of ['first', 'last']) {
+        for (const s of params.getAll(pos)) if (selected.has(s)) songPositions[s] = pos;
+    }
+    for (const [key, values] of Object.entries(FINDER_OPT_VALUES)) {
+        const value = values.includes(params.get(key)) ? params.get(key) : values[0];
+        finderOpts[key] = value;
+        document.querySelectorAll(`.opt-tab[data-opt="${key}"]`)
+            .forEach(b => b.classList.toggle('active', b.dataset.value === value));
+    }
+    finderOpts.recordingsOnly = params.get('recordings') === '1';
+    document.getElementById('recordingsOnly').checked = finderOpts.recordingsOnly;
+    buildAlbumSections();               // redraws the song tags as selected; resets the year slider
+    const years = (params.get('years') || '').match(/^(\d{4})-(\d{4})$/);
+    if (years) {
+        const [lo, hi] = yearSliderBounds();
+        const clamp = y => Math.min(hi, Math.max(lo, parseInt(y)));
+        document.getElementById('yearMin').value = clamp(years[1]);
+        document.getElementById('yearMax').value = clamp(years[2]);
+        onYearSlider();
+    }
+    renderSelectedList();
+    findShows();
 }
 
 function matchesPositions(show) {
@@ -301,6 +362,7 @@ function matchesPositions(show) {
 
 function findShows() {
     const resultsDiv = document.getElementById('finderResults');
+    setTabQuery('song-finder', finderParams());
     if (selectedOrder.length === 0) {
         resultsDiv.innerHTML = '<p class="no-results">select at least one song.</p>';
         return;

@@ -157,6 +157,15 @@
             transition: all 0.15s;
         }
         .clear-btn:hover { background: #eee; }
+        /* show dates that open the show on the shows tab */
+        a.show-link {
+            color: inherit;
+            text-decoration: underline dotted;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+        a.show-link:hover { text-decoration-style: solid; color: inherit; }
+        html.dark a.show-link, html.dark a.show-link:hover { color: inherit; }
         .results { margin-top: 8px; }
         .result-show {
             border: 2px solid black;
@@ -1388,22 +1397,22 @@
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;"><span>mode:</span>
                     <div class="opt-tabs">
-                        <button class="opt-tab active" onclick="setOptTab(this,'mode','any')">any</button>
-                        <button class="opt-tab" onclick="setOptTab(this,'mode','all')">all</button>
+                        <button class="opt-tab active" data-opt="mode" data-value="any" onclick="setOptTab(this,'mode','any')">any</button>
+                        <button class="opt-tab" data-opt="mode" data-value="all" onclick="setOptTab(this,'mode','all')">all</button>
                     </div>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;"><span>order:</span>
                     <div class="opt-tabs">
-                        <button class="opt-tab active" onclick="setOptTab(this,'order','unordered');renderSelectedList()">unordered</button>
-                        <button class="opt-tab" onclick="setOptTab(this,'order','ordered');renderSelectedList()">ordered</button>
-                        <button class="opt-tab" onclick="setOptTab(this,'order','back-to-back');renderSelectedList()">back-to-back</button>
+                        <button class="opt-tab active" data-opt="order" data-value="unordered" onclick="setOptTab(this,'order','unordered');renderSelectedList()">unordered</button>
+                        <button class="opt-tab" data-opt="order" data-value="ordered" onclick="setOptTab(this,'order','ordered');renderSelectedList()">ordered</button>
+                        <button class="opt-tab" data-opt="order" data-value="back-to-back" onclick="setOptTab(this,'order','back-to-back');renderSelectedList()">back-to-back</button>
                     </div>
                     <span class="help-icon" tabindex="0">?<span class="help-tooltip"><b>ordered:</b> your songs must appear in the setlist in the order you selected them, but other songs can appear between them.<br><br><b>back-to-back:</b> your songs must appear consecutively in the setlist, with nothing between them.</span></span>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;"><span>sort:</span>
                     <div class="opt-tabs">
-                        <button class="opt-tab active" onclick="setOptTab(this,'sort','desc')">newest first</button>
-                        <button class="opt-tab" onclick="setOptTab(this,'sort','asc')">oldest first</button>
+                        <button class="opt-tab active" data-opt="sort" data-value="desc" onclick="setOptTab(this,'sort','desc')">newest first</button>
+                        <button class="opt-tab" data-opt="sort" data-value="asc" onclick="setOptTab(this,'sort','asc')">oldest first</button>
                     </div>
                 </div>
                 <div id="yearRangeWrap" style="display:none;align-items:center;gap:10px;">

@@ -135,7 +135,7 @@ function renderUserBody(uid) {
                 const recs = show && show.recordings ? show.recordings : [];
                 const recsHtml = recs.length > 0 ? `<div class="era-show-recs" style="padding-left:20px;">${recs.map((r, ri) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${ri + 1}]</a>`).join('')}</div>` : '';
                 const noteHtml = pick.note ? `<div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:3px;padding-left:20px;">${escapeHtml(pick.note)}</div>` : '';
-                return `<li style="padding:8px 0;border-bottom:1px solid #eee;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted" style="display:inline-block;width:20px;text-align:right;">${i + 1}.</span> <strong>${pick.show_date}</strong>${venue ? ` <span class="muted">— ${venue}</span>` : ''}${recsHtml}${noteHtml}</li>`;
+                return `<li style="padding:8px 0;border-bottom:1px solid #eee;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted" style="display:inline-block;width:20px;text-align:right;">${i + 1}.</span> <strong>${showLink(pick.show_date)}</strong>${venue ? ` <span class="muted">— ${venue}</span>` : ''}${recsHtml}${noteHtml}</li>`;
             }).join('')}</ol>`;
         }
     } else if (activeTab === 'votes') {
@@ -155,7 +155,7 @@ function renderUserBody(uid) {
                     const venue = show ? show.venue : '';
                     const date = v.show_date.replace(/[a-z]$/, '');
                     return `<div class="era-show-row" style="cursor:default;">
-                        <span class="era-show-date">${date}</span>
+                        <span class="era-show-date">${showLink(v.show_date, date)}</span>
                         <span class="era-show-venue">${v.song}${venue ? ` <span class="dim" style="font-size:10px;">- ${venue}</span>` : ''}</span>
                     </div>`;
                 }).join('');
@@ -207,7 +207,7 @@ function renderUserBody(uid) {
                 const hasUserNote = !!userNote;
                 const noteHtml = hasUserNote ? `<div style="margin-bottom:${hasSetlist ? '8px' : '0'};padding-bottom:${hasSetlist ? '6px' : '0'};border-bottom:${hasSetlist ? '1px solid #eee' : 'none'};font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:inherit;line-height:1.6;white-space:pre-wrap;">${userNote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>` : '';
                 return `<div class="era-show-row"${(hasSetlist || hasUserNote) ? ` onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
-                    <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
+                    <span class="era-show-date">${showLink(s.date, s.date.replace(/[a-z]$/, ''))}</span>
                     <span class="era-show-venue">${s.venue}${hasUserNote ? ' <span class="dim" style="font-size:10px;" title="user has left a note for this show">[n]</span>' : ''}</span>
                     <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
                     <span class="era-show-toggle"${(hasSetlist || hasUserNote) ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
@@ -286,4 +286,4 @@ function filterUsers(query) {
     });
 }
 
-switchTab(window.location.hash.slice(1) || 'song-finder');
+applyHash();
