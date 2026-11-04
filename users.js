@@ -2,6 +2,29 @@
 let usersLoaded = false;
 let usersData = []; // [{ user_id, username, tracking: {date: {attended,listened}} }]
 let userTabState = {}; // userId -> 'attended'|'listened'
+let publicUserIds = null; // Set of user_ids with public profiles, once loaded
+
+// The note after "users who have made their profile public." depends on who's
+// logged in, so it's redrawn on login/logout too (index.js updateHeaderAuth).
+function updateUsersPublicNote() {
+    const el = document.getElementById('usersPublicNote');
+    if (!el) return;
+    if (!currentUser) {
+        el.innerHTML = `<a href="#" onclick="showAuthModal();return false;">log in</a> to make your profile public.`;
+    } else if (publicUserIds && !publicUserIds.has(currentUser.id)) {
+        el.innerHTML = `<a href="profile/settings.html#privacy">click here to make your profile public.</a>`;
+    } else {
+        el.innerHTML = '';   // already public, or not loaded yet
+    }
+}
+
+// Coming back with the browser's Back button can restore this page from its
+// cache, from before a visit to settings; reload the list so it's current.
+window.addEventListener('pageshow', e => {
+    if (!e.persisted || !usersLoaded) return;
+    usersLoaded = false;
+    if (document.getElementById('tab-users').classList.contains('active')) loadUsers();
+});
 
 async function loadUsers() {
     usersLoaded = true;
@@ -16,6 +39,8 @@ async function loadUsers() {
         container.innerHTML = `<p class="error" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;">error loading users: ${error.message || JSON.stringify(error)}</p>`;
         return;
     }
+    publicUserIds = new Set((profiles || []).map(p => p.user_id));
+    updateUsersPublicNote();
     if (!profiles || profiles.length === 0) {
         container.innerHTML = `<p style="font-family:Monaco,'JetBrains Mono',monospace;font-size:13px;color:inherit;">no public profiles yet.</p>`;
         return;
@@ -59,12 +84,6 @@ async function loadUsers() {
     usersData = profiles.map(p => ({ ...p, tracking: trackingByUser[p.user_id] || {}, votes: votesByUser[p.user_id] || [], picks: picksByUser[p.user_id] || [] }));
 
     document.getElementById('usersControls').style.display = 'flex';
-    if (!currentUser) {
-        document.getElementById('usersLoginNote').style.display = '';
-    } else if (currentUser && !profiles.some(p => p.user_id === currentUser.id)) {
-        document.getElementById('usersMakePublicNote').style.display = '';
-    }
-
     renderUsers(usersData);
 }
 

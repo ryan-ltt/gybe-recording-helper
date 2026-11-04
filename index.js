@@ -304,6 +304,7 @@ function updateHeaderAuth() {
     const discoverAccountDiv = document.getElementById('discoverAccountListened');
     if (discoverAccountDiv) discoverAccountDiv.style.display = currentUser ? 'block' : 'none';
     if (typeof updateFinderAccountOptions === 'function') updateFinderAccountOptions();
+    if (typeof updateUsersPublicNote === 'function') updateUsersPublicNote();
 }
 
 function toggleTheme() {

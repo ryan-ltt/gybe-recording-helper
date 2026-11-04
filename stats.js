@@ -213,7 +213,7 @@ function renderShowLengths() {
             <thead><tr><th>year</th><th class="num">shows</th><th class="num">typical</th><th class="num">shortest</th><th class="num">longest</th></tr></thead>
             <tbody>${yearRows}</tbody>
         </table></div>
-        <p class="stats-note">a show's length is the length of its recording on archive.org (the preferred recording if one is set), so it includes the intro, tuning, the encore break and (since 2010) the outro drone. an incomplete recording shows up short.</p>`;
+        <p class="stats-note">a show's length is the length of its recording on archive.org (the preferred recording if one is set), so it includes the outro drone. incomplete recordings are included.</p>`;
     drawStatsChart(document.getElementById('statsChart'), points);
 }
 

@@ -99,6 +99,13 @@
         .profile-msg.ok { color: #080; }
         .profile-msg.err { color: #c00; }
 
+        /* a section linked to directly (settings.html#privacy) flashes, like a show opened from a link */
+        @keyframes setting-flash { from { background: #fff3a0; } to { background: transparent; } }
+        @keyframes setting-flash-dark { from { background: #2c4a6b; } to { background: transparent; } }
+        .profile-section.flash { animation: setting-flash 2.5s ease-out; }
+        html.dark .profile-section.flash { animation-name: setting-flash-dark; }
+        .profile-section { margin-left: -10px; margin-right: -10px; padding: 6px 10px; }
+
         .not-logged-in {
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 13px;
@@ -216,7 +223,7 @@
                     <button class="profile-save-btn" onclick="updatePassword()">change password</button>
                     <div class="profile-msg" id="profilePwMsg"></div>
                 </div>
-                <div class="profile-section">
+                <div class="profile-section" id="privacy">
                     <h3>privacy</h3>
                     <div class="profile-field">
                         <label class="privacy-label" style="display:flex;align-items:center;gap:8px;font-size:13px;">
@@ -229,6 +236,19 @@
                     <div class="profile-msg" id="profilePrivacyMsg"></div>
                 </div>`;
         }
+
+        // Links like settings.html#privacy scroll to that section and flash it.
+        function highlightLinkedSection() {
+            const id = location.hash.slice(1);
+            const section = id && document.getElementById(id);
+            if (!section || !section.classList.contains('profile-section')) return;
+            section.scrollIntoView({ block: 'center' });
+            section.classList.remove('flash');
+            void section.offsetWidth;   // restart the animation if it's already running
+            section.classList.add('flash');
+            section.querySelector('input')?.focus({ preventScroll: true });
+        }
+        window.addEventListener('hashchange', highlightLinkedSection);
 
         async function updateUsername() {
             if (!sbClient || !currentUser) return;
@@ -318,6 +338,7 @@
                             currentIsPublic = data?.is_public || false;
                             updateHeaderAuth();
                             renderSettings();
+                            highlightLinkedSection();
                         });
                 } else {
                     updateHeaderAuth();
