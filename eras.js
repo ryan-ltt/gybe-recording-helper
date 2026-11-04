@@ -238,6 +238,7 @@ async function loadTrackingThenBuild() {
     trackingLoaded = true;
     buildEras();
     updateErasTrackSection();
+    if (finderOpts.hideListened) findShows();   // the listened set just changed
     if (localStorage.getItem('discoverUseAccount') === '1') {
         const cb = document.getElementById('discoverUseAccount');
         if (cb) { cb.checked = true; toggleAccountListened(); }

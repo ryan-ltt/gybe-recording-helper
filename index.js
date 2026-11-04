@@ -231,6 +231,8 @@ Promise.all([
     shows = data;
     buildIndex();
     buildAlbumSections();
+    renderSelectedList();
+    updateOptsSummary();
     restoreErasToggles();
     buildEras();
     updateErasTrackSection();
@@ -295,6 +297,7 @@ function updateHeaderAuth() {
     }
     const discoverAccountDiv = document.getElementById('discoverAccountListened');
     if (discoverAccountDiv) discoverAccountDiv.style.display = currentUser ? 'block' : 'none';
+    if (typeof updateFinderAccountOptions === 'function') updateFinderAccountOptions();
 }
 
 function toggleTheme() {

@@ -117,20 +117,109 @@
         }
         .song-tag:hover { background: #eee; }
         .song-tag.selected { background: black; color: white; }
-        .selected-list {
-            margin: 12px 0;
-            font-size: 14px;
-            color: #333;
+        .finder-intro {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin: 0 0 12px 0;
+            font-family: Monaco, 'JetBrains Mono', monospace;
         }
-        .selected-list span {
+        .finder-intro p { font-size: 13px; color: inherit; margin: 0; }
+        .finder-sort { display: flex; align-items: center; gap: 6px; flex-shrink: 0; font-size: 12px; }
+        /* selection + options: sticks to the top of the screen while you scroll the results */
+        .finder-bar {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            margin: 16px 0 0 0;
+            padding: 10px 14px;
+            background: white;
+            border: 2px solid black;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+        .finder-bar-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+        .finder-bar .finder-clear { margin: 2px 0 0 0; padding: 3px 12px; font-size: 12px; flex-shrink: 0; }
+        .finder-bar [hidden] { display: none !important; }   /* .clear-btn etc. set display */
+        .finder-opts { margin-top: 8px; }
+        .finder-opts summary { cursor: pointer; user-select: none; font-size: 12px; color: #555; }
+        .finder-opts summary:hover .finder-opts-title { text-decoration: underline; }
+        .finder-opts-title { color: black; font-weight: bold; margin-right: 4px; }
+        #finderOptsSummary .opt-changed { color: black; font-weight: bold; }
+        /* the expanded options: an inset panel with a label column and a control column */
+        .finder-opts-box {
+            margin-top: 10px;
+            padding: 14px 16px 10px;
+            background: #f3f7f9;
+            border: 1px solid #c5d3da;
+        }
+        .opt-grid {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            gap: 12px 18px;
+            align-items: center;
+        }
+        .opt-label {
+            font-size: 12px;
+            color: #56606a;
+        }
+        .opt-control.opt-switches { flex-direction: column; align-items: flex-start; gap: 8px; }
+        .opt-switch { display: flex; align-items: center; gap: 10px; font-size: 12px; cursor: pointer; }
+        .opt-control { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; }
+        .opt-value { font-size: 12px; font-variant-numeric: tabular-nums; }
+        .finder-opts-box .year-slider-track { width: 240px; max-width: 100%; }
+        .opt-footer { display: flex; justify-content: flex-end; min-height: 18px; margin-top: 6px; }
+        .opt-reset {
+            background: none; border: none; padding: 0; cursor: pointer;
+            font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px;
+            color: #555; text-decoration: underline;
+        }
+        .opt-reset:hover { color: black; }
+        .opt-tab:focus-visible, .opt-reset:focus-visible, .finder-opts summary:focus-visible,
+        .opt-switch input:focus-visible + .toggle-slider {
+            outline: 2px solid #0066cc; outline-offset: 2px;
+        }
+        html.dark .finder-opts summary { color: #a8bcc8; }
+        html.dark .finder-opts-title, html.dark #finderOptsSummary .opt-changed { color: #eaf2f5; }
+        html.dark .finder-opts-box { background: #16202c; border-color: #2c3e50; }
+        html.dark .opt-label { color: #8fa6b4; }
+        html.dark .opt-reset { color: #a8bcc8; }
+        html.dark .opt-reset:hover { color: #eaf2f5; }
+        @media (max-width: 640px) {
+            .opt-grid { grid-template-columns: 1fr; gap: 4px; }
+            .opt-label:not(:first-child) { margin-top: 10px; }
+            .finder-opts-box { padding: 12px 12px 8px; }
+        }
+        .finder-empty { color: #555; font-size: 12px; }
+        .results .finder-more { margin: 4px 0 24px 0; }
+        html.dark .finder-bar { background: #1e2a38; border-color: #2c3e50; }
+        html.dark .finder-empty { color: #b8ccd6; }
+        .selected-list {
+            margin: 0;
+            font-size: 13px;
+            color: inherit;
+            line-height: 2;
+        }
+        .selected-list .sel-chip {
             display: inline-block;
             background: black;
             color: white;
             font-family: Monaco, 'JetBrains Mono', monospace;
             font-size: 12px;
-            padding: 3px 10px;
+            line-height: 1.6;
+            padding: 3px 6px 3px 10px;
             margin: 3px 4px 3px 0;
         }
+        .sel-chip[draggable="true"] { cursor: grab; }
+        .sel-chip .sel-remove {
+            background: none; border: none; color: inherit; cursor: pointer;
+            font-size: 14px; line-height: 1; padding: 0 2px 0 6px; opacity: 0.7; vertical-align: middle;
+        }
+        .sel-chip .sel-remove:hover { opacity: 1; }
+        .selected-label { margin-right: 6px; }
+        html.dark .selected-list .sel-chip { background: #eaf2f5; color: #0e1824; }
         .find-btn {
             display: inline-block;
             padding: 10px 24px;
@@ -175,8 +264,10 @@
         }
         .result-show .show-header {
             display: flex;
+            flex-wrap: wrap;                     /* match count drops below on narrow screens */
             justify-content: space-between;
             align-items: baseline;
+            gap: 2px 12px;
             margin-bottom: 8px;
         }
         .result-show .show-date {
@@ -362,25 +453,30 @@
         .year-range::-webkit-slider-runnable-track { background: transparent; height: 4px; }
         .year-range::-moz-range-track { background: transparent; height: 4px; }
         .year-slider-bg { position: absolute; left: 0; right: 0; height: 4px; top: 8px; background: #a8c4d0; pointer-events: none; }
+        /* the chosen range, between the two thumbs (positioned by updateYearLabel) */
+        .year-slider-fill { position: absolute; left: 7px; right: 7px; height: 4px; top: 8px; background: black; pointer-events: none; }
+        .year-range::-webkit-slider-thumb { margin-top: -5px; }   /* centre the thumb on the 4px track */
         html.dark .year-slider-bg { background: #3a6070; }
+        html.dark .year-slider-fill { background: #eaf2f5; }
         html.dark .year-range::-webkit-slider-thumb { background: white; border-color: white; }
         html.dark .year-range::-moz-range-thumb { background: white; border-color: white; }
+        /* "opener" / "closer" toggles inside a selected-song chip */
         .pos-btn {
             display: inline-block;
-            font-size: 9px;
-            padding: 1px 5px;
-            margin-left: 5px;
+            font-size: 11px;
+            padding: 0 6px;
+            margin-left: 6px;
             cursor: pointer;
             background: transparent;
-            border: 1px solid rgba(255,255,255,0.35);
-            color: rgba(255,255,255,0.45);
+            border: 1px solid rgba(255,255,255,0.75);
+            color: white;
             font-family: Monaco, 'JetBrains Mono', monospace;
             vertical-align: middle;
-            line-height: 1.4;
+            line-height: 1.5;
             user-select: none;
         }
-        .pos-btn:hover { border-color: rgba(255,255,255,0.7); color: rgba(255,255,255,0.8); }
-        .pos-btn.pos-active { background: white; color: black; border-color: white; }
+        .pos-btn:hover { background: rgba(255,255,255,0.2); }
+        .pos-btn.pos-active { background: #ffe066; color: black; border-color: #ffe066; }
         .opts-row {
             margin: 10px 0 4px 0;
             font-family: Monaco, 'JetBrains Mono', monospace;
@@ -1257,9 +1353,9 @@
         html.dark .opt-tab { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
         html.dark .opt-tab.active { background: #eaf2f5; color: #0e1824; border-color: #eaf2f5; }
         html.dark .opt-tab:hover:not(.active) { background: #253545; color: #eaf2f5; }
-        html.dark .pos-btn { border-color: rgba(234,242,245,0.35); color: rgba(234,242,245,0.45); }
-        html.dark .pos-btn:hover { border-color: rgba(234,242,245,0.7); color: rgba(234,242,245,0.8); }
-        html.dark .pos-btn.pos-active { background: #eaf2f5; color: #0e1824; border-color: #eaf2f5; }
+        html.dark .pos-btn { border-color: rgba(14,24,36,0.6); color: #0e1824; }
+        html.dark .pos-btn:hover { background: rgba(14,24,36,0.12); }
+        html.dark .pos-btn.pos-active { background: #c8a000; color: #0e1824; border-color: #c8a000; }
         html.dark .auth-modal { background: #1e2a38; border-color: #2c3e50; color: #eaf2f5; }
         html.dark .auth-modal h3 { color: #eaf2f5; }
         html.dark .auth-field-label { color: #eaf2f5; }
@@ -1378,55 +1474,80 @@
         </div></nav>
         <!-- SONG FINDER TAB -->
         <div class="tab-panel active" id="tab-song-finder">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin:0 0 12px 0;">
-                <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0;">select songs you want to hear, find which shows contain them.</p>
-                <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;">
+            <div class="finder-intro">
+                <p>pick songs you want to hear. shows that played them appear below.</p>
+                <div class="finder-sort">
                     <span id="sortLabelAlpha">a–z</span>
                     <label class="toggle-switch"><input type="checkbox" id="sortToggle" onchange="toggleSongSort()"><span class="toggle-slider"></span></label>
                     <span id="sortLabelAlbum">by album</span>
                 </div>
             </div>
+            <input type="text" class="search-box" id="songSearch" placeholder="filter songs..." oninput="filterSongs()" style="margin:0 0 6px 0;">
             <div id="albumSections"></div>
-            <input type="text" class="search-box" id="songSearch" placeholder="filter songs..." oninput="filterSongs()" style="margin:16px 0 0 0;">
             <div id="alphaSongGrid"></div>
-            <div class="selected-list" id="selectedList"></div>
-            <div class="opts-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
-                <div style="display:flex;align-items:center;gap:10px;">
-                    <label class="toggle-switch"><input type="checkbox" id="recordingsOnly" onchange="finderOpts.recordingsOnly=this.checked"><span class="toggle-slider"></span></label>
-                    <span>recordings only</span>
+
+            <!-- stays on screen while scrolling the results -->
+            <div class="finder-bar" id="finderBar">
+                <div class="finder-bar-row">
+                    <div class="selected-list" id="selectedList"></div>
+                    <button class="clear-btn finder-clear" id="finderClear" onclick="clearAll()" hidden>clear</button>
                 </div>
-                <div style="display:flex;align-items:center;gap:8px;"><span>mode:</span>
-                    <div class="opt-tabs">
-                        <button class="opt-tab active" data-opt="mode" data-value="any" onclick="setOptTab(this,'mode','any')">any</button>
-                        <button class="opt-tab" data-opt="mode" data-value="all" onclick="setOptTab(this,'mode','all')">all</button>
+                <details class="finder-opts" id="finderOptsPanel">
+                    <summary><span class="finder-opts-title">options</span> <span id="finderOptsSummary"></span></summary>
+                    <div class="finder-opts-box">
+                        <div class="opt-grid">
+                            <span class="opt-label">match</span>
+                            <div class="opt-control">
+                                <div class="opt-tabs">
+                                    <button class="opt-tab active" data-opt="mode" data-value="any" onclick="setOptTab(this,'mode','any')">any song</button>
+                                    <button class="opt-tab" data-opt="mode" data-value="all" onclick="setOptTab(this,'mode','all')">all songs</button>
+                                </div>
+                            </div>
+
+                            <span class="opt-label">order</span>
+                            <div class="opt-control">
+                                <div class="opt-tabs">
+                                    <button class="opt-tab active" data-opt="order" data-value="unordered" onclick="setOptTab(this,'order','unordered')">any order</button>
+                                    <button class="opt-tab" data-opt="order" data-value="ordered" onclick="setOptTab(this,'order','ordered')">in order</button>
+                                    <button class="opt-tab" data-opt="order" data-value="back-to-back" onclick="setOptTab(this,'order','back-to-back')">back-to-back</button>
+                                </div>
+                                <span class="help-icon" tabindex="0">?<span class="help-tooltip"><b>in order:</b> your songs must appear in the setlist in the order you selected them, but other songs can appear between them.<br><br><b>back-to-back:</b> your songs must appear consecutively in the setlist, with nothing between them.</span></span>
+                            </div>
+
+                            <span class="opt-label">sort</span>
+                            <div class="opt-control">
+                                <div class="opt-tabs">
+                                    <button class="opt-tab active" data-opt="sort" data-value="desc" onclick="setOptTab(this,'sort','desc')">newest first</button>
+                                    <button class="opt-tab" data-opt="sort" data-value="asc" onclick="setOptTab(this,'sort','asc')">oldest first</button>
+                                </div>
+                            </div>
+
+                            <span class="opt-label">years</span>
+                            <div class="opt-control" id="yearRangeWrap">
+                                <div class="year-slider-track" id="yearSliderTrack">
+                                    <div class="year-slider-bg"></div>
+                                    <div class="year-slider-fill" id="yearSliderFill"></div>
+                                    <input type="range" id="yearMin" class="year-range" oninput="onYearSlider()" aria-label="earliest year">
+                                    <input type="range" id="yearMax" class="year-range" oninput="onYearSlider()" aria-label="latest year">
+                                </div>
+                                <span class="opt-value" id="yearRangeLabel"></span>
+                            </div>
+
+                            <span class="opt-label">filter</span>
+                            <div class="opt-control opt-switches">
+                                <label class="opt-switch">
+                                    <span class="toggle-switch"><input type="checkbox" id="recordingsOnly" onchange="setFinderFlag('recordingsOnly', this.checked);onFinderChange()"><span class="toggle-slider"></span></span>
+                                    only shows with recordings
+                                </label>
+                                <label class="opt-switch" id="finderHideListenedRow" hidden title="hides shows you've marked as listened on the shows tab">
+                                    <span class="toggle-switch"><input type="checkbox" id="finderHideListened" onchange="setFinderFlag('hideListened', this.checked);onFinderChange()"><span class="toggle-slider"></span></span>
+                                    hide shows I've listened to
+                                </label>
+                            </div>
+                        </div>
+                        <div class="opt-footer"><button class="opt-reset" id="finderReset" onclick="resetFinderOpts()" hidden>reset options</button></div>
                     </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;"><span>order:</span>
-                    <div class="opt-tabs">
-                        <button class="opt-tab active" data-opt="order" data-value="unordered" onclick="setOptTab(this,'order','unordered');renderSelectedList()">unordered</button>
-                        <button class="opt-tab" data-opt="order" data-value="ordered" onclick="setOptTab(this,'order','ordered');renderSelectedList()">ordered</button>
-                        <button class="opt-tab" data-opt="order" data-value="back-to-back" onclick="setOptTab(this,'order','back-to-back');renderSelectedList()">back-to-back</button>
-                    </div>
-                    <span class="help-icon" tabindex="0">?<span class="help-tooltip"><b>ordered:</b> your songs must appear in the setlist in the order you selected them, but other songs can appear between them.<br><br><b>back-to-back:</b> your songs must appear consecutively in the setlist, with nothing between them.</span></span>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;"><span>sort:</span>
-                    <div class="opt-tabs">
-                        <button class="opt-tab active" data-opt="sort" data-value="desc" onclick="setOptTab(this,'sort','desc')">newest first</button>
-                        <button class="opt-tab" data-opt="sort" data-value="asc" onclick="setOptTab(this,'sort','asc')">oldest first</button>
-                    </div>
-                </div>
-                <div id="yearRangeWrap" style="display:none;align-items:center;gap:10px;">
-                    <span>years: <span id="yearRangeLabel"></span></span>
-                    <div class="year-slider-track" id="yearSliderTrack">
-                        <div class="year-slider-bg"></div>
-                        <input type="range" id="yearMin" class="year-range" oninput="onYearSlider()">
-                        <input type="range" id="yearMax" class="year-range" oninput="onYearSlider()">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="find-btn" onclick="findShows()">find shows</button>
-                <button class="clear-btn" onclick="clearAll()">clear</button>
+                </details>
             </div>
             <div class="results" id="finderResults"></div>
         </div>
