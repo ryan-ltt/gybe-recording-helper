@@ -6,67 +6,68 @@ function restoreErasToggles() {
     });
 }
 
+// The "all" card and one card per year. Only the headers are built here; a
+// card's show rows are rendered the first time it's opened (see toggleEra),
+// so the ~1,000 shows aren't all rendered twice on every page load.
+let eraGroups = {};   // card id ('yall', 'y1997', …) → shows in it, after the switches
+
+function eraShowLineage() {
+    return document.getElementById('erasShowLineage').checked;
+}
+
 function buildEras() {
     const container = document.getElementById('erasContainer');
-    container.innerHTML = '';
 
-    // Group shows by year
+    // Cards open now (and their filter text) stay open through the rebuild,
+    // e.g. after flipping a switch or logging in.
+    const reopen = {};
+    container.querySelectorAll('.era-body.open').forEach(body => {
+        reopen[body.id.slice(5)] = body.querySelector('.era-filter input')?.value || '';
+    });
+
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
     const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
-    const showLineage = document.getElementById('erasShowLineage').checked;
     const showFilter = s => (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0);
-    const byYear = {};
-    for (const show of shows) {
-        if (!showFilter(show)) continue;
-        const y = show.date.slice(0, 4);
-        if (!byYear[y]) byYear[y] = [];
-        byYear[y].push(show);
-    }
+    const visible = shows.filter(showFilter);
+    eraGroups = { yall: visible };
+    for (const show of visible) (eraGroups['y' + show.date.slice(0, 4)] ||= []).push(show);
 
-    // "All" card — shows every show regardless of year
-    const allShows = shows.filter(showFilter);
-    const allBlock = document.createElement('div');
-    allBlock.className = 'era-block';
-    allBlock.innerHTML = `
-        <div class="era-header" onclick="toggleEra('yall')">
-            <div><div class="era-title">all</div></div>
-            <div style="display:flex;align-items:center;gap:16px;">
-                <div class="era-meta">${allShows.length} show${allShows.length !== 1 ? 's' : ''}</div>
-                <div class="era-toggle" id="toggle-yall">+</div>
+    const card = (id, title) => {
+        const n = eraGroups[id].length;
+        return `<div class="era-block">
+            <div class="era-header" onclick="toggleEra('${id}')">
+                <div><div class="era-title">${title}</div></div>
+                <div style="display:flex;align-items:center;gap:16px;">
+                    <div class="era-meta">${n} show${n !== 1 ? 's' : ''}</div>
+                    <div class="era-toggle" id="toggle-${id}">+</div>
+                </div>
             </div>
-        </div>
-        <div class="era-body" id="body-yall">
-            <div class="era-filter">
-                <input type="text" placeholder="filter by date, city, venue..." oninput="filterAllShows(this.value)">
-            </div>
-            <div class="era-shows" id="shows-yall">
-                ${renderEraShowList(allShows, '', 'yall-', showLineage)}
+            <div class="era-body" id="body-${id}">
+                <div class="era-filter">
+                    <input type="text" placeholder="filter by date, city, venue..." oninput="renderEra('${id}')">
+                </div>
+                <div class="era-shows" id="shows-${id}"></div>
             </div>
         </div>`;
-    container.appendChild(allBlock);
+    };
+    const years = Object.keys(eraGroups).filter(id => id !== 'yall').sort();
+    container.innerHTML = card('yall', 'all') + years.map(id => card(id, id.slice(1))).join('');
 
-    for (const year of Object.keys(byYear).sort()) {
-        const yearShows = byYear[year];
-        const block = document.createElement('div');
-        block.className = 'era-block';
-        block.innerHTML = `
-            <div class="era-header" onclick="toggleEra('y${year}')">
-                <div><div class="era-title">${year}</div></div>
-                <div style="display:flex;align-items:center;gap:16px;">
-                    <div class="era-meta">${yearShows.length} show${yearShows.length !== 1 ? 's' : ''}</div>
-                    <div class="era-toggle" id="toggle-y${year}">+</div>
-                </div>
-            </div>
-            <div class="era-body" id="body-y${year}">
-                <div class="era-filter">
-                    <input type="text" placeholder="filter by date, city, venue..." oninput="filterEraShows('y${year}', this.value)">
-                </div>
-                <div class="era-shows" id="shows-y${year}">
-                    ${renderEraShowList(yearShows, '', 'y${year}-', showLineage)}
-                </div>
-            </div>`;
-        container.appendChild(block);
+    for (const [id, filter] of Object.entries(reopen)) {
+        if (!eraGroups[id]) continue;
+        const input = document.querySelector(`#body-${id} .era-filter input`);
+        if (input) input.value = filter;
+        toggleEra(id);
     }
+}
+
+// Render (or re-render) one card's rows.
+function renderEra(id) {
+    const showsDiv = document.getElementById('shows-' + id);
+    if (!showsDiv) return;
+    const filter = document.querySelector(`#body-${id} .era-filter input`)?.value || '';
+    showsDiv.innerHTML = renderEraShowList(eraGroups[id] || [], filter, id + '-', eraShowLineage());
+    showsDiv.dataset.rendered = '1';
 }
 
 function renderEraShowList(eraShows, filter, prefix = '', showLineage = false) {
@@ -74,8 +75,8 @@ function renderEraShowList(eraShows, filter, prefix = '', showLineage = false) {
     const filtered = f ? eraShows.filter(s => s.date.includes(f) || s.venue.toLowerCase().includes(f)) : eraShows;
     if (filtered.length === 0) return '<p style="font-family:Monaco, \'JetBrains Mono\', monospace;font-size:12px;color:inherit;">no shows match.</p>';
     return filtered.map(s => {
-        const bestId = BEST_RECORDINGS[s.date];
-        const recsHtml = showLineage ? '' : s.recordings.map((r, i) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' class="best-rec"' : ''}>[${i+1}]</a>`).join('');
+        const bestId = BEST_RECORDINGS[s.date];   // lineage view lists the best recording first
+        const recsHtml = showLineage ? '' : s.recordings.map((r, i) => `<a ${recLinkAttrs(s.date, r)}>[${i+1}]</a>`).join('');
         const lineageHtml = showLineage && s.recordings.length > 0
             ? `<div class="rec-lineage-list" onclick="event.stopPropagation()">${[...s.recordings]
                 .sort((a, b) => {
@@ -90,7 +91,7 @@ function renderEraShowList(eraShows, filter, prefix = '', showLineage = false) {
                 if (source)  infoLines.push(`<span class="muted">source:</span> ${source}`);
                 if (lineage && (lineage.length <= 80 || !source)) infoLines.push(`<span class="muted">lineage:</span> ${lineage}`);
                 const info = infoLines.length ? infoLines.join('<br>') : '<span class="muted">unknown</span>';
-                return `<div class="rec-lineage-row"><a href="${r.url}" target="_blank"${bestId === r.id ? ' class="best-rec"' : ''}>[${i+1}]</a><span class="rec-lineage">${info}</span></div>`;
+                return `<div class="rec-lineage-row"><a ${recLinkAttrs(s.date, r)}>[${i+1}]</a><span class="rec-lineage">${info}</span></div>`;
               }).join('')}</div>`
             : '';
         const mainSongs = [], soundcheckSongs = [];
@@ -121,12 +122,15 @@ function renderEraShowList(eraShows, filter, prefix = '', showLineage = false) {
         const hasSetlist = s.songs.length > 0;
         let noteSection = '';
         if (currentUser) {
-            const esc = t => (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-            const noteStyle = 'flex:1;border:none;padding:2px 0;font-family:Monaco,\'JetBrains Mono\',monospace;font-size:11px;color:inherit;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;';
-            const btnStyle = 'font-family:Monaco,\'JetBrains Mono\',monospace;font-size:10px;padding:2px 8px;border:1px solid currentColor;background:transparent;cursor:pointer;color:inherit;flex-shrink:0;';
+            // notes save themselves (note-autosave.js)
+            const note = (field, label, first) => `<div class="note-wrap${first && !hasSetlist ? ' note-wrap-first' : ''}" onclick="event.stopPropagation()">
+                <div class="note-label muted">${label} <span class="note-status" aria-live="polite"></span></div>
+                <textarea class="note-input" rows="1" data-note-date="${s.date}" data-note-field="${field}" placeholder="add a note..."
+                    oninput="noteInput(this)" onblur="noteFlush(this)">${escapeHtml(td[field])}</textarea>
+            </div>`;
             const parts = [];
-            if (td.attended) parts.push(`<div style="margin-top:${hasSetlist?'8px':'0'};padding-top:${hasSetlist?'6px':'0'};border-top:${hasSetlist?'1px solid #eee':'none'};" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">attended note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="anote-${prefix}${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.attended_notes)}</textarea><button onclick="saveEraNote('${s.date}','attended_notes',document.getElementById('anote-${prefix}${s.date}').value,this)" style="${btnStyle}">save</button></div></div>`);
-            if (td.listened) parts.push(`<div style="margin-top:8px;padding-top:6px;border-top:1px solid #eee;" onclick="event.stopPropagation()"><div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;margin-bottom:3px;">listened note</div><div style="display:flex;align-items:flex-start;gap:6px;"><textarea id="lnote-${prefix}${s.date}" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" placeholder="add a note..." style="${noteStyle}">${esc(td.listened_notes)}</textarea><button onclick="saveEraNote('${s.date}','listened_notes',document.getElementById('lnote-${prefix}${s.date}').value,this)" style="${btnStyle}">save</button></div></div>`);
+            if (td.attended) parts.push(note('attended_notes', 'attended note', true));
+            if (td.listened) parts.push(note('listened_notes', 'listened note', !td.attended));
             noteSection = parts.join('');
         }
         const hasExpandable = hasSetlist || !!noteSection;
@@ -147,22 +151,17 @@ function toggleShowSetlist(id) {
     const tgl = document.getElementById('tgl-' + id);
     const isOpen = el.classList.toggle('open');
     tgl.textContent = isOpen ? '−' : '+';
-    if (isOpen) {
-        el.querySelectorAll('textarea').forEach(ta => {
-            ta.style.height = 'auto';
-            ta.style.height = ta.scrollHeight + 'px';
-        });
-    }
+    if (isOpen) el.querySelectorAll('textarea').forEach(noteAutosize);
 }
 
-async function saveEraNote(date, field, value, btn) {
-    if (!currentUser || !sbClient) return;
+// Called by note-autosave.js. Returns whether the note was saved.
+async function saveNoteValue(date, field, value) {
+    if (!currentUser || !sbClient) return false;
     const note = value.trim() || null;
     if (!trackingData[date]) trackingData[date] = { attended: false, listened: false, listened_notes: '', attended_notes: '' };
     const previous = trackingData[date][field];
     trackingData[date][field] = note || '';
     const td = trackingData[date];
-    if (btn) { btn.disabled = true; btn.textContent = 'saving…'; }
     const { error } = await sbClient.from('show_tracking').upsert(
         { user_id: currentUser.id, show_date: date, attended: td.attended, listened: td.listened, listened_notes: td.listened_notes || null, attended_notes: td.attended_notes || null },
         { onConflict: 'user_id,show_date' }
@@ -170,12 +169,9 @@ async function saveEraNote(date, field, value, btn) {
     if (error) {
         trackingData[date][field] = previous;
         notifyError(`couldn't save note: ${error.message}`);
+        return false;
     }
-    if (btn) {
-        btn.disabled = false;
-        btn.textContent = error ? 'retry' : 'saved';
-        if (!error) setTimeout(() => { btn.textContent = 'save'; }, 1500);
-    }
+    return true;
 }
 
 function toggleEra(id) {
@@ -183,6 +179,7 @@ function toggleEra(id) {
     const toggle = document.getElementById('toggle-' + id);
     const isOpen = body.classList.toggle('open');
     toggle.textContent = isOpen ? '−' : '+';
+    if (isOpen && !document.getElementById('shows-' + id).dataset.rendered) renderEra(id);
 }
 
 // Jump to one show from elsewhere (e.g. the length tab): open its year, expand its
@@ -198,7 +195,7 @@ function openShowInEras(date) {
     const filter = body.querySelector('.era-filter input');
     if (filter && filter.value) {
         filter.value = '';
-        filterEraShows('y' + year, '');
+        renderEra('y' + year);
     }
     const row = body.querySelector(`.era-show-row[data-date="${date}"]`);
     if (!row) { notifyError(`${date} is hidden by the recordings-only / setlists-only switches.`); return; }
@@ -208,25 +205,6 @@ function openShowInEras(date) {
     row.classList.remove('flash');
     void row.offsetWidth;   // restart the animation if it's already running
     row.classList.add('flash');
-}
-
-function filterAllShows(value) {
-    const showsDiv = document.getElementById('shows-yall');
-    const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
-    const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
-    const showLineage = document.getElementById('erasShowLineage').checked;
-    const allShows = shows.filter(s => (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0));
-    showsDiv.innerHTML = renderEraShowList(allShows, value, 'yall-', showLineage);
-}
-
-function filterEraShows(id, value) {
-    const showsDiv = document.getElementById('shows-' + id);
-    const year = id.slice(1); // strip leading 'y'
-    const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
-    const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
-    const showLineage = document.getElementById('erasShowLineage').checked;
-    const yearShows = shows.filter(s => s.date.startsWith(year) && (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0));
-    showsDiv.innerHTML = renderEraShowList(yearShows, value, id + '-', showLineage);
 }
 
 

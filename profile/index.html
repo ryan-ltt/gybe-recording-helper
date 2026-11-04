@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="/songs.js"></script>
     <script src="/best-recordings-loader.js"></script>
+    <script src="/note-autosave.js"></script>
     <link rel="stylesheet" href="/index.css">
     <style>
         /* Header */
@@ -270,6 +271,28 @@
         html.dark .song-stat-bar { background: #2c3e50; }
         html.dark .song-stat-bar > div { background: #eaf2f5; }
         html.dark textarea { background: transparent; color: #c8dce6; }
+
+        /* best recording: highlighted, as on the main site */
+        .era-show-recs a.best-rec { background: #fff3a0; color: #004499; border-radius: 2px; padding: 0 3px; border-bottom: none; }
+        html.dark .era-show-recs a.best-rec { background: #7c5cbf; color: #f0e8ff; }
+
+        /* notes save themselves (note-autosave.js) */
+        .note-wrap-above { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #eee; }
+        .note-label { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 10px; margin-bottom: 3px; }
+        .note-status { margin-left: 6px; }
+        .note-status-saved { color: #080; }
+        .note-status-error { color: #c00; }
+        .note-retry { background: none; border: none; padding: 0; font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
+        .note-input {
+            display: block; width: 100%; box-sizing: border-box; border: none; padding: 2px 0;
+            font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.6;
+            color: inherit; background: transparent; resize: none; overflow: hidden;
+        }
+        .note-input:focus { outline: none; background: rgba(0,0,0,0.03); }
+        html.dark .note-wrap-above { border-bottom-color: #2c3e50; }
+        html.dark .note-status-saved { color: #6adb6a; }
+        html.dark .note-status-error { color: #ff6b6b; }
+        html.dark .note-input:focus { background: rgba(255,255,255,0.04); }
     </style>
 </head>
 <body>
@@ -516,7 +539,7 @@
                 const rows = byYear[year].map(s => {
                     const bestId = typeof BEST_RECORDINGS !== 'undefined' ? BEST_RECORDINGS[s.date] : null;
                     const recsHtml = s.recordings.map((r, i) =>
-                        `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${i + 1}]</a>`
+                        `<a href="${r.url}" target="_blank"${bestId === r.id ? ' class="best-rec" title="best recording"' : ''}>[${i + 1}]</a>`
                     ).join('');
                     const mainSongs = [], soundcheckSongs = [];
                     for (const song of s.songs) {
@@ -534,14 +557,12 @@
                     const id = 'sl-' + s.date.replace(/\W/g, '-');
                     const hasSetlist = s.songs.length > 0;
                     const existingNote = (trackingData[s.date]?.[noteField] || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                    const noteDiv = `<div style="margin-bottom:${hasSetlist ? '8px' : '0'};padding-bottom:${hasSetlist ? '6px' : '0'};border-bottom:${hasSetlist ? '1px solid #eee' : 'none'};" onclick="event.stopPropagation()">
-                        <div style="display:flex;align-items:flex-start;gap:6px;">
-                            <textarea id="note-${s.date}" placeholder="add a note..."
-                                oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"
-                                style="flex:1;border:none;padding:2px 0;font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;color:inherit;background:transparent;outline:none;resize:none;overflow:hidden;line-height:1.6;">${existingNote}</textarea>
-                            <button onclick="saveNote('${s.date}', '${noteField}', document.getElementById('note-${s.date}').value)"
-                                style="font-family:Monaco,'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border:1px solid #ccc;background:white;cursor:pointer;color:inherit;flex-shrink:0;">save</button>
-                        </div>
+                    // saves itself (note-autosave.js)
+                    const noteDiv = `<div class="note-wrap${hasSetlist ? ' note-wrap-above' : ''}" onclick="event.stopPropagation()">
+                        <div class="note-label muted">note <span class="note-status" aria-live="polite"></span></div>
+                        <textarea id="note-${s.date}" class="note-input" rows="1" placeholder="add a note..."
+                            data-note-date="${s.date}" data-note-field="${noteField}"
+                            oninput="noteInput(this)" onblur="noteFlush(this)">${existingNote}</textarea>
                     </div>`;
                     const hasNote = !!(trackingData[s.date]?.[noteField]);
                     return `<div class="era-show-row" onclick="toggleSetlist('${id}')" style="cursor:pointer;">
@@ -668,20 +689,20 @@
             input.value = '';
         }
 
-        async function saveNote(date, field, value) {
-            if (!currentUser || !sbClient) return;
+        // Called by note-autosave.js. Returns whether the note was saved.
+        async function saveNoteValue(date, field, value) {
+            if (!currentUser || !sbClient) return false;
             const note = value.trim() || null;
             if (!trackingData[date]) trackingData[date] = { attended: false, listened: false, listened_notes: '', attended_notes: '' };
+            const previous = trackingData[date][field];
             trackingData[date][field] = note || '';
             const td = trackingData[date];
-            await sbClient.from('show_tracking').upsert(
+            const { error } = await sbClient.from('show_tracking').upsert(
                 { user_id: currentUser.id, show_date: date, attended: td.attended, listened: td.listened, listened_notes: td.listened_notes || null, attended_notes: td.attended_notes || null },
                 { onConflict: 'user_id,show_date' }
             );
-            const btn = event.target;
-            const orig = btn.textContent;
-            btn.textContent = 'saved';
-            setTimeout(() => { btn.textContent = orig; }, 1500);
+            if (error) { trackingData[date][field] = previous; return false; }
+            return true;
         }
 
         async function bulkImportTracking() {

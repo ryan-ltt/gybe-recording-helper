@@ -732,13 +732,35 @@
         .era-show-recs { white-space: nowrap; }
         .era-show-recs a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; margin-left: 6px; }
         .era-show-recs a:hover { color: #004499; }
-        .era-show-recs a.best-rec { background: #fff3a0; border-radius: 2px; padding: 0 3px; border-bottom: none; }
+        /* the show's best recording (best-recordings.json), highlighted the same way on every tab */
+        a.best-rec, .recordings a.best-rec, .era-show-recs a.best-rec, .rec-lineage-row a.best-rec {
+            background: #fff3a0; color: #004499; border-radius: 2px; padding: 0 3px; border-bottom: none;
+        }
+        .recordings a.best-rec { margin-left: -3px; margin-right: 7px; }
+        /* show notes (save themselves, see note-autosave.js) */
+        .note-wrap { margin-top: 8px; padding-top: 6px; border-top: 1px solid #eee; }
+        .note-wrap-first { margin-top: 0; padding-top: 0; border-top: none; }
+        .note-label { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 10px; margin-bottom: 3px; }
+        .note-status { margin-left: 6px; }
+        .note-status-saved { color: #080; }
+        .note-status-error { color: #c00; }
+        .note-retry { background: none; border: none; padding: 0; font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
+        .note-input {
+            display: block; width: 100%; box-sizing: border-box; border: none; padding: 2px 0;
+            font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.6;
+            color: inherit; background: transparent; resize: none; overflow: hidden;
+        }
+        .note-input:focus { outline: none; background: rgba(0,0,0,0.03); }
+        html.dark .note-wrap { border-top-color: #2c3e50; }
+        html.dark .note-status-saved { color: #6adb6a; }
+        html.dark .note-status-error { color: #ff6b6b; }
+        html.dark .note-input:focus { background: rgba(255,255,255,0.04); }
         .rec-lineage-list { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 0 2px 0; border-bottom: 1px solid #eee; }
         .rec-lineage-row { display: flex; align-items: baseline; gap: 12px; padding: 3px 0; border-top: 1px solid #eee; }
         .rec-lineage-row:first-child { border-top: none; }
         .rec-lineage-row a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; white-space: nowrap; }
         .rec-lineage-row a:hover { color: #004499; }
-        .rec-lineage-row a.best-rec { background: #fff3a0; border-radius: 2px; padding: 0 3px; margin-left: -3px; border-bottom: none; }
+        .rec-lineage-row a.best-rec { margin-left: -3px; }
         .rec-lineage { font-size: 11px; color: #555; }
         .era-show-toggle { cursor: pointer; color: #999; font-size: 14px; padding: 0 4px; user-select: none; }
         .era-show-toggle:hover { color: black; }
@@ -1333,12 +1355,11 @@
         html.dark .era-show-venue { color: #eaf2f5; }
         html.dark .era-show-recs a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .era-show-recs a:hover { color: #8fc4ff; }
-        html.dark .era-show-recs a.best-rec { background: #7c5cbf; color: #f0e8ff; border-bottom: none; }
+        html.dark a.best-rec, html.dark .recordings a.best-rec, html.dark .era-show-recs a.best-rec, html.dark .rec-lineage-row a.best-rec { background: #7c5cbf; color: #f0e8ff; border-bottom: none; }
         html.dark .rec-lineage-list { border-bottom-color: #2c3e50; }
         html.dark .rec-lineage-row { border-top-color: #2c3e50; }
         html.dark .rec-lineage-row a { color: #6aadff; border-bottom-color: #6aadff; }
         html.dark .rec-lineage-row a:hover { color: #8fc4ff; }
-        html.dark .rec-lineage-row a.best-rec { background: #7c5cbf; color: #f0e8ff; border-bottom: none; }
         html.dark .rec-lineage { color: #b8ccd6; }
         html.dark .era-show-toggle { color: #b8ccd6; }
         html.dark .era-show-toggle:hover { color: #eaf2f5; }
@@ -1768,6 +1789,7 @@
     <script src="finder.js"></script>
     <script src="stats.js"></script>
     <script src="discover.js"></script>
+    <script src="note-autosave.js"></script>
     <script src="eras.js"></script>
     <script src="versions.js"></script>
     <script src="picks.js"></script>

@@ -56,6 +56,12 @@ function notifyError(msg) {
     notifyError._t = setTimeout(() => el.classList.remove('open'), 5000);
 }
 
+// Attributes for a recording link: the show's best recording (best-recordings.json)
+// is highlighted the same way on every tab.
+function recLinkAttrs(date, rec) {
+    return `href="${rec.url}" target="_blank"` + (BEST_RECORDINGS[date] === rec.id ? ' class="best-rec" title="best recording"' : '');
+}
+
 // A show's date as a link that opens it on the shows tab. The href is a real
 // deep link (#shows?show=…), so ctrl/cmd-click opens it in a new browser tab.
 function showLink(date, text = date) {
@@ -88,7 +94,7 @@ function renderShowCard(show, labelHtml, highlightSet) {
 
     const bestId = BEST_RECORDINGS[show.date];
     const recHtml = show.recordings && show.recordings.length > 0
-        ? `<div class="recordings"><span class="rec-label">recordings:</span>${show.recordings.map((r, i) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${i + 1}] archive.org</a>${r.length ? `<span class="rec-len">${formatDuration(r.length)}</span>` : ''}`).join('')}</div>`
+        ? `<div class="recordings"><span class="rec-label">recordings:</span>${show.recordings.map((r, i) => `<a ${recLinkAttrs(show.date, r)}>[${i + 1}] archive.org</a>${r.length ? `<span class="rec-len">${formatDuration(r.length)}</span>` : ''}`).join('')}</div>`
         : '';
 
     return `<div class="result-show">

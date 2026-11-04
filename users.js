@@ -131,9 +131,8 @@ function renderUserBody(uid) {
             listHtml = `<ol style="list-style:none;padding:0;margin:0;">${picks.map((pick, i) => {
                 const show = showByDate[pick.show_date];
                 const venue = show ? show.venue : '';
-                const bestId = BEST_RECORDINGS[pick.show_date];
                 const recs = show && show.recordings ? show.recordings : [];
-                const recsHtml = recs.length > 0 ? `<div class="era-show-recs" style="padding-left:20px;">${recs.map((r, ri) => `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${ri + 1}]</a>`).join('')}</div>` : '';
+                const recsHtml = recs.length > 0 ? `<div class="era-show-recs" style="padding-left:20px;">${recs.map((r, ri) => `<a ${recLinkAttrs(pick.show_date, r)}>[${ri + 1}]</a>`).join('')}</div>` : '';
                 const noteHtml = pick.note ? `<div class="muted" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:11px;margin-top:3px;padding-left:20px;">${escapeHtml(pick.note)}</div>` : '';
                 return `<li style="padding:8px 0;border-bottom:1px solid #eee;font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;"><span class="muted" style="display:inline-block;width:20px;text-align:right;">${i + 1}.</span> <strong>${showLink(pick.show_date)}</strong>${venue ? ` <span class="muted">— ${venue}</span>` : ''}${recsHtml}${noteHtml}</li>`;
             }).join('')}</ol>`;
@@ -187,9 +186,8 @@ function renderUserBody(uid) {
         const noteField = activeTab === 'listened' ? 'listened_notes' : 'attended_notes';
         listHtml = Object.keys(byYear).sort().map(year => {
             const rows = byYear[year].map(s => {
-                const bestId = BEST_RECORDINGS[s.date];
                 const recsHtml = s.recordings.map((r, i) =>
-                    `<a href="${r.url}" target="_blank"${bestId === r.id ? ' style="font-weight:bold"' : ''}>[${i + 1}]</a>`
+                    `<a ${recLinkAttrs(s.date, r)}>[${i + 1}]</a>`
                 ).join('');
                 const mainSongs = s.songs.filter(song => !/\(soundcheck\)/i.test(song));
                 const soundcheckSongs = s.songs.filter(song => /\(soundcheck\)/i.test(song));
