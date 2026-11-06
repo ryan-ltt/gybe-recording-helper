@@ -5,7 +5,7 @@
 # recently (single query), and writes back setlists.json + setlists-data.js.
 #
 # Usage:
-#   python update-shows.py              # check current year + last year; recordings from last run
+#   python update-shows.py              # check next year + current year + last year; recordings from last run
 #   python update-shows.py 25 26        # check specific year suffixes for new shows
 #   python update-shows.py --dry-run    # report changes without writing files
 #   python update-shows.py --all-recordings      # fetch all known GYBE recordings from archive.org
@@ -58,8 +58,10 @@ prune_only = '--prune-only' in args
 year_args = [a for a in args if re.match(r'^\d{2}$', a)]
 
 def default_years():
+    # next year too: tours get announced (and added to gybecc) well in advance.
+    # a missing next-year page just logs an error and is skipped.
     y = datetime.now().year
-    return [str(y)[-2:], str(y - 1)[-2:]]
+    return [str(y + 1)[-2:], str(y)[-2:], str(y - 1)[-2:]]
 
 years_to_check = year_args if year_args else default_years()
 
