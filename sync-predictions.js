@@ -26,6 +26,8 @@ function loadShared() {
     const ctx = { console, Math, Date, Object, Array, JSON, String, Number, Set, Map,
                   parseInt, parseFloat, isNaN, isFinite };
     vm.createContext(ctx);
+    // CANONICAL_SONGS etc. live in songs.js, which the page loads before index.js
+    vm.runInContext(fs.readFileSync('songs.js', 'utf8'), ctx);
     const index = fs.readFileSync('index.js', 'utf8');
     vm.runInContext(index.slice(0, index.indexOf('// ─── Tab switching')), ctx);
     ctx.SHOWS_DATA = JSON.parse(fs.readFileSync('setlists.json', 'utf8'));
