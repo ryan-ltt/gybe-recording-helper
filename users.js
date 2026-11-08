@@ -29,7 +29,7 @@ window.addEventListener('pageshow', e => {
 async function loadUsers() {
     usersLoaded = true;
     const container = document.getElementById('usersContainer');
-    await BEST_RECORDINGS_READY;
+    await Promise.all([BEST_RECORDINGS_READY, RECORDING_ANALYSIS_READY]);
 
     const { data: profiles, error } = sbClient
         ? await sbClient.from('profiles').select('user_id, username, created_at').eq('is_public', true).order('created_at', { ascending: true })

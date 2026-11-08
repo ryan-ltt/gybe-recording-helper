@@ -125,7 +125,8 @@ let selected = new Set();
 let selectedOrder = []; // drag-reorderable ordered list
 let dragSrcIdx = null;
 let songPositions = {}; // song → 'first' | 'last'
-const finderOpts = { mode: 'any', order: 'unordered', sort: 'desc', recordingsOnly: false, hideListened: false };
+const finderOpts = { mode: 'any', order: 'unordered', sort: 'desc', recordingsOnly: false, hideListened: false,
+                     noPhoneOnly: false, losslessOnly: false };
 const FINDER_PAGE = 25;
 let finderMatches = [];   // [{idx, label}] for the current search
 let finderShown = 0;      // how many of them are rendered
@@ -166,14 +167,18 @@ function updateOptsSummary() {
     }
     if (finderOpts.recordingsOnly) parts.push(['with recordings', true]);
     if (finderOpts.hideListened) parts.push(['hiding listened', true]);
+    if (finderOpts.noPhoneOnly) parts.push(['no phone-only shows', true]);
+    if (finderOpts.losslessOnly) parts.push(['lossless only', true]);
     el.innerHTML = parts.map(([text, changed]) => changed ? `<span class="opt-changed">${text}</span>` : text).join(' · ');
     document.getElementById('finderReset').hidden = !parts.some(([, changed]) => changed);
 }
 
-// "only shows with recordings" / "hide shows I've listened to" switches
+// the on/off switches in the finder's options box
+const FINDER_FLAG_BOXES = { recordingsOnly: 'recordingsOnly', hideListened: 'finderHideListened',
+                            noPhoneOnly: 'finderNoPhoneOnly', losslessOnly: 'finderLosslessOnly' };
 function setFinderFlag(key, on) {
     finderOpts[key] = on;
-    const box = document.getElementById(key === 'recordingsOnly' ? 'recordingsOnly' : 'finderHideListened');
+    const box = document.getElementById(FINDER_FLAG_BOXES[key]);
     if (box) box.checked = on;
 }
 
@@ -185,8 +190,7 @@ function setFinderOpt(key, value) {
 
 function resetFinderOpts() {
     for (const [key, values] of Object.entries(FINDER_OPT_VALUES)) setFinderOpt(key, values[0]);
-    setFinderFlag('recordingsOnly', false);
-    setFinderFlag('hideListened', false);
+    for (const key of Object.keys(FINDER_FLAG_BOXES)) setFinderFlag(key, false);
     const [lo, hi] = yearSliderBounds();
     document.getElementById('yearMin').value = lo;
     document.getElementById('yearMax').value = hi;
@@ -392,6 +396,8 @@ function finderParams() {
         if (finderOpts[key] !== FINDER_OPT_VALUES[key][0]) p.set(key, finderOpts[key]);
     }
     if (finderOpts.recordingsOnly) p.set('recordings', '1');
+    if (finderOpts.noPhoneOnly) p.set('nophone', '1');
+    if (finderOpts.losslessOnly) p.set('lossless', '1');
     for (const [song, pos] of Object.entries(songPositions)) p.append(pos, song);
     const [lo, hi] = yearSliderBounds();
     const [min, max] = yearRange();
@@ -412,6 +418,8 @@ function restoreFinderFromParams(params) {
         setFinderOpt(key, values.includes(params.get(key)) ? params.get(key) : values[0]);
     }
     setFinderFlag('recordingsOnly', params.get('recordings') === '1');
+    setFinderFlag('noPhoneOnly', params.get('nophone') === '1');
+    setFinderFlag('losslessOnly', params.get('lossless') === '1');
     initYearSlider();
     const [lo, hi] = yearSliderBounds();
     const years = (params.get('years') || '').match(/^(\d{4})-(\d{4})$/);
@@ -451,13 +459,15 @@ function findShows() {
         return;
     }
     const query = [...selectedOrder];
-    const { mode, order: orderMode, sort: sortDir, recordingsOnly, hideListened } = finderOpts;
+    const { mode, order: orderMode, sort: sortDir, recordingsOnly, hideListened, noPhoneOnly, losslessOnly } = finderOpts;
     const [minYear, maxYear] = yearRange();
     const keep = show => {
         const y = parseInt(show.date.slice(0, 4));
         return y >= minYear && y <= maxYear
             && (!recordingsOnly || show.recordings.length > 0)
             && (!hideListened || !trackingData[show.date]?.listened)
+            && (!noPhoneOnly || !showIsPhoneOnly(show))
+            && (!losslessOnly || showHasLossless(show))
             && matchesPositions(show);
     };
 
@@ -533,6 +543,8 @@ function findShows() {
         if (minYear !== lo || maxYear !== hi) narrowed.push('years');
         if (recordingsOnly) narrowed.push('recordings only');
         if (hideListened) narrowed.push('hide listened');
+        if (noPhoneOnly) narrowed.push('hide phone-only');
+        if (losslessOnly) narrowed.push('lossless only');
         resultsDiv.innerHTML = `<p class="no-results">${emptyMsg}${narrowed.length ? ` try loosening: ${narrowed.join(', ')}.` : ''}</p>`;
         return;
     }

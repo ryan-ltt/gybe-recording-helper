@@ -1,9 +1,30 @@
 // ─── SHOWS (by year) ───────────────────────────────────────────────────────
+const ERAS_TOGGLES = ['erasRecordingsOnly', 'erasSetlistsOnly', 'erasShowLineage',
+    'erasHidePhoneOnly', 'erasLosslessOnly', 'erasShowSpectra'];
+
 function restoreErasToggles() {
-    ['erasRecordingsOnly', 'erasSetlistsOnly', 'erasShowLineage'].forEach(id => {
+    ERAS_TOGGLES.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.checked = localStorage.getItem(id) === '1';
     });
+    // the spectrogram view needs its own data file; fetch it, then redraw with it
+    if (document.getElementById('erasShowSpectra')?.checked) loadRecordingSpectra().then(buildEras);
+}
+
+function onErasToggle(el) {
+    localStorage.setItem(el.id, el.checked ? '1' : '0');
+    if (el.id === 'erasShowSpectra' && el.checked) {
+        loadRecordingSpectra().then(data => {
+            if (!data) el.checked = false;   // load failed (an error banner says so)
+            buildEras();
+        });
+        return;
+    }
+    buildEras();
+}
+
+function eraShowSpectra() {
+    return document.getElementById('erasShowSpectra')?.checked && !!RECORDING_SPECTRA;
 }
 
 // The "all" card and one card per year. Only the headers are built here; a
@@ -27,7 +48,10 @@ function buildEras() {
 
     const recordingsOnly = document.getElementById('erasRecordingsOnly').checked;
     const setlistsOnly = document.getElementById('erasSetlistsOnly').checked;
-    const showFilter = s => (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0);
+    const hidePhoneOnly = document.getElementById('erasHidePhoneOnly')?.checked;
+    const losslessOnly = document.getElementById('erasLosslessOnly')?.checked;
+    const showFilter = s => (!recordingsOnly || s.recordings.length > 0) && (!setlistsOnly || s.songs.length > 0)
+        && (!hidePhoneOnly || !showIsPhoneOnly(s)) && (!losslessOnly || showHasLossless(s));
     const visible = shows.filter(showFilter);
     eraGroups = { yall: visible };
     for (const show of visible) (eraGroups['y' + show.date.slice(0, 4)] ||= []).push(show);
@@ -136,12 +160,13 @@ function renderEraShowList(eraShows, filter, prefix = '', showLineage = false) {
         const hasExpandable = hasSetlist || !!noteSection;
         return `<div class="era-show-row" data-date="${s.date}"${hasExpandable ? ` data-setlist="${id}" onclick="toggleShowSetlist('${id}')" style="cursor:pointer;"` : ''}>
             <span class="era-show-date">${s.date.replace(/[a-z]$/, '')}</span>
-            <span class="era-show-venue">${s.venue}${s.length ? `<span class="song-len era-show-length">${formatDuration(s.length)}</span>` : ''}</span>
+            <span class="era-show-venue">${s.venue}${s.length ? `<span class="song-len era-show-length">${formatDuration(s.length)}</span>` : ''}${phoneOnlyFlag(s)}</span>
             <span class="era-show-recs" onclick="event.stopPropagation()">${recsHtml}</span>
             ${trackBtns}
             <span class="era-show-toggle"${hasExpandable ? ` id="tgl-${id}"` : ' style="visibility:hidden"'}>+</span>
         </div>
         ${lineageHtml}
+        ${eraShowSpectra() ? renderSpectraList(s) : ''}
         ${hasExpandable ? `<div class="era-show-setlist" id="${id}">${hasSetlist ? setlistText : ''}${noteSection}</div>` : ''}`;
     }).join('');
 }

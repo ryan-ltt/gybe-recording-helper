@@ -25,6 +25,20 @@ jobs:
       - name: Apply human song timings
         run: python track_lengths.py
 
+      # Phone / lossless labels and spectra for the site. Only recordings not yet in
+      # recording-analysis-cache.json are scanned (a few seconds each), so a normal day
+      # takes under a minute. Never blocks the setlist commit below.
+      - name: Install audio analysis deps
+        continue-on-error: true
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install --quiet numpy
+
+      - name: Analyse new recordings
+        continue-on-error: true
+        timeout-minutes: 30
+        run: python analyze_recording.py --from-setlists --cache recording-analysis-cache.json --export-site --workers 16
+
       - uses: actions/setup-node@v5
         with:
           node-version: '24'   # supabase-js realtime needs native WebSocket (Node 22+)
@@ -46,7 +60,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add setlists.json .last-update last-update.js changelog.json
+          git add setlists.json .last-update last-update.js changelog.json \
+            recording-analysis-cache.json recording-analysis.json recording-spectra.json
           git diff --staged --quiet && echo "Nothing to commit." || \
             git commit -m "chore: update shows and recordings [skip ci]"
           git push

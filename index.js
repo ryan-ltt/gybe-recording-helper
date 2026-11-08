@@ -56,10 +56,18 @@ function notifyError(msg) {
     notifyError._t = setTimeout(() => el.classList.remove('open'), 5000);
 }
 
-// Attributes for a recording link: the show's best recording (best-recordings.json)
-// is highlighted the same way on every tab.
+// Attributes for a recording link, the same on every tab: the show's best recording
+// (best-recordings.json) is highlighted, and recording-analysis.json colours the link
+// green (>= 70% sure it's lossless) or red (>= 70% sure a lossy encode is in its chain).
 function recLinkAttrs(date, rec) {
-    return `href="${rec.url}" target="_blank"` + (BEST_RECORDINGS[date] === rec.id ? ' class="best-rec" title="best recording"' : '');
+    const best = BEST_RECORDINGS[date] === rec.id;
+    const quality = typeof recQuality === 'function' ? recQuality(rec) : null;
+    const classes = [best && 'best-rec', quality && 'rec-' + quality].filter(Boolean);
+    const title = [best && 'best recording', typeof recAnalysisTitle === 'function' && recAnalysisTitle(rec)]
+        .filter(Boolean).join('\n');
+    return `href="${rec.url}" target="_blank"` +
+        (classes.length ? ` class="${classes.join(' ')}"` : '') +
+        (title ? ` title="${escapeHtml(title)}"` : '');
 }
 
 // A show's date as a link that opens it on the shows tab. The href is a real
@@ -99,7 +107,7 @@ function renderShowCard(show, labelHtml, highlightSet) {
 
     return `<div class="result-show">
         <div class="show-header">
-            <div><span class="show-date">${showLink(show.date)}</span><span class="show-venue">${show.venue}</span>${showLenHtml}</div>
+            <div><span class="show-date">${showLink(show.date)}</span><span class="show-venue">${show.venue}</span>${showLenHtml}${phoneOnlyFlag(show)}</div>
             <span class="match-count">${labelHtml}</span>
         </div>
         <div class="setlist">${setlistHtml}</div>
@@ -232,7 +240,8 @@ let picksDragSrcIdx = null;
 
 Promise.all([
     fetch('setlists.json').then(r => r.json()),
-    BEST_RECORDINGS_READY
+    BEST_RECORDINGS_READY,
+    RECORDING_ANALYSIS_READY
 ]).then(([data]) => {
     shows = data;
     buildIndex();

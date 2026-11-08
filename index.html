@@ -737,6 +737,60 @@
             background: #fff3a0; color: #004499; border-radius: 2px; padding: 0 3px; border-bottom: none;
         }
         .recordings a.best-rec { margin-left: -3px; margin-right: 7px; }
+        /* audio-analysis labels (recording-analysis.js): green = 70%+ lossless, red = 70%+ lossy */
+        a.rec-lossless, .recordings a.rec-lossless, .era-show-recs a.rec-lossless,
+        .rec-lineage-row a.rec-lossless, .rec-spectra-row a.rec-lossless { color: #1a7f37; border-bottom-color: #1a7f37; }
+        a.rec-lossy, .recordings a.rec-lossy, .era-show-recs a.rec-lossy,
+        .rec-lineage-row a.rec-lossy, .rec-spectra-row a.rec-lossy { color: #c00; border-bottom-color: #c00; }
+        /* the best recording keeps its yellow highlight; its quality shows in the text colour */
+        a.best-rec.rec-lossless, .recordings a.best-rec.rec-lossless, .era-show-recs a.best-rec.rec-lossless,
+        .rec-lineage-row a.best-rec.rec-lossless, .rec-spectra-row a.best-rec.rec-lossless { color: #116b2c; }
+        a.best-rec.rec-lossy, .recordings a.best-rec.rec-lossy, .era-show-recs a.best-rec.rec-lossy,
+        .rec-lineage-row a.best-rec.rec-lossy, .rec-spectra-row a.best-rec.rec-lossy { color: #b00000; }
+        .rec-legend-ok { color: #1a7f37; } .rec-legend-bad { color: #c00; }
+        .phone-only-flag {
+            font-family: Monaco, 'JetBrains Mono', monospace; font-size: 10px; line-height: 1.4;
+            margin-left: 10px; padding: 0 4px; white-space: nowrap; cursor: help;
+            color: #8a5300; background: #fff1d6; border: 1px solid #c98a1a;
+        }
+        /* "show spectrogram analysis" on the shows tab */
+        .rec-spectra-list { font-family: Monaco, 'JetBrains Mono', monospace; font-size: 11px; padding: 4px 0 6px; border-bottom: 1px solid #eee; }
+        .rec-spectra-row { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; padding: 4px 0; border-top: 1px solid #eee; }
+        .rec-spectra-row:first-child { border-top: none; }
+        .rec-spectra-row > a { color: #0066cc; text-decoration: none; border-bottom: 1px solid #0066cc; white-space: nowrap; align-self: flex-start; }
+        .rec-spectra-row > a.best-rec { margin-left: -3px; color: #004499; border-bottom: none; }
+        .spec-plot { flex: 0 1 240px; min-width: 160px; }
+        .spec-svg { display: block; width: 100%; height: 44px; background: #fafcfd; border: 1px solid #ddd; }
+        .spec-svg line, .spec-svg polyline { vector-effect: non-scaling-stroke; }
+        .spec-grid { stroke: #e6e6e6; stroke-width: 1; }
+        .spec-fill { fill: rgba(0, 102, 204, 0.12); stroke: none; }
+        .spec-line { fill: none; stroke: #0066cc; stroke-width: 1.4; stroke-linejoin: round; }
+        .spec-wall { stroke: #c00; stroke-width: 1.4; stroke-dasharray: 4 3; }
+        .spec-axis { display: flex; justify-content: space-between; font-size: 9px; color: #888; line-height: 1.3; }
+        .spec-facts { flex: 1 1 260px; min-width: 0; color: #555; }
+        .spec-ok { color: #1a7f37; } .spec-bad { color: #c00; }
+        html.dark a.rec-lossless, html.dark .recordings a.rec-lossless, html.dark .era-show-recs a.rec-lossless,
+        html.dark .rec-lineage-row a.rec-lossless, html.dark .rec-spectra-row a.rec-lossless { color: #6adb6a; border-bottom-color: #6adb6a; }
+        html.dark a.rec-lossy, html.dark .recordings a.rec-lossy, html.dark .era-show-recs a.rec-lossy,
+        html.dark .rec-lineage-row a.rec-lossy, html.dark .rec-spectra-row a.rec-lossy { color: #ff6b6b; border-bottom-color: #ff6b6b; }
+        /* dark best-rec is a purple pill: keep its light text, mark quality with an underline */
+        html.dark a.best-rec.rec-lossless, html.dark .recordings a.best-rec.rec-lossless, html.dark .era-show-recs a.best-rec.rec-lossless,
+        html.dark .rec-lineage-row a.best-rec.rec-lossless, html.dark .rec-spectra-row a.best-rec.rec-lossless { color: #f0e8ff; box-shadow: inset 0 -2px 0 #6adb6a; }
+        html.dark a.best-rec.rec-lossy, html.dark .recordings a.best-rec.rec-lossy, html.dark .era-show-recs a.best-rec.rec-lossy,
+        html.dark .rec-lineage-row a.best-rec.rec-lossy, html.dark .rec-spectra-row a.best-rec.rec-lossy { color: #f0e8ff; box-shadow: inset 0 -2px 0 #ff6b6b; }
+        html.dark .rec-legend-ok, html.dark .spec-ok { color: #6adb6a; }
+        html.dark .rec-legend-bad, html.dark .spec-bad { color: #ff6b6b; }
+        html.dark .phone-only-flag { color: #ffcf7a; background: #3a2c12; border-color: #b98a2e; }
+        html.dark .rec-spectra-list, html.dark .rec-spectra-row { border-color: #2c3e50; }
+        html.dark .rec-spectra-row > a { color: #6aadff; border-bottom-color: #6aadff; }
+        html.dark .rec-spectra-row > a.best-rec { color: #f0e8ff; border-bottom: none; }
+        html.dark .spec-svg { background: #16202c; border-color: #2c3e50; }
+        html.dark .spec-grid { stroke: #24364a; }
+        html.dark .spec-fill { fill: rgba(106, 173, 255, 0.16); }
+        html.dark .spec-line { stroke: #6aadff; }
+        html.dark .spec-wall { stroke: #ff6b6b; }
+        html.dark .spec-axis { color: #8ea7b6; }
+        html.dark .spec-facts { color: #a8bcc8; }
         /* show notes (save themselves, see note-autosave.js) */
         .note-wrap { margin-top: 8px; padding-top: 6px; border-top: 1px solid #eee; }
         .note-wrap-first { margin-top: 0; padding-top: 0; border-top: none; }
@@ -1564,6 +1618,14 @@
                                     <span class="toggle-switch"><input type="checkbox" id="finderHideListened" onchange="setFinderFlag('hideListened', this.checked);onFinderChange()"><span class="toggle-slider"></span></span>
                                     hide shows I've listened to
                                 </label>
+                                <label class="opt-switch" title="hides shows whose every recording was made on a phone">
+                                    <span class="toggle-switch"><input type="checkbox" id="finderNoPhoneOnly" onchange="setFinderFlag('noPhoneOnly', this.checked);onFinderChange()"><span class="toggle-slider"></span></span>
+                                    hide phone-only shows
+                                </label>
+                                <label class="opt-switch" title="only shows with at least one recording that is 70%+ likely lossless">
+                                    <span class="toggle-switch"><input type="checkbox" id="finderLosslessOnly" onchange="setFinderFlag('losslessOnly', this.checked);onFinderChange()"><span class="toggle-slider"></span></span>
+                                    only shows with a lossless recording
+                                </label>
                             </div>
                         </div>
                         <div class="opt-footer"><button class="opt-reset" id="finderReset" onclick="resetFinderOpts()" hidden>reset options</button></div>
@@ -1679,8 +1741,8 @@
         <!-- TRACK TAB -->
         <!-- ERAS TAB -->
         <div class="tab-panel" id="tab-shows">
-            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 8px 0;">shows grouped by year. highlighted recordings are highest quality.</p>
-            <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
+            <p style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;margin:0 0 8px 0;">shows grouped by year. highlighted recordings are highest quality. <span class="rec-legend"><span class="rec-legend-ok">green</span> recordings are lossless and <span class="rec-legend-bad">red</span> ones lossy, from the lineage notes where they say, otherwise from audio analysis at 70%+ confidence (hover a link for details).</span></p>
+            <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin-bottom:8px;">
                 <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;">
                     <div class="toggle-switch">
                         <input type="checkbox" id="erasRecordingsOnly" onchange="localStorage.setItem('erasRecordingsOnly', this.checked ? '1' : '0'); buildEras()">
@@ -1701,6 +1763,27 @@
                         <span class="toggle-slider"></span>
                     </div>
                     show lineage
+                </label>
+                <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;" title="spectrum of each recording, from short clips analysed by analyze_recording.py">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="erasShowSpectra" onchange="onErasToggle(this)">
+                        <span class="toggle-slider"></span>
+                    </div>
+                    show spectrogram analysis
+                </label>
+                <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;" title="hides shows whose every recording was made on a phone">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="erasHidePhoneOnly" onchange="onErasToggle(this)">
+                        <span class="toggle-slider"></span>
+                    </div>
+                    hide phone-only shows
+                </label>
+                <label class="switch-label" style="font-family:Monaco, 'JetBrains Mono', monospace;font-size:13px;color:inherit;display:flex;align-items:center;gap:8px;cursor:pointer;" title="only shows with at least one recording that is 70%+ likely lossless">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="erasLosslessOnly" onchange="onErasToggle(this)">
+                        <span class="toggle-slider"></span>
+                    </div>
+                    lossless recordings only
                 </label>
             </div>
             <p id="erasTrackLoggedOut" style="font-family:Monaco,'JetBrains Mono',monospace;font-size:12px;margin:0 0 12px 0;" class="muted">log in to track shows you've attended or listened to.</p>
@@ -1784,6 +1867,7 @@
     </main>
 
     <script src="best-recordings-loader.js"></script>
+    <script src="recording-analysis.js"></script>
     <script src="songs.js"></script>
     <script src="index.js"></script>
     <script src="finder.js"></script>
