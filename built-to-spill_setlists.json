@@ -39397,5 +39397,45 @@
     "songs": [],
     "recordings": [],
     "setlistfm_url": "https://www.setlist.fm/setlist/built-to-spill/2026/forest-hills-stadium-queens-ny-7b4c7628.html"
+  },
+  {
+    "date": "2026-11-04",
+    "venue": "",
+    "songs": [
+      "Built To Spill",
+      "November 4, 2026",
+      "Broadberry, Richmond VA, USA",
+      "Wherever You Go",
+      "Living Zoo",
+      "Distopian Dream Girl",
+      "Stop the Show",
+      "Spider [Esther Rose]",
+      "Else",
+      "Virginia Reel Around the Fountain",
+      "Never Be The Same",
+      "Up on the Sun [Meat Puppets]",
+      "The Wait",
+      "When I'm Blind",
+      "Car",
+      "Gonna Lose",
+      "Stab",
+      "Carry the Zero",
+      "Strange",
+      "Broken Chairs",
+      "Quasi opened",
+      "Sam Coomes on keys during last two songs",
+      "Recorded by Brandon",
+      "Izotope RX &gt; Audacity &gt; xACT &gt; FLAC (48/24)"
+    ],
+    "recordings": [
+      {
+        "id": "builttospill2026-11-04",
+        "url": "https://archive.org/details/builttospill2026-11-04",
+        "title": "Built To Spill Live at Broadberry on 2026-11-04",
+        "lineage": "unknown",
+        "source": "unknown"
+      }
+    ],
+    "setlist_pending": true
   }
 ]
