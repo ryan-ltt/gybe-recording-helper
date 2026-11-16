@@ -21440,9 +21440,17 @@
         "lineage": "unknown",
         "source": "phone voice memo > 227 kbps AAC",
         "length": 6663
+      },
+      {
+        "id": "gybe2025-12-05.diy",
+        "url": "https://archive.org/details/gybe2025-12-05.diy",
+        "title": "Godspeed You! Black Emperor Live at Legacy Taipei on 2025-12-05",
+        "lineage": "WAV > Adobe Audition (EQ) > WAV (48/24) > FLAC (level 8)",
+        "source": "DIY ORTF mics (Primo EM200) > Tascam Portacapture X8 > WAV (48/24)",
+        "length": 6855
       }
     ],
-    "length": 6663,
+    "length": 6855,
     "song_lengths": [
       563,
       255,
