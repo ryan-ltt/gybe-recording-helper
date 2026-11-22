@@ -1,1 +1,1 @@
-const LAST_UPDATED = "2026-11-16";
+const LAST_UPDATED = "2026-11-22";
