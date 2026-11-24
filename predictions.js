@@ -675,10 +675,19 @@ async function predLoadInner(container) {
     }
     if (!predLoaded) container.innerHTML = predNote('loading markets…');
 
-    const [mRes, bRes] = await Promise.all([
+    // names come with the board, not just the leaderboard: a settled show's
+    // winners and losers are rendered from the first paint
+    const [mRes, bRes, pRes] = await Promise.all([
         sbClient.from('pred_markets').select('*').order('show_date', { ascending: true }),
         sbClient.from('pred_bets').select('market_id,user_id,outcome,stake,prior_at_bet'),
+        sbClient.from('profiles').select('user_id,username'),
     ]);
+    if (pRes.error) console.error('profiles:', pRes.error);
+    else {
+        const names = {};
+        for (const p of pRes.data || []) names[p.user_id] = p.username;
+        predNames = names;
+    }
 
     // an empty board and a failed query look identical once the data is gone,
     // so say which one happened instead of showing "no markets yet" for both.
@@ -750,6 +759,15 @@ function predSelectBetsUser(userId) {
     }
 }
 
+// a clicked name: show that person's bets and take the reader to them. the bets
+// card sits at the bottom of the tab, so selecting it without scrolling leaves
+// the click looking like it did nothing.
+function predShowUserBets(userId) {
+    predSelectBetsUser(userId);
+    const card = document.getElementById('predpanel-mybets');
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function predSetPanelTitle(id, text) {
     const el = document.getElementById(id);
     if (el) el.textContent = text;
@@ -785,35 +803,115 @@ function renderPredictions() {
 
     const byShow = {};
     for (const m of predMarkets) (byShow[m.show_date] = byShow[m.show_date] || []).push(m);
+
+    // a show is former once every market on it has settled (resolved or void).
+    // active shows run soonest first; former ones most recent first.
+    const settled = list => list.every(m => m.status === 'resolved' || m.status === 'void');
     const dates = Object.keys(byShow).sort();
+    const active = dates.filter(d => !settled(byShow[d]));
+    const former = dates.filter(d => settled(byShow[d])).reverse();
 
-    let html = '';
-    for (const date of dates) {
-        const show = shows.find(s => s.date === date);
-        const venue = show ? show.venue : '';
-        const list = byShow[date];
-        const id = 'pred-' + date;
-        const open = predOpenShows.has(date);
-        const live = list.filter(m => m.status === 'open' && !predMarketClosed(m)).length;
-        const staked = list.reduce((t, m) =>
-            t + predBetsFor(m.id).reduce((u, b) => u + Number(b.stake), 0), 0);
+    let html = active.map(d => predRenderShowBlock(d, byShow[d], false)).join('');
+    if (!active.length) html += predNote('no open markets right now. they open automatically once a show is announced.');
 
-        html += `<div class="era-block">
-            <div class="era-header" onclick="predToggleShow('${date}')">
-                <div>
-                    <div class="era-title">${predEscape(date)}</div>
-                    <div class="pred-venue">${predEscape(venue)}</div>
-                    ${live ? predCloseLine(list) : ''}
-                </div>
+    if (former.length) {
+        const id = 'predformer';
+        const open = predOpenGroups.has(id);
+        html += `<div class="era-block pred-former">
+            <div class="era-header" onclick="predToggleGroup('${id}')">
+                <div class="era-title">former predictions</div>
                 <div style="display:flex;align-items:center;gap:16px;">
-                    <div class="era-meta">${live} market${live === 1 ? '' : 's'} · ${predFormatCoins(staked)}g in</div>
+                    <div class="era-meta">${former.length} show${former.length === 1 ? '' : 's'}</div>
                     <div class="era-toggle" id="toggle-${id}">${open ? '−' : '+'}</div>
                 </div>
             </div>
-            <div class="era-body${open ? ' open' : ''}" id="body-${id}">${predRenderShow(list, date)}</div>
+            <div class="era-body${open ? ' open' : ''}" id="body-${id}">
+                ${former.map(d => predRenderShowBlock(d, byShow[d], true)).join('')}
+            </div>
         </div>`;
     }
     container.innerHTML = html;
+}
+
+// one show's collapsible card. a settled show opens on its winners and losers.
+function predRenderShowBlock(date, list, isFormer) {
+    const show = shows.find(s => s.date === date);
+    const venue = show ? show.venue : '';
+    const id = 'pred-' + date;
+    const open = predOpenShows.has(date);
+    const live = list.filter(m => m.status === 'open' && !predMarketClosed(m)).length;
+    const staked = list.reduce((t, m) =>
+        t + predBetsFor(m.id).reduce((u, b) => u + Number(b.stake), 0), 0);
+    const meta = isFormer
+        ? `settled · ${predFormatCoins(staked)}g in`
+        : `${live} market${live === 1 ? '' : 's'} · ${predFormatCoins(staked)}g in`;
+
+    return `<div class="era-block${isFormer ? ' pred-former-show' : ''}">
+        <div class="era-header" onclick="predToggleShow('${date}')">
+            <div>
+                <div class="era-title">${predEscape(date)}</div>
+                <div class="pred-venue">${predEscape(venue)}</div>
+                ${live ? predCloseLine(list) : ''}
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+                <div class="era-meta">${meta}</div>
+                <div class="era-toggle" id="toggle-${id}">${open ? '−' : '+'}</div>
+            </div>
+        </div>
+        <div class="era-body${open ? ' open' : ''}" id="body-${id}">
+            ${isFormer ? predRenderResults(list) : ''}${predRenderShow(list, date)}
+        </div>
+    </div>`;
+}
+
+// each bettor's net on a settled show: what settlement paid them, less what
+// they staked. uses predSettle, so these are the amounts actually credited.
+function predShowNets(list) {
+    const net = {}, staked = {}, paid = {};
+    for (const m of list) {
+        const bets = predBetsFor(m.id);
+        if (!bets.length) continue;
+        for (const b of bets) {
+            staked[b.user_id] = (staked[b.user_id] || 0) + Number(b.stake);
+        }
+        const outcome = m.status === 'void' ? 'void' : m.resolved_outcome;
+        for (const p of predSettle(m, bets, outcome)) {
+            paid[p.user_id] = (paid[p.user_id] || 0) + p.amount;
+        }
+    }
+    for (const u in staked) net[u] = Math.round(((paid[u] || 0) - staked[u]) * 100) / 100;
+    return { net, staked, paid };
+}
+
+const PRED_RESULTS_TOP = 3;
+
+function predRenderResults(list) {
+    const { net, staked, paid } = predShowNets(list);
+    // bettors without a username stay off it, as on the leaderboard
+    const named = Object.keys(net).filter(u => predNames[u]);
+    if (!named.length) return '';
+
+    const winners = named.filter(u => net[u] > 0).sort((a, b) => net[b] - net[a]).slice(0, PRED_RESULTS_TOP);
+    const losers  = named.filter(u => net[u] < 0).sort((a, b) => net[a] - net[b]).slice(0, PRED_RESULTS_TOP);
+
+    const row = u => {
+        const sign = net[u] > 0 ? '+' : '−';
+        const tip = `staked ${predFormatCoins(staked[u])}g, got back ${predFormatCoins(paid[u] || 0)}g`;
+        const me = currentUser && u === currentUser.id ? ' (you)' : '';
+        return `<div class="pred-result-row" title="${predEscape(tip)}">
+            <span class="pred-leader-name" onclick="predShowUserBets('${predEscape(u)}')">${predEscape(predNames[u])}${me}</span>
+            <span class="${net[u] > 0 ? 'pred-result-up' : 'pred-result-down'}">${sign}${predFormatCoins(Math.abs(net[u]))}g</span>
+        </div>`;
+    };
+    const col = (label, users, empty) => `<div>
+        <div class="pred-results-label">${label}</div>
+        ${users.length ? users.map(row).join('') : `<div class="pred-result-row muted">${empty}</div>`}
+    </div>`;
+
+    return `<div class="pred-results">
+        ${col('biggest winners', winners, 'nobody came out ahead')}
+        ${col('biggest losers', losers, 'nobody lost')}
+    </div>`;
 }
 
 // when betting on a show closes, in the reader's own time zone. a show whose
@@ -1141,15 +1239,20 @@ async function predLoadLeaderboard() {
     const el = document.getElementById('predLeaderboard');
     if (!el || !sbClient) return;
 
+    // no row limit: the board is everyone who has ever bet, and a cap cut off
+    // the bottom of it (the players at 0g). bets are never deleted, so having
+    // a bet in predBets is "has ever placed a bet". signing in alone creates a
+    // 100g balance row, which is why the balance table can't be the list.
     const [balRes, profRes] = await Promise.all([
-        sbClient.from('pred_balances').select('user_id,balance').order('balance', { ascending: false }).limit(25),
+        sbClient.from('pred_balances').select('user_id,balance').order('balance', { ascending: false }),
         sbClient.from('profiles').select('user_id,username'),
     ]);
     const names = {};
     for (const p of profRes.data || []) names[p.user_id] = p.username;
     predNames = names;
 
-    const rows = (balRes.data || []).filter(r => names[r.user_id]);
+    const everBet = new Set(predBets.map(b => b.user_id));
+    const rows = (balRes.data || []).filter(r => names[r.user_id] && everBet.has(r.user_id));
     if (!rows.length) {
         predSetPanelMeta('predLeaderboardMeta', '');
         el.innerHTML = predNote('nobody has placed a bet yet.');
@@ -1199,7 +1302,7 @@ async function predLoadLeaderboard() {
             const p = conflicted[u] ? 0 : odds[u];
             return `<tr${currentUser && u === currentUser.id ? ' class="pred-me"' : ''}>
             <td>${i + 1}</td>
-            <td><span class="pred-leader-name" onclick="predSelectBetsUser('${predEscape(u)}')">${predEscape(names[u])}</span></td>
+            <td><span class="pred-leader-name" onclick="predShowUserBets('${predEscape(u)}')">${predEscape(names[u])}</span></td>
             <td>${predFormatCoins(r.balance)}</td>
             <td>${atRisk[u] ? predFormatCoins(atRisk[u]) : '—'}</td>
             <td>${win ? predFormatCoins(Math.round(win * 100) / 100) : '—'}</td>

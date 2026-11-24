@@ -1181,6 +1181,30 @@
         }
         .pred-leader-name { cursor: pointer; text-decoration: underline; }
 
+        /* settled shows, nested inside the "former predictions" card */
+        .pred-former-show { border-width: 1px; }
+        .pred-former-show:last-child { margin-bottom: 0; }
+        .pred-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+            font-size: 12px;
+        }
+        .pred-results-label { font-weight: bold; margin-bottom: 4px; }
+        .pred-result-row { display: flex; justify-content: space-between; gap: 12px; padding: 2px 0; }
+        .pred-result-up { color: #080; }
+        .pred-result-down { color: #c00; }
+        @media (max-width: 640px) {
+            .pred-results { grid-template-columns: 1fr; }
+        }
+        html.dark .pred-results { border-bottom-color: #2c3e50; }
+        html.dark .pred-result-up { color: #6adb6a; }
+        html.dark .pred-result-down { color: #ff7b7b; }
+
         .pred-dialog {
             display: none;
             position: fixed;
@@ -1764,7 +1788,7 @@
                     <div id="predLeaderboard"></div>
                 </div>
             </div>
-            <div class="era-block">
+            <div class="era-block" id="predpanel-mybets">
                 <div class="era-header" onclick="predTogglePanel('mybets')">
                     <div>
                         <div class="era-title" id="predMyBetsTitle">your bets</div>
