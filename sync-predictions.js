@@ -23,7 +23,7 @@ if (!KEY) {
 
 // share one implementation of the pricing/resolution rules with the browser
 function loadShared() {
-    const ctx = { console, Math, Date, Object, Array, JSON, String, Number, Set, Map,
+    const ctx = { console, Math, Date, Intl, Object, Array, JSON, String, Number, Set, Map,
                   parseInt, parseFloat, isNaN, isFinite };
     vm.createContext(ctx);
     // CANONICAL_SONGS etc. live in songs.js, which the page loads before index.js
@@ -67,6 +67,7 @@ async function main() {
     if (fresh.length && !DRY) {
         const rows = fresh.map(m => ({
             show_date: m.show_date,
+            closes_at: m.closes_at,
             kind: m.kind,
             slot: m.slot === undefined ? null : m.slot,
             subject: m.subject || null,
@@ -80,6 +81,72 @@ async function main() {
         console.log(`opened ${rows.length} markets`);
     }
 
+    // ── keep each open market's closing time in step with its venue. markets
+    // from before closes_at existed get one here, and a venue edited in
+    // setlists.json (or a zone added to PRED_TZ_REGION) moves it.
+    const showFor = {};
+    for (const s of ctx.shows) showFor[s.date] = s;
+    let reclosed = 0;
+    const unzoned = new Set();
+    for (const market of existing || []) {
+        if (market.status !== 'open') continue;
+        const show = showFor[market.show_date];
+        if (!show) continue;
+        if (!ctx.predVenueTz(show.venue)) unzoned.add(`${show.date} ${show.venue}`);
+        const closes = ctx.predClosesAt(show);
+        if (market.closes_at && Date.parse(market.closes_at) === Date.parse(closes)) continue;
+        if (!DRY) {
+            const { error } = await sb.from('pred_markets')
+                .update({ closes_at: closes }).eq('id', market.id).eq('status', 'open');
+            if (error) throw error;
+        }
+        market.closes_at = closes;
+        reclosed++;
+    }
+    if (reclosed) console.log(`set closing time on ${reclosed} open markets`);
+    // not an error: these close at midnight UTC, the safe default. adding the
+    // region to PRED_TZ_REGION lets them stay open until the afternoon.
+    for (const v of unzoned) console.log(`no time zone for ${v}: closing at midnight UTC`);
+
+    // ── reprice open markets on the latest history. a market used to keep the
+    // prior it opened with, so a show announced months ahead was priced
+    // without the tour played in between. bets already placed are unaffected:
+    // each one is paid at the prior_at_bet it locked, never at the market's
+    // prior. only bets placed from here on see the new price.
+    //
+    // a market whose outcome list would change is left alone: dropping an
+    // outcome someone holds would settle their bet as "(anything else)".
+    const genByKey = new Map(generated.map(m => [marketKey(m), m]));
+    const sameOutcomes = (a, b) => {
+        const x = Object.keys(a).sort(), y = Object.keys(b).sort();
+        return x.length === y.length && x.every((k, i) => k === y[i]);
+    };
+    let repriced = 0, kept = 0;
+    for (const market of existing || []) {
+        if (market.status !== 'open' || ctx.predMarketClosed(market)) continue;
+        const gen = genByKey.get(marketKey(market));
+        let prior = gen ? gen.prior : null;
+        // a rare song the new model prices at or below the floor isn't
+        // generated at all, but its market already exists: price it anyway
+        if (!prior && market.kind === 'rare' && market.subject) {
+            prior = ctx.predRarePriorFor(today(), market.subject);
+        }
+        if (!prior) { kept++; continue; }
+        if (!sameOutcomes(prior, market.prior || {})) { kept++; continue; }
+        const moved = Object.keys(prior).some(k =>
+            Math.abs(prior[k] - Number(market.prior[k])) > 1e-6);
+        if (!moved) continue;
+        if (!DRY) {
+            const { error } = await sb.from('pred_markets')
+                .update({ prior }).eq('id', market.id).eq('status', 'open');
+            if (error) throw error;
+        }
+        repriced++;
+    }
+    console.log(`repriced ${repriced} open markets` +
+                (kept ? `, ${kept} kept their price (no longer generated, or ` +
+                        `their outcome list would change)` : ''));
+
     // ── settle markets whose show has happened
     const { data: open, error: opErr } = await sb.from('pred_markets')
         .select('*').in('status', ['open', 'locked']);
@@ -89,13 +156,14 @@ async function main() {
     for (const s of ctx.shows) showsByDate[s.date] = s;
 
     // a show's setlist reaches setlists.json the morning after it is played, so
-    // a market left open past its date is bettable by anyone who already knows
-    // the answer. lock on the date itself and settle when the setlist lands.
+    // a market left open past its closing time is bettable by anyone who already
+    // knows the answer. place_bet refuses those bets itself; this marks them
+    // locked so the board says so, and they settle once the setlist lands.
     const stamp = today();
     let locked = 0;
     for (const market of open || []) {
         if (market.status !== 'open') continue;
-        if (market.show_date > stamp) continue;
+        if (!ctx.predMarketClosed(market)) continue;
         const show = showsByDate[market.show_date];
         if (show && show.songs && show.songs.length) continue; // settles below
         if (!DRY) {

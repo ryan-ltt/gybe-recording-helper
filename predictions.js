@@ -11,6 +11,8 @@ const PRED_SEED        = 10;    // house gliffcoins per market
 const PRED_LONGSHOT_CAP= 10;    // max stake on a sub-1% outcome
 const PRED_DEBUT_PRIOR = 0.25;  // sentiment, not stats — see PRED_DEBUT_MIN_GAP
 const PRED_DEBUT_MIN_GAP = 30;  // days since previous show for a debut market
+const PRED_BUSTOUT_AFTER = 100; // shows of dormancy before the bustout hazard applies
+const PRED_BUSTOUT_SCALE = 0.10;// peak bustout hazard, before familiarity and decay
 
 // songs that cannot come back: the members who played them are gone.
 const PRED_RETIRED = [
@@ -128,8 +130,32 @@ function predBustoutPrior(hist, song, allHist) {
     for (const h of allHist) if (h.songs.includes(song)) career++;
     // base hazard decays with dormancy; career plays raise the ceiling.
     const familiarity = Math.log1p(career) / Math.log1p(300);
-    const hazard = 0.30 * familiarity * Math.exp(-showsSince / 120);
+    const hazard = PRED_BUSTOUT_SCALE * familiarity * Math.exp(-showsSince / 120);
     return Math.max(PRED_FLOOR, Math.min(hazard, 0.25));
+}
+
+// P(song appears) for a rare-song market. a song played within the last
+// PRED_BUSTOUT_AFTER shows is priced on its recent rate alone; only a genuinely
+// dormant one falls back to the bustout hazard. taking the max of the two
+// instead let the hazard (near its cap for anything recently played) override
+// a song's real rate: backtested over 120 shows, that priced 181 expected rare
+// hits against 45 actual. this split prices 57.
+function predRareProbability(win, song, hist) {
+    let lastIdx = -1;
+    for (let i = hist.length - 1; i >= 0; i--) {
+        if (hist[i].songs.includes(song)) { lastIdx = i; break; }
+    }
+    if (lastIdx < 0) return 0;
+    if (hist.length - 1 - lastIdx < PRED_BUSTOUT_AFTER) return predSongPrior(win, song);
+    return predBustoutPrior(win, song, hist);
+}
+
+// a rare market's yes/no prior as of `today`, for repricing a market that
+// already exists. matches what predGenerateMarkets would open it at.
+function predRarePriorFor(today, song) {
+    const hist = predHistory(today);
+    const p = predRareProbability(hist.slice(-PRED_WINDOW), song, hist);
+    return predNormalize({ yes: Math.max(p, PRED_FLOOR), no: 1 - Math.max(p, PRED_FLOOR) });
 }
 
 // clamp to the floor and renormalize a multi-outcome distribution
@@ -153,10 +179,112 @@ function predDaysBetween(a, b) {
     return Math.round((Date.parse(b) - Date.parse(a)) / 86400000);
 }
 
-// betting closes once the show's date arrives: setlists surface publicly the
-// same night, well before the scraper picks them up the following morning.
-function predShowStarted(showDate) {
-    return String(showDate) <= new Date().toISOString().slice(0, 10);
+// ─── Closing time ──────────────────────────────────────────────────────────
+// betting closes a few hours before the show, in the venue's own time: setlists
+// surface publicly the same night, long before the scraper picks them up the
+// following morning. a market stores its closing instant in closes_at, which
+// place_bet enforces server-side.
+
+const PRED_CLOSE_HOUR       = 18;  // local time on show day
+const PRED_CLOSE_HOUR_EARLY = 12;  // festivals and early shows can start mid-afternoon
+
+// venue strings end in the site's own region code: a US state, a Canadian
+// province, or a country. a region spanning several zones maps to its EASTERN-
+// most one, so a guess can only ever close betting early, never late.
+const PRED_TZ_REGION = {
+    // united states
+    al: 'America/Chicago', ar: 'America/Chicago', az: 'America/Phoenix',
+    ca: 'America/Los_Angeles', co: 'America/Denver', ct: 'America/New_York',
+    dc: 'America/New_York', de: 'America/New_York', fl: 'America/New_York',
+    ga: 'America/New_York', ia: 'America/Chicago', id: 'America/Boise',
+    il: 'America/Chicago', in: 'America/Indiana/Indianapolis', ks: 'America/Chicago',
+    ky: 'America/New_York', la: 'America/Chicago', ma: 'America/New_York',
+    md: 'America/New_York', me: 'America/New_York', mi: 'America/Detroit',
+    mn: 'America/Chicago', mo: 'America/Chicago', ms: 'America/Chicago',
+    nc: 'America/New_York', ne: 'America/Chicago', nh: 'America/New_York',
+    nj: 'America/New_York', nm: 'America/Denver', nv: 'America/Los_Angeles',
+    ny: 'America/New_York', oh: 'America/New_York', ok: 'America/Chicago',
+    or: 'America/Los_Angeles', pa: 'America/New_York', pr: 'America/Puerto_Rico',
+    ri: 'America/New_York', sc: 'America/New_York', tn: 'America/New_York',
+    tx: 'America/Chicago', ut: 'America/Denver', va: 'America/New_York',
+    vt: 'America/New_York', wa: 'America/Los_Angeles', wi: 'America/Chicago',
+    // canada
+    ab: 'America/Edmonton', bc: 'America/Vancouver', mb: 'America/Winnipeg',
+    nb: 'America/Moncton', ns: 'America/Halifax', on: 'America/Toronto',
+    qc: 'America/Toronto', sk: 'America/Regina',
+    // europe
+    uk: 'Europe/London', ir: 'Europe/Dublin', fr: 'Europe/Paris', ger: 'Europe/Berlin',
+    it: 'Europe/Rome', sp: 'Europe/Madrid', hol: 'Europe/Amsterdam', nl: 'Europe/Amsterdam',
+    swi: 'Europe/Zurich', bel: 'Europe/Brussels', be: 'Europe/Brussels',
+    lu: 'Europe/Luxembourg', swe: 'Europe/Stockholm', nor: 'Europe/Oslo',
+    den: 'Europe/Copenhagen', fin: 'Europe/Helsinki', ic: 'Atlantic/Reykjavik',
+    por: 'Europe/Lisbon', gr: 'Europe/Athens', pol: 'Europe/Warsaw',
+    aut: 'Europe/Vienna', au: 'Europe/Vienna', cze: 'Europe/Prague', cz: 'Europe/Prague',
+    svk: 'Europe/Bratislava', hu: 'Europe/Budapest', sl: 'Europe/Ljubljana',
+    slo: 'Europe/Ljubljana', cro: 'Europe/Zagreb', cr: 'Europe/Zagreb',
+    est: 'Europe/Tallinn', lv: 'Europe/Riga', lt: 'Europe/Vilnius',
+    tur: 'Europe/Istanbul', tu: 'Europe/Istanbul', ru: 'Europe/Moscow',
+    // elsewhere
+    mx: 'America/Mexico_City', br: 'America/Sao_Paulo', chl: 'America/Santiago',
+    jp: 'Asia/Tokyo', chi: 'Asia/Shanghai', 'hong kong': 'Asia/Hong_Kong',
+    tai: 'Asia/Taipei', ml: 'Asia/Kuala_Lumpur', aus: 'Australia/Sydney',
+    nz: 'Pacific/Auckland',
+};
+
+// cities whose region code is shared with somewhere else (ar, sk), or that sit
+// west of the zone their region maps to
+const PRED_TZ_CITY = {
+    'buenos aires': 'America/Argentina/Buenos_Aires', seoul: 'Asia/Seoul',
+    perth: 'Australia/Perth', adelaide: 'Australia/Adelaide', brisbane: 'Australia/Brisbane',
+    memphis: 'America/Chicago', nashville: 'America/Chicago', 'el paso': 'America/Denver',
+};
+
+// the venue's IANA zone, or null when the venue string isn't recognised
+function predVenueTz(venue) {
+    const parts = String(venue || '').toLowerCase().split(',').map(s => s.trim());
+    if (parts.length < 2) return null;
+    const region = parts[parts.length - 1].replace(/\s*\(.*\)$/, '');
+    const city = parts.length >= 3 ? parts[parts.length - 2] : '';
+    return PRED_TZ_CITY[city] || PRED_TZ_REGION[region] || null;
+}
+
+// ms that `tz` is ahead of UTC at instant `t`
+function predTzOffset(t, tz) {
+    const p = {};
+    for (const x of new Intl.DateTimeFormat('en-US', {
+        timeZone: tz, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+    }).formatToParts(new Date(t))) p[x.type] = x.value;
+    return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second) - t;
+}
+
+// the UTC instant of `hour`:00 on `date` in `tz`. two passes settle DST.
+function predZonedTime(date, hour, tz) {
+    const [y, m, d] = String(date).split('-').map(Number);
+    const wall = Date.UTC(y, m - 1, d, hour);
+    let t = wall - predTzOffset(wall, tz);
+    t = wall - predTzOffset(t, tz);
+    return t;
+}
+
+// when betting on `show` closes, as an ISO string. an unrecognised venue keeps
+// the old rule, midnight UTC on the show date: that is earlier than 18:00 local
+// anywhere on earth, so a missing zone can close betting early but never late.
+function predClosesAt(show) {
+    const early = /festival|early show|matinee/i.test(`${show.venue || ''} ${show.note || ''}`);
+    const tz = predVenueTz(show.venue);
+    const t = tz
+        ? predZonedTime(show.date, early ? PRED_CLOSE_HOUR_EARLY : PRED_CLOSE_HOUR, tz)
+        : Date.parse(show.date + 'T00:00:00Z');
+    return new Date(t).toISOString();
+}
+
+// has betting on this market closed? markets from before closes_at existed
+// fall back to the date rule.
+function predMarketClosed(market, now) {
+    const t = now === undefined ? Date.now() : now;
+    if (market.closes_at) return t >= Date.parse(market.closes_at);
+    return String(market.show_date) <= new Date(t).toISOString().slice(0, 10);
 }
 
 function predUpcomingShows(today) {
@@ -228,6 +356,7 @@ function predGenerateMarkets(today) {
 
     upcoming.forEach((show, idx) => {
         const prev = idx === 0 ? lastPlayed : upcoming[idx - 1].date;
+        const closesAt = predClosesAt(show);
 
         // ── slot markets: one per slot, out to the longest set that still
         // plausibly happens. the near-certain early slots stay on the board —
@@ -238,7 +367,7 @@ function predGenerateMarkets(today) {
             const dist = predSlotPrior(win, slot);
             if (Object.keys(dist).length === 0) continue;
             markets.push({
-                show_date: show.date, kind: 'slot', slot,
+                show_date: show.date, closes_at: closesAt, kind: 'slot', slot,
                 subject: null,
                 title: `song ${slot + 1}`,
                 prior: predNormalize(predFoldTail(predTrimOutcomes(dist, PRED_MAX_OUTCOMES))),
@@ -249,29 +378,29 @@ function predGenerateMarkets(today) {
         const closer = predCloserPrior(win);
         if (Object.keys(closer).length) {
             markets.push({
-                show_date: show.date, kind: 'closer', slot: null, subject: null,
+                show_date: show.date, closes_at: closesAt, kind: 'closer', slot: null, subject: null,
                 title: 'closer',
                 prior: predTrimOutcomes(closer, PRED_MAX_OUTCOMES),
             });
         }
 
-        // ── rare appearances. one market type for anything unlikely, priced by
-        // the dormancy hazard: a song gone 150 shows and one gone 300 belong on
-        // the same scale, and recent-frequency can't provide it — decay drives
-        // anything long dormant to nearly zero regardless of how it got there.
+        // ── rare appearances. one market type for anything unlikely: recently
+        // played songs on their recent rate, long-dormant ones on the dormancy
+        // hazard, since decay drives anything long dormant to nearly zero
+        // regardless of how it got there. see predRareProbability.
         const rares = [];
         for (const song of CANONICAL_SONGS) {
             if (PRED_RETIRED.includes(song) || PRED_NOT_SONGS.includes(song)) continue;
             const recent = predSongPrior(win, song);
             if (recent >= PRED_RARE_CEILING) continue;  // a regular, not a rarity
-            const p = Math.max(recent, predBustoutPrior(win, song, hist));
+            const p = predRareProbability(win, song, hist);
             if (p <= PRED_FLOOR) continue;
             rares.push({ song, p });
         }
         rares.sort((a, b) => b.p - a.p);
         for (const r of rares) {
             markets.push({
-                show_date: show.date, kind: 'rare', slot: null, subject: r.song,
+                show_date: show.date, closes_at: closesAt, kind: 'rare', slot: null, subject: r.song,
                 title: r.song,
                 prior: predNormalize({ yes: r.p, no: 1 - r.p }),
             });
@@ -281,7 +410,7 @@ function predGenerateMarkets(today) {
         //    already burned any new material on the first night.
         if (predDaysBetween(prev, show.date) >= PRED_DEBUT_MIN_GAP) {
             markets.push({
-                show_date: show.date, kind: 'debut', slot: null, subject: null,
+                show_date: show.date, closes_at: closesAt, kind: 'debut', slot: null, subject: null,
                 title: 'any live debut',
                 prior: predNormalize({ yes: PRED_DEBUT_PRIOR, no: 1 - PRED_DEBUT_PRIOR }),
             });
@@ -294,7 +423,16 @@ function predGenerateMarkets(today) {
 // ─── Pricing ───────────────────────────────────────────────────────────────
 // displayed price blends the setlist prior with the live pool. with an empty
 // book you see the statistics; as gliffcoins arrive the crowd takes over.
-// payouts are fixed odds: the price you bet at is the price you are paid at.
+// payouts are fixed odds: a bet locks the price quoted for it (predQuote), and
+// place_bet recomputes that quote server-side and refuses the bet if it moved.
+//
+// the quote includes the bet's own stake. pricing a bet at the book as it stood
+// before the stake lets anyone push one outcome's price with their own money
+// and then back the other side at the inflated odds: a random search found
+// sequences guaranteeing +487g on 668g staked. with the stake included, none.
+//
+// PRED_FLOOR and PRED_POOL_K are duplicated in pred_quote() in
+// migrations/002_locked_prices.sql: change both together.
 
 function predPoolByOutcome(bets) {
     const pool = {};
@@ -325,9 +463,18 @@ function predPrices(market, bets) {
     return out;
 }
 
-// what 1 gliffcoin on `outcome` returns if it wins: fixed at the price showing
-// when the bet is placed, and never revised afterwards. later money moves the
-// price for the next bettor, not the payout of one already taken.
+// the price a new bet of `stake` on `outcome` locks in: the book with that
+// stake already added. this is what the bet dialog shows and what is sent to
+// place_bet as the price the bettor accepted.
+function predQuote(market, bets, outcome, stake) {
+    const s = Number(stake) || 0;
+    const book = s > 0 ? bets.concat([{ outcome, stake: s }]) : bets;
+    return predPrices(market, book)[outcome];
+}
+
+// marginal multiple for a new bet on `outcome`, as listed on the board. a real
+// stake gets a slightly shorter one (see predQuote). later money moves the
+// price for the next bettor, never the payout of a bet already taken.
 function predPayoutMultiple(market, bets, outcome) {
     const price = predPrices(market, bets)[outcome];
     if (!(price > 0)) return null;
@@ -647,7 +794,7 @@ function renderPredictions() {
         const list = byShow[date];
         const id = 'pred-' + date;
         const open = predOpenShows.has(date);
-        const live = list.filter(m => m.status === 'open' && !predShowStarted(m.show_date)).length;
+        const live = list.filter(m => m.status === 'open' && !predMarketClosed(m)).length;
         const staked = list.reduce((t, m) =>
             t + predBetsFor(m.id).reduce((u, b) => u + Number(b.stake), 0), 0);
 
@@ -656,6 +803,7 @@ function renderPredictions() {
                 <div>
                     <div class="era-title">${predEscape(date)}</div>
                     <div class="pred-venue">${predEscape(venue)}</div>
+                    ${live ? predCloseLine(list) : ''}
                 </div>
                 <div style="display:flex;align-items:center;gap:16px;">
                     <div class="era-meta">${live} market${live === 1 ? '' : 's'} · ${predFormatCoins(staked)}g in</div>
@@ -666,6 +814,22 @@ function renderPredictions() {
         </div>`;
     }
     container.innerHTML = html;
+}
+
+// when betting on a show closes, in the reader's own time zone. a show whose
+// markets predate closes_at shows nothing: it closes on the old date rule.
+function predCloseLine(list) {
+    const m = list.find(x => x.closes_at);
+    if (!m) return '';
+    const t = new Date(m.closes_at);
+    const left = t.getTime() - Date.now();
+    const when = t.toLocaleString(undefined,
+        { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    const soon = left < 86400000
+        ? ` (in ${left < 3600000 ? Math.max(1, Math.round(left / 60000)) + ' min'
+                                 : Math.round(left / 3600000) + 'h'})`
+        : '';
+    return `<div class="pred-venue">betting closes ${predEscape(when)}${soon}</div>`;
 }
 
 // a show's markets, grouped. debut and closer are single markets and sit at the
@@ -731,7 +895,7 @@ function predRenderMarket(market) {
     const prices = predPrices(market, bets);
     const pool   = predPoolByOutcome(bets);
     const total  = predPoolTotal(pool);
-    const locked = market.status !== 'open' || predShowStarted(market.show_date);
+    const locked = market.status !== 'open' || predMarketClosed(market);
 
     const entries = Object.entries(prices).sort((a, b) => b[1] - a[1]);
 
@@ -754,7 +918,7 @@ function predRenderMarket(market) {
                 <span class="pred-pct">${predFormatPct(p)}</span>
                 <span class="pred-mult">${predFormatMultiple(mult)}</span>
                 <span class="pred-pool">${onPool ? predFormatCoins(onPool) + 'g' : ''}</span>
-                <span class="pred-mine">${mine ? 'you: ' + predFormatCoins(mine) + 'g → ' + predFormatCoins(myRet) + 'g' : ''}</span>
+                ${predMineCell(mine, myRet)}
                 ${locked ? '' : `<button class="pred-bet-btn" data-market="${market.id}" data-outcome="${predEscape(outcome)}" onclick="predBetFromButton(this)">bet</button>`}
             </div>
         </div>`;
@@ -769,6 +933,18 @@ function predRenderMarket(market) {
         </div>
         ${rows}
     </div>`;
+}
+
+// your position on an outcome, at the odds you locked. the multiple column to
+// its left is what a new bet would get now; this one is what you already hold.
+// several bets at different prices show their stake-weighted multiple.
+function predMineCell(stake, ret) {
+    if (!stake) return '<span class="pred-mine"></span>';
+    const mult = ret / stake;
+    const tip = `you have ${predFormatCoins(stake)}g on this, locked at ` +
+        `${predFormatMultiple(mult)}: pays ${predFormatCoins(ret)}g if it hits`;
+    return `<span class="pred-mine" title="${predEscape(tip)}">you: ` +
+        `${predFormatCoins(stake)}g @${predFormatMultiple(mult)}</span>`;
 }
 
 function predRenderBalance() {
@@ -806,11 +982,13 @@ function predBetFromButton(el) {
     predOpenBet(el.getAttribute('data-market'), el.getAttribute('data-outcome'));
 }
 
-function predOpenBet(marketId, outcome) {
+// opts.stake / opts.error reopen the dialog as it was, after the odds moved
+function predOpenBet(marketId, outcome, opts) {
+    opts = opts || {};
     if (!currentUser) { alert('log in to place bets.'); return; }
     const market = predMarkets.find(m => String(m.id) === String(marketId));
     if (!market || market.status !== 'open') return;
-    if (predShowStarted(market.show_date)) return;
+    if (predMarketClosed(market)) return;
 
     predPendingBet = { marketId, outcome };
     const bets  = predBetsFor(marketId);
@@ -838,27 +1016,55 @@ function predOpenBet(marketId, outcome) {
         return;
     }
 
+    const held = mine
+        ? `<div class="pred-dialog-held">you already have ${predFormatCoins(mine)}g on this at ` +
+          `${predFormatMultiple(predMyReturn(marketId, outcome) / mine)}. those odds stay as they are.</div>`
+        : '';
+    const startStake = opts.stake ? Math.min(opts.stake, Math.floor(max)) : Math.min(5, Math.floor(max));
+
     el.innerHTML = `<div class="pred-dialog-inner">
         <div class="pred-dialog-title">${predEscape(outcome)}</div>
-        <div class="pred-dialog-sub">
-            ${predFormatPct(predPrices(market, bets)[outcome])} ·
-            pays ${predFormatMultiple(predPayoutMultiple(market, bets, outcome))} if it hits
-        </div>
-        ${cap !== null ? `<div class="pred-dialog-cap">longshot (opened at ${predFormatPct(prior)}): max ${predFormatCoins(cap)}g per outcome${mine ? `, you have ${predFormatCoins(mine)}g on it` : ''}</div>` : ''}
+        <div class="pred-dialog-sub" id="predQuote"></div>
+        ${held}
+        ${cap !== null ? `<div class="pred-dialog-cap">longshot (priced at ${predFormatPct(prior)}): max ${predFormatCoins(cap)}g per outcome${mine ? `, you have ${predFormatCoins(mine)}g on it` : ''}</div>` : ''}
         <div class="pred-dialog-row">
-            <input type="number" id="predStake" min="1" step="1" max="${Math.floor(max)}" value="${Math.min(5, Math.floor(max)) || ''}" />
+            <input type="number" id="predStake" min="1" step="1" max="${Math.floor(max)}" value="${startStake || ''}" oninput="predUpdateQuote()" />
             <span class="muted">of ${predFormatCoins(predBalance)}g</span>
         </div>
-        <div id="predBetError" class="pred-dialog-error"></div>
+        <div id="predBetError" class="pred-dialog-error">${opts.error ? predEscape(opts.error) : ''}</div>
         <div class="pred-dialog-btns">
             <button class="secondary-btn" onclick="predCloseBet()">cancel</button>
             <button onclick="predSubmitBet()">place bet</button>
         </div>
-        <div class="pred-dialog-note">payouts are based on other bettors and winnings are split (plus a 10 gliffcoin bonus in the pot for having the courage to bet)</div>
+        <div class="pred-dialog-note">your odds are locked when you bet and never change. later bets move the odds for new bets only. a bigger stake gets slightly shorter odds, since it moves the price itself.</div>
     </div>`;
     el.style.display = 'flex';
+    predUpdateQuote();
     const input = document.getElementById('predStake');
     if (input) { input.focus(); input.select(); }
+}
+
+// the stake being typed, as a whole positive number, or null
+function predDialogStake() {
+    const input = document.getElementById('predStake');
+    const stake = Number(input && input.value);
+    return isFinite(stake) && stake > 0 && Number.isInteger(stake) ? stake : null;
+}
+
+// the odds this exact stake would lock, refreshed as it is typed. this is the
+// price submitted to place_bet, so what is on screen is what gets locked.
+function predUpdateQuote() {
+    const el = document.getElementById('predQuote');
+    if (!el || !predPendingBet) return;
+    const market = predMarkets.find(m => String(m.id) === String(predPendingBet.marketId));
+    if (!market) return;
+    const bets  = predBetsFor(market.id);
+    const stake = predDialogStake();
+    const price = predQuote(market, bets, predPendingBet.outcome, stake || 0);
+    el.textContent = stake
+        ? `locks at ${predFormatMultiple(1 / price)} (${predFormatPct(price)}) · ` +
+          `${predFormatCoins(stake)}g pays ${predFormatCoins(Math.round(stake / price * 100) / 100)}g if it hits`
+        : `${predFormatPct(price)} · ${predFormatMultiple(1 / price)} on a new bet`;
 }
 
 function predCloseBet() {
@@ -886,17 +1092,35 @@ async function predSubmitBet() {
         return;
     }
 
+    // the price on screen for this stake: place_bet locks exactly this, or
+    // refuses the bet if someone else's bet has moved it in the meantime.
+    const market = predMarkets.find(m => String(m.id) === String(predPendingBet.marketId));
+    if (!market) return;
+    const price = predQuote(market, predBetsFor(market.id), predPendingBet.outcome, stake);
+
     predBusy = true;
     if (errEl) errEl.textContent = '';
     const { data, error } = await sbClient.rpc('place_bet', {
         p_market_id: predPendingBet.marketId,
         p_outcome:   predPendingBet.outcome,
         p_stake:     stake,
+        p_price:     price,
     });
     predBusy = false;
 
     if (error) {
         if (errEl) errEl.textContent = error.message || 'could not place bet.';
+        return;
+    }
+    if (data && data.ok === false && data.error === 'odds moved') {
+        // another bet landed first. refresh the book and show the new odds for
+        // the same stake; the bettor has to accept them by placing it again.
+        const { marketId, outcome } = predPendingBet;
+        await loadPredictions();
+        predOpenBet(marketId, outcome, {
+            stake,
+            error: 'the odds moved while you were deciding. check the new price and place it again.',
+        });
         return;
     }
     if (data && data.ok === false) {
@@ -1042,7 +1266,7 @@ function predRenderMyBets() {
             const won = m.resolved_outcome === b.outcome;
             state = won ? 'won' : 'lost';
             cls = won ? ' class="pred-won-row"' : ' class="pred-lost-row"';
-        } else if (m.status === 'locked' || predShowStarted(m.show_date)) {
+        } else if (m.status === 'locked' || predMarketClosed(m)) {
             state = 'awaiting setlist';
         }
         return { b, m, mult, ret, state, cls };
