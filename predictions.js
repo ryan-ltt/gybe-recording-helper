@@ -1379,13 +1379,17 @@ function predRenderMyBets() {
         return da.localeCompare(db);
     });
 
-    const staked = mine.reduce((t, b) => t + Number(b.stake), 0);
+    // the summary is about what is riding right now: settled bets are history,
+    // so counting their stake next to "if all win" reads as coins still at risk.
     const live = rows.filter(r => r.state === 'open' || r.state === 'awaiting setlist');
+    const staked = live.reduce((t, r) => t + Number(r.b.stake), 0);
     const couldWin = live.reduce((t, r) => t + (r.ret || 0), 0);
 
-    predSetPanelMeta('predMyBetsMeta',
-        `${mine.length} bet${mine.length === 1 ? '' : 's'} · ${predFormatCoins(staked)}g staked` +
-        (live.length ? ` · ${predFormatCoins(Math.round(couldWin * 100) / 100)}g if all win` : ''));
+    predSetPanelMeta('predMyBetsMeta', live.length
+        ? `${live.length} live bet${live.length === 1 ? '' : 's'} · ` +
+          `${predFormatCoins(staked)}g staked · ` +
+          `${predFormatCoins(Math.round(couldWin * 100) / 100)}g if all win`
+        : `${mine.length} bet${mine.length === 1 ? '' : 's'} · none live`);
 
     el.innerHTML = `<div class="pred-scroll"><table class="pred-table pred-bets-table">
         <tr><th>show</th><th>market</th><th>pick</th><th>stake</th><th>at</th><th>returns</th><th></th></tr>
