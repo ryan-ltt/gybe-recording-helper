@@ -797,7 +797,7 @@ function renderPredictions() {
     predRenderBalance();
 
     if (!predMarkets.length) {
-        container.innerHTML = predNote('no markets yet. they open automatically once a show with no setlist is announced.');
+        container.innerHTML = predNote('no markets yet. you will see new ones when shows are announced.');
         return;
     }
 
@@ -812,7 +812,7 @@ function renderPredictions() {
     const former = dates.filter(d => settled(byShow[d])).reverse();
 
     let html = active.map(d => predRenderShowBlock(d, byShow[d], false)).join('');
-    if (!active.length) html += predNote('no open markets right now. they open automatically once a show is announced.');
+    if (!active.length) html += predNote('no markets yet. you will see new ones when shows are announced.');
 
     if (former.length) {
         const id = 'predformer';
@@ -1039,8 +1039,8 @@ function predRenderMarket(market) {
 function predMineCell(stake, ret) {
     if (!stake) return '<span class="pred-mine"></span>';
     const mult = ret / stake;
-    const tip = `you have ${predFormatCoins(stake)}g on this, locked at ` +
-        `${predFormatMultiple(mult)}: pays ${predFormatCoins(ret)}g if it hits`;
+    const tip = `${predFormatCoins(stake)}g at ${predFormatMultiple(mult)}, ` +
+        `pays ${predFormatCoins(ret)}g`;
     return `<span class="pred-mine" title="${predEscape(tip)}">you: ` +
         `${predFormatCoins(stake)}g @${predFormatMultiple(mult)}</span>`;
 }
@@ -1104,7 +1104,7 @@ function predOpenBet(marketId, outcome, opts) {
         el.innerHTML = `<div class="pred-dialog-inner">
             <div class="pred-dialog-title">${predEscape(outcome)}</div>
             <div class="pred-dialog-sub">${cap !== null && mine >= cap
-                ? 'you are at the ' + predFormatCoins(cap) + 'g longshot cap for this outcome.'
+                ? 'at the ' + predFormatCoins(cap) + 'g longshot cap'
                 : 'not enough gliffcoins to bet.'}</div>
             <div class="pred-dialog-btns">
                 <button class="secondary-btn" onclick="predCloseBet()">close</button>
@@ -1115,8 +1115,8 @@ function predOpenBet(marketId, outcome, opts) {
     }
 
     const held = mine
-        ? `<div class="pred-dialog-held">you already have ${predFormatCoins(mine)}g on this at ` +
-          `${predFormatMultiple(predMyReturn(marketId, outcome) / mine)}. those odds stay as they are.</div>`
+        ? `<div class="pred-dialog-held">you have ${predFormatCoins(mine)}g on this at ` +
+          `${predFormatMultiple(predMyReturn(marketId, outcome) / mine)}</div>`
         : '';
     const startStake = opts.stake ? Math.min(opts.stake, Math.floor(max)) : Math.min(5, Math.floor(max));
 
@@ -1124,7 +1124,7 @@ function predOpenBet(marketId, outcome, opts) {
         <div class="pred-dialog-title">${predEscape(outcome)}</div>
         <div class="pred-dialog-sub" id="predQuote"></div>
         ${held}
-        ${cap !== null ? `<div class="pred-dialog-cap">longshot (priced at ${predFormatPct(prior)}): max ${predFormatCoins(cap)}g per outcome${mine ? `, you have ${predFormatCoins(mine)}g on it` : ''}</div>` : ''}
+        ${cap !== null ? `<div class="pred-dialog-cap">this bet is a long shot, so for your own safety you cannot put more than ${predFormatCoins(cap)}g down.${mine ? ` you have ${predFormatCoins(mine)}g` : ''}</div>` : ''}
         <div class="pred-dialog-row">
             <input type="number" id="predStake" min="1" step="1" max="${Math.floor(max)}" value="${startStake || ''}" oninput="predUpdateQuote()" />
             <span class="muted">of ${predFormatCoins(predBalance)}g</span>
@@ -1134,7 +1134,7 @@ function predOpenBet(marketId, outcome, opts) {
             <button class="secondary-btn" onclick="predCloseBet()">cancel</button>
             <button onclick="predSubmitBet()">place bet</button>
         </div>
-        <div class="pred-dialog-note">your odds are locked when you bet and never change. later bets move the odds for new bets only. a bigger stake gets slightly shorter odds, since it moves the price itself.</div>
+        <div class="pred-dialog-note">your odds lock in when you bet. if you put a lot down, your odds are slightly worse as a confidence penalty.</div>
     </div>`;
     el.style.display = 'flex';
     predUpdateQuote();
@@ -1160,9 +1160,8 @@ function predUpdateQuote() {
     const stake = predDialogStake();
     const price = predQuote(market, bets, predPendingBet.outcome, stake || 0);
     el.textContent = stake
-        ? `locks at ${predFormatMultiple(1 / price)} (${predFormatPct(price)}) · ` +
-          `${predFormatCoins(stake)}g pays ${predFormatCoins(Math.round(stake / price * 100) / 100)}g if it hits`
-        : `${predFormatPct(price)} · ${predFormatMultiple(1 / price)} on a new bet`;
+        ? `${predFormatMultiple(1 / price)} (${predFormatPct(price)} odds)`
+        : `${predFormatPct(price)} odds, ${predFormatMultiple(1 / price)} on a bet`;
 }
 
 function predCloseBet() {
@@ -1217,7 +1216,7 @@ async function predSubmitBet() {
         await loadPredictions();
         predOpenBet(marketId, outcome, {
             stake,
-            error: 'the odds moved while you were deciding. check the new price and place it again.',
+            error: 'the odds moved. check again to bet',
         });
         return;
     }
@@ -1407,7 +1406,7 @@ function predRenderMyBets() {
             <td>${predFormatCoins(staked)}g</td>
             <td></td>
             <td>${predFormatCoins(Math.round(couldWin * 100) / 100)}g</td>
-            <td class="pred-bet-state">if every live bet wins</td>
+            <td class="pred-bet-state">if all win</td>
         </tr>
     </table></div>`;
 }
