@@ -1115,7 +1115,6 @@
         html.dark .pred-group-body .pred-market { border-top-color: #24303f; }
 
         .pred-bets-table td { white-space: nowrap; }
-        .pred-bets-table td:first-child, .pred-bets-table th:first-child { color: inherit; }
         .pred-bets-table td:nth-child(2), .pred-bets-table th:nth-child(2),
         .pred-bets-table td:nth-child(3), .pred-bets-table th:nth-child(3) { text-align: left; }
         .pred-bets-table td:last-child, .pred-bets-table th:last-child { text-align: left; }
@@ -1136,6 +1135,49 @@
         .pred-won-row .pred-bet-state { color: #080; }
         .pred-lost-row td { color: #aaa; }
         .pred-lost-row td:nth-child(2), .pred-lost-row td:nth-child(3) { text-decoration: line-through; }
+
+        /* the pick stays readable on a lost bet; the market's strikethrough says enough */
+        .pred-bets-table td:first-child, .pred-bets-table th:first-child { text-align: left; }
+        .pred-bets-table td:nth-child(2), .pred-bets-table th:nth-child(2),
+        .pred-bets-table td:nth-child(3), .pred-bets-table th:nth-child(3) { text-align: right; }
+        .pred-lost-row td:nth-child(2), .pred-lost-row td:nth-child(3) { text-decoration: none; }
+        .pred-lost-row td:first-child { text-decoration: line-through; }
+        .pred-bets-table .pred-pl { font-weight: bold; }
+        .pred-pos, .pred-lost-row td.pred-pos { color: #080; }
+        .pred-neg, .pred-lost-row td.pred-neg { color: #c0392b; }
+        .pred-bets-table .pred-muted { color: #8a949c; font-weight: normal; }
+        .pred-best { color: #c8961a; }
+        .pred-day-head td {
+            background: #f3f6f8;
+            border-top: 2px solid #ddd;
+            font-size: 11px;
+        }
+        .pred-day-head:hover td { background: #f3f6f8; }
+        .pred-day-date { font-weight: bold; }
+        .pred-day-venue { color: #5c6870; margin-left: 10px; }
+        .pred-bets-table .pred-day-count { color: #5c6870; text-align: right; }
+        .pred-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 4px 0 16px;
+            font-family: Monaco, 'JetBrains Mono', monospace;
+        }
+        .pred-stat { border: 1px solid #ddd; padding: 10px 12px; min-width: 0; }
+        .pred-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #5c6870; }
+        .pred-stat-value { font-size: 20px; font-weight: bold; margin: 4px 0 2px; }
+        .pred-stat-label { display: flex; justify-content: space-between; gap: 8px; }
+        .pred-stat-aside { text-transform: none; letter-spacing: 0; font-weight: bold; }
+        .pred-stat-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pred-stat-value-small { font-size: 14px; line-height: 23px; }
+
+        html.dark .pred-pos, html.dark .pred-lost-row td.pred-pos { color: #6adb6a; }
+        html.dark .pred-neg, html.dark .pred-lost-row td.pred-neg { color: #ff6b6b; }
+        html.dark .pred-bets-table .pred-muted { color: #7d8f9c; }
+        html.dark .pred-day-head td, html.dark .pred-day-head:hover td { background: #16202c; border-top-color: #2c3e50; }
+        html.dark .pred-day-venue, html.dark .pred-bets-table .pred-day-count { color: #8fa6b4; }
+        html.dark .pred-stat { border-color: #2c3e50; background: #16202c; }
+        html.dark .pred-stat-label, html.dark .pred-stat-sub { color: #8fa6b4; }
 
         html.dark .pred-bets-table .pred-bet-state { color: #8fa6b4; }
         html.dark .pred-bets-total td { border-top-color: #2c3e50; color: #a8bcc8; }
@@ -1292,6 +1334,12 @@
         html.dark .pred-me td { background: #24384a; }
         html.dark .pred-me:hover td { background: #2a4054; }
         html.dark .pred-table td:first-child { color: #8fa6b4; }
+        /* the bets table leads with the market, not a dimmed date */
+        html .pred-table.pred-bets-table td:first-child { color: inherit; }
+        html .pred-table.pred-bets-table .pred-won-row td:first-child { color: #080; }
+        html .pred-table.pred-bets-table .pred-lost-row td:first-child { color: #aaa; }
+        html.dark .pred-table.pred-bets-table .pred-won-row td:first-child { color: #6adb6a; }
+        html.dark .pred-table.pred-bets-table .pred-lost-row td:first-child { color: #7d8f9c; }
         html.dark .pred-bets-total td { border-top-color: #35506a; }
 
         /* Dark mode */

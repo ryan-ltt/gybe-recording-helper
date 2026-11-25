@@ -1378,35 +1378,121 @@ function predRenderMyBets() {
         return da.localeCompare(db);
     });
 
+    // what each settled bet did to the balance: a win pays its returns less the
+    // stake, a loss costs the stake, a void hands it back. live bets have no
+    // result yet, so they stay out of every profit figure.
+    for (const r of rows) {
+        const stake = Number(r.b.stake);
+        r.pl = r.state === 'won' ? (r.ret || 0) - stake
+             : r.state === 'lost' ? -stake
+             : r.state === 'void — refunded' ? 0
+             : null;
+    }
+    const round2 = n => Math.round(n * 100) / 100;
+    const signed = n => {
+        const v = round2(n);
+        return (v > 0 ? '+' : v < 0 ? '−' : '±') + predFormatCoins(Math.abs(v)) + 'g';
+    };
+    const plClass = n => round2(n) > 0 ? 'pred-pos' : round2(n) < 0 ? 'pred-neg' : '';
+
     // the summary is about what is riding right now: settled bets are history,
     // so counting their stake next to "if all win" reads as coins still at risk.
     const live = rows.filter(r => r.state === 'open' || r.state === 'awaiting setlist');
     const staked = live.reduce((t, r) => t + Number(r.b.stake), 0);
     const couldWin = live.reduce((t, r) => t + (r.ret || 0), 0);
 
-    predSetPanelMeta('predMyBetsMeta', live.length
-        ? `${live.length} live bet${live.length === 1 ? '' : 's'} · ` +
-          `${predFormatCoins(staked)}g staked · ` +
-          `${predFormatCoins(Math.round(couldWin * 100) / 100)}g if all win`
-        : `${mine.length} bet${mine.length === 1 ? '' : 's'} · none live`);
+    const settled = rows.filter(r => r.state === 'won' || r.state === 'lost');
+    const wins = settled.filter(r => r.state === 'won');
+    const net = settled.reduce((t, r) => t + r.pl, 0);
+    const best = wins.slice().sort((a, b) => b.pl - a.pl)[0];
+    // the win that was least likely when the bet went on
+    const lucky = wins.filter(r => Number(r.b.prior_at_bet) > 0)
+        .sort((a, b) => Number(a.b.prior_at_bet) - Number(b.b.prior_at_bet))[0];
 
-    el.innerHTML = `<div class="pred-scroll"><table class="pred-table pred-bets-table">
-        <tr><th>show</th><th>market</th><th>pick</th><th>stake</th><th>at</th><th>returns</th><th></th></tr>
-        ${rows.map(r => `<tr${r.cls}>
-            <td>${r.m ? predEscape(r.m.show_date) : '—'}</td>
+    // one header per show: what that night did, so a good or bad day stands
+    // out without adding up the rows by hand.
+    const days = [];
+    for (const r of rows) {
+        const d = r.m ? r.m.show_date : '—';
+        let day = days[days.length - 1];
+        if (!day || day.date !== d) days.push(day = { date: d, rows: [] });
+        day.rows.push(r);
+    }
+    for (const day of days) {
+        const done = day.rows.filter(r => r.state === 'won' || r.state === 'lost');
+        day.settled = done.length;
+        day.won = done.filter(r => r.state === 'won').length;
+        day.net = done.reduce((t, r) => t + r.pl, 0);
+        day.live = day.rows.filter(r => r.pl === null).length;
+        const show = (typeof shows !== 'undefined' && shows) ? shows.find(s => s.date === day.date) : null;
+        day.venue = show ? show.venue : '';
+    }
+    const settledDays = days.filter(d => d.settled);
+    const bestDay = settledDays.slice().sort((a, b) => b.net - a.net)[0];
+
+    predSetPanelMeta('predMyBetsMeta',
+        (settled.length ? `${signed(net)} net · ` : '') +
+        (live.length
+            ? `${live.length} live bet${live.length === 1 ? '' : 's'} · ` +
+              `${predFormatCoins(staked)}g staked · ` +
+              `${predFormatCoins(round2(couldWin))}g if all win`
+            : `${mine.length} bet${mine.length === 1 ? '' : 's'} · none live`));
+
+    // `aside` sits beside the label at the top of the box
+    const tile = (label, value, cls = '', aside = '') => `<div class="pred-stat">
+            <div class="pred-stat-label">${label}${aside ? `<span class="pred-stat-aside">${aside}</span>` : ''}</div>
+            <div class="pred-stat-value ${cls}">${value}</div>
+        </div>`;
+    const hasBestDay = bestDay && bestDay.net > 0;
+    const tiles = `<div class="pred-stats">
+        ${tile('net profit', settled.length ? signed(net) : '—', settled.length ? plClass(net) : '')}
+        ${tile('best day', hasBestDay ? predEscape(bestDay.date) : '—', '',
+            hasBestDay ? `<span class="pred-pos">${signed(bestDay.net)}</span>` : '')}
+        ${tile('biggest win', best ? signed(best.pl) : '—', best ? 'pred-pos' : '')}
+        ${tile('luckiest win',
+            lucky ? `${predEscape(predMarketTitle(lucky.m))}: ${predEscape(lucky.b.outcome)}` : '—',
+            'pred-stat-value-small',
+            lucky ? `at ${predFormatPct(Number(lucky.b.prior_at_bet))}` : '')}
+        ${tile('on the line', live.length ? `${predFormatCoins(staked)}g` : '—')}
+    </div>`;
+    const record = settled.length
+        ? ` · ${wins.length}–${settled.length - wins.length} (${Math.round(100 * wins.length / settled.length)}% hit)`
+        : '';
+
+    const plCell = r => {
+        if (r.pl === null) return '<td class="pred-pl pred-muted">—</td>';
+        if (r.state === 'void — refunded') return '<td class="pred-pl pred-muted">±0g</td>';
+        return `<td class="pred-pl ${plClass(r.pl)}">${signed(r.pl)}</td>`;
+    };
+
+    const dayHead = d => {
+        const parts = [];
+        if (d.settled) parts.push(`${d.won}/${d.settled} won`);
+        if (d.live) parts.push(`${d.live} live`);
+        return `<tr class="pred-day-head">
+            <td><span class="pred-day-date">${predEscape(d.date)}</span>` +
+            (d.venue ? `<span class="pred-day-venue">${predEscape(d.venue)}</span>` : '') + `</td>
+            <td colspan="4" class="pred-day-count">${parts.join(' · ')}</td>
+            <td class="pred-pl ${d.settled ? plClass(d.net) : 'pred-muted'}">${d.settled ? signed(d.net) : '—'}</td>
+            <td></td>
+        </tr>`;
+    };
+
+    el.innerHTML = `${tiles}<div class="pred-scroll"><table class="pred-table pred-bets-table">
+        <tr><th>market</th><th>pick</th><th>stake</th><th>at</th><th>returns</th><th>p/l</th><th></th></tr>
+        ${days.map(d => dayHead(d) + d.rows.map(r => `<tr${r.cls}>
             <td>${r.m ? predEscape(predMarketTitle(r.m)) : '—'}</td>
             <td>${predEscape(r.b.outcome)}</td>
             <td>${predFormatCoins(r.b.stake)}g</td>
             <td>${r.b.prior_at_bet ? predFormatPct(Number(r.b.prior_at_bet)) : '—'}</td>
             <td>${predBetReturnCell(r)}</td>
+            ${plCell(r)}
             <td class="pred-bet-state">${predEscape(r.state)}</td>
-        </tr>`).join('')}
+        </tr>`).join('')).join('')}
         <tr class="pred-bets-total">
-            <td colspan="3">${mine.length} bet${mine.length === 1 ? '' : 's'}, ${live.length} live</td>
-            <td>${predFormatCoins(staked)}g</td>
-            <td></td>
-            <td>${predFormatCoins(Math.round(couldWin * 100) / 100)}g</td>
-            <td class="pred-bet-state">if all win</td>
+            <td colspan="5">${mine.length} bet${mine.length === 1 ? '' : 's'}, ${live.length} live${record}</td>
+            <td class="pred-pl ${settled.length ? plClass(net) : ''}">${settled.length ? signed(net) : '—'}</td>
+            <td class="pred-bet-state">net</td>
         </tr>
     </table></div>`;
 }
