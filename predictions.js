@@ -1159,8 +1159,13 @@ function predUpdateQuote() {
     const bets  = predBetsFor(market.id);
     const stake = predDialogStake();
     const price = predQuote(market, bets, predPendingBet.outcome, stake || 0);
+    // what this stake pays back if it hits, at the price it would lock
+    const back = stake && price > 0 ? Math.round(stake / price * 100) / 100 : null;
     el.textContent = stake
-        ? `${predFormatMultiple(1 / price)} (${predFormatPct(price)} odds)`
+        ? `${predFormatMultiple(1 / price)} (${predFormatPct(price)} odds)` +
+          (back !== null
+              ? ` · returns ${predFormatCoins(back)}g (+${predFormatCoins(Math.round((back - stake) * 100) / 100)}g) if it hits`
+              : '')
         : `${predFormatPct(price)} odds, ${predFormatMultiple(1 / price)} on a bet`;
 }
 
@@ -1423,7 +1428,8 @@ function predRenderMyBets() {
         day.settled = done.length;
         day.won = done.filter(r => r.state === 'won').length;
         day.net = done.reduce((t, r) => t + r.pl, 0);
-        day.live = day.rows.filter(r => r.pl === null).length;
+        day.live = day.rows.filter(r => r.state === 'open').length;
+        day.awaiting = day.rows.filter(r => r.state === 'awaiting setlist').length;
         const show = (typeof shows !== 'undefined' && shows) ? shows.find(s => s.date === day.date) : null;
         day.venue = show ? show.venue : '';
     }
@@ -1461,7 +1467,7 @@ function predRenderMyBets() {
 
     const plCell = r => {
         if (r.pl === null) return '<td class="pred-pl pred-muted">—</td>';
-        if (r.state === 'void — refunded') return '<td class="pred-pl pred-muted">±0g</td>';
+        if (r.state === 'void — refunded') return '<td class="pred-pl pred-muted">void</td>';
         return `<td class="pred-pl ${plClass(r.pl)}">${signed(r.pl)}</td>`;
     };
 
@@ -1469,17 +1475,17 @@ function predRenderMyBets() {
         const parts = [];
         if (d.settled) parts.push(`${d.won}/${d.settled} won`);
         if (d.live) parts.push(`${d.live} live`);
+        if (d.awaiting) parts.push(`${d.awaiting} awaiting setlist`);
         return `<tr class="pred-day-head">
             <td><span class="pred-day-date">${predEscape(d.date)}</span>` +
             (d.venue ? `<span class="pred-day-venue">${predEscape(d.venue)}</span>` : '') + `</td>
             <td colspan="4" class="pred-day-count">${parts.join(' · ')}</td>
             <td class="pred-pl ${d.settled ? plClass(d.net) : 'pred-muted'}">${d.settled ? signed(d.net) : '—'}</td>
-            <td></td>
         </tr>`;
     };
 
     el.innerHTML = `${tiles}<div class="pred-scroll"><table class="pred-table pred-bets-table">
-        <tr><th>market</th><th>pick</th><th>stake</th><th>at</th><th>returns</th><th>p/l</th><th></th></tr>
+        <tr><th>market</th><th>pick</th><th>stake</th><th>at</th><th>returns</th><th>p/l</th></tr>
         ${days.map(d => dayHead(d) + d.rows.map(r => `<tr${r.cls}>
             <td>${r.m ? predEscape(predMarketTitle(r.m)) : '—'}</td>
             <td>${predEscape(r.b.outcome)}</td>
@@ -1487,12 +1493,10 @@ function predRenderMyBets() {
             <td>${r.b.prior_at_bet ? predFormatPct(Number(r.b.prior_at_bet)) : '—'}</td>
             <td>${predBetReturnCell(r)}</td>
             ${plCell(r)}
-            <td class="pred-bet-state">${predEscape(r.state)}</td>
         </tr>`).join('')).join('')}
         <tr class="pred-bets-total">
-            <td colspan="5">${mine.length} bet${mine.length === 1 ? '' : 's'}, ${live.length} live${record}</td>
+            <td colspan="5">${mine.length} bet${mine.length === 1 ? '' : 's'}, ${live.length} live${record} · net</td>
             <td class="pred-pl ${settled.length ? plClass(net) : ''}">${settled.length ? signed(net) : '—'}</td>
-            <td class="pred-bet-state">net</td>
         </tr>
     </table></div>`;
 }

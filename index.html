@@ -1142,6 +1142,11 @@
         .pred-bets-table td:nth-child(3), .pred-bets-table th:nth-child(3) { text-align: right; }
         .pred-lost-row td:nth-child(2), .pred-lost-row td:nth-child(3) { text-decoration: none; }
         .pred-lost-row td:first-child { text-decoration: line-through; }
+        /* long picks and venues wrap instead of pushing the table past the panel */
+        .pred-bets-table th, .pred-bets-table td { padding-left: 8px; padding-right: 8px; }
+        .pred-bets-table td:first-child, .pred-bets-table td:nth-child(2) { white-space: normal; }
+        .pred-bets-table td:nth-child(2) { max-width: 220px; }
+        .pred-day-head td:first-child { line-height: 1.5; }
         .pred-bets-table .pred-pl { font-weight: bold; }
         .pred-pos, .pred-lost-row td.pred-pos { color: #080; }
         .pred-neg, .pred-lost-row td.pred-neg { color: #c0392b; }
@@ -1169,7 +1174,10 @@
         .pred-stat-label { display: flex; justify-content: space-between; gap: 8px; }
         .pred-stat-aside { text-transform: none; letter-spacing: 0; font-weight: bold; }
         .pred-stat-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .pred-stat-value-small { font-size: 14px; line-height: 23px; }
+        .pred-stat-value-small {
+            font-size: 13px; line-height: 1.35; white-space: normal;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+        }
 
         html.dark .pred-pos, html.dark .pred-lost-row td.pred-pos { color: #6adb6a; }
         html.dark .pred-neg, html.dark .pred-lost-row td.pred-neg { color: #ff6b6b; }
