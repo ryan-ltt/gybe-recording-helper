@@ -22877,7 +22877,15 @@
   {
     "date": "2026-11-26",
     "venue": "parque ciudad empresarial, santiago, chl",
-    "songs": [],
+    "songs": [
+      "intro",
+      "sun is a hole sun is vapors",
+      "babys in a thundercloud",
+      "raindrops cast in lead",
+      "pale spectator takes photographs",
+      "bosses hang",
+      "sad mafioso"
+    ],
     "recordings": [],
     "note": "fauna primavera festival"
   },
