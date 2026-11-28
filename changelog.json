@@ -661,5 +661,22 @@
         "venue": "c art media, buenos aires, ar"
       }
     ]
+  },
+  {
+    "timestamp": "2026-11-28 13:12:10",
+    "new_recordings": [
+      {
+        "show_date": "2026-11-24",
+        "venue": "audio, s\u00e3o paulo, br",
+        "id": "p3HPthEbmkQ",
+        "title": "GODSPEED YOU! BLACK EMPEROR ON TOUR LIBERATION FALL OF '26 24 DE NOVEMBRO AUDIO S\u00c3O PAULO, BRASIL"
+      },
+      {
+        "show_date": "2026-11-26",
+        "venue": "parque ciudad empresarial, santiago, chl",
+        "id": "sincEJoZs6o",
+        "title": "Godspeed You! Black Emperor live in Santiago, Chile 26/11/26 (Full Concert)"
+      }
+    ]
   }
 ]

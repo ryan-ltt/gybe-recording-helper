@@ -22872,7 +22872,14 @@
       "moya",
       "blaise bailey finnegan III"
     ],
-    "recordings": []
+    "recordings": [
+      {
+        "id": "p3HPthEbmkQ",
+        "url": "https://youtu.be/p3HPthEbmkQ",
+        "lineage": "unknown",
+        "source": "unknown"
+      }
+    ]
   },
   {
     "date": "2026-11-26",
@@ -22886,7 +22893,14 @@
       "bosses hang",
       "sad mafioso"
     ],
-    "recordings": [],
+    "recordings": [
+      {
+        "id": "sincEJoZs6o",
+        "url": "https://youtu.be/sincEJoZs6o",
+        "lineage": "iPhone 13 (1080p/30fps video) > YouTube",
+        "source": "AUD (video) - iPhone 13 internal mic"
+      }
+    ],
     "note": "fauna primavera festival"
   },
   {
