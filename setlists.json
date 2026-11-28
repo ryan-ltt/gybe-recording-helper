@@ -1754,10 +1754,12 @@
     "recordings": [
       {
         "id": "AgwvwcXCRvs",
-        "url": "https://www.youtube.com/watch?v=AgwvwcXCRvs"
+        "url": "https://www.youtube.com/watch?v=AgwvwcXCRvs",
+        "length": 5285
       }
     ],
-    "note": "w/ labradford"
+    "note": "w/ labradford",
+    "length": 5285
   },
   {
     "date": "1999-09-08",
@@ -5352,9 +5354,11 @@
         "url": "https://youtu.be/zqSFCch_xHM?is=Bfqnr8JqUxLlJhC0",
         "title": "Godspeed You! Black Emperor Live at Engine Room on 2003-03-12",
         "lineage": "unknown",
-        "source": "unknown"
+        "source": "unknown",
+        "length": 5571
       }
-    ]
+    ],
+    "length": 5571
   },
   {
     "date": "2003-03-13",
@@ -5399,9 +5403,11 @@
         "url": "https://youtu.be/UfEydidxowY?is=Igl7eod9RsZIkNb5",
         "title": "Godspeed You! Black Emperor Live at Ridglea Theater on 2003-03-14",
         "lineage": "unknown",
-        "source": "unknown"
+        "source": "unknown",
+        "length": 7047
       }
-    ]
+    ],
+    "length": 7047
   },
   {
     "date": "2003-03-16",
@@ -5454,9 +5460,11 @@
         "url": "https://www.youtube.com/playlist?list=PLSO5xQB7_8pnIu_NXjG3yIF6MUzE4UFqA",
         "title": "Godspeed You! Black Emperor Live at Blue Note on 2003-03-17",
         "lineage": "unknown",
-        "source": "unknown"
+        "source": "unknown",
+        "length": 5903
       }
-    ]
+    ],
+    "length": 5903
   },
   {
     "date": "2003-03-18",
@@ -12967,9 +12975,11 @@
         "id": "youtube-PLWqcrYEYH9CP9unsIrvZHuWFHdg--RUeN",
         "url": "https://www.youtube.com/playlist?list=PLWqcrYEYH9CP9unsIrvZHuWFHdg--RUeN",
         "lineage": "unknown",
-        "source": "unknown"
+        "source": "unknown",
+        "length": 6327
       }
-    ]
+    ],
+    "length": 6327
   },
   {
     "date": "2017-11-05",
@@ -16374,9 +16384,11 @@
         "id": "kdQ06DmIkw0",
         "url": "https://youtu.be/kdQ06DmIkw0",
         "lineage": "unknown",
-        "source": "unknown"
+        "source": "unknown",
+        "length": 5765
       }
-    ]
+    ],
+    "length": 5765
   },
   {
     "date": "2022-09-25",
@@ -18512,9 +18524,11 @@
         "id": "F81K4eeAXGk",
         "url": "https://youtu.be/F81K4eeAXGk",
         "lineage": "unknown",
-        "source": "unknown"
+        "source": "unknown",
+        "length": 6626
       }
     ],
+    "length": 6626,
     "song_lengths": [
       543,
       287,
@@ -18546,9 +18560,11 @@
         "id": "el21VrooyW4",
         "url": "https://www.youtube.com/watch?v=el21VrooyW4",
         "lineage": "unknown",
-        "source": "unknown"
+        "source": "unknown",
+        "length": 7064
       }
     ],
+    "length": 7064,
     "song_lengths": [
       516,
       289,
@@ -22877,9 +22893,11 @@
         "id": "p3HPthEbmkQ",
         "url": "https://youtu.be/p3HPthEbmkQ",
         "lineage": "unknown",
-        "source": "unknown"
+        "source": "unknown",
+        "length": 7569
       }
-    ]
+    ],
+    "length": 7569
   },
   {
     "date": "2026-11-26",
@@ -22898,10 +22916,12 @@
         "id": "sincEJoZs6o",
         "url": "https://youtu.be/sincEJoZs6o",
         "lineage": "iPhone 13 (1080p/30fps video) > YouTube",
-        "source": "AUD (video) - iPhone 13 internal mic"
+        "source": "AUD (video) - iPhone 13 internal mic",
+        "length": 5386
       }
     ],
-    "note": "fauna primavera festival"
+    "note": "fauna primavera festival",
+    "length": 5386
   },
   {
     "date": "2027-02-20",
